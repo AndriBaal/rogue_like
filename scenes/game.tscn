@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqs0n48ll4s83"]
+
+[ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_eqhbu"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_oydf7"]
+[ext_resource type="Texture2D" uid="uid://cigl031bd7356" path="res://img/player/player.png" id="3_54syv"]
+[ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://img/light.png" id="4_tfeoh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
+radius = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_td73f"]
+size = Vector2(360, 64)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tf6pq"]
+polygon = PackedVector2Array(-180, -32, 180, -32, 180, 32, -180, 32)
+
+[node name="game_scene" type="Node2D"]
+script = ExtResource("1_eqhbu")
+
+[node name="player" type="Node2D" parent="."]
+use_parent_material = true
+script = ExtResource("2_oydf7")
+
+[node name="player_body" type="CharacterBody2D" parent="player"]
+floor_block_on_wall = false
+
+[node name="main_camera2d" type="Camera2D" parent="player/player_body"]
+
+[node name="player_collision" type="CollisionShape2D" parent="player/player_body"]
+shape = SubResource("CircleShape2D_0d6cu")
+
+[node name="player_sprite" type="Sprite2D" parent="player/player_body"]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_54syv")
+region_enabled = true
+region_rect = Rect2(0, 0, 156, 156)
+
+[node name="PointLight2D" type="PointLight2D" parent="player/player_body"]
+shadow_enabled = true
+texture = ExtResource("4_tfeoh")
+texture_scale = 2.49
+
+[node name="enemies" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 241)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 7.5)
+shape = SubResource("RectangleShape2D_td73f")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -32.0
+offset_right = 180.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D/CollisionShape2D"]
+occluder = SubResource("OccluderPolygon2D_tf6pq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.176419, 0.176419, 0.176419, 1)

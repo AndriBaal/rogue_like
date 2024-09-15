@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://tqk4vmf3irlv"]
+
+[ext_resource type="Script" path="res://scripts/start_game_button.gd" id="1_t51rd"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = -107.0
+offset_top = -84.0
+offset_right = 99.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 60
+text = "Start"
+script = ExtResource("1_t51rd")
