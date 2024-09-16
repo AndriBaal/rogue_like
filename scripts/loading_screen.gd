@@ -7,7 +7,7 @@ func _ready() -> void:
 	thread.start(self._generate_level)
 
 func _generate_level():
-	var scene = load("res://scenes/game.tscn").instantiate()
+	var scene = load("res://objects/scenes/game.tscn").instantiate()
 	self._on_level_finished.call_deferred(scene)
 
 func _on_level_finished(scene):

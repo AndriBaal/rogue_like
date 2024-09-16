@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqs0n48ll4s83"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_n35nx"]
+[ext_resource type="PackedScene" uid="uid://dp7jdk5hksqyw" path="res://objects/entities/player.tscn" id="2_xklmi"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_n35nx")
+
+[node name="player" parent="." instance=ExtResource("2_xklmi")]
+
+[node name="projectiles" type="Node" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.176419, 0.176419, 0.176419, 1)
