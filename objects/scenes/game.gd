@@ -3,13 +3,12 @@ extends Node2D
 class_name Game
 
 @onready var projectiles = $projectiles
-
-var fireball := preload("res://objects/projectiles/fireball.tscn")
-
-func spawn_fireball(origin: Vector2, target: Vector2) -> void:
-	var projectile = self.fireball.instantiate()
-	projectile.start(origin, target)
-	self.projectiles.add_child(projectile)
+	
+	
+func spawn_projectile(projectile, origin: Vector2, target: Vector2) -> void:
+	var p = projectile.instantiate()
+	p.start(origin, target)
+	self.projectiles.add_child(p)
 	
 
 # Called when the node enters the scene tree for the first time.

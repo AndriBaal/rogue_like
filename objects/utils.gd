@@ -1,7 +1,5 @@
 class_name Utils
 
-
-
 class Direction:	
 	enum {
 		SOUTH,

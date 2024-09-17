@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://tqk4vmf3irlv"]
 
-[ext_resource type="Script" path="res://scripts/start_game_button.gd" id="1_t51rd"]
+[ext_resource type="Script" path="res://objects/scenes/start_game_button.gd" id="1_t51rd"]
 
 [node name="Menu" type="Node2D"]
 

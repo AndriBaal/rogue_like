@@ -5,6 +5,10 @@
 [node name="enemy" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_nevkm")
+max_health = null
+health = null
+attack_radius = null
+movement_speed = null
 
 [node name="idle_sprite" type="Sprite2D" parent="."]
 

@@ -8,11 +8,14 @@ enum PlayerState {
 	WALK_ATTACK
 }
 
+@onready var game = $/root/game
 @onready var camera = $player_camera
 @onready var walk_sprite = $walk_sprite
 @onready var walk_attack_sprite = $walk_attack_sprite
 @onready var idle_sprite = $idle_sprite
 @onready var idle_attack_sprite = $idle_attack_sprite
+
+var fireball := preload("res://objects/projectiles/fireball.tscn")
 
 const ATTACK_SPEED := 0.5
 const SPEED := 400.0
@@ -22,6 +25,7 @@ var state: PlayerState = PlayerState.IDLE
 var movement: Vector2
 var animation_timer := 0.0
 var attack_timer := ATTACK_SPEED
+
 
 func _process(delta: float) -> void:
 	self.attack_timer -= delta
@@ -43,7 +47,7 @@ func _process(delta: float) -> void:
 		new_direction = Utils.Direction.from_vector(self.movement)
 		
 	if Input.is_action_pressed("attack"):
-		var look: Vector2 = self.get_parent().get_local_mouse_position()
+		var look: Vector2 = $/root/game.get_local_mouse_position()
 		var look_direction: Vector2 = (look - player_position).normalized()
 		new_direction = Utils.Direction.from_vector(look_direction)
 		
@@ -54,10 +58,7 @@ func _process(delta: float) -> void:
 		
 		if self.attack_timer < 0.0:
 			self.attack_timer = ATTACK_SPEED
-			
-			$/root/game.spawn_fireball(player_position + 100.0 * look_direction, look_direction)
-			
-			#projectiles.spawn(Projectiles.ProjectileType.FIRE, player_position + 100.0 * look_direction, look_direction)
+			self.game.spawn_projectile(self.fireball, player_position + 80.0 * look_direction, look_direction)
 		
 	self.direction = new_direction
 		
