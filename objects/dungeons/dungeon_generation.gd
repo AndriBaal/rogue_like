@@ -58,7 +58,5 @@ class Dungeon:
 
 	func _init(options: DungeonOptions) -> void:
 		self.rng.seed = options.seed
-
 		var room_data = options.get_possible_rooms()
-
-		self.rooms.push(room_data['start'].instantiate())
+		self.rooms.push_back(room_data['start'].instantiate())
