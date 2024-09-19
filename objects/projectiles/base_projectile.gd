@@ -12,7 +12,7 @@ func start(origin: Vector2, target: Vector2) -> void:
 	self.rotation = atan2(self.velocity.y, self.velocity.x)
 
 func _ready() -> void:
-	self.connect("body_entered", self._on_body_entered)
+	self.body_entered.connect(self._on_body_entered)
 
 func _physics_process(delta: float) -> void:
 	self.max_age -= delta

@@ -1,8 +1,7 @@
-
 class_name DungeonGeneration
 
 enum DungeonType {
-	GOBLIN	
+	GOBLIN
 }
 
 class DungeonOptions:
@@ -51,8 +50,15 @@ class DungeonOptions:
 		return {}
 		
 class Dungeon:
-	var rooms: Array[PackedScene]
+	var rooms: Array[Node]
+	var rng := RandomNumberGenerator.new()
 	
-	func _init(options: DungeonOptions) -> void:
+	func _get_openings_of_room() -> void:
 		pass
-		
+
+	func _init(options: DungeonOptions) -> void:
+		self.rng.seed = options.seed
+
+		var room_data = options.get_possible_rooms()
+
+		self.rooms.push(room_data['start'].instantiate())
