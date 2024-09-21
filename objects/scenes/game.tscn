@@ -6,6 +6,8 @@
 [node name="game" type="Node2D"]
 script = ExtResource("1_n35nx")
 
+[node name="rooms" type="Node" parent="."]
+
 [node name="player" parent="." instance=ExtResource("2_xklmi")]
 
 [node name="projectiles" type="Node" parent="."]

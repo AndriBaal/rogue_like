@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://dgqseky0x4n7t"]
+[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://dgqseky0x4n7t"]
 
 [ext_resource type="Texture2D" uid="uid://dng7tcflu10cu" path="res://img/dungeon/floor.png" id="1_co63y"]
 [ext_resource type="Texture2D" uid="uid://dmh58prgm4un7" path="res://img/dungeon/wall.png" id="1_dvwha"]
@@ -25,15 +25,27 @@ use_texture_padding = false
 8:0/0 = 0
 10:0/0 = 0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gy5eg"]
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3io28"]
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_t10ld"]
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_judyh"]
 resource_name = "wall"
 texture = ExtResource("1_dvwha")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_gy5eg")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_t10ld")
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 0:1/0 = 0
+0:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_3io28")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0825"]
 texture = ExtResource("2_rwmqy")
@@ -42,6 +54,7 @@ texture_region_size = Vector2i(48, 48)
 
 [resource]
 tile_size = Vector2i(48, 48)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ynrxj")
 sources/1 = SubResource("TileSetAtlasSource_judyh")

@@ -8,6 +8,12 @@ func _ready() -> void:
 
 func _generate_level():
 	var scene = load("res://objects/scenes/game.tscn").instantiate()
+	var dungeon = DungeonGeneration.Dungeon.new(
+		DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2)
+	)
+	var room_node = scene.get_node('rooms')
+	for room in dungeon.rooms:
+		room_node.add_child(room)
 	self._on_level_finished.call_deferred(scene)
 
 func _on_level_finished(scene):
