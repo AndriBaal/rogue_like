@@ -13,8 +13,13 @@ func _generate_level():
 	)
 	var room_node = scene.get_node('rooms')
 	for room in dungeon.rooms:
-		room_node.add_child(room)
+		self._recurse_add_rooms(room_node, room)
 	self._on_level_finished.call_deferred(scene)
+	
+func _recurse_add_rooms(root, room):
+	root.add_child(room['room'])
+	for child in room['children']:
+		self._recurse_add_rooms(root, child)
 
 func _on_level_finished(scene):
 	thread.wait_to_finish()

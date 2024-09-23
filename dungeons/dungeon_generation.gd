@@ -20,10 +20,9 @@ class DungeonOptions:
 		good_rooms: int,
 		bad_rooms: int,
 		neutral_rooms: int,
-		min_room_spacing: float = 200.0,
-		hallway_width: float = 100.0,
+		min_room_spacing: float = 1,
 		seed: int = randi(),
-		max_bruteforce_tries: int = 10000
+		hallway_width: float = 2,
 	):
 		self.type = type
 		self.seed = seed
@@ -41,21 +40,16 @@ class DungeonOptions:
 						load('res://dungeons/goblin_dungeon/enemy_room1.tscn'),
 					],
 					'good': [
-						
+						load('res://dungeons/goblin_dungeon/enemy_room1.tscn'),
 					],
 					'neutral_rooms': [
-						
+						load('res://dungeons/goblin_dungeon/enemy_room1.tscn'),
 					],
 					'boss': load('res://dungeons/goblin_dungeon/enemy_room1.tscn')
 				}
-
-	func get_tile_map() -> void:
-		pass # todo
-
-
 		
 class Dungeon:
-	var rooms: Array[Node]
+	var rooms: Array[Dictionary]
 	var rng := RandomNumberGenerator.new()
 	var good_rooms_left: int
 	var bad_rooms_left: int
@@ -71,30 +65,41 @@ class Dungeon:
 		self.neutral_rooms_left = options.neutral_rooms
 
 		var starting_room = options.possible_rooms['start'].instantiate()
-		self._close_room(starting_room, self._get_room_entrances(starting_room))
-		self.rooms = [starting_room]
+		self.rooms = [
+			{
+				'room': starting_room,
+				'children': []
+			}
+		]
+		self._grow_room(self.rooms[0])
 
-	func _recurse_grow_rooms():
-		pass
-
-
-	func _grow_room(force_once: bool) -> Array:
-		var new_rooms = []
-
-
-
-		return []
+	func _grow_room(room):
+		const WALL_TILES = 1
+		const FLOOR_TILES = 0
 		
-	func _close_room(room, entrances):
-		var tilemap: TileMapLayer = room.get_node('tiles')
+		var r = room['room']
+		var tilemap: TileMapLayer = r.get_node('tiles')
+		var floor_tile_source = tilemap.tile_set.get_source(FLOOR_TILES)
+		var floor_tile_amount = floor_tile_source.get_tiles_count()
+		var entrances = self._get_room_entrances(r)
+		var room_sum = self.good_rooms_left + self.bad_rooms_left + self.neutral_rooms_left + self.boss_rooms_left
+		
 		for entrance in entrances:
-			for tile in [entrance['start'], entrance['end']]:
-				var tile_data := tilemap.get_cell_tile_data(tile)
-				var entrance_layer_data = tile_data.get_custom_data('entrance_layer')
-				if not entrance_layer_data:
-					continue
-					
-				tilemap.set_cell(tile, 1, Vector2i.ZERO, tilemap.get_cell_alternative_tile(tile))
+			if self.rng.randi_range(0, 1) > 0:
+				for tile in [entrance['start'], entrance['end']]:
+					tilemap.set_cell(tile, FLOOR_TILES, Vector2i.ZERO)
+					var floor_tile = self.rng.randi_range(0, floor_tile_amount-1)
+					for i in range(5):
+						tilemap.set_cell(tile + i * entrance.direction, FLOOR_TILES, floor_tile_source.get_tile_id(floor_tile))
+
+			else:
+				for tile in [entrance['start'], entrance['end']]:
+					tilemap.set_cell(tile, WALL_TILES, Vector2i.ZERO, tilemap.get_cell_alternative_tile(tile))
+
+		
+		#for child in room['children']:
+			#self._grow_room(child)
+		
 
 	func _generate_hallway(start, end) -> void:
 		pass
@@ -122,12 +127,37 @@ class Dungeon:
 
 					entrance_layer_data = cell.get_custom_data('entrance_layer')
 					if entrance_layer_data:
+						var alt = tilemap.get_cell_alternative_tile(coords)
+						var flip_h = bool(alt & TileSetAtlasSource.TRANSFORM_FLIP_H)
+						var flip_v = bool(alt & TileSetAtlasSource.TRANSFORM_FLIP_V)
+						var transpose = bool(alt & TileSetAtlasSource.TRANSFORM_TRANSPOSE)
+						
+						var direction
+						if transpose:
+							if flip_h and flip_v:
+								direction = Vector2i(1, 0)
+							elif flip_v:
+								direction = Vector2i(1, 0)
+							elif flip_h:
+								direction = Vector2i(-1, 0)
+							else:
+								direction = Vector2i(-1, 0)
+						else:
+							if flip_h and flip_v:
+								direction = Vector2i(0, -1)
+							elif flip_h:
+								direction = Vector2i(0, -1)
+							elif flip_v:
+								direction = Vector2i(0, 1)
+							else:
+								direction = Vector2i(0, 1)
 						entrances.push_back({
 							'start': coords,
 							'end': coords + neighbour,
-							'direction': Vector2i(0, 0)
+							'direction': direction
 						})
 						break
 						
 		
+		print(entrances)
 		return entrances
