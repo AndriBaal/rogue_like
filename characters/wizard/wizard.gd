@@ -114,7 +114,6 @@ func _physics_process(delta: float) -> void:
 func deal_damage(damage: float):
 	self.health -= damage
 	$body/hurt_audio.play()
-	$body/hurt_audio.play()
 	if self.health <= 0.0:
 		print('player died')
 	self.health_bar.value = self.health / self.max_health * 100.0

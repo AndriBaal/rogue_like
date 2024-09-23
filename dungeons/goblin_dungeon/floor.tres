@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dng7tcflu10cu" path="res://dungeons/goblin_dungeon/floor.png" id="1_ocl1s"]
 [ext_resource type="Texture2D" uid="uid://dmh58prgm4un7" path="res://dungeons/goblin_dungeon/wall.png" id="2_4obmd"]
-[ext_resource type="Texture2D" uid="uid://bsskt1eskj0ki" path="res://dungeons/goblin_dungeon/entrance.png" id="3_kxsdl"]
+[ext_resource type="Texture2D" uid="uid://n8nleqxjy2qi" path="res://dungeons/goblin_dungeon/entrance.png" id="3_kxsdl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ynrxj"]
 resource_name = "floor"
@@ -35,14 +35,17 @@ texture_region_size = Vector2i(48, 48)
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 0:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0825"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_afgyo"]
 texture = ExtResource("3_kxsdl")
 texture_region_size = Vector2i(48, 48)
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 
 [resource]
 tile_size = Vector2i(48, 48)
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "entrance_layer"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_ynrxj")
 sources/1 = SubResource("TileSetAtlasSource_judyh")
-sources/4 = SubResource("TileSetAtlasSource_a0825")
+sources/2 = SubResource("TileSetAtlasSource_afgyo")

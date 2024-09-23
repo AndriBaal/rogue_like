@@ -70,7 +70,9 @@ class Dungeon:
 		self.bad_rooms_left = options.bad_rooms
 		self.neutral_rooms_left = options.neutral_rooms
 
-		self.rooms = [options.possible_rooms['start'].instantiate()]
+		var starting_room = options.possible_rooms['start'].instantiate()
+		self._close_room(starting_room, self._get_room_entrances(starting_room))
+		self.rooms = [starting_room]
 
 	func _recurse_grow_rooms():
 		pass
@@ -82,18 +84,50 @@ class Dungeon:
 
 
 		return []
+		
+	func _close_room(room, entrances):
+		var tilemap: TileMapLayer = room.get_node('tiles')
+		for entrance in entrances:
+			for tile in [entrance['start'], entrance['end']]:
+				var tile_data := tilemap.get_cell_tile_data(tile)
+				var entrance_layer_data = tile_data.get_custom_data('entrance_layer')
+				if not entrance_layer_data:
+					continue
+					
+				tilemap.set_cell(tile, 1, Vector2i.ZERO, tilemap.get_cell_alternative_tile(tile))
 
-	func get_room_entrances(room) -> Array:
-		const ENTRANCE_DATA_LAYER := 0
-		var entrances = []
-		var tilemap = room.get_node('tile_map')
+	func _generate_hallway(start, end) -> void:
+		pass
+
+	func _get_room_entrances(room) -> Array:
+		const ENTRANCE_DATA_LAYER := 'entrance_layer'
+		var tilemap: TileMapLayer = room.get_node('tiles')
 		var rect = tilemap.get_used_rect()
+		var entrances = []
 
 		for x in range(rect.position.x, rect.end.x):
 			for y in range(rect.position.y, rect.end.y):
-				var tile_data = tilemap.get_cell_tile_data(x, y)
-				if tile_data:
-					var is_layer_true = tile_data.get_custom_data(ENTRANCE_DATA_LAYER)
-					if is_layer_true:
-						pass # todo
+				var coords = Vector2i(x, y)
+				var tile_data = tilemap.get_cell_tile_data(coords)
+				if not tile_data:
+					continue
+				var entrance_layer_data = tile_data.get_custom_data('entrance_layer')
+				if not entrance_layer_data:
+					continue
+
+				for neighbour in [Vector2i(1, 0), Vector2i(0, 1)]:
+					var cell = tilemap.get_cell_tile_data(coords + neighbour)
+					if not cell:
+						continue
+
+					entrance_layer_data = cell.get_custom_data('entrance_layer')
+					if entrance_layer_data:
+						entrances.push_back({
+							'start': coords,
+							'end': coords + neighbour,
+							'direction': Vector2i(0, 0)
+						})
+						break
+						
+		
 		return entrances
