@@ -21,17 +21,19 @@ var fireball := preload("res://projectiles/fireball.tscn")
 
 const ATTACK_SPEED := 0.5
 const SPEED := 400.0
+const IMMUNITY_SECONDS = 0.75
 
 var direction: Utils.Direction = Utils.Direction.south()
 var state: PlayerState = PlayerState.IDLE
 var movement: Vector2
 var animation_timer := 0.0
 var attack_timer := ATTACK_SPEED
-var health: float = 20.0
-var max_health: float = 20.0
+var immunity_timer := IMMUNITY_SECONDS
+var health := 20.0
+var max_health := 20.0
 
 func _process(delta: float) -> void:
-	self.attack_timer -= delta
+	self.attack_timer += delta
 	self.movement = Input.get_vector(
 		"move_left",
 		"move_right",
@@ -60,8 +62,8 @@ func _process(delta: float) -> void:
 		else:
 			new_state = PlayerState.WALK_ATTACK
 		
-		if self.attack_timer < 0.0:
-			self.attack_timer = ATTACK_SPEED
+		if self.attack_timer >= ATTACK_SPEED:
+			self.attack_timer = 0.0
 			self.game.spawn_projectile(self.fireball, player_position + 80.0 * look_direction, look_direction, true)
 
 	self.direction = new_direction
@@ -100,6 +102,7 @@ func _process(delta: float) -> void:
 			self.animation_timer += delta
 
 	active_sprite.frame_coords.y = self.direction.inner
+	self._compute_immunity(delta, active_sprite)
 
 	if Input.is_action_pressed("zoom_in"):
 		self.camera.zoom += Vector2.ONE * delta
@@ -111,12 +114,28 @@ func _physics_process(delta: float) -> void:
 	self.body.velocity = self.movement.normalized() * SPEED
 	var res = self.body.move_and_slide()
 	
+func _compute_immunity(delta, active_sprite):
+	const BLINK = 0.05
+	self.immunity_timer += delta
+	var color
+	if self.immunity_timer > IMMUNITY_SECONDS:
+		color = Color.WHITE
+	else:
+		var t = self.immunity_timer / BLINK
+		if int(t) % 2 == 0:
+			color = Color.WHITE
+		else:
+			color = Color.TRANSPARENT
+	active_sprite.modulate = color
+		
+	
 func deal_damage(damage: float):
+	if self.immunity_timer < IMMUNITY_SECONDS:
+		return
+	
+	self.immunity_timer = 0.0
 	self.health -= damage
 	$body/hurt_audio.play()
 	if self.health <= 0.0:
 		print('player died')
 	self.health_bar.value = self.health / self.max_health * 100.0
-	
-	
-	

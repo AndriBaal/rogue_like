@@ -11,8 +11,11 @@ func _ready() -> void:
 func _generate_level():
 	var scene = load("res://scenes/game.tscn").instantiate()
 	var dungeon = DungeonGeneration.Dungeon.new(
-		DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2)
+		DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 16, 0, 0)
 	)
+	var player = scene.get_node("player/body")
+	player.position = dungeon.rooms[0]["room"].global_position
+
 	var room_node = scene.get_node("rooms")
 	for room in dungeon.rooms:
 		self._recurse_add_rooms(room_node, room)
