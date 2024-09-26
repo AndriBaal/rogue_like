@@ -85,13 +85,18 @@ class Dungeon:
 		self.rooms.push_back(room)
 		self._grow_rooms(self.rooms, true)
 
+	func shuffle_array(arr):
+		for i in range(arr.size()):
+			var random_index = self.random.randi_range(0, arr.size() - 1)
+			arr.swap(i, random_index) # Swap the current element with a random one
+
 	func _rooms_left() -> int:
 		var sum = 0
 		for v in self.rooms_left:
 			sum += self.rooms_left[v]
 		return sum
 
-	func _get_room(only_bad):
+	func _get_room_type(only_bad):
 		var available_room_types = []
 		if only_bad:
 			available_room_types.push_back("bad")
@@ -103,16 +108,20 @@ class Dungeon:
 		if available_room_types.is_empty():
 			return null
 
-		var possible_rooms = self.options.possible_rooms
 		var room_type_key = available_room_types[self.random.randi_range(
 			0, available_room_types.size() - 1
 		)]  # TODO: Maybe add weighted random
+		
+		return room_type_key
+		
+	func _get_room(room_type_key):
 		self.rooms_left[room_type_key] -= 1
 
+		var possible_rooms = self.options.possible_rooms
 		var room_type = possible_rooms[room_type_key]
 		var random_key = self.random.randi_range(0, room_type.size() - 1)
 		var room = room_type[random_key]
-		#room_type.remove_at(random_key) # TODO: ad remove
+		# room_type.remove_at(random_key) # TODO: add remove to avoid duplicate rooms
 		return room.instantiate()
 
 	func _grow_rooms(rooms, only_bad = false):
@@ -137,16 +146,74 @@ class Dungeon:
 				if (
 					entrance["has_connection"]
 					or (
-						self.random.randi_range(0, 1) == 2
+						self.random.randi_range(0, 2) == 0
 						and not (i_room == room_amount - 1 and new_rooms.is_empty())
 					)
 				):
 					continue
 
-				var dist := self.random.randi_range(2, 12)
-				var new_r = self._get_room(only_bad)
+				var dist := self.random.randi_range(2, 8)
+				var room_type = self._get_room_type(only_bad)
+				var new_r = self._get_room(room_type)
+
 				var new_tilemap = new_r.get_node("tiles")
 				var new_entrances = self._get_room_entrances(new_r)
+				
+				var allowed_entrances = []
+				for new_entrance in new_entrances:
+					if (
+						not new_entrance["has_connection"]
+						and new_entrance["direction"] == -entrance["direction"]
+					):
+						allowed_entrances.push_back(new_entrance)
+				
+				if not allowed_entrances:
+					continue
+					
+				var new_entrance = allowed_entrances[self.random.randi_range(
+					0, len(allowed_entrances) - 1
+				)]
+				
+				var offset = new_r.to_global(
+					new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
+				)
+							
+				var start_entrance = r.to_global(
+					tilemap.to_global(tilemap.map_to_local(entrance["start"]))
+				)
+				
+				var end_entrance = (
+					start_entrance
+					+ (
+						Vector2(-new_entrance["direction"])
+						* float(dist)
+						* Vector2(self.tile_size)
+					)
+				)
+				
+				new_r.position = end_entrance - offset
+				
+				var new_position_tile = Vector2i(new_r.position / self.tile_size)
+				var rect: Rect2i = new_tilemap.get_used_rect()
+				rect.position += new_position_tile
+				
+				var new_room_valid = true
+				for room_iter in [self.rooms, new_rooms]:
+					for existing_room in room_iter:
+						var existing_r = existing_room['room']
+						var existing_tile_map: TileMapLayer = existing_r.get_node('tiles')
+						var existing_rect = existing_tile_map.get_used_rect()
+						var existing_position_tile = Vector2i(existing_r.position / self.tile_size)
+						existing_rect.position += existing_position_tile
+						if rect.intersects(existing_rect):
+							new_room_valid = false # TODO: Check for individual tiles
+							break
+					if not new_room_valid:
+						break
+				if not new_room_valid:
+					continue
+				
+
 				var new_room = {
 					"room": new_r,
 					"entrances": new_entrances,
@@ -179,40 +246,13 @@ class Dungeon:
 							)
 						tilemap.set_cell(tile_pos, FLOOR_TILES, random_tile)
 
-				var allowed_entrances = []
-				for new_entrance in new_entrances:
-					if (
-						not new_entrance["has_connection"]
-						and new_entrance["direction"] == -entrance["direction"]
-					):
-						allowed_entrances.push_back(new_entrance)
-				if allowed_entrances:
-					var new_entrance = allowed_entrances[self.random.randi_range(
-						0, len(allowed_entrances) - 1
-					)]
-					var start_entrance = r.to_global(
-						tilemap.to_global(tilemap.map_to_local(entrance["start"]))
-					)
-					var end_entrance = (
-						start_entrance
-						+ (
-							Vector2(-new_entrance["direction"])
-							* float(dist)
-							* Vector2(self.tile_size)
-						)
-					)
-					var offset = new_r.to_global(
-						new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
-					)
-					new_r.position = end_entrance - offset
+				for tile in [new_entrance["start"], new_entrance["end"]]:
+					new_tilemap.set_cell(tile, FLOOR_TILES, Vector2i.ZERO)
 
-					for tile in [new_entrance["start"], new_entrance["end"]]:
-						new_tilemap.set_cell(tile, FLOOR_TILES, Vector2i.ZERO)
-
-					new_entrance["has_connection"] = true
-					entrance["has_connection"] = true
-					children.push_back(new_room)
-					new_rooms.push_back(new_room)
+				new_entrance["has_connection"] = true
+				entrance["has_connection"] = true
+				children.push_back(new_room)
+				new_rooms.push_back(new_room)
 
 			for entrance in entrances:
 				if not entrance["has_connection"]:
