@@ -30,7 +30,7 @@ func _on_body_entered(body):
 			return
 			
 		if 'health' in body:
-			body.health -= self.damage
+			body.deal_damage(self.damage)
 	else:
 		var parent = body.get_parent()
 		if parent.get_instance_id() == self.player.get_instance_id():

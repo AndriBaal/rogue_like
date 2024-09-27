@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqs0n48ll4s83"]
+[gd_scene load_steps=4 format=3 uid="uid://bqs0n48ll4s83"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_n35nx"]
 [ext_resource type="PackedScene" uid="uid://dp7jdk5hksqyw" path="res://characters/wizard/wizard.tscn" id="2_xklmi"]
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="3_i6rvb"]
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_n35nx")
@@ -12,6 +13,44 @@ script = ExtResource("1_n35nx")
 
 [node name="projectiles" type="Node" parent="."]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="darkness" type="CanvasModulate" parent="."]
 visible = false
 color = Color(0.266575, 0.266575, 0.266575, 1)
+
+[node name="pause_menu" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("3_i6rvb")
+
+[node name="continue" type="Button" parent="pause_menu"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -130.0
+offset_right = 219.0
+offset_bottom = -55.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Continue"
+
+[node name="save" type="Button" parent="pause_menu"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_right = 219.0
+offset_bottom = 42.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Save"
+
+[node name="quit" type="Button" parent="pause_menu"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = 58.0
+offset_right = 219.0
+offset_bottom = 133.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Quit"

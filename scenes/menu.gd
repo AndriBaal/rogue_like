@@ -1,8 +1,8 @@
-extends Button
+extends Node2D
 
 
 func _ready():
-	self.pressed.connect(self._button_pressed)
+	$new_game_button.pressed.connect(self._button_pressed)
 
 
 func _button_pressed():

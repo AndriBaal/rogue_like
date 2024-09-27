@@ -8,6 +8,8 @@ enum EnemyState {
 	MOVING
 }
 
+const HIT_ANIMATION_DURATION := 0.3
+
 @export var max_health: float = 15.0
 @export var health: float = 15.0
 @export var attack_radius: float = 400.0
@@ -15,6 +17,7 @@ enum EnemyState {
 @export var movement_speed: float = 200.0
 @export var attack_sprite: Sprite2D
 var target_vector: Vector2
+var hit_animation_timer := HIT_ANIMATION_DURATION
 # TODO: melee damage
 
 @onready var game = $/root/game
@@ -30,10 +33,6 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	if self.health <= 0.0:
-		self.queue_free()
-		return
-	
 	var target_position = target.position
 	var position_delta: Vector2 = target_position - self.global_position
 	var distance = position_delta.length()
@@ -87,11 +86,28 @@ func _process(delta: float) -> void:
 			self.animation_timer += delta
 			self.movement = position_delta.normalized()
 			
+	self._compute_hit_animation(delta, active_sprite)
 	active_sprite.frame_coords.y = self.direction.inner
 
 func _physics_process(delta: float) -> void:
 	self.velocity = self.movement.normalized() * self.movement_speed
 	var res = self.move_and_slide()
+	
+func _compute_hit_animation(delta, active_sprite):
+	self.hit_animation_timer += delta
+	var color
+	if self.hit_animation_timer > HIT_ANIMATION_DURATION:
+		color = Color.WHITE
+	else:
+		var scale = 1.0 - abs((self.hit_animation_timer / HIT_ANIMATION_DURATION) * 2.0 - 1.0)
+		color = Color(1.0, 1.0 - scale, 1.0 - scale, 1.0)
+	active_sprite.modulate = color
+	
+func deal_damage(damage: float):
+	self.health -= damage
+	self.hit_animation_timer = 0.0
+	if self.health <= 0.0:
+		self.queue_free()
 
 func start_attack() -> void:
 	self.movement = Vector2.ZERO

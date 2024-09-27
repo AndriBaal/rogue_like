@@ -1,16 +1,53 @@
 [gd_scene load_steps=2 format=3 uid="uid://tqk4vmf3irlv"]
 
-[ext_resource type="Script" path="res://scenes/start_game_button.gd" id="1_t51rd"]
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_t51rd"]
 
-[node name="Menu" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Button" type="Button" parent="."]
-offset_left = -107.0
-offset_top = -84.0
-offset_right = 99.0
-offset_bottom = 72.0
-theme_override_font_sizes/font_size = 60
-text = "Start"
+[node name="menu" type="Node2D"]
 script = ExtResource("1_t51rd")
+
+[node name="camera" type="Camera2D" parent="."]
+
+[node name="new_game_button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.5
+offset_top = -62.0
+offset_right = 179.5
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "New Game"
+
+[node name="load_game_button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = 63.0
+offset_right = 178.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Load Game"
+
+[node name="title" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -217.0
+offset_right = 210.0
+offset_bottom = -107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "Rogue Like"

@@ -152,6 +152,7 @@ class Dungeon:
 				):
 					continue
 
+				# TODO: Implement other types of hallways
 				var dist := self.random.randi_range(2, 8)
 				var room_type = self._get_room_type(only_bad)
 				var new_r = self._get_room(room_type)
@@ -170,6 +171,9 @@ class Dungeon:
 				if not allowed_entrances:
 					continue
 					
+				# TODO: Try other allowed_entrances when one fails
+				# TODO: Maybe rotate other Rooms
+				# TODO: Add multilevel dungeons
 				var new_entrance = allowed_entrances[self.random.randi_range(
 					0, len(allowed_entrances) - 1
 				)]
@@ -198,7 +202,7 @@ class Dungeon:
 				rect.position += new_position_tile
 				
 				var new_room_valid = true
-				for room_iter in [self.rooms, new_rooms]:
+				for room_iter in [self.rooms, new_rooms]: # TODO: Check recursive rooms
 					for existing_room in room_iter:
 						var existing_r = existing_room['room']
 						var existing_tile_map: TileMapLayer = existing_r.get_node('tiles')
