@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=12 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://characters/wizard/wizard.gd" id="1_wq6b8"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_oduc2"]
@@ -9,12 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://characters/health_bar.png" id="7_7emgj"]
 [ext_resource type="AudioStream" uid="uid://c5637qrydm4yb" path="res://characters/hurt.mp3" id="7_32lc0"]
 [ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://characters/health_bar_background.png" id="7_wg1hw"]
+[ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://characters/mana_bar.png" id="10_b54qa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
 radius = 30.0
 
-[node name="player" type="Node"]
+[node name="player" type="Node2D"]
 script = ExtResource("1_wq6b8")
+state = null
+movement = null
+animation_timer = null
+attack_timer = null
+immunity_timer = null
+health = null
+max_health = null
 
 [node name="body" type="CharacterBody2D" parent="."]
 scale = Vector2(2, 2)
@@ -67,3 +75,14 @@ value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("7_wg1hw")
 texture_progress = ExtResource("7_7emgj")
+
+[node name="mana_bar" type="TextureProgressBar" parent="player_ui"]
+anchors_preset = -1
+anchor_right = 0.501
+offset_top = 54.0
+offset_right = -0.200012
+offset_bottom = 108.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_wg1hw")
+texture_progress = ExtResource("10_b54qa")

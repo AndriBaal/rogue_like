@@ -16,18 +16,18 @@ const HIT_ANIMATION_DURATION := 0.3
 @export var attack_speed: float = 1.4
 @export var movement_speed: float = 200.0
 @export var attack_sprite: Sprite2D
-var target_vector: Vector2
-var hit_animation_timer := HIT_ANIMATION_DURATION
+@export var target_vector: Vector2
+@export var hit_animation_timer := HIT_ANIMATION_DURATION
 # TODO: melee damage
 
 @onready var game = $/root/game
 @onready var target = $/root/game/player/body
 
-var animation_timer := 0.0
+@export var animation_timer := 0.0
 
-var state := EnemyState.IDLE
-var movement: Vector2
-var direction: Utils.Direction = Utils.Direction.south()
+@export var state := EnemyState.IDLE
+@export var movement: Vector2
+var direction := Direction.SOUTH
 
 func _ready() -> void:
 	pass
@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 		self.state = new_state
 		
 	
-	self.direction = Utils.Direction.from_vector(position_delta)
+	self.direction = Direction.from_vector(position_delta)
 	
 	var active_sprite
 	match self.state:
@@ -87,7 +87,7 @@ func _process(delta: float) -> void:
 			self.movement = position_delta.normalized()
 			
 	self._compute_hit_animation(delta, active_sprite)
-	active_sprite.frame_coords.y = self.direction.inner
+	active_sprite.frame_coords.y = self.direction
 
 func _physics_process(delta: float) -> void:
 	self.velocity = self.movement.normalized() * self.movement_speed

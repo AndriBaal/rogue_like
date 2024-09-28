@@ -15,9 +15,9 @@
 	- [x] Player hit Animation / Indicator
 	- [x] player invincibility
 	- [ ] Inventory
-		- [ ] Heiltränke
-		- [ ] Bufftrank
-		- [ ] Geld
+		- [ ] Healpotion
+		- [ ] Buffpotion
+		- [ ] Money
 	- [ ] XP and level
 	- [ ] 4 Abilities (buyable with XP)
 		- [ ] Teleport

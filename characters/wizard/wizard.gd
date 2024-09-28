@@ -23,14 +23,14 @@ const ATTACK_SPEED := 0.5
 const SPEED := 400.0
 const IMMUNITY_SECONDS = 0.75
 
-var direction: Utils.Direction = Utils.Direction.south()
-var state: PlayerState = PlayerState.IDLE
-var movement: Vector2
-var animation_timer := 0.0
-var attack_timer := ATTACK_SPEED
-var immunity_timer := IMMUNITY_SECONDS
-var health := 20.0
-var max_health := 20.0
+var direction := Direction.SOUTH
+@export var state: PlayerState = PlayerState.IDLE
+@export var movement: Vector2
+@export var animation_timer := 0.0
+@export var attack_timer := ATTACK_SPEED
+@export var immunity_timer := IMMUNITY_SECONDS
+@export var health := 20.0
+@export var max_health := 20.0
 
 func _process(delta: float) -> void:
 	self.attack_timer += delta
@@ -50,12 +50,12 @@ func _process(delta: float) -> void:
 		new_state = PlayerState.IDLE
 	else:
 		new_state = PlayerState.WALK
-		new_direction = Utils.Direction.from_vector(self.movement)
+		new_direction = Direction.from_vector(self.movement)
 
 	if Input.is_action_pressed("attack"):
 		var look: Vector2 = $/root/game.get_local_mouse_position()
 		var look_direction: Vector2 = (look - player_position).normalized()
-		new_direction = Utils.Direction.from_vector(look_direction)
+		new_direction = Direction.from_vector(look_direction)
 		
 		if is_moving:
 			new_state = PlayerState.IDLE_ATTACK
@@ -101,7 +101,7 @@ func _process(delta: float) -> void:
 			self.walk_attack_sprite.frame_coords.x = int(self.animation_timer * 16.0) % self.walk_sprite.hframes
 			self.animation_timer += delta
 
-	active_sprite.frame_coords.y = self.direction.inner
+	active_sprite.frame_coords.y = self.direction
 	self._compute_immunity(delta, active_sprite)
 
 	if Input.is_action_pressed("zoom_in"):
@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_pressed("zoom_out"):
 		self.camera.zoom -= Vector2.ONE * delta
-
+		
 func _physics_process(delta: float) -> void:
 	self.body.velocity = self.movement.normalized() * SPEED
 	var res = self.body.move_and_slide()

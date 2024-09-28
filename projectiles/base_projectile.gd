@@ -4,9 +4,8 @@ extends Area2D
 @export var max_age: float = 10.0
 @export var damage: float = 4.0
 @onready var player = $/root/game/player
-var friendly: int;
-
-var velocity: Vector2
+@export var friendly: int;
+@export var velocity: Vector2
 
 func start(friendly: bool, origin: Vector2, target: Vector2) -> void:
 	self.friendly = friendly

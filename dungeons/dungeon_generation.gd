@@ -68,13 +68,13 @@ class Dungeon:
 		var tilemap: TileMapLayer = room.get_node("tiles")
 		var rect := tilemap.get_used_rect()
 		var size = self.options.size - rect.size
-		var pos = Vector2(
-			self.random.randi_range(-size.x, size.x),
-			self.random.randi_range(-size.y, size.y),
-		)
-
 		self.tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
-		room.position = pos * self.tile_size
+		
+		#var pos = Vector2(
+			#self.random.randi_range(-size.x, size.x),
+			#self.random.randi_range(-size.y, size.y),
+		#)
+		#room.position = pos * self.tile_size
 
 		room = {
 			"room": room,
@@ -113,6 +113,20 @@ class Dungeon:
 		)]  # TODO: Maybe add weighted random
 		
 		return room_type_key
+		
+	func _recurse_room_intersections(rooms, rect) -> bool:
+		for room in rooms:
+			var existing_r = room['room']
+			var existing_tile_map: TileMapLayer = existing_r.get_node('tiles')
+			var existing_rect = existing_tile_map.get_used_rect()
+			var existing_position_tile = Vector2i(existing_r.position / self.tile_size)
+			existing_rect.position += existing_position_tile
+			if rect.intersects(existing_rect):
+				# TODO: Check for individual tiles
+				return true
+			if self._recurse_room_intersections(room['children'], rect):
+				return true
+		return false
 		
 	func _get_room(room_type_key):
 		self.rooms_left[room_type_key] -= 1
@@ -172,7 +186,7 @@ class Dungeon:
 					continue
 					
 				# TODO: Try other allowed_entrances when one fails
-				# TODO: Maybe rotate other Rooms
+				# TODO: Maybe rotate Rooms
 				# TODO: Add multilevel dungeons
 				var new_entrance = allowed_entrances[self.random.randi_range(
 					0, len(allowed_entrances) - 1
@@ -201,23 +215,10 @@ class Dungeon:
 				var rect: Rect2i = new_tilemap.get_used_rect()
 				rect.position += new_position_tile
 				
-				var new_room_valid = true
-				for room_iter in [self.rooms, new_rooms]: # TODO: Check recursive rooms
-					for existing_room in room_iter:
-						var existing_r = existing_room['room']
-						var existing_tile_map: TileMapLayer = existing_r.get_node('tiles')
-						var existing_rect = existing_tile_map.get_used_rect()
-						var existing_position_tile = Vector2i(existing_r.position / self.tile_size)
-						existing_rect.position += existing_position_tile
-						if rect.intersects(existing_rect):
-							new_room_valid = false # TODO: Check for individual tiles
-							break
-					if not new_room_valid:
-						break
-				if not new_room_valid:
+				if (self._recurse_room_intersections(self.rooms, rect) or
+					self._recurse_room_intersections(new_rooms, rect)):
 					continue
 				
-
 				var new_room = {
 					"room": new_r,
 					"entrances": new_entrances,

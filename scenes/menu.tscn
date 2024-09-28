@@ -7,47 +7,169 @@ script = ExtResource("1_t51rd")
 
 [node name="camera" type="Camera2D" parent="."]
 
-[node name="new_game_button" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="title" type="Node2D" parent="."]
+
+[node name="new_game" type="Button" parent="title"]
 offset_left = -179.5
-offset_top = -62.0
+offset_top = -40.0
 offset_right = 179.5
-offset_bottom = 29.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 51.0
 theme_override_font_sizes/font_size = 60
 text = "New Game"
 
-[node name="load_game_button" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -181.0
-offset_top = 63.0
-offset_right = 178.0
-offset_bottom = 154.0
+[node name="load_game" type="Button" parent="title"]
+anchors_preset = -1
+anchor_top = 0.173
+anchor_bottom = 0.173
+offset_left = -179.0
+offset_top = 69.0
+offset_right = 180.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 text = "Load Game"
 
-[node name="title" type="Label" parent="."]
+[node name="quit" type="Button" parent="title"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = 175.0
+offset_right = 180.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Quit"
+
+[node name="title" type="Label" parent="title"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -210.0
-offset_top = -217.0
+offset_top = -221.0
 offset_right = 210.0
-offset_bottom = -107.0
+offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
 text = "Rogue Like"
+
+[node name="load_save" type="Node2D" parent="."]
+visible = false
+
+[node name="back" type="Button" parent="load_save"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = 175.0
+offset_right = 180.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[node name="start" type="Button" parent="load_save"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = 76.0
+offset_right = -43.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+disabled = true
+text = "Start"
+
+[node name="delete" type="Button" parent="load_save"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 47.0
+offset_top = 76.0
+offset_right = 310.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+disabled = true
+text = "Delete"
+
+[node name="save_files" type="ItemList" parent="load_save"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -308.0
+offset_top = -305.0
+offset_right = 310.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+
+[node name="create_game" type="Node2D" parent="."]
+visible = false
+
+[node name="back" type="Button" parent="create_game"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = 175.0
+offset_right = 180.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[node name="start" type="Button" parent="create_game"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = 76.0
+offset_right = 180.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+disabled = true
+text = "Start"
+
+[node name="name" type="LineEdit" parent="create_game"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -297.0
+offset_top = -100.0
+offset_right = 296.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+placeholder_text = "Name ..."
+max_length = 16
