@@ -104,7 +104,7 @@ func _physics_process(delta: float) -> void:
 		for i in range(self.get_slide_collision_count()):
 			var collision = self.get_slide_collision(i)
 			if collision.get_collider_id() == self.target.get_instance_id():
-				self.target.get_parent().deal_damage(self.melee_damage)
+				self.target.deal_damage(self.melee_damage)
 	
 func _compute_hit_animation(delta, active_sprite):
 	self.hit_animation_timer += delta

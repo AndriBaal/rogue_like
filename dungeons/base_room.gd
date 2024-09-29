@@ -23,12 +23,13 @@ func _process(delta: float) -> void:
 		
 	if not active and not finished:
 		var player_pos = self.target.position - self.position
-		var tile_pos = self.tiles.local_to_map(player_pos / self.tiles.scale)
+		var player_size = self.target.get_node('collider').shape.get_rect().size * self.target.scale / 2.0
 		for entrance in self.data['entrances']:
 			var direction = entrance['direction']
 			for v in [entrance['start'], entrance['end']]:
-				var t = v - direction
-				if t == tile_pos:
+				var tile = v - direction
+				var player_tile = self.tiles.local_to_map((player_pos - Vector2(-direction) * player_size) / self.tiles.scale)
+				if tile == player_tile:
 					self.active = true
 					self._close_room()
 					for enemy in self.enemies.get_children():

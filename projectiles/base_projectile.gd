@@ -31,9 +31,8 @@ func _on_body_entered(body):
 		if 'health' in body:
 			body.deal_damage(self.damage)
 	else:
-		var parent = body.get_parent()
-		if parent.get_instance_id() == self.player.get_instance_id():
-			parent.deal_damage(self.damage)
+		if body.get_instance_id() == self.player.get_instance_id():
+			body.deal_damage(self.damage)
 		elif 'health' in body:
 			return
 	self.queue_free()

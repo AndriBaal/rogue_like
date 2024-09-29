@@ -9,7 +9,7 @@ enum PlayerState {
 }
 
 @onready var game = $/root/game
-@onready var camera = $player_camera
+@onready var camera = $camera
 @onready var walk_sprite = $walk_sprite
 @onready var walk_attack_sprite = $walk_attack_sprite
 @onready var idle_sprite = $idle_sprite
@@ -139,12 +139,13 @@ func _compute_immunity(delta, active_sprite):
 func deal_damage(damage: float):
 	if self.immunity_timer < IMMUNITY_SECONDS:
 		return
-	
+
 	self.immunity_timer = 0.0
 	self.health -= damage
-	$body/hurt_audio.play()
+	$hurt_audio.play()
 	if self.health <= 0.0:
-		print('player died')
+		self.get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		return
 	self.health_bar.value = self.health / self.max_health * 100.0
 
 func gain_xp(xp: int):
