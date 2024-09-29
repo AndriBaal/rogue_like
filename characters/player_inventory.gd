@@ -4,10 +4,9 @@ extends TabContainer
 var last_mouse_pos := Vector2.ZERO
 
 func _ready() -> void:
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var mouse_pos = $Map.get_local_mouse_position()
 	if self.current_tab == 1 and Input.is_action_pressed("attack"):

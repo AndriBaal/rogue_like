@@ -8,13 +8,13 @@ extends Node2D
 @export var active: bool = false
 
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 func _process(delta: float) -> void:
 	if finished:
 		return
 		
-	var child_count = enemies.get_child_count()		
+	var child_count = enemies.get_child_count()
 	if child_count == 0:
 		if self.active:
 			self.active = false

@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 		new_state = PlayerState.WALK
 		new_direction = Direction.from_vector(self.movement)
 
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_pressed("attack") and not inventory.visible:
 		var look: Vector2 = $/root/game.get_local_mouse_position()
 		var look_direction: Vector2 = (look - player_position).normalized()
 		new_direction = Direction.from_vector(look_direction)
