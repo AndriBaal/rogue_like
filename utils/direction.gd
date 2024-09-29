@@ -11,8 +11,9 @@ enum {
 	SOUTH_WEST,
 }
 
+
 # Function to determine the direction based on a Vector2
-static func from_vector(val: Vector2) -> int :
+static func from_vector(val: Vector2) -> int:
 	const AMOUNT := 8
 	var angle := val.angle()  # Returns angle in radians
 	angle = rad_to_deg(angle)  # Convert to degrees

@@ -4,6 +4,7 @@ enum DungeonType { GOBLIN }
 const WALL_TILES = 1
 const FLOOR_TILES = 0
 
+
 class DungeonOptions:
 	var type: DungeonType
 	var random_seed: int
@@ -65,11 +66,11 @@ class Dungeon:
 		var tilemap: TileMapLayer = room.get_node("tiles")
 		var rect := tilemap.get_used_rect()
 		self.tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
-		
+
 		#var size = self.options.size - rect.size
 		#var pos = Vector2(
-			#self.random.randi_range(-size.x, size.x),
-			#self.random.randi_range(-size.y, size.y),
+		#self.random.randi_range(-size.x, size.x),
+		#self.random.randi_range(-size.y, size.y),
 		#)
 		#room.position = pos * self.tile_size
 
@@ -85,7 +86,7 @@ class Dungeon:
 	func shuffle_array(arr):
 		for i in range(arr.size()):
 			var random_index = self.random.randi_range(0, arr.size() - 1)
-			arr.swap(i, random_index) # Swap the current element with a random one
+			arr.swap(i, random_index)  # Swap the current element with a random one
 
 	func _rooms_left() -> int:
 		var sum = 0
@@ -108,23 +109,23 @@ class Dungeon:
 		var room_type_key = available_room_types[self.random.randi_range(
 			0, available_room_types.size() - 1
 		)]  # TODO: Maybe add weighted random
-		
+
 		return room_type_key
-		
+
 	func _recurse_room_intersections(rooms, rect) -> bool:
 		for room in rooms:
-			var existing_r = room['room']
-			var existing_tile_map: TileMapLayer = existing_r.get_node('tiles')
+			var existing_r = room["room"]
+			var existing_tile_map: TileMapLayer = existing_r.get_node("tiles")
 			var existing_rect = existing_tile_map.get_used_rect()
 			var existing_position_tile = Vector2i(existing_r.position / self.tile_size)
 			existing_rect.position += existing_position_tile
 			if rect.intersects(existing_rect):
 				# TODO: Check for individual tiles
 				return true
-			if self._recurse_room_intersections(room['children'], rect):
+			if self._recurse_room_intersections(room["children"], rect):
 				return true
 		return false
-		
+
 	func _get_room(room_type_key):
 		self.rooms_left[room_type_key] -= 1
 
@@ -168,7 +169,7 @@ class Dungeon:
 
 				var new_tilemap = new_r.get_node("tiles")
 				var new_entrances = self._get_room_entrances(new_r)
-				
+
 				var allowed_entrances = []
 				for new_entrance in new_entrances:
 					if (
@@ -176,44 +177,42 @@ class Dungeon:
 						and new_entrance["direction"] == -entrance["direction"]
 					):
 						allowed_entrances.push_back(new_entrance)
-				
+
 				if not allowed_entrances:
 					continue
-					
+
 				# TODO: Try other allowed_entrances when one fails
 				# TODO: Maybe rotate Rooms
 				# TODO: Add multilevel dungeons
 				var new_entrance = allowed_entrances[self.random.randi_range(
 					0, len(allowed_entrances) - 1
 				)]
-				
+
 				var offset = new_r.to_global(
 					new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
 				)
-							
+
 				var start_entrance = r.to_global(
 					tilemap.to_global(tilemap.map_to_local(entrance["start"]))
 				)
-				
+
 				var end_entrance = (
 					start_entrance
-					+ (
-						Vector2(-new_entrance["direction"])
-						* float(dist)
-						* Vector2(self.tile_size)
-					)
+					+ (Vector2(-new_entrance["direction"]) * float(dist) * Vector2(self.tile_size))
 				)
-				
+
 				new_r.position = end_entrance - offset
-				
+
 				var new_position_tile = Vector2i(new_r.position / self.tile_size)
 				var rect: Rect2i = new_tilemap.get_used_rect()
 				rect.position += new_position_tile
-				
-				if (self._recurse_room_intersections(self.rooms, rect) or
-					self._recurse_room_intersections(new_rooms, rect)):
+
+				if (
+					self._recurse_room_intersections(self.rooms, rect)
+					or self._recurse_room_intersections(new_rooms, rect)
+				):
 					continue
-				
+
 				var new_room = {
 					"room": new_r,
 					"entrances": new_entrances,
@@ -224,7 +223,7 @@ class Dungeon:
 				var entrance_start = entrance["start"]
 				var entrance_end = entrance["end"]
 				# hallway
-				for tile in [entrance_start, entrance_end]: 
+				for tile in [entrance_start, entrance_end]:
 					var wall
 					if tile == entrance_start:
 						wall = entrance_end

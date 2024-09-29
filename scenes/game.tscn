@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqs0n48ll4s83"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_n35nx"]
-[ext_resource type="PackedScene" uid="uid://dp7jdk5hksqyw" path="res://characters/wizard/wizard.tscn" id="2_xklmi"]
+[ext_resource type="PackedScene" uid="uid://dp7jdk5hksqyw" path="res://characters/wizard.tscn" id="2_xklmi"]
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="3_i6rvb"]
 
 [node name="game" type="Node2D"]

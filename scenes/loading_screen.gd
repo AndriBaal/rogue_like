@@ -4,8 +4,11 @@ var thread: Thread
 
 
 func _ready() -> void:
-	thread = Thread.new()
-	thread.start(self._generate_level)
+	if OS.get_name() == "Web":
+		self._generate_level()
+	else:
+		thread = Thread.new()
+		thread.start(self._generate_level)
 
 
 func _generate_level():
@@ -29,13 +32,13 @@ func _generate_level():
 
 func _recurse_add_rooms(root, room):
 	root.add_child(room["room"])
-	#room["room"].owner = root.get_parent()
 	for child in room["children"]:
 		self._recurse_add_rooms(root, child)
 
 
 func _on_level_finished(scene):
-	thread.wait_to_finish()
+	if OS.get_name() != "Web":
+		thread.wait_to_finish()
 
 	var tree = get_tree()
 	var current_scene = tree.current_scene

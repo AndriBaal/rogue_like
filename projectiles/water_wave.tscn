@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cikwx8m5ixg86"]
+
+[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/base_projectile.tscn" id="1_l3w0f"]
+[ext_resource type="Texture2D" uid="uid://cwa5aq5s5jhy4" path="res://projectiles/water_wave.png" id="2_fgjtb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbbsa"]
+size = Vector2(6, 24)
+
+[node name="Projectile" instance=ExtResource("1_l3w0f")]
+scale = Vector2(3, 3)
+speed = 400.0
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fgjtb")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_dbbsa")

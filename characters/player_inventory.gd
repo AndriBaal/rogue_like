@@ -3,8 +3,9 @@ extends TabContainer
 @onready var map_camera = $Map/cam
 var last_mouse_pos := Vector2.ZERO
 
+
 func _ready() -> void:
-	pass 
+	pass
 
 
 func _process(delta: float) -> void:

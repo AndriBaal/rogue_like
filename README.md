@@ -60,6 +60,7 @@
 
 ## PLANNED
 
+- [ ] Other classes (warrior, bard, assasin, etc.)
 - [ ] Coop
 - [ ] Items
 - [ ] Controller support
