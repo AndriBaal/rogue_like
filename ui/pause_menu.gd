@@ -6,7 +6,7 @@ func _ready() -> void:
 	$quit.pressed.connect(self._quit)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
+	if Input.is_action_just_pressed("menu"):
 		self._continue()
 		
 func _continue():

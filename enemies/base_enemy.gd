@@ -4,24 +4,27 @@ class_name BaseEnemy
 
 enum EnemyState {
 	IDLE,
+	AGGRO,
 	ATTACKING,
 	MOVING
 }
 
-const HIT_ANIMATION_DURATION := 0.3
+const HIT_ANIMATION_DURATION := 0.25
 
-@export var max_health: float = 15.0
-@export var health: float = 15.0
+@export var max_health: float = 12.0
+@export var health: float = 12.0
 @export var attack_radius: float = 400.0
 @export var attack_speed: float = 1.4
 @export var movement_speed: float = 200.0
+@export var melee_damage: float = 5.0
 @export var attack_sprite: Sprite2D
 @export var target_vector: Vector2
 @export var hit_animation_timer := HIT_ANIMATION_DURATION
+@export var xp: int = 20
 # TODO: melee damage
 
 @onready var game = $/root/game
-@onready var target = $/root/game/player/body
+@onready var target = $/root/game/player
 
 @export var animation_timer := 0.0
 
@@ -31,6 +34,9 @@ var direction := Direction.SOUTH
 
 func _ready() -> void:
 	pass
+	
+func aggro() -> void:
+	self.state = EnemyState.AGGRO
 
 func _process(delta: float) -> void:
 	var target_position = target.position
@@ -39,7 +45,9 @@ func _process(delta: float) -> void:
 	self.target_vector = position_delta.normalized()
 	
 	var new_state
-	if self.state == EnemyState.ATTACKING and self.animation_timer > self.attack_speed:
+	if self.state == EnemyState.IDLE:
+		return
+	elif self.state == EnemyState.ATTACKING and self.animation_timer > self.attack_speed:
 		if distance > self.attack_radius:
 			new_state = EnemyState.MOVING
 		else:
@@ -92,6 +100,11 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	self.velocity = self.movement.normalized() * self.movement_speed
 	var res = self.move_and_slide()
+	if res:
+		for i in range(self.get_slide_collision_count()):
+			var collision = self.get_slide_collision(i)
+			if collision.get_collider_id() == self.target.get_instance_id():
+				self.target.get_parent().deal_damage(self.melee_damage)
 	
 func _compute_hit_animation(delta, active_sprite):
 	self.hit_animation_timer += delta
@@ -104,9 +117,12 @@ func _compute_hit_animation(delta, active_sprite):
 	active_sprite.modulate = color
 	
 func deal_damage(damage: float):
+	if self.state == EnemyState.IDLE: # Prevent player from cheesing inactive 
+		return
 	self.health -= damage
 	self.hit_animation_timer = 0.0
 	if self.health <= 0.0:
+		self.target.gain_xp(self.xp)
 		self.queue_free()
 
 func start_attack() -> void:

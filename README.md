@@ -3,8 +3,8 @@
 ## TODO
 
 - [ ] Startmenu mit Auswahl an Spielständen
-- [ ] Spielspeichern
-	- [ ] esc Menu
+- [x] Spielspeichern
+	- [x] esc Menu
 - [ ] Spieler:
 	- [x] Health  bar
 	- [ ] Mana bar
@@ -32,6 +32,7 @@
 		- [ ] Relaxed
 	- [x] Dungeon Generation
 	- [ ] Minimap
+	- [ ] Make room locked when entering
 	- [ ] Decorations
 		- [ ] Chandelier
 		- [ ] Torch

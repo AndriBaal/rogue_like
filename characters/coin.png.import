@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4lkdvw1mvp5v"
-path="res://.godot/imported/water.png-5c956929f8150b53dff636211e7e8e7f.ctex"
+uid="uid://ja0ab8jtq81y"
+path="res://.godot/imported/coin.png-0f80344e60b89eb0e9b1db42c37a1613.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://projectiles/water.png"
-dest_files=["res://.godot/imported/water.png-5c956929f8150b53dff636211e7e8e7f.ctex"]
+source_file="res://characters/coin.png"
+dest_files=["res://.godot/imported/coin.png-0f80344e60b89eb0e9b1db42c37a1613.ctex"]
 
 [params]
 

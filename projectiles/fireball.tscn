@@ -4,17 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://4yytlgojqgo2" path="res://projectiles/fire.png" id="2_2i11u"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="3_s3hbl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sut3r"]
-radius = 1.41421
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64ar0"]
+size = Vector2(12, 7)
 
 [node name="Projectile" instance=ExtResource("1_vqir2")]
-scale = Vector2(8, 8)
+scale = Vector2(6, 6)
 
-[node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CircleShape2D_sut3r")
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_2i11u")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_64ar0")
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="2"]
 color = Color(1, 0.282353, 0.0705882, 1)

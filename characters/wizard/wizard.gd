@@ -1,4 +1,4 @@
-extends Node
+extends CharacterBody2D
 
 
 enum PlayerState {
@@ -9,21 +9,21 @@ enum PlayerState {
 }
 
 @onready var game = $/root/game
-@onready var body = $body
-@onready var camera = $body/player_camera
-@onready var walk_sprite = $body/walk_sprite
-@onready var walk_attack_sprite = $body/walk_attack_sprite
-@onready var idle_sprite = $body/idle_sprite
-@onready var idle_attack_sprite = $body/idle_attack_sprite
-@onready var health_bar = $player_ui/health_bar
+@onready var camera = $player_camera
+@onready var walk_sprite = $walk_sprite
+@onready var walk_attack_sprite = $walk_attack_sprite
+@onready var idle_sprite = $idle_sprite
+@onready var idle_attack_sprite = $idle_attack_sprite
+@onready var health_bar = $ui/health_bar
+@onready var inventory = $ui/tabs
 
-var fireball := preload("res://projectiles/fireball.tscn")
 
+const XP_FOR_LVL_UP = 50
 const ATTACK_SPEED := 0.5
-const SPEED := 400.0
+const SPEED := 600.0
 const IMMUNITY_SECONDS = 0.75
 
-var direction := Direction.SOUTH
+@export var direction := Direction.SOUTH
 @export var state: PlayerState = PlayerState.IDLE
 @export var movement: Vector2
 @export var animation_timer := 0.0
@@ -31,8 +31,16 @@ var direction := Direction.SOUTH
 @export var immunity_timer := IMMUNITY_SECONDS
 @export var health := 20.0
 @export var max_health := 20.0
+@export var xp = 0
+@export var level = 1
+
+var fireball := preload("res://projectiles/fireball.tscn")
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("inventory"):
+		self.inventory.visible = !self.inventory.visible
+	
+	
 	self.attack_timer += delta
 	self.movement = Input.get_vector(
 		"move_left",
@@ -43,7 +51,7 @@ func _process(delta: float) -> void:
 
 	var new_state
 	var new_direction := self.direction
-	var player_position = self.body.position
+	var player_position = self.position
 	var is_moving := self.movement == Vector2.ZERO
 
 	if is_moving:
@@ -111,8 +119,8 @@ func _process(delta: float) -> void:
 		self.camera.zoom -= Vector2.ONE * delta
 		
 func _physics_process(delta: float) -> void:
-	self.body.velocity = self.movement.normalized() * SPEED
-	var res = self.body.move_and_slide()
+	self.velocity = self.movement.normalized() * SPEED
+	var res = self.move_and_slide()
 	
 func _compute_immunity(delta, active_sprite):
 	const BLINK = 0.05
@@ -127,8 +135,7 @@ func _compute_immunity(delta, active_sprite):
 		else:
 			color = Color.TRANSPARENT
 	active_sprite.modulate = color
-		
-	
+
 func deal_damage(damage: float):
 	if self.immunity_timer < IMMUNITY_SECONDS:
 		return
@@ -139,3 +146,13 @@ func deal_damage(damage: float):
 	if self.health <= 0.0:
 		print('player died')
 	self.health_bar.value = self.health / self.max_health * 100.0
+
+func gain_xp(xp: int):
+	self.xp += xp
+	if self.xp > XP_FOR_LVL_UP:
+		var new_levels = int(self.xp / XP_FOR_LVL_UP)
+		self.xp -= new_levels * XP_FOR_LVL_UP
+		self.level += new_levels
+		$ui/level.text = "LVL. %s" % self.level
+	$ui/xp_bar.value = float(self.xp) / float(XP_FOR_LVL_UP) * 100.0
+	

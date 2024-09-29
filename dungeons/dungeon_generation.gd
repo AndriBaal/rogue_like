@@ -1,15 +1,14 @@
 class_name DungeonGeneration
 
 enum DungeonType { GOBLIN }
-
+const WALL_TILES = 1
+const FLOOR_TILES = 0
 
 class DungeonOptions:
 	var type: DungeonType
 	var random_seed: int
-	var size: Vector2i
+	#var size: Vector2i
 	var rooms_left: Dictionary
-	var min_room_spacing: int
-	var max_bruteforce_tries: int
 	var possible_rooms: Dictionary
 
 	func _init(
@@ -17,38 +16,36 @@ class DungeonOptions:
 		good_rooms: int,
 		bad_rooms: int,
 		neutral_rooms: int,
-		size: Vector2i = Vector2i(100, 100),
-		min_room_spacing: int = 1,
+		#size: Vector2i = Vector2i(100, 100),
 		random_seed: int = randi(),
 	):
 		self.type = type
 		self.random_seed = random_seed
-		self.size = size
+		#self.size = size
 		self.rooms_left = {
 			"good": good_rooms,
 			"bad": bad_rooms,
 			"neutral": neutral_rooms,
 			"boss": 0,  # TODO: Change to 1
 		}
-		self.min_room_spacing = min_room_spacing
 
 		match self.type:
 			DungeonType.GOBLIN:
 				self.possible_rooms = {
-					"start": load("res://dungeons/goblin_dungeon/enemy_room1.tscn"),
+					"start": load("res://dungeons/goblin_dungeon/starting_room.tscn"),
 					"bad":
 					[
-						load("res://dungeons/goblin_dungeon/enemy_room1.tscn"),
+						load("res://dungeons/goblin_dungeon/enemy_room.tscn"),
 					],
 					"good":
 					[
-						load("res://dungeons/goblin_dungeon/enemy_room1.tscn"),
+						load("res://dungeons/goblin_dungeon/starting_room.tscn"),
 					],
-					"neutral_rooms":
+					"neutral":
 					[
-						load("res://dungeons/goblin_dungeon/enemy_room1.tscn"),
+						load("res://dungeons/goblin_dungeon/starting_room.tscn"),
 					],
-					"boss": load("res://dungeons/goblin_dungeon/enemy_room1.tscn")
+					"boss": load("res://dungeons/goblin_dungeon/enemy_room.tscn")
 				}
 
 
@@ -67,9 +64,9 @@ class Dungeon:
 		var room = options.possible_rooms["start"].instantiate()
 		var tilemap: TileMapLayer = room.get_node("tiles")
 		var rect := tilemap.get_used_rect()
-		var size = self.options.size - rect.size
 		self.tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 		
+		#var size = self.options.size - rect.size
 		#var pos = Vector2(
 			#self.random.randi_range(-size.x, size.x),
 			#self.random.randi_range(-size.y, size.y),
@@ -80,7 +77,7 @@ class Dungeon:
 			"room": room,
 			"entrances": self._get_room_entrances(room),
 			"children": [],
-			"parent": null,
+			#"parent": null,
 		}
 		self.rooms.push_back(room)
 		self._grow_rooms(self.rooms, true)
@@ -139,9 +136,6 @@ class Dungeon:
 		return room.instantiate()
 
 	func _grow_rooms(rooms, only_bad = false):
-		const WALL_TILES = 1
-		const FLOOR_TILES = 0
-
 		var new_rooms = []
 		var room_amount = len(rooms)
 		for i_room in range(room_amount):
@@ -153,6 +147,7 @@ class Dungeon:
 			var floor_tile_source = tilemap.tile_set.get_source(FLOOR_TILES)
 			var floor_tile_amount = floor_tile_source.get_tiles_count()
 
+			# TODO: randomize entrance order
 			for entrance in entrances:
 				if not self._rooms_left():
 					break
@@ -223,7 +218,7 @@ class Dungeon:
 					"room": new_r,
 					"entrances": new_entrances,
 					"children": [],
-					"parent": room,
+					#"parent": room,
 				}
 
 				var entrance_start = entrance["start"]
@@ -247,7 +242,7 @@ class Dungeon:
 								tile_pos + diff,
 								WALL_TILES,
 								Vector2i.ZERO,
-								self._get_alt_from_direction(diff)
+								self.get_alt_from_direction(diff)
 							)
 						tilemap.set_cell(tile_pos, FLOOR_TILES, random_tile)
 
@@ -256,6 +251,7 @@ class Dungeon:
 
 				new_entrance["has_connection"] = true
 				entrance["has_connection"] = true
+				new_r.data = new_room
 				children.push_back(new_room)
 				new_rooms.push_back(new_room)
 
@@ -309,7 +305,7 @@ class Dungeon:
 					break
 		return entrances
 
-	func _get_alt_from_direction(direction: Vector2i) -> int:
+	static func get_alt_from_direction(direction: Vector2i) -> int:
 		var result = 0
 
 		match direction:
