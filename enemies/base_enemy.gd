@@ -11,6 +11,8 @@ enum EnemyState {
 
 const HIT_ANIMATION_DURATION := 0.25
 
+var despawn := preload("res://enemies/despawn.tscn")
+
 @export var max_health: float = 12.0
 @export var health: float = 12.0
 @export var attack_radius: float = 400.0
@@ -124,6 +126,13 @@ func deal_damage(damage: float):
 	if self.health <= 0.0:
 		self.target.gain_xp(self.xp)
 		self.queue_free()
+		self.death()
+
+func death():
+	var despawn := despawn.instantiate()
+	despawn.position = self.global_position
+	despawn.scale *= self.global_scale
+	$/root/game/effects.add_child(despawn)
 
 func start_attack() -> void:
 	self.movement = Vector2.ZERO

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqs0n48ll4s83"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_n35nx"]
-[ext_resource type="PackedScene" uid="uid://dp7jdk5hksqyw" path="res://characters/wizard.tscn" id="2_xklmi"]
+[ext_resource type="PackedScene" uid="uid://bvth46mu6adxs" path="res://characters/wizard/wizard.tscn" id="2_6ghqu"]
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="3_i6rvb"]
 
 [node name="game" type="Node2D"]
@@ -9,9 +9,11 @@ script = ExtResource("1_n35nx")
 
 [node name="rooms" type="Node2D" parent="."]
 
-[node name="player" parent="." instance=ExtResource("2_xklmi")]
-
 [node name="projectiles" type="Node2D" parent="."]
+
+[node name="player" parent="." instance=ExtResource("2_6ghqu")]
+
+[node name="effects" type="Node2D" parent="."]
 
 [node name="darkness" type="CanvasModulate" parent="."]
 color = Color(0.266575, 0.266575, 0.266575, 1)

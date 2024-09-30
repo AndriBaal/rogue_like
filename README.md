@@ -1,28 +1,33 @@
-# rogue_like
+# Rogue Like
 
 ## TODO
 
-- [ ] Startmenu mit Auswahl an Spielständen
+- [ ] Name
+- [ ] Logo
+- [x] Startmenu with save game selection
 - [x] Spielspeichern
 	- [x] esc Menu
 - [ ] Spieler:
 	- [x] Health  bar
-	- [ ] Mana bar
+	- [x] Mana bar
 	- [ ] Game Over screen
 	- [x] 1 Hauptangriff
-		- [ ] Redo fire sprite
+		- [x] Redo fire sprite
 	- [ ] Dodge Roll
 	- [x] Player hit Animation / Indicator
 	- [x] player invincibility
 	- [ ] Inventory
-		- [ ] Healpotion
+		- [x] Healpotion
 		- [ ] Buffpotion
 		- [ ] Money
-	- [ ] XP and level
-	- [ ] 4 Abilities (buyable with XP)
+	- [x] XP and level
+	- [ ] Stats and Upgrade stats on level up
+	- [ ] Knockback projectiles
+	- [ ] Abilities (buyable with XP)
 		- [ ] Teleport
 		- [ ] Counter
-		- [ ] Fire Storm aoe
+		- [x] Fire Storm aoe
+		- [x] Fire wall
 		- [ ] Big fireball
 - [ ] Levels:
 	- [ ] Lighting
@@ -32,7 +37,8 @@
 		- [ ] Relaxed
 	- [x] Dungeon Generation
 	- [ ] Minimap
-	- [ ] Make room locked when entering
+		- [ ] Teleporting
+	- [x] Make room locked when entering
 	- [ ] Decorations
 		- [ ] Chandelier
 		- [ ] Torch

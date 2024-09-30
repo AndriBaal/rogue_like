@@ -148,15 +148,21 @@ class Dungeon:
 			var floor_tile_source = tilemap.tile_set.get_source(FLOOR_TILES)
 			var floor_tile_amount = floor_tile_source.get_tiles_count()
 
-			# TODO: randomize entrance order
-			for entrance in entrances:
+			var entrance_indices = []
+			while entrance_indices.size() < entrances.size():
+				var random_index = self.random.randi_range(0, entrances.size() - 1)
+				if random_index not in entrance_indices:
+					entrance_indices.append(random_index)
+
+			for i_entrance in entrance_indices:
+				var entrance = entrances[i_entrance]
 				if not self._rooms_left():
 					break
 
 				if (
 					entrance["has_connection"]
 					or (
-						self.random.randi_range(0, 2) == 0
+						self.random.randi_range(0, 1) == 0
 						and not (i_room == room_amount - 1 and new_rooms.is_empty())
 					)
 				):
@@ -265,43 +271,41 @@ class Dungeon:
 
 	func _get_room_entrances(room) -> Array:
 		var tilemap: TileMapLayer = room.get_node("tiles")
-		var rect = tilemap.get_used_rect()
+		var cells = tilemap.get_used_cells()
 		var entrances = []
 
-		for x in range(rect.position.x, rect.end.x):
-			for y in range(rect.position.y, rect.end.y):
-				var coords = Vector2i(x, y)
-				var tile_data = tilemap.get_cell_tile_data(coords)
-				if not tile_data:
+		for cell in cells:
+			var tile_data = tilemap.get_cell_tile_data(cell)
+			if not tile_data:
+				continue
+			var entrance_layer_data = tile_data.get_custom_data("entrance_layer")
+			if not entrance_layer_data:
+				continue
+
+			for neighbour in [Vector2i(1, 0), Vector2i(0, 1)]:
+				var neighbour_cell = tilemap.get_cell_tile_data(cell + neighbour)
+				if not neighbour_cell:
 					continue
-				var entrance_layer_data = tile_data.get_custom_data("entrance_layer")
+
+				entrance_layer_data = neighbour_cell.get_custom_data("entrance_layer")
 				if not entrance_layer_data:
 					continue
 
-				for neighbour in [Vector2i(1, 0), Vector2i(0, 1)]:
-					var cell = tilemap.get_cell_tile_data(coords + neighbour)
-					if not cell:
-						continue
+				var alt = tilemap.get_cell_alternative_tile(cell)
+				var direction = self._get_direction_from_alt(alt)
 
-					entrance_layer_data = cell.get_custom_data("entrance_layer")
-					if not entrance_layer_data:
-						continue
-
-					var alt = tilemap.get_cell_alternative_tile(coords)
-					var direction = self._get_direction_from_alt(alt)
-
-					(
-						entrances
-						. push_back(
-							{
-								"start": coords,
-								"end": coords + neighbour,
-								"direction": direction,
-								"has_connection": false,
-							}
-						)
+				(
+					entrances
+					. push_back(
+						{
+							"start": cell,
+							"end": cell + neighbour,
+							"direction": direction,
+							"has_connection": false,
+						}
 					)
-					break
+				)
+				break
 		return entrances
 
 	static func get_alt_from_direction(direction: Vector2i) -> int:
