@@ -8,16 +8,23 @@
 [ext_resource type="Texture2D" uid="uid://cd8tn82cme0s2" path="res://characters/wizard/walk_attack.png" id="6_1yv4r"]
 
 [node name="player" instance=ExtResource("1_e5mfj")]
+scale = Vector2(3, 3)
 script = ExtResource("2_qjxi4")
 
-[node name="walk_sprite" parent="." index="3"]
+[node name="walk_sprite" parent="." index="2"]
 texture = ExtResource("3_vlwt7")
 
-[node name="idle_sprite" parent="." index="4"]
+[node name="idle_sprite" parent="." index="3"]
 texture = ExtResource("4_4n8le")
 
-[node name="idle_attack_sprite" parent="." index="5"]
+[node name="idle_attack_sprite" parent="." index="4"]
 texture = ExtResource("5_yh1x0")
 
-[node name="walk_attack_sprite" parent="." index="6"]
+[node name="walk_attack_sprite" parent="." index="5"]
 texture = ExtResource("6_1yv4r")
+
+[node name="collider" parent="." index="6"]
+position = Vector2(0, -1)
+
+[node name="ui" parent="." index="8"]
+visible = false

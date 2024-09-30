@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cvw8ugcmardiy" path="res://characters/heal_empty.png" id="11_crwrq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
-radius = 30.0
+radius = 22.3358
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -23,11 +23,7 @@ script = ExtResource("1_vfs3i")
 
 [node name="camera" type="Camera2D" parent="."]
 
-[node name="collider" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_0d6cu")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-4, 0)
 shadow_enabled = true
 texture = ExtResource("2_niumg")
 texture_scale = 2.5
@@ -49,6 +45,9 @@ vframes = 8
 visible = false
 hframes = 9
 vframes = 8
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0d6cu")
 
 [node name="hurt_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_d513c")

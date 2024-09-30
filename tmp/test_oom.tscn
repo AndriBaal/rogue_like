@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=4 uid="uid://b8i6ey74cumpr"]
+
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/base_room.tscn" id="1_8mt6i"]
+[ext_resource type="Texture2D" uid="uid://vjv1oc5d2bii" path="res://dungeons/goblin_dungeon/tiles.png" id="2_cndmd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mycbb"]
+texture = ExtResource("2_cndmd")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1nfat"]
+tile_size = Vector2i(48, 48)
+sources/0 = SubResource("TileSetAtlasSource_mycbb")
+
+[node name="room" instance=ExtResource("1_8mt6i")]
+
+[node name="tiles" parent="." index="0"]
+tile_map_data = PackedByteArray("AAABAAIAAAABAAAAAAACAAIAAAABAAAAAAACAAEAAAABAAAAAAABAAEAAAABAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAEAAAADAAEAAAAAAAEAAAADAAIAAAAAAAEAAAACAAMAAAAAAAEAAFABAAMAAAAAAAEAAFAAAAIAAAAAAAEAADAAAAEAAAAAAAEAADAAAAAAAAAAAAEAADAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAEAAAAHAAIAAAAAAAEAAAAGAAIAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAAIAAMAAAAAAAEAAAAJAAIAAAABAAAAAAAJAAMAAAABAAAAAAAFAAIAAAABAAAAABAFAAMAAAABAAAAABAJAAEAAAACAAAAAAAFAAEAAAACAAAAABAGAAQAAAABAAAAAEAHAAQAAAABAAAAAEAIAAQAAAABAAAAAEAJAAQAAAADAAAAAAAFAAQAAAADAAAAABA=")
+tile_set = SubResource("TileSet_1nfat")
