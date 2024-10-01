@@ -15,6 +15,7 @@ enum PlayerState {
 @onready var walk_sprite := $walk_sprite
 @onready var walk_attack_sprite := $walk_attack_sprite
 @onready var idle_sprite := $idle_sprite
+@onready var roll_sprite := $roll_sprite
 @onready var idle_attack_sprite := $idle_attack_sprite
 @onready var health_bar := $ui/health_bar
 @onready var mana_bar := $ui/mana_bar
@@ -51,6 +52,12 @@ enum PlayerState {
 @export var potions := max_potions
 @export var heal_per_potion = 8
 
+@export var roll_duration := 0.5
+@export var roll_speed := 900.0
+@export var roll_timer := 0.0
+@export var roll_immunity_range: Vector2 = Vector2(0.05, 0.9)
+#@export var rolling := false
+
 func _ready() -> void:
 	self._update_potion_ui()
 
@@ -58,23 +65,30 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		self.inventory.visible = !self.inventory.visible
 	
-	self.movement = Input.get_vector(
+	var new_movement := Input.get_vector(
 		"move_left",
 		"move_right",
 		"move_up",
 		"move_down"
 	)
-
 	var new_state
 	var new_direction := self.direction
-	var player_position = self.position
-	var is_moving := self.movement == Vector2.ZERO
+	var movement_direction = Direction.from_vector(new_movement)
+	var player_position := self.position
+	var is_moving := new_movement != Vector2.ZERO
+	var roll := Input.is_action_just_pressed("roll")
+	var mouse_pos: Vector2 = self.game.get_local_mouse_position()
+	var look: Vector2 = (mouse_pos - player_position).normalized()
+	
 
-	if is_moving:
+	self.roll_timer -= delta
+	if roll or roll_timer >= 0.0:
+		new_state = PlayerState.ROLL
+	elif not is_moving:
 		new_state = PlayerState.IDLE
 	else:
 		new_state = PlayerState.WALK
-		new_direction = Direction.from_vector(self.movement)
+		new_direction = movement_direction
 
 	self._update_mana(delta)
 	if Input.is_action_just_pressed("heal"):
@@ -82,36 +96,37 @@ func _process(delta: float) -> void:
 	
 	for attack_type in self.attack_cooldowns:
 		self.attack_cooldowns[attack_type] -= delta
-	if not inventory.visible:
+	if not inventory.visible and new_state != PlayerState.ROLL:
 		for attack_type in self.attacks:
 			if Input.is_action_pressed(attack_type):
 				var attack = self.attacks[attack_type]
 				if not attack:
 					continue
 				
-				var look: Vector2 = $/root/game.get_local_mouse_position()
-				var look_direction: Vector2 = (look - player_position).normalized()
-				
-				new_direction = Direction.from_vector(look_direction)
-				if is_moving:
+				new_direction = Direction.from_vector(look)
+				if not is_moving:
 					new_state = PlayerState.IDLE_ATTACK
 				else:
 					new_state = PlayerState.WALK_ATTACK
 						
 				if self.attack_cooldowns[attack_type] <= 0.0 and self._use_mana(attack['mana_cost']):
 					self.attack_cooldowns[attack_type] = attack['cool_down']
-					attack['action'].call(player_position, look_direction)
+					attack['action'].call(player_position, look)
 					
-
-	self.direction = new_direction
 
 	if new_state != self.state:
 		self.walk_sprite.visible = false
 		self.idle_sprite.visible = false
 		self.idle_attack_sprite.visible = false
 		self.walk_attack_sprite.visible = false
+		self.roll_sprite.visible = false
 		self.animation_timer = 0.0
 		match new_state:
+			PlayerState.ROLL:
+				self.roll_timer = self.roll_duration
+				self.roll_sprite.visible = true
+				self.movement = new_movement if is_moving else look
+				self.direction = Direction.from_vector(self.movement)
 			PlayerState.IDLE_ATTACK:
 				self.idle_attack_sprite.visible = true
 			PlayerState.IDLE:
@@ -121,21 +136,28 @@ func _process(delta: float) -> void:
 			PlayerState.WALK_ATTACK:
 				self.walk_attack_sprite.visible = true
 
+	if new_state != PlayerState.ROLL:
+		self.direction = new_direction
+		self.movement = new_movement
 	self.state = new_state
 	
 	var active_sprite
 	match self.state:
+		PlayerState.ROLL:
+			active_sprite = self.roll_sprite
+			active_sprite.frame_coords.x = int(abs(self.roll_timer - self.roll_duration) / self.roll_duration * active_sprite.hframes)
+			self.animation_timer += delta
 		PlayerState.IDLE:
 			active_sprite = self.idle_sprite
 		PlayerState.IDLE_ATTACK:
 			active_sprite = self.idle_attack_sprite
 		PlayerState.WALK:
 			active_sprite = self.walk_sprite
-			self.walk_sprite.frame_coords.x = int(self.animation_timer * 24.0) % self.walk_sprite.hframes
+			active_sprite.frame_coords.x = int(self.animation_timer * 24.0) % active_sprite.hframes
 			self.animation_timer += delta
 		PlayerState.WALK_ATTACK:
 			active_sprite = self.walk_attack_sprite
-			self.walk_attack_sprite.frame_coords.x = int(self.animation_timer * 24.0) % self.walk_sprite.hframes
+			active_sprite.frame_coords.x = int(self.animation_timer * 24.0) % active_sprite.hframes
 			self.animation_timer += delta
 
 	active_sprite.frame_coords.y = self.direction
@@ -148,7 +170,8 @@ func _process(delta: float) -> void:
 		self.camera.zoom -= Vector2.ONE * delta
 		
 func _physics_process(delta: float) -> void:
-	self.velocity = self.movement.normalized() * self.speed
+	var speed = self.speed if self.state != PlayerState.ROLL else self.roll_speed
+	self.velocity = self.movement.normalized() * speed
 	var res = self.move_and_slide()
 	
 func _update_mana(delta):
@@ -187,8 +210,19 @@ func heal(heal: float):
 	self.health = min(self.health, self.max_health)
 	self._update_health_ui()
 
-func deal_damage(damage: float):
+func has_iframes() -> bool:
 	if self.immunity_timer < self.immunity_seconds:
+		return true
+	
+	if self.state == PlayerState.ROLL:
+		var roll_state = self.roll_timer / self.roll_duration
+		if roll_state >= self.roll_immunity_range.x and roll_state <= self.roll_immunity_range.y:
+			return true
+		
+	return false
+
+func deal_damage(damage: float):
+	if self.has_iframes():
 		return
 
 	self.immunity_timer = 0.0
@@ -196,7 +230,6 @@ func deal_damage(damage: float):
 	$hurt_audio.play()
 	if self.health <= 0.0:
 		self.get_tree().change_scene_to_file("res://scenes/menu.tscn")
-		return
 	self._update_health_ui()
 
 func _update_health_ui():

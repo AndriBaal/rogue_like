@@ -13,7 +13,7 @@
 	- [ ] Game Over screen
 	- [x] 1 Hauptangriff
 		- [x] Redo fire sprite
-	- [ ] Dodge Roll
+	- [x] Dodge Roll
 	- [x] Player hit Animation / Indicator
 	- [x] player invincibility
 	- [ ] Inventory
@@ -36,8 +36,8 @@
 		- [ ] Regular Fight
 		- [ ] Relaxed
 	- [x] Dungeon Generation
-	- [ ] Minimap
-		- [ ] Teleporting
+	- [x] Minimap
+	- [ ] Minimap Teleporting
 	- [x] Make room locked when entering
 	- [ ] Decorations
 		- [ ] Chandelier
@@ -70,3 +70,4 @@
 - [ ] Coop
 - [ ] Items
 - [ ] Controller support
+- [ ] Improve Camera with Limits, so yuo can see more during a fight
