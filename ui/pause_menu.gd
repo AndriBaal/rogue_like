@@ -5,7 +5,7 @@ func _ready() -> void:
 	$save.pressed.connect(self._save)
 	$quit.pressed.connect(self._quit)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("menu"):
 		self._continue()
 		

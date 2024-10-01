@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8yi5wvombcsi"]
 
-[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/base_projectile.tscn" id="1_7biws"]
+[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/projectile.tscn" id="1_7biws"]
 [ext_resource type="Texture2D" uid="uid://rpglxpawno6y" path="res://projectiles/wood_spear.png" id="2_x3yym"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebny4"]

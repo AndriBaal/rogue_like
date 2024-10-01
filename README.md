@@ -4,12 +4,15 @@
 
 - [ ] Name
 - [ ] Logo
+- [ ] Custom cursor
 - [x] Startmenu with save game selection
 - [x] Spielspeichern
 	- [x] esc Menu
 - [ ] Spieler:
 	- [x] Health  bar
 	- [x] Mana bar
+	- [x] Money
+		- [ ] Silver, Gold and Bronze Coins (so far only gold)
 	- [ ] Game Over screen
 	- [x] 1 Hauptangriff
 		- [x] Redo fire sprite
@@ -49,10 +52,12 @@
 	- [ ] Redo tiles
 	- [ ] Enemies
 		- [x] Enemy hit Animation
-		- [ ] Melee damage
-		- [ ] Despawn animation (smoke)
+		- [x] Melee damage
+		- [x] Despawn animation (smoke)
+		- [ ] Path Finding
 		- [ ] 4 enemy types (1 / 4)
-			- [ ] Thrower
+			- [x] Thrower
+			- [ ] Axe Thrower
 			- [ ] Slime
 			- ...
 	- [ ] Rooms

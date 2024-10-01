@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmaleurogevn7"]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_jy4u2"]
+
+[node name="item" type="Area2D"]
+script = ExtResource("1_jy4u2")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="."]

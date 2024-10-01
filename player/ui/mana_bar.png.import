@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpmd72e6ptcph"
-path="res://.godot/imported/xp_bar_background.png-482d0cf05226ec9bc3cf450780276931.ctex"
+uid="uid://d1n484wg4ivuj"
+path="res://.godot/imported/mana_bar.png-2e07000a9e0be44253c71c7b348dcb08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/xp_bar_background.png"
-dest_files=["res://.godot/imported/xp_bar_background.png-482d0cf05226ec9bc3cf450780276931.ctex"]
+source_file="res://player/ui/mana_bar.png"
+dest_files=["res://.godot/imported/mana_bar.png-2e07000a9e0be44253c71c7b348dcb08.ctex"]
 
 [params]
 

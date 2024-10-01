@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5fax5sdpu328"
-path="res://.godot/imported/health_bar.png-d732d3926beac0a9ec843d07982512a6.ctex"
+uid="uid://bp4qtf0cxhytr"
+path="res://.godot/imported/idle_attack.png-a436dcaae23c4020184979b7b7767376.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/health_bar.png"
-dest_files=["res://.godot/imported/health_bar.png-d732d3926beac0a9ec843d07982512a6.ctex"]
+source_file="res://player/wizard/idle_attack.png"
+dest_files=["res://.godot/imported/idle_attack.png-a436dcaae23c4020184979b7b7767376.ctex"]
 
 [params]
 

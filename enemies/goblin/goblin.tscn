@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnqdjjmtuwmy5"]
 
-[ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/base_enemy.tscn" id="1_4243h"]
+[ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_4243h"]
 [ext_resource type="Script" path="res://enemies/goblin/goblin.gd" id="2_3p0th"]
 [ext_resource type="Texture2D" uid="uid://bqfhn2yf7sdvw" path="res://enemies/goblin/idle.png" id="2_rfiit"]
 [ext_resource type="Texture2D" uid="uid://12tvq7xs3fq4" path="res://enemies/goblin/idle_attack.png" id="4_5sqfl"]

@@ -1,12 +1,13 @@
-extends Node2D
+extends Control
 
 class_name Menu
 
 static var GAME_NAME = null
-static var LOAD_SAVE = false
+static var LOAD_SAVE := false
 
-var dir = DirAccess.open("user://")
-var files = []
+var dir := DirAccess.open("user://")
+var files := []
+var regex := RegEx.new()
 
 
 func _ready():
@@ -23,8 +24,9 @@ func _ready():
 	$create_game/start.pressed.connect(self._start_new_game)
 	$create_game/name.text_changed.connect(self._new_game_name_changed)
 
+	self.regex.compile("[^A-Za-z0-9]")
 	self._load_save_files()
-
+	self._new_game_name_changed($create_game/name.text)
 
 func _new_game():
 	$title.visible = false
@@ -60,7 +62,7 @@ func _load_game():
 	$load_save.visible = true
 
 
-func _save_file_selected(index: int):
+func _save_file_selected(_index: int):
 	$load_save/start.disabled = false
 	$load_save/delete.disabled = false
 
@@ -78,7 +80,9 @@ func _selected_save_file():
 
 func _delete_game():
 	var game_name = self._selected_save_file()
-	var r = DirAccess.remove_absolute("user://%s.scn" % game_name)
+	var result = DirAccess.remove_absolute("user://%s.scn" % game_name)
+	if result != OK:
+		push_error("Error while deleting save file: %s" % game_name)
 	$load_save/start.disabled = true
 	$load_save/delete.disabled = true
 	self._load_save_files()
@@ -91,12 +95,20 @@ func _start_new_game():
 
 
 func _new_game_name_changed(new_text: String):
-	var regex = RegEx.new()
-	regex.compile("[^A-Za-z0-9]")
-	var result = regex.search(new_text)
-	var disabled = result != null or new_text.is_empty()
+	var result = self.regex.search(new_text)
+	var error = null
+	if new_text.is_empty():
+		error = "Please enter a name!"	
+	if result != null:
+		error = "Name contains invalid characters!"
 	for file in self.files:
 		if file == new_text:
-			disabled = true
-	# TODO: Show error in UI
-	$create_game/start.disabled = disabled
+			error = "A save with this name already exists!"
+	
+	var error_label = $create_game/error
+	if error:
+		error_label.text = error
+		
+	var valid = false if error == null else true
+	error_label.visible = valid
+	$create_game/start.disabled = valid

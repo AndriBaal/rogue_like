@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://b8i6ey74cumpr"]
+[gd_scene load_steps=5 format=4 uid="uid://c4y2d0bmkadl8"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/base_room.tscn" id="1_8mt6i"]
 [ext_resource type="Texture2D" uid="uid://vjv1oc5d2bii" path="res://dungeons/goblin_dungeon/tiles.png" id="2_cndmd"]

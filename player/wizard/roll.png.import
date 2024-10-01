@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1n484wg4ivuj"
-path="res://.godot/imported/mana_bar.png-f6264365fb1facb376d812584310733c.ctex"
+uid="uid://brn2daw8eshl5"
+path="res://.godot/imported/roll.png-67475054fac66a13f0eca3beff748e56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/mana_bar.png"
-dest_files=["res://.godot/imported/mana_bar.png-f6264365fb1facb376d812584310733c.ctex"]
+source_file="res://player/wizard/roll.png"
+dest_files=["res://.godot/imported/roll.png-67475054fac66a13f0eca3beff748e56.ctex"]
 
 [params]
 

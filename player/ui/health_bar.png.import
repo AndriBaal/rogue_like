@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd8tn82cme0s2"
-path="res://.godot/imported/walk_attack.png-1fd706764874295f4152fd8bcfd6f97b.ctex"
+uid="uid://b5fax5sdpu328"
+path="res://.godot/imported/health_bar.png-108c423774c358a4b73f01672cd97dce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/wizard/walk_attack.png"
-dest_files=["res://.godot/imported/walk_attack.png-1fd706764874295f4152fd8bcfd6f97b.ctex"]
+source_file="res://player/ui/health_bar.png"
+dest_files=["res://.godot/imported/health_bar.png-108c423774c358a4b73f01672cd97dce.ctex"]
 
 [params]
 

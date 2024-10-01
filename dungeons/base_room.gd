@@ -10,7 +10,7 @@ extends Node2D
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if finished:
 		return
 		
@@ -50,7 +50,6 @@ func _open_room():
 	for entrance in self.data['entrances']:
 		if not entrance['has_connection']:
 			continue
-		var direction = entrance['direction']
 		for tile in [entrance['start'], entrance['end']]:
 			self.tiles.set_cell(tile, DungeonGeneration.FLOOR_TILES, Vector2i.ZERO)
 			

@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Projectile
+
 @onready var player = $/root/game/player
 
 @export var speed: float = 650.0
@@ -31,7 +33,9 @@ func _on_body_entered(body):
 			return
 			
 		if 'health' in body:
-			body.deal_damage(self.damage)
+			if body.deal_damage(self.damage):
+				return
+			
 	else:
 		if body.get_instance_id() == self.player.get_instance_id():
 			body.deal_damage(self.damage)

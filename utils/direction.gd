@@ -13,14 +13,14 @@ enum {
 
 
 # Function to determine the direction based on a Vector2
-static func from_vector(val: Vector2) -> int:
+static func from_vector(val: Vector2):
 	const AMOUNT := 8
 	var angle := val.angle()  # Returns angle in radians
 	angle = rad_to_deg(angle)  # Convert to degrees
 	if angle < 0:
 		angle += 360
 
-	var index = int(round(angle / 45.0)) % AMOUNT
+	var index = int(round(angle / (360.0 / AMOUNT))) % AMOUNT
 	var dir
 	match index:
 		0:

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvw8ugcmardiy"
-path="res://.godot/imported/heal_empty.png-5ce44100a489ae354012d50f0bf6a87a.ctex"
+path="res://.godot/imported/heal_empty.png-6c25acdb57870b70b87b5a836a9b11b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/heal_empty.png"
-dest_files=["res://.godot/imported/heal_empty.png-5ce44100a489ae354012d50f0bf6a87a.ctex"]
+source_file="res://items/heal_empty.png"
+dest_files=["res://.godot/imported/heal_empty.png-6c25acdb57870b70b87b5a836a9b11b7.ctex"]
 
 [params]
 

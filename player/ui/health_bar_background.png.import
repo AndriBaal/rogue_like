@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr0nt5qcjuye1"
-path="res://.godot/imported/heal.png-688adc16cf069a0e96d8d20476fb8a1c.ctex"
+uid="uid://cpawvfp0qegjy"
+path="res://.godot/imported/health_bar_background.png-04bbb9286db15453c8baf4ff3e7921c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/heal.png"
-dest_files=["res://.godot/imported/heal.png-688adc16cf069a0e96d8d20476fb8a1c.ctex"]
+source_file="res://player/ui/health_bar_background.png"
+dest_files=["res://.godot/imported/health_bar_background.png-04bbb9286db15453c8baf4ff3e7921c7.ctex"]
 
 [params]
 

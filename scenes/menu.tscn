@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_t51rd"]
 
-[node name="menu" type="Node2D"]
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_t51rd")
 
 [node name="camera" type="Camera2D" parent="."]
@@ -165,11 +167,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -297.0
-offset_top = -100.0
+offset_top = -192.0
 offset_right = 296.0
-offset_bottom = -9.0
+offset_bottom = -101.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 60
 placeholder_text = "Name ..."
 max_length = 16
+
+[node name="error" type="Label" parent="create_game"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -40.0
+offset_right = 156.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 42
+text = "ERROR"
+horizontal_alignment = 1

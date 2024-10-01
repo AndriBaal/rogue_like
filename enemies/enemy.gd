@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-class_name BaseEnemy
+class_name Enemy
 
 enum EnemyState {
 	IDLE,
@@ -23,7 +23,6 @@ var despawn := preload("res://enemies/despawn.tscn")
 @export var target_vector: Vector2
 @export var hit_animation_timer := HIT_ANIMATION_DURATION
 @export var xp: int = 20
-# TODO: melee damage
 
 @onready var game = $/root/game
 @onready var target = $/root/game/player
@@ -99,7 +98,7 @@ func _process(delta: float) -> void:
 	self._compute_hit_animation(delta, active_sprite)
 	active_sprite.frame_coords.y = self.direction
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	self.velocity = self.movement.normalized() * self.movement_speed
 	var res = self.move_and_slide()
 	if res:
@@ -114,8 +113,8 @@ func _compute_hit_animation(delta, active_sprite):
 	if self.hit_animation_timer > HIT_ANIMATION_DURATION:
 		color = Color.WHITE
 	else:
-		var scale = 1.0 - abs((self.hit_animation_timer / HIT_ANIMATION_DURATION) * 2.0 - 1.0)
-		color = Color(1.0, 1.0 - scale, 1.0 - scale, 1.0)
+		var color_scale = 1.0 - abs((self.hit_animation_timer / HIT_ANIMATION_DURATION) * 2.0 - 1.0)
+		color = Color(1.0, 1.0 - color_scale, 1.0 - color_scale, 1.0)
 	active_sprite.modulate = color
 	
 func deal_damage(damage: float):
@@ -125,14 +124,14 @@ func deal_damage(damage: float):
 	self.hit_animation_timer = 0.0
 	if self.health <= 0.0:
 		self.target.gain_xp(self.xp)
-		self.queue_free()
-		self.death()
+		self.call_deferred("death")
 
 func death():
-	var despawn := despawn.instantiate()
-	despawn.position = self.global_position
-	despawn.scale *= self.global_scale
-	$/root/game/effects.add_child(despawn)
+	self.queue_free()
+	var d := self.despawn.instantiate()
+	d.position = self.global_position
+	d.scale *= self.global_scale
+	$/root/game/effects.add_child(d)
 
 func start_attack() -> void:
 	self.movement = Vector2.ZERO

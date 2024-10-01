@@ -17,6 +17,11 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/shadowed_variable=0
+gdscript/warnings/integer_division=0
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -29,7 +34,7 @@ import/blender/enabled=false
 [gui]
 
 theme/custom="res://ui/theme.theme"
-theme/custom_font="res://ui/main.ttf"
+theme/custom_font="res://ui/font.ttf"
 
 [input]
 
@@ -115,4 +120,5 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=3
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

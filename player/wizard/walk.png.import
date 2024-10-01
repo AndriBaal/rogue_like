@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpawvfp0qegjy"
-path="res://.godot/imported/health_bar_background.png-cd6144646365b91d7e8bed67840c863a.ctex"
+uid="uid://bcuchbl5ppg0j"
+path="res://.godot/imported/walk.png-8f6d349be3fc01e03aef75723394bbb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/health_bar_background.png"
-dest_files=["res://.godot/imported/health_bar_background.png-cd6144646365b91d7e8bed67840c863a.ctex"]
+source_file="res://player/wizard/walk.png"
+dest_files=["res://.godot/imported/walk.png-8f6d349be3fc01e03aef75723394bbb7.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp4qtf0cxhytr"
-path="res://.godot/imported/idle_attack.png-057be5334fc682776e3294e9deff1568.ctex"
+uid="uid://dpmd72e6ptcph"
+path="res://.godot/imported/xp_bar_background.png-34013440f8f426ca1777ea4522e58791.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/wizard/idle_attack.png"
-dest_files=["res://.godot/imported/idle_attack.png-057be5334fc682776e3294e9deff1568.ctex"]
+source_file="res://player/ui/xp_bar_background.png"
+dest_files=["res://.godot/imported/xp_bar_background.png-34013440f8f426ca1777ea4522e58791.ctex"]
 
 [params]
 

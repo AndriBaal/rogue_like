@@ -52,11 +52,12 @@ enum PlayerState {
 @export var potions := max_potions
 @export var heal_per_potion = 8
 
-@export var roll_duration := 0.5
+@export var roll_duration := 0.6
 @export var roll_speed := 900.0
 @export var roll_timer := 0.0
-@export var roll_immunity_range: Vector2 = Vector2(0.05, 0.9)
-#@export var rolling := false
+@export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
+
+@export var money := 0
 
 func _ready() -> void:
 	self._update_potion_ui()
@@ -169,10 +170,10 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("zoom_out"):
 		self.camera.zoom -= Vector2.ONE * delta
 		
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var speed = self.speed if self.state != PlayerState.ROLL else self.roll_speed
 	self.velocity = self.movement.normalized() * speed
-	var res = self.move_and_slide()
+	self.move_and_slide()
 	
 func _update_mana(delta):
 	self.mana += self.mana_per_second * delta
@@ -221,9 +222,9 @@ func has_iframes() -> bool:
 		
 	return false
 
-func deal_damage(damage: float):
+func deal_damage(damage: float) -> bool: # Returns a bool, if the projectile should be destroyed
 	if self.has_iframes():
-		return
+		return false
 
 	self.immunity_timer = 0.0
 	self.health -= damage
@@ -231,6 +232,7 @@ func deal_damage(damage: float):
 	if self.health <= 0.0:
 		self.get_tree().change_scene_to_file("res://scenes/menu.tscn")
 	self._update_health_ui()
+	return true
 
 func _update_health_ui():
 	self.health_bar.value = self.health / self.max_health * 100.0
@@ -238,7 +240,7 @@ func _update_health_ui():
 func gain_xp(xp: int):
 	self.xp += xp
 	if self.xp > self.xp_for_lvl_up:
-		var new_levels = int(self.xp / self.xp_for_lvl_up)
+		var new_levels = self.xp / self.xp_for_lvl_up
 		self.xp -= new_levels * self.xp_for_lvl_up
 		self.level += new_levels
 		$ui/level.text = "LVL. %s" % self.level
@@ -283,3 +285,10 @@ func int_to_roman(num: int) -> String:
 			num -= value
 	
 	return result
+
+func add_money(amount: int):
+	self.money += amount
+	self._update_money_ui()
+	
+func _update_money_ui():
+	$ui/money/label.text = str(self.money)

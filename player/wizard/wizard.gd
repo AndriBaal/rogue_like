@@ -63,10 +63,10 @@ func _fire_storm(player_position, _look_direction):
 		var angle = i * angle_step
 		var spawn_position = player_position + Vector2(cos(angle), sin(angle)) * PROJECTILE_OFFSET
 		var direction_vector = Vector2(cos(angle), sin(angle)).normalized()
-		var fire_ball = self.fire_ball.instantiate()
-		fire_ball.scale *= 1.5
-		fire_ball.max_age = 1.0
-		self.game.spawn_projectile(fire_ball, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true)
+		var f = self.fire_ball.instantiate()
+		f.scale *= 1.5
+		f.max_age = 1.0
+		self.game.spawn_projectile(f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true)
 	
 func _fire_wall(player_position, look_direction):
 	const ARC_ANGLE := 1.0
@@ -78,7 +78,7 @@ func _fire_wall(player_position, look_direction):
 		var angle = center_angle - (ARC_ANGLE / 2) + i * angle_step
 		var spawn_position = player_position + Vector2(cos(angle), sin(angle)) * PROJECTILE_OFFSET
 		var direction_vector = Vector2(cos(angle), sin(angle)).normalized()
-		var fire_ball = self.fire_ball.instantiate()
-		fire_ball.max_age = 2.0
-		self.game.spawn_projectile(fire_ball, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true)
+		var f = self.fire_ball.instantiate()
+		f.max_age = 2.0
+		self.game.spawn_projectile(f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true)
 		

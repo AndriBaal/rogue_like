@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cikwx8m5ixg86"]
 
-[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/base_projectile.tscn" id="1_l3w0f"]
+[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/projectile.tscn" id="1_l3w0f"]
 [ext_resource type="Texture2D" uid="uid://cwa5aq5s5jhy4" path="res://projectiles/water_wave.png" id="2_fgjtb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dbbsa"]

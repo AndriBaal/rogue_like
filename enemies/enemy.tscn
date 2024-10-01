@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvsrhnrd1kp5h"]
 
-[ext_resource type="Script" path="res://enemies/base_enemy.gd" id="1_nevkm"]
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nevkm"]
 
 [node name="enemy" type="CharacterBody2D"]
 motion_mode = 1

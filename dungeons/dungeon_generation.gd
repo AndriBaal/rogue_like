@@ -64,7 +64,6 @@ class Dungeon:
 
 		var room = options.possible_rooms["start"].instantiate()
 		var tilemap: TileMapLayer = room.get_node("tiles")
-		var rect := tilemap.get_used_rect()
 		self.tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 
 		#var size = self.options.size - rect.size
@@ -239,7 +238,6 @@ class Dungeon:
 						var random_tile = floor_tile_source.get_tile_id(
 							self.random.randi_range(0, floor_tile_amount - 1)
 						)
-						var floor_tile = self.random.randi_range(0, floor_tile_amount - 1)
 						var tile_pos = tile + i * entrance.direction
 						if wall:
 							var diff = tile - wall

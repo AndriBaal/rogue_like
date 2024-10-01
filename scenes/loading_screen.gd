@@ -42,11 +42,11 @@ func _recurse_add_rooms(cells: Array[Vector2i], root, room):
 	var r = room["room"]
 	var tilemap = r.get_node("tiles")
 	var tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
-	var position = Vector2i(r.position / tile_size)
+	var tile_position = Vector2i(r.position / tile_size)
 	
 	for cell in tilemap.get_used_cells():
 		if tilemap.get_cell_source_id(cell) == DungeonGeneration.FLOOR_TILES:
-			cells.push_back(cell + position)
+			cells.push_back(cell + tile_position)
 			
 	root.add_child(r)
 	for child in room["children"]:

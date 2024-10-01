@@ -1,0 +1,100 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckh3bn2sp2o6b"]
+
+[ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="1_jhxcc"]
+[ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="2_k1slm"]
+[ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="3_h1sdt"]
+[ext_resource type="PackedScene" uid="uid://c655q7qjaofbe" path="res://player/ui/inventory.tscn" id="4_ncvwd"]
+[ext_resource type="Texture2D" uid="uid://dpmd72e6ptcph" path="res://player/ui/xp_bar_background.png" id="5_dmxq1"]
+[ext_resource type="Texture2D" uid="uid://cgw0xav55ee5g" path="res://player/ui/xp_bar.png" id="6_l456t"]
+[ext_resource type="Texture2D" uid="uid://cvw8ugcmardiy" path="res://items/heal_empty.png" id="7_p3f37"]
+[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/heal.png" id="8_gp3gb"]
+[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin.png" id="9_wllro"]
+
+[node name="ui" type="CanvasLayer"]
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+anchors_preset = -1
+anchor_right = 0.501
+offset_right = -150.152
+offset_bottom = 40.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_jhxcc")
+texture_progress = ExtResource("2_k1slm")
+
+[node name="mana_bar" type="TextureProgressBar" parent="."]
+anchors_preset = -1
+anchor_right = 0.501
+offset_top = 40.0
+offset_right = -150.152
+offset_bottom = 80.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_jhxcc")
+texture_progress = ExtResource("3_h1sdt")
+
+[node name="tabs" parent="." instance=ExtResource("4_ncvwd")]
+
+[node name="xp_bar" type="TextureProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 257.0
+offset_right = 300.0
+offset_bottom = 287.0
+grow_horizontal = 2
+grow_vertical = 2
+nine_patch_stretch = true
+texture_under = ExtResource("5_dmxq1")
+texture_progress = ExtResource("6_l456t")
+
+[node name="level" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -366.0
+offset_top = 264.0
+offset_right = -326.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LVL 1"
+
+[node name="health" type="Node2D" parent="."]
+position = Vector2(72, 160)
+scale = Vector2(4, 4)
+
+[node name="empty" type="Sprite2D" parent="health"]
+texture = ExtResource("7_p3f37")
+
+[node name="full" type="Sprite2D" parent="health"]
+texture = ExtResource("8_gp3gb")
+
+[node name="amount" type="Label" parent="health"]
+offset_left = 6.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 6.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 16
+text = "III"
+
+[node name="money" type="Node2D" parent="."]
+position = Vector2(1032, 24)
+
+[node name="label" type="Label" parent="money"]
+offset_right = 64.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+
+[node name="money" type="Sprite2D" parent="money"]
+position = Vector2(87, 14)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_wllro")

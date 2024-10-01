@@ -21,3 +21,4 @@ theme_override_font_sizes/font_size = 80
 text = "Loading..."
 
 [node name="main_camera" type="Camera2D" parent="."]
+process_callback = 0

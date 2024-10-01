@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dp7jdk5hksqyw"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
+[ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
+[ext_resource type="Texture2D" uid="uid://brn2daw8eshl5" path="res://player/wizard/roll.png" id="3_56ane"]
+[ext_resource type="AudioStream" uid="uid://c5637qrydm4yb" path="res://player/wizard/hurt.mp3" id="3_d513c"]
+[ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
+radius = 22.3358
+
+[node name="player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 3
+motion_mode = 1
+floor_block_on_wall = false
+script = ExtResource("1_vfs3i")
+
+[node name="camera" type="Camera2D" parent="."]
+process_callback = 0
+
+[node name="light" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("2_niumg")
+texture_scale = 2.5
+
+[node name="walk_sprite" type="Sprite2D" parent="."]
+visible = false
+hframes = 9
+vframes = 8
+region_rect = Rect2(0, 0, 100, 100)
+
+[node name="idle_sprite" type="Sprite2D" parent="."]
+vframes = 8
+
+[node name="idle_attack_sprite" type="Sprite2D" parent="."]
+visible = false
+vframes = 8
+
+[node name="walk_attack_sprite" type="Sprite2D" parent="."]
+visible = false
+hframes = 9
+vframes = 8
+
+[node name="roll_sprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_56ane")
+hframes = 17
+vframes = 8
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0d6cu")
+
+[node name="hurt_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_d513c")
+
+[node name="ui" parent="." instance=ExtResource("5_qixdu")]

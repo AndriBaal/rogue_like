@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brn2daw8eshl5"
-path="res://.godot/imported/roll.png-440edb24bffa790cb38747917628a768.ctex"
+uid="uid://cd8tn82cme0s2"
+path="res://.godot/imported/walk_attack.png-b564c3d4b62ba3d6321b041e55a991f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/wizard/roll.png"
-dest_files=["res://.godot/imported/roll.png-440edb24bffa790cb38747917628a768.ctex"]
+source_file="res://player/wizard/walk_attack.png"
+dest_files=["res://.godot/imported/walk_attack.png-b564c3d4b62ba3d6321b041e55a991f4.ctex"]
 
 [params]
 
