@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
-radius = 22.3358
+radius = 23.3548
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
@@ -22,7 +22,7 @@ process_callback = 0
 [node name="light" type="PointLight2D" parent="."]
 shadow_enabled = true
 texture = ExtResource("2_niumg")
-texture_scale = 2.5
+texture_scale = 1.5
 
 [node name="walk_sprite" type="Sprite2D" parent="."]
 visible = false

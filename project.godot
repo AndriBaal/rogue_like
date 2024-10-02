@@ -35,6 +35,8 @@ import/blender/enabled=false
 
 theme/custom="res://ui/theme.theme"
 theme/custom_font="res://ui/font.ttf"
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
 
 [input]
 

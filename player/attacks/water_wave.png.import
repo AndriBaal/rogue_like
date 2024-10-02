@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx4x5j36vui4t"
-path="res://.godot/imported/spell_fire.png-1784b62107a2fcc4d7e0334bcf0feb9e.ctex"
+uid="uid://oexkvd6pldby"
+path="res://.godot/imported/water_wave.png-22377ea6cbda3723ebd199fb2c99b2de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tmp/spell_fire.png"
-dest_files=["res://.godot/imported/spell_fire.png-1784b62107a2fcc4d7e0334bcf0feb9e.ctex"]
+source_file="res://player/attacks/water_wave.png"
+dest_files=["res://.godot/imported/water_wave.png-22377ea6cbda3723ebd199fb2c99b2de.ctex"]
 
 [params]
 

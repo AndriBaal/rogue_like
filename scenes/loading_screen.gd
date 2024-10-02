@@ -45,7 +45,7 @@ func _recurse_add_rooms(cells: Array[Vector2i], root, room):
 	var tile_position = Vector2i(r.position / tile_size)
 	
 	for cell in tilemap.get_used_cells():
-		if tilemap.get_cell_source_id(cell) == DungeonGeneration.FLOOR_TILES:
+		if tilemap.get_cell_atlas_coords(cell).y == 1:
 			cells.push_back(cell + tile_position)
 			
 	root.add_child(r)

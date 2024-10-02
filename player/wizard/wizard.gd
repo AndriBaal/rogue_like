@@ -6,46 +6,42 @@ var water_wave = preload("res://projectiles/water_wave.tscn")
 const PROJECTILE_OFFSET := 80.0
 
 func _ready():
-	self.all_attacks = [
-		{
+	self.all_attacks = {
+		'fire_ball': {
 			'name': 'Fire Ball',
 			'action': self._fire_ball,
 			'mana_cost': 5.0,
 			'cool_down': 0.5,
-			'children': [
-				{
-					'name': 'Fire Storm',
-					'action': self._fire_storm,
-					'mana_cost': 15.0,
-					'cool_down': 2.0,
-					'children': [],
-					'type': 'ability'
-				},
-				{
-					'name': 'Fire Wall',
-					'action': self._fire_wall,
-					'mana_cost': 20.0,
-					'cool_down': 2.0,
-					'children': [],
-					'type': 'ability'
-				}
-			],
-			'type': 'primary'
+			'type': AttackType.PRIMARY,
+			# TODO: icon
 		},
-		{
+		'water_wave': {
 			'name': 'Water Wave',
 			'action': self._water_wave,
 			'mana_cost': 10.0,
 			'cool_down': 1.0,
-			'children': [],
-			'type': 'primary'
+			'type': AttackType.PRIMARY
 		},
-	]
+		'fire_storm': {
+			'name': 'Fire Storm',
+			'action': self._fire_storm,
+			'mana_cost': 15.0,
+			'cool_down': 2.0,
+			'type': AttackType.ABILITY
+		},
+		'fire_wall': {
+			'name': 'Fire Wall',
+			'action': self._fire_wall,
+			'mana_cost': 20.0,
+			'cool_down': 2.0,
+			'type': AttackType.ABILITY
+		}
+	}
 	self.attacks = {
-		'primary_attack': self.all_attacks[0],
-		'secondary_attack': self.all_attacks[1],
-		'ability1': self.all_attacks[0]['children'][0],
-		'ability2': self.all_attacks[0]['children'][1]
+		'primary_attack': self.all_attacks['fire_ball'],
+		'secondary_attack': self.all_attacks['water_wave'],
+		'ability1': self.all_attacks['fire_storm'],
+		'ability2': self.all_attacks['fire_wall']
 	}
 	
 	super()

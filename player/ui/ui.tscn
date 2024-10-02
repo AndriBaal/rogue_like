@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckh3bn2sp2o6b"]
+[gd_scene load_steps=11 format=3 uid="uid://ckh3bn2sp2o6b"]
 
 [ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="1_jhxcc"]
 [ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="2_k1slm"]
 [ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="3_h1sdt"]
 [ext_resource type="PackedScene" uid="uid://c655q7qjaofbe" path="res://player/ui/inventory.tscn" id="4_ncvwd"]
 [ext_resource type="Texture2D" uid="uid://dpmd72e6ptcph" path="res://player/ui/xp_bar_background.png" id="5_dmxq1"]
+[ext_resource type="PackedScene" uid="uid://dd6p7kg13tjva" path="res://player/ui/attack.tscn" id="5_he2ld"]
 [ext_resource type="Texture2D" uid="uid://cgw0xav55ee5g" path="res://player/ui/xp_bar.png" id="6_l456t"]
 [ext_resource type="Texture2D" uid="uid://cvw8ugcmardiy" path="res://items/heal_empty.png" id="7_p3f37"]
 [ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/heal.png" id="8_gp3gb"]
@@ -17,6 +18,7 @@ anchors_preset = -1
 anchor_right = 0.501
 offset_right = -150.152
 offset_bottom = 40.0
+step = 0.0
 value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_jhxcc")
@@ -28,6 +30,7 @@ anchor_right = 0.501
 offset_top = 40.0
 offset_right = -150.152
 offset_bottom = 80.0
+step = 0.0
 value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_jhxcc")
@@ -35,34 +38,58 @@ texture_progress = ExtResource("3_h1sdt")
 
 [node name="tabs" parent="." instance=ExtResource("4_ncvwd")]
 
-[node name="xp_bar" type="TextureProgressBar" parent="."]
-anchors_preset = 8
+[node name="attack" type="VBoxContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -405.0
+offset_right = 115.0
+offset_bottom = 67.0
+grow_vertical = 0
+scale = Vector2(0.623178, 0.623178)
+
+[node name="primary_attack" parent="attack" instance=ExtResource("5_he2ld")]
+layout_mode = 2
+
+[node name="secondary_attack" parent="attack" instance=ExtResource("5_he2ld")]
+layout_mode = 2
+
+[node name="ability1" parent="attack" instance=ExtResource("5_he2ld")]
+layout_mode = 2
+
+[node name="ability2" parent="attack" instance=ExtResource("5_he2ld")]
+layout_mode = 2
+
+[node name="xp" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = 257.0
-offset_right = 300.0
-offset_bottom = 287.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+
+[node name="bar" type="TextureProgressBar" parent="xp"]
+layout_mode = 0
+offset_left = -221.0
+offset_top = -24.0
+offset_right = 379.0
+offset_bottom = 6.0
+step = 0.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_dmxq1")
 texture_progress = ExtResource("6_l456t")
 
-[node name="level" type="Label" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -366.0
-offset_top = 264.0
-offset_right = -326.0
-offset_bottom = 280.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="level" type="Label" parent="xp"]
+layout_mode = 0
+offset_left = -281.0
+offset_top = -20.0
+offset_right = -240.0
+offset_bottom = 3.0
 text = "LVL 1"
 
 [node name="health" type="Node2D" parent="."]
@@ -81,13 +108,21 @@ offset_top = -10.0
 offset_right = 30.0
 offset_bottom = 6.0
 scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 16
 text = "III"
 
-[node name="money" type="Node2D" parent="."]
-position = Vector2(1032, 24)
+[node name="money" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 32.0
+offset_right = -152.0
+offset_bottom = 32.0
+grow_horizontal = 0
 
 [node name="label" type="Label" parent="money"]
+layout_mode = 0
 offset_right = 64.0
 offset_bottom = 32.0
 theme_override_font_sizes/font_size = 32

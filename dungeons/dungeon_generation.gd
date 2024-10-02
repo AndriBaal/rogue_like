@@ -1,28 +1,24 @@
 class_name DungeonGeneration
 
 enum DungeonType { GOBLIN }
-const WALL_TILES = 1
-const FLOOR_TILES = 0
+const TILE_ID := 0
 
 
 class DungeonOptions:
 	var type: DungeonType
 	var random_seed: int
-	#var size: Vector2i
 	var rooms_left: Dictionary
 	var possible_rooms: Dictionary
 
 	func _init(
 		type: DungeonType,
-		good_rooms: int,
 		bad_rooms: int,
+		good_rooms: int,
 		neutral_rooms: int,
-		#size: Vector2i = Vector2i(100, 100),
 		random_seed: int = randi(),
 	):
 		self.type = type
 		self.random_seed = random_seed
-		#self.size = size
 		self.rooms_left = {
 			"good": good_rooms,
 			"bad": bad_rooms,
@@ -105,11 +101,11 @@ class Dungeon:
 		if available_room_types.is_empty():
 			return null
 
-		var room_type_key = available_room_types[self.random.randi_range(
+		var room_type = available_room_types[self.random.randi_range(
 			0, available_room_types.size() - 1
 		)]  # TODO: Maybe add weighted random
 
-		return room_type_key
+		return room_type
 
 	func _recurse_room_intersections(rooms, rect) -> bool:
 		for room in rooms:
@@ -125,13 +121,11 @@ class Dungeon:
 				return true
 		return false
 
-	func _get_room(room_type_key):
-		self.rooms_left[room_type_key] -= 1
-
+	func _get_room(room_type):
 		var possible_rooms = self.options.possible_rooms
-		var room_type = possible_rooms[room_type_key]
-		var random_key = self.random.randi_range(0, room_type.size() - 1)
-		var room = room_type[random_key]
+		var rt = possible_rooms[room_type]
+		var random_key = self.random.randi_range(0, rt.size() - 1)
+		var room = rt[random_key]
 		# room_type.remove_at(random_key) # TODO: add remove to avoid duplicate rooms
 		return room.instantiate()
 
@@ -144,8 +138,8 @@ class Dungeon:
 			var children = room["children"]
 			var entrances = room["entrances"]
 			var tilemap: TileMapLayer = r.get_node("tiles")
-			var floor_tile_source = tilemap.tile_set.get_source(FLOOR_TILES)
-			var floor_tile_amount = floor_tile_source.get_tiles_count()
+			var tile_source = tilemap.tile_set.get_source(TILE_ID)
+			var tile_amount = tile_source.get_tiles_count() / 2
 
 			var entrance_indices = []
 			while entrance_indices.size() < entrances.size():
@@ -235,35 +229,39 @@ class Dungeon:
 					elif tile == entrance_end:
 						wall = entrance_start
 					for i in range(dist):
-						var random_tile = floor_tile_source.get_tile_id(
-							self.random.randi_range(0, floor_tile_amount - 1)
+						var random_tile = Vector2(
+							self.random.randi_range(0, tile_amount - 1),
+							1
 						)
 						var tile_pos = tile + i * entrance.direction
-						if wall:
-							var diff = tile - wall
-							tilemap.set_cell(
-								tile_pos + diff,
-								WALL_TILES,
-								Vector2i.ZERO,
-								self.get_alt_from_direction(diff)
-							)
-						tilemap.set_cell(tile_pos, FLOOR_TILES, random_tile)
-
-				for tile in [new_entrance["start"], new_entrance["end"]]:
-					new_tilemap.set_cell(tile, FLOOR_TILES, Vector2i.ZERO)
+						# REFACTOR
+						#if wall:
+							#var diff = tile - wall
+							#tilemap.set_cell(
+								#tile_pos + diff,
+								#WALL_TILES,
+								#Vector2i.ZERO,
+								#self.get_alt_from_direction(diff)
+							#)
+						tilemap.set_cell(tile_pos, TILE_ID, random_tile)
+				# REFACTOR
+				#for tile in [new_entrance["start"], new_entrance["end"]]:
+					#new_tilemap.set_cell(tile, TILE_ID, Vector2i.ZERO)
 
 				new_entrance["has_connection"] = true
 				entrance["has_connection"] = true
 				new_r.data = new_room
 				children.push_back(new_room)
 				new_rooms.push_back(new_room)
+				self.rooms_left[room_type] -= 1
 
-			for entrance in entrances:
-				if not entrance["has_connection"]:
-					for tile in [entrance["start"], entrance["end"]]:
-						tilemap.set_cell(
-							tile, WALL_TILES, Vector2i.ZERO, tilemap.get_cell_alternative_tile(tile)
-						)
+			# REFACTOR
+			#for entrance in entrances:
+				#if not entrance["has_connection"]:
+					#for tile in [entrance["start"], entrance["end"]]:
+						#tilemap.set_cell(
+							#tile, WALL_TILES, Vector2i.ZERO, tilemap.get_cell_alternative_tile(tile)
+						#)
 		if not new_rooms.is_empty():
 			self._grow_rooms(new_rooms)
 
@@ -276,8 +274,8 @@ class Dungeon:
 			var tile_data = tilemap.get_cell_tile_data(cell)
 			if not tile_data:
 				continue
-			var entrance_layer_data = tile_data.get_custom_data("entrance_layer")
-			if not entrance_layer_data:
+			var entrance_data = tile_data.get_custom_data("entrance")
+			if not entrance_data:
 				continue
 
 			for neighbour in [Vector2i(1, 0), Vector2i(0, 1)]:
@@ -285,8 +283,8 @@ class Dungeon:
 				if not neighbour_cell:
 					continue
 
-				entrance_layer_data = neighbour_cell.get_custom_data("entrance_layer")
-				if not entrance_layer_data:
+				entrance_data = neighbour_cell.get_custom_data("entrance")
+				if not entrance_data:
 					continue
 
 				var alt = tilemap.get_cell_alternative_tile(cell)

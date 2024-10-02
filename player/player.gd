@@ -2,6 +2,11 @@ extends CharacterBody2D
 
 class_name Player
 
+enum AttackType {
+	PRIMARY,
+	ABILITY
+}
+
 enum PlayerState {
 	IDLE,
 	IDLE_ATTACK,
@@ -45,15 +50,15 @@ enum PlayerState {
 	'ability2': 0.0,
 }
 
-@export var all_attacks := []
+@export var all_attacks := {}
 @export var attacks := {}
 
 @export var max_potions := 3
 @export var potions := max_potions
 @export var heal_per_potion = 8
 
-@export var roll_duration := 0.6
-@export var roll_speed := 900.0
+@export var roll_duration := 0.55
+@export var roll_speed := 750.0
 @export var roll_timer := 0.0
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
@@ -181,7 +186,8 @@ func _update_mana(delta):
 	self._update_mana_ui()
 
 func _update_mana_ui():
-	self.mana_bar.value = self.mana / self.max_mana * 100.0
+	self.mana_bar.max_value = self.max_mana
+	self.mana_bar.value = self.mana
 
 func _use_mana(mana) -> bool:
 	if self.mana - mana >= 0.0:
@@ -235,16 +241,18 @@ func deal_damage(damage: float) -> bool: # Returns a bool, if the projectile sho
 	return true
 
 func _update_health_ui():
-	self.health_bar.value = self.health / self.max_health * 100.0
+	self.health_bar.max_value = self.max_health
+	self.health_bar.value = self.health
 
 func gain_xp(xp: int):
 	self.xp += xp
 	if self.xp > self.xp_for_lvl_up:
 		var new_levels = self.xp / self.xp_for_lvl_up
-		self.xp -= new_levels * self.xp_for_lvl_up
+		self.xp = 0.0
 		self.level += new_levels
-		$ui/level.text = "LVL. %s" % self.level
-	$ui/xp_bar.value = float(self.xp) / float(self.xp_for_lvl_up) * 100.0
+		$ui/xp/level.text = "LVL. %s" % self.level
+	$ui/xp/bar.max_value = float(self.xp_for_lvl_up)
+	$ui/xp/bar.value = float(self.xp)
 	
 func _use_potion():
 	if self.potions == 0:
@@ -278,7 +286,6 @@ func int_to_roman(num: int) -> String:
 		10: "X", 9: "IX", 5: "V", 4: "IV", 1: "I"
 	}
 	var result = ""
-	
 	for value in ROMAN_NUMERALS.keys():
 		while num >= value:
 			result += ROMAN_NUMERALS[value]

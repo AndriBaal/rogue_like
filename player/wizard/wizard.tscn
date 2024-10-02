@@ -22,6 +22,3 @@ texture = ExtResource("5_yh1x0")
 
 [node name="walk_attack_sprite" parent="." index="5"]
 texture = ExtResource("6_1yv4r")
-
-[node name="collider" parent="." index="7"]
-position = Vector2(0, -1)

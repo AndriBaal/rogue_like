@@ -33,12 +33,12 @@ func _on_body_entered(body):
 			return
 			
 		if 'health' in body:
-			if body.deal_damage(self.damage):
-				return
+			body.deal_damage(self.damage)
 			
 	else:
 		if body.get_instance_id() == self.player.get_instance_id():
-			body.deal_damage(self.damage)
+			if not body.deal_damage(self.damage):
+				return
 		elif 'health' in body:
 			return
 	self.queue_free()

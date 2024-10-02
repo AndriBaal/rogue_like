@@ -5,12 +5,13 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mycbb"]
 texture = ExtResource("1_nutsy")
 texture_region_size = Vector2i(48, 48)
-0:0/0 = 0
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 0:1/0 = 0
-2:0/0 = 0
 3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -12, -24, -12, 24, -24, 24)
 4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -24, -24, -12, -24, -12, -12, -24, -12)
 14:1/0 = 0
 13:1/0 = 0
 12:1/0 = 0
@@ -26,8 +27,17 @@ texture_region_size = Vector2i(48, 48)
 2:1/0 = 0
 1:1/0 = 0
 5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -12, 12, -12, 12, 24, 24, 24, 24, -24, -24, -24)
 14:0/0 = 0
+14:0/0/custom_data_0 = true
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -12, -24, -12, 24, -24, 24, -24, -24)
 
 [resource]
 tile_size = Vector2i(48, 48)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "entrance"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_mycbb")

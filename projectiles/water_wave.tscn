@@ -7,7 +7,7 @@
 size = Vector2(6, 24)
 
 [node name="Projectile" instance=ExtResource("1_l3w0f")]
-scale = Vector2(4, 4)
+scale = Vector2(6, 6)
 speed = 400.0
 
 [node name="Sprite2D" parent="." index="0"]

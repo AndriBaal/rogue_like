@@ -41,16 +41,18 @@ func _close_room():
 		if not entrance['has_connection']:
 			continue
 		var direction = entrance['direction']
-		for tile in [entrance["start"], entrance["end"]]:
-			self.tiles.set_cell(
-				tile, DungeonGeneration.WALL_TILES, Vector2i.ZERO, DungeonGeneration.Dungeon.get_alt_from_direction(direction)
-			)
+		# REFACTOR
+		#for tile in [entrance["start"], entrance["end"]]:
+			#self.tiles.set_cell(
+				#tile, DungeonGeneration.WALL_TILES, Vector2i.ZERO, DungeonGeneration.Dungeon.get_alt_from_direction(direction)
+			#)
 
 func _open_room():
 	for entrance in self.data['entrances']:
 		if not entrance['has_connection']:
 			continue
-		for tile in [entrance['start'], entrance['end']]:
-			self.tiles.set_cell(tile, DungeonGeneration.FLOOR_TILES, Vector2i.ZERO)
+		# REFACTOR
+		#for tile in [entrance['start'], entrance['end']]:
+			#self.tiles.set_cell(tile, DungeonGeneration.FLOOR_TILES, Vector2i.ZERO)
 			
 	

@@ -5,61 +5,75 @@
 - [ ] Name
 - [ ] Logo
 - [ ] Custom cursor
-- [x] Startmenu with save game selection
-- [x] Spielspeichern
-	- [x] esc Menu
+- [ ] Splash screen?
+? [ ] UI Theme
 - [ ] Spieler:
-	- [x] Health  bar
-	- [x] Mana bar
-	- [x] Money
-		- [ ] Silver, Gold and Bronze Coins (so far only gold)
-		- [ ] Collect animation
+	? [ ] Silver, Gold and Bronze Coins (so far only gold)
+	? [ ] Collect animation
 	- [ ] Game Over screen
-	- [x] 1 Hauptangriff
-		- [x] Redo fire sprite
-	- [x] Dodge Roll
-	- [x] Player hit Animation / Indicator
-	- [x] player invincibility
-	- [ ] Inventory
-		- [x] Healpotion
-		- [ ] Buffpotion
-		- [ ] Money
-	- [x] XP and level
+	? [ ] Game Over screen transition
+	- [ ] Fix Zoom
+	- [ ] Cool down UI
 	- [ ] Stats and Upgrade stats on level up
-	- [ ] Knockback projectiles
+	? [ ] Knockback projectiles
+	- [ ] Projectile despawn animation
 	- [ ] Abilities (buyable with XP)
-		- [ ] Teleport
-		- [ ] Counter
-		- [x] Fire Storm aoe
-		- [x] Fire wall
-		- [ ] Big fireball
+		- [ ] Fire:
+			- [ ] Primary: Fireball
+			- [ ] Abilities:
+				- [ ] 
+				- [ ] 
+				- [ ] Burning floor wave (aoe)
+		- [ ] Water:
+			- [ ] Primary: Water wave
+			- [ ] Abilities:
+				- [ ] Teleport
+				- [ ] Counter
+				- [ ] 
+		- [ ] Earth:
+			- [ ] Primary: Basic Fireball
+			- [ ] Abilities:
+				- [ ] Buff circle
+				- [ ] 
+				- [ ] (Final)
 - [ ] Levels:
 	- [ ] Lighting
 	- [ ] 3 Soundtracks:
 		- [ ] Boss
 		- [ ] Regular Fight
 		- [ ] Relaxed
-	- [x] Dungeon Generation
-	- [x] Minimap
+	- [ ] Dungeon Generation
 	- [ ] Minimap Teleporting
+	- [ ] Make room locked when entering
 	- [ ] Chest with loot
-	- [x] Make room locked when entering
 	- [ ] Decorations
-		- [ ] Chandelier
+		- [ ] Crates
 		- [ ] Torch
+		- [ ] Lanterns
+		- [ ] Chest
+		- [ ] Pots
 		- [ ] Table
 		- [ ] Barrels
 		- [ ] Spike (with Damage)
-		- [ ] Pillars
+		- [ ] Explosing Barrels
+	- [ ] Sounds
+		- [ ] Coin Collect
+		- [ ] Ui Button Click
+		- [ ] Fire Ball woosh
+		- [ ] Player Damage hit
+		- [ ] Player heal potion
+		- [ ] Enemy throw attack sound
+		- [ ] Enemy Damage hit
+		- [ ] Player roll
 	- [ ] Redo tiles
 	- [ ] Enemies
-		- [x] Enemy hit Animation
-		- [x] Melee damage
-		- [x] Despawn animation (smoke)
+		- [ ] Damage Number
 		- [ ] Path Finding
 		- [ ] 4 enemy types (1 / 4)
 			- [x] Thrower
 			- [ ] Axe Thrower
+				- [ ] Left handed
+				- [ ] Eye patch
 			- [ ] Slime
 			- ...
 	- [ ] Rooms
