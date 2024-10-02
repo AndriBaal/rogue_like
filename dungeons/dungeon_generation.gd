@@ -33,20 +33,20 @@ class DungeonOptions:
 		match self.type:
 			DungeonType.GOBLIN:
 				self.possible_rooms = {
-					"start": load("res://dungeons/goblin_dungeon/starting_room.tscn"),
+					"start": load("res://dungeons/goblin_dungeon/start.tscn"),
 					"bad":
 					[
-						load("res://dungeons/goblin_dungeon/enemy_room.tscn"),
+						load("res://dungeons/goblin_dungeon/enemy1.tscn"),
 					],
 					"good":
 					[
-						load("res://dungeons/goblin_dungeon/starting_room.tscn"),
+						load("res://dungeons/goblin_dungeon/start.tscn"),
 					],
 					"neutral":
 					[
-						load("res://dungeons/goblin_dungeon/starting_room.tscn"),
+						load("res://dungeons/goblin_dungeon/start.tscn"),
 					],
-					"boss": load("res://dungeons/goblin_dungeon/enemy_room.tscn")
+					"boss": load("res://dungeons/goblin_dungeon/enemy1.tscn")
 				}
 
 

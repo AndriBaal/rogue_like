@@ -13,6 +13,7 @@
 	- [x] Mana bar
 	- [x] Money
 		- [ ] Silver, Gold and Bronze Coins (so far only gold)
+		- [ ] Collect animation
 	- [ ] Game Over screen
 	- [x] 1 Hauptangriff
 		- [x] Redo fire sprite
@@ -41,6 +42,7 @@
 	- [x] Dungeon Generation
 	- [x] Minimap
 	- [ ] Minimap Teleporting
+	- [ ] Chest with loot
 	- [x] Make room locked when entering
 	- [ ] Decorations
 		- [ ] Chandelier
