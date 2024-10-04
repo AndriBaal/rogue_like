@@ -7,9 +7,9 @@ class_name Projectile
 @export var speed: float = 650.0
 @export var max_age: float = 10.0
 @export var damage: float = 4.0
-@export var friendly: int;
+@export var friendly: bool
 @export var velocity: Vector2
-# TODO: knockback
+@export var pierce := 0
 
 func start(friendly: bool, origin: Vector2, target: Vector2) -> void:
 	self.friendly = friendly
@@ -34,11 +34,19 @@ func _on_body_entered(body):
 			
 		if 'health' in body:
 			body.deal_damage(self.damage)
-			
+			if self.pierce > 0:
+				self.pierce -= 1
+			else:
+				self.queue_free()
+		# Wall is hit
+		self.queue_free()
 	else:
+		# Player is hit
 		if body.get_instance_id() == self.player.get_instance_id():
 			if not body.deal_damage(self.damage):
 				return
+		# Other enemy is hit
 		elif 'health' in body:
 			return
-	self.queue_free()
+		# Wall is hit
+		self.queue_free()

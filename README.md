@@ -10,10 +10,10 @@
 - [ ] Spieler:
 	? [ ] Silver, Gold and Bronze Coins (so far only gold)
 	? [ ] Collect animation
-	- [ ] Game Over screen
+	- [X] Game Over screen
 	? [ ] Game Over screen transition
-	- [ ] Fix Zoom
-	- [ ] Cool down UI
+	- [X] Fix Zoom
+	- [X] Cool down UI
 	- [ ] Stats and Upgrade stats on level up
 	? [ ] Knockback projectiles
 	- [ ] Projectile despawn animation
@@ -42,7 +42,8 @@
 		- [ ] Boss
 		- [ ] Regular Fight
 		- [ ] Relaxed
-	- [ ] Dungeon Generation
+	- [x] Dungeon Generation
+	- [ ] Doors
 	- [ ] Minimap Teleporting
 	- [ ] Make room locked when entering
 	- [ ] Chest with loot
@@ -65,10 +66,10 @@
 		- [ ] Enemy throw attack sound
 		- [ ] Enemy Damage hit
 		- [ ] Player roll
-	- [ ] Redo tiles
+	- [x] Redo tiles
 	- [ ] Enemies
-		- [ ] Damage Number
-		- [ ] Path Finding
+		? [ ] Damage Number
+		- [X] Path Finding
 		- [ ] 4 enemy types (1 / 4)
 			- [x] Thrower
 			- [ ] Axe Thrower
@@ -91,4 +92,5 @@
 - [ ] Coop
 - [ ] Items
 - [ ] Controller support
+- [ ] Add Input hinting
 - [ ] Improve Camera with Limits, so yuo can see more during a fight

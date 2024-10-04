@@ -1,43 +1,115 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c5uuoljrgef53"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://c5uuoljrgef53"]
 
 [ext_resource type="Texture2D" uid="uid://vjv1oc5d2bii" path="res://dungeons/goblin_dungeon/tiles.png" id="1_nutsy"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_et0ad"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jhgu4"]
+vertices = PackedVector2Array(24, 24, -24, 24, -24, -24, 24, -24)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)])
+agent_radius = 0.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mpvaa"]
+polygon = PackedVector2Array(-14.4, 24, -14.4, -24, -14.4, -24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_74bi4"]
+polygon = PackedVector2Array(-24, -24, -14.4, -24, -14.4, 24, -14.4, 24, -14.4, -24, -14.4, -24, -24, -24, -24, -24, -24, -24, -14.4, -24, -24, -24, -24, -24, -24, -24, -24, -24)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5huis"]
+polygon = PackedVector2Array(-24, -14.4, -14.4, -14.4, -14.4, -24, -14.4, -24, -14.4, -24, -14.4, -14.4, -14.4, -14.4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w5kaj"]
+polygon = PackedVector2Array(-24, -14.4, 14.4, -14.4, 14.4, 24, 14.4, 24, 14.4, 24, 14.4, 24, 14.4, -14.4)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mycbb"]
 texture = ExtResource("1_nutsy")
 texture_region_size = Vector2i(48, 48)
 1:0/0 = 0
+1:0/0/z_index = 100
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 0:1/0 = 0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 3:0/0 = 0
+3:0/0/z_index = 100
+3:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_74bi4")
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -12, -24, -12, 24, -24, 24)
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 4:0/0 = 0
+4:0/0/z_index = 100
+4:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_5huis")
 4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -24, -24, -12, -24, -12, -12, -24, -12)
+4:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 14:1/0 = 0
+14:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 13:1/0 = 0
+13:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 12:1/0 = 0
+12:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 11:1/0 = 0
+11:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 10:1/0 = 0
+10:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 9:1/0 = 0
+9:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 8:1/0 = 0
+8:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 7:1/0 = 0
+7:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 6:1/0 = 0
+6:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 5:1/0 = 0
+5:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 4:1/0 = 0
+4:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 3:1/0 = 0
+3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 2:1/0 = 0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jhgu4")
 5:0/0 = 0
+5:0/0/z_index = 100
+5:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_w5kaj")
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -12, 12, -12, 12, 24, 24, 24, 24, -24, -24, -24)
+5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 14:0/0 = 0
+14:0/0/z_index = 100
+14:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 14:0/0/custom_data_0 = true
 0:0/0 = 0
+0:0/0/z_index = 100
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 2:0/0 = 0
+2:0/0/z_index = 100
+2:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_mpvaa")
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, -12, -24, -12, 24, -24, 24, -24, -24)
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+6:0/0 = 0
+6:0/0/z_index = 100
+6:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+6:0/0/custom_data_0 = true
+7:0/0 = 0
+7:0/0/z_index = 100
+7:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+7:0/0/custom_data_0 = true
+8:0/0 = 0
+8:0/0/z_index = 100
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+8:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+8:0/0/custom_data_0 = true
+9:0/0 = 0
+9:0/0/z_index = 100
+9:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+9:0/0/custom_data_0 = true
 
 [resource]
 tile_size = Vector2i(48, 48)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
 custom_data_layer_0/name = "entrance"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_mycbb")

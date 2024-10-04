@@ -2,6 +2,32 @@ extends CharacterBody2D
 
 class_name Player
 
+
+enum AttackSlot {
+	PRIMARY_ATTACK,
+	SECONDARY_ATTACK,
+	ABILITY1,
+	ABILITY2
+}
+
+static func slot_to_string(slot: AttackSlot):
+	match slot:
+		AttackSlot.PRIMARY_ATTACK:
+			return 'primary_attack'
+		AttackSlot.SECONDARY_ATTACK:
+			return 'secondary_attack'
+		AttackSlot.ABILITY1:
+			return 'ability1'
+		AttackSlot.ABILITY2:
+			return 'ability2'
+			
+static func slot_to_type(slot: AttackSlot):
+	match slot:
+		AttackSlot.PRIMARY_ATTACK, AttackSlot.SECONDARY_ATTACK:
+			return AttackType.PRIMARY
+		AttackSlot.ABILITY1, AttackSlot.ABILITY2:
+			return AttackType.ABILITY
+
 enum AttackType {
 	PRIMARY,
 	ABILITY
@@ -44,10 +70,10 @@ enum PlayerState {
 @export var max_mana := 50.0
 @export var mana := max_mana
 @export var attack_cooldowns := {
-	'primary_attack': 0.0,
-	'secondary_attack': 0.0,
-	'ability1': 0.0,
-	'ability2': 0.0,
+	AttackSlot.PRIMARY_ATTACK : 0.0,
+	AttackSlot.SECONDARY_ATTACK : 0.0,
+	AttackSlot.ABILITY1 : 0.0,
+	AttackSlot.ABILITY2 : 0.0,
 }
 
 @export var all_attacks := {}
@@ -63,6 +89,8 @@ enum PlayerState {
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
 @export var money := 0
+
+var game_over := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	self._update_potion_ui()
@@ -100,12 +128,16 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("heal"):
 		self._use_potion()
 	
-	for attack_type in self.attack_cooldowns:
-		self.attack_cooldowns[attack_type] -= delta
+	for attack_slot in self.attack_cooldowns:
+		self.attack_cooldowns[attack_slot] -= delta
+		var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(attack_slot))
+		var occluder = attack_ui.get_node('occluder')
+		var ratio = max(0.0, self.attack_cooldowns[attack_slot] / self.attacks[attack_slot]['cool_down'])
+		occluder.scale.y = ratio
 	if not inventory.visible and new_state != PlayerState.ROLL:
-		for attack_type in self.attacks:
-			if Input.is_action_pressed(attack_type):
-				var attack = self.attacks[attack_type]
+		for attack_slot in self.attacks:
+			if Input.is_action_pressed(slot_to_string(attack_slot)):
+				var attack = self.attacks[attack_slot]
 				if not attack:
 					continue
 				
@@ -115,8 +147,8 @@ func _process(delta: float) -> void:
 				else:
 					new_state = PlayerState.WALK_ATTACK
 						
-				if self.attack_cooldowns[attack_type] <= 0.0 and self._use_mana(attack['mana_cost']):
-					self.attack_cooldowns[attack_type] = attack['cool_down']
+				if self.attack_cooldowns[attack_slot] <= 0.0 and self._use_mana(attack['mana_cost']):
+					self.attack_cooldowns[attack_slot] = attack['cool_down']
 					attack['action'].call(player_position, look)
 					
 
@@ -169,12 +201,23 @@ func _process(delta: float) -> void:
 	active_sprite.frame_coords.y = self.direction
 	self._compute_immunity(delta, active_sprite)
 
-	if Input.is_action_pressed("zoom_in"):
-		self.camera.zoom += Vector2.ONE * delta
+	var zoom_change := 0.0
+	const ZOOM_SPEED: float = 1.0
+	const ZOOM_MIN: float = 0.1
+	const ZOOM_MAX: float = 5.0
 
 	if Input.is_action_pressed("zoom_out"):
-		self.camera.zoom -= Vector2.ONE * delta
-		
+		zoom_change = -ZOOM_SPEED * delta
+
+	elif Input.is_action_pressed("zoom_in"):
+		zoom_change = ZOOM_SPEED * delta
+
+	var new_zoom = camera.zoom * (1 + zoom_change)
+	new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
+	new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
+
+	camera.zoom = new_zoom
+
 func _physics_process(_delta: float) -> void:
 	var speed = self.speed if self.state != PlayerState.ROLL else self.roll_speed
 	self.velocity = self.movement.normalized() * speed
@@ -196,7 +239,6 @@ func _use_mana(mana) -> bool:
 		return true
 	else:
 		return false
-
 
 func _compute_immunity(delta, active_sprite):
 	const BLINK = 0.05
@@ -236,10 +278,14 @@ func deal_damage(damage: float) -> bool: # Returns a bool, if the projectile sho
 	self.health -= damage
 	$hurt_audio.play()
 	if self.health <= 0.0:
-		self.get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		self.death()
 	self._update_health_ui()
 	return true
-
+	
+func death():
+	var game_over = self.game_over.instantiate()
+	self.game.add_child(game_over)
+	
 func _update_health_ui():
 	self.health_bar.max_value = self.max_health
 	self.health_bar.value = self.health
@@ -248,7 +294,7 @@ func gain_xp(xp: int):
 	self.xp += xp
 	if self.xp > self.xp_for_lvl_up:
 		var new_levels = self.xp / self.xp_for_lvl_up
-		self.xp = 0.0
+		self.xp = 0
 		self.level += new_levels
 		$ui/xp/level.text = "LVL. %s" % self.level
 	$ui/xp/bar.max_value = float(self.xp_for_lvl_up)
@@ -268,8 +314,8 @@ func refill_potion(amount: int):
 	self._update_potion_ui()
 	
 func _update_potion_ui():
-	var empty = $ui/health/empty
-	var full = $ui/health/full
+	var empty := $ui/health/empty
+	var full := $ui/health/full
 	var amount: Label = $ui/health/amount
 	if self.potions == 0:
 		empty.visible = true
@@ -282,16 +328,25 @@ func _update_potion_ui():
 		amount.text = int_to_roman(self.potions)
 	
 func int_to_roman(num: int) -> String:
-	const ROMAN_NUMERALS = {
+	const ROMAN_NUMERALS := {
 		10: "X", 9: "IX", 5: "V", 4: "IV", 1: "I"
 	}
-	var result = ""
+	var result := ""
 	for value in ROMAN_NUMERALS.keys():
 		while num >= value:
 			result += ROMAN_NUMERALS[value]
 			num -= value
 	
 	return result
+	
+func assign_attack(slot: AttackSlot, attack: Dictionary):
+	if slot_to_type(slot) != attack['type']:
+		push_error('Wrong attack type for slot!')
+		return
+		
+	var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(slot))
+	attack_ui.texture = attack['icon']
+	self.attacks[slot] = attack.duplicate()
 
 func add_money(amount: int):
 	self.money += amount

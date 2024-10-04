@@ -15,3 +15,6 @@ visible = false
 visible = false
 
 [node name="collider" type="CollisionShape2D" parent="."]
+
+[node name="navigation" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1

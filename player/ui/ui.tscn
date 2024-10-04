@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="3_h1sdt"]
 [ext_resource type="PackedScene" uid="uid://c655q7qjaofbe" path="res://player/ui/inventory.tscn" id="4_ncvwd"]
 [ext_resource type="Texture2D" uid="uid://dpmd72e6ptcph" path="res://player/ui/xp_bar_background.png" id="5_dmxq1"]
-[ext_resource type="PackedScene" uid="uid://dd6p7kg13tjva" path="res://player/ui/attack.tscn" id="5_he2ld"]
+[ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/attack.tscn" id="5_he2ld"]
 [ext_resource type="Texture2D" uid="uid://cgw0xav55ee5g" path="res://player/ui/xp_bar.png" id="6_l456t"]
 [ext_resource type="Texture2D" uid="uid://cvw8ugcmardiy" path="res://items/heal_empty.png" id="7_p3f37"]
 [ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/heal.png" id="8_gp3gb"]
@@ -39,12 +39,16 @@ texture_progress = ExtResource("3_h1sdt")
 [node name="tabs" parent="." instance=ExtResource("4_ncvwd")]
 
 [node name="attack" type="VBoxContainer" parent="."]
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -405.0
-offset_right = 115.0
-offset_bottom = 67.0
+offset_left = -87.9999
+offset_top = -398.0
+offset_right = 27.0001
+offset_bottom = 74.0
+grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.623178, 0.623178)
 

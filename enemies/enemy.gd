@@ -23,9 +23,11 @@ var despawn := preload("res://enemies/despawn.tscn")
 @export var target_vector: Vector2
 @export var hit_animation_timer := HIT_ANIMATION_DURATION
 @export var xp: int = 20
+@export var target_visible: bool = false
 
 @onready var game = $/root/game
 @onready var target = $/root/game/player
+@onready var navigation := $navigation
 
 @export var animation_timer := 0.0
 
@@ -40,7 +42,7 @@ func aggro() -> void:
 	self.state = EnemyState.AGGRO
 
 func _process(delta: float) -> void:
-	var target_position = target.position
+	var target_position = target.global_position
 	var position_delta: Vector2 = target_position - self.global_position
 	var distance = position_delta.length()
 	self.target_vector = position_delta.normalized()
@@ -48,16 +50,16 @@ func _process(delta: float) -> void:
 	var new_state
 	if self.state == EnemyState.IDLE:
 		return
-	elif self.state == EnemyState.ATTACKING and self.animation_timer > self.attack_speed:
+	elif self.state == EnemyState.ATTACKING and self.animation_timer > self.attack_speed:		
 		if distance > self.attack_radius:
 			new_state = EnemyState.MOVING
 		else:
 			self.state = EnemyState.IDLE
 			new_state = EnemyState.ATTACKING
-	elif distance > self.attack_radius and self.state != EnemyState.ATTACKING:
-		new_state = EnemyState.MOVING
-	else:
+	elif distance <= self.attack_radius and self.target_visible or self.state == EnemyState.ATTACKING:
 		new_state = EnemyState.ATTACKING
+	else:
+		new_state = EnemyState.MOVING
 	
 	if new_state != self.state:
 		if self.attack_sprite:
@@ -75,10 +77,7 @@ func _process(delta: float) -> void:
 			EnemyState.MOVING:
 				$walk_sprite.visible = true
 		self.state = new_state
-		
-	
-	self.direction = Direction.from_vector(position_delta)
-	
+			
 	var active_sprite
 	match self.state:
 		EnemyState.IDLE:
@@ -93,12 +92,38 @@ func _process(delta: float) -> void:
 			active_sprite = $walk_sprite
 			active_sprite.frame_coords.x = int(self.animation_timer * 16.0) % active_sprite.hframes
 			self.animation_timer += delta
-			self.movement = position_delta.normalized()
-			
-	self._compute_hit_animation(delta, active_sprite)
+	
+	if self.state == EnemyState.ATTACKING:
+		self.direction = Direction.from_vector(self.target_vector)
+	else:
+		self.direction = Direction.from_vector(self.movement)
 	active_sprite.frame_coords.y = self.direction
+	
+	self._compute_hit_animation(delta, active_sprite)
 
 func _physics_process(_delta: float) -> void:
+	match self.state:
+		EnemyState.IDLE:
+			return
+		EnemyState.MOVING:
+			$navigation.target_position = target.position
+			var current_agent_position: Vector2 = self.global_position
+			var next_path_position: Vector2 = $navigation.get_next_path_position()
+			self.movement = current_agent_position.direction_to(next_path_position)
+		_ :
+			self.movement = Vector2.ZERO
+	
+	const OFFSET := 50;
+	var space_state = self.get_world_2d().direct_space_state
+	
+	var right_offset = self.movement.rotated(PI / 2) * (OFFSET / 2)
+	var left_offset = self.movement.rotated(-PI / 2) * (OFFSET / 2)
+	
+	var left_result = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(self.global_position + left_offset, self.target.global_position + left_offset))
+	var right_result = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(self.global_position + right_offset, self.target.global_position + right_offset))
+
+	self.target_visible = left_result.collider == self.target and right_result.collider == self.target
+			
 	self.velocity = self.movement.normalized() * self.movement_speed
 	var res = self.move_and_slide()
 	if res:

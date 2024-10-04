@@ -15,7 +15,6 @@ func _continue():
 
 func _quit():
 	self._save()
-	self.get_tree().paused = false
 	self.get_tree().change_scene_to_file("res://scenes/menu.tscn")
 	
 func _save():

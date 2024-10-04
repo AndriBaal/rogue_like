@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
-radius = 23.3548
+radius = 24.0
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(2, 2)

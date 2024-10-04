@@ -27,6 +27,7 @@ func _ready():
 	self.regex.compile("[^A-Za-z0-9]")
 	self._load_save_files()
 	self._new_game_name_changed($create_game/name.text)
+	self.get_tree().paused = false
 
 func _new_game():
 	$title.visible = false

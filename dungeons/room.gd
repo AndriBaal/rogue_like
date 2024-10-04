@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Room
+
 @onready var target = $/root/game/player
 @onready var enemies := $enemies
 @onready var tiles := $tiles
@@ -8,7 +10,8 @@ extends Node2D
 @export var active: bool = false
 
 func _ready() -> void:
-	pass
+	for tile in self.tiles.get_used_cells():
+		pass
 
 func _process(_delta: float) -> void:
 	if finished:

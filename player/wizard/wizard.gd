@@ -13,36 +13,37 @@ func _ready():
 			'mana_cost': 5.0,
 			'cool_down': 0.5,
 			'type': AttackType.PRIMARY,
-			# TODO: icon
+			'icon': preload("res://player/attacks/fire_ball.png")
 		},
 		'water_wave': {
 			'name': 'Water Wave',
 			'action': self._water_wave,
 			'mana_cost': 10.0,
 			'cool_down': 1.0,
-			'type': AttackType.PRIMARY
+			'type': AttackType.PRIMARY,
+			'icon': preload("res://player/attacks/water_wave.png")
 		},
 		'fire_storm': {
 			'name': 'Fire Storm',
 			'action': self._fire_storm,
 			'mana_cost': 15.0,
 			'cool_down': 2.0,
-			'type': AttackType.ABILITY
+			'type': AttackType.ABILITY,
+			'icon': preload("res://player/attacks/fire_ball.png")
 		},
 		'fire_wall': {
 			'name': 'Fire Wall',
 			'action': self._fire_wall,
 			'mana_cost': 20.0,
 			'cool_down': 2.0,
-			'type': AttackType.ABILITY
+			'type': AttackType.ABILITY,
+			'icon': preload("res://player/attacks/fire_ball.png")
 		}
 	}
-	self.attacks = {
-		'primary_attack': self.all_attacks['fire_ball'],
-		'secondary_attack': self.all_attacks['water_wave'],
-		'ability1': self.all_attacks['fire_storm'],
-		'ability2': self.all_attacks['fire_wall']
-	}
+	self.assign_attack(AttackSlot.PRIMARY_ATTACK, self.all_attacks['fire_ball'])
+	self.assign_attack(AttackSlot.SECONDARY_ATTACK, self.all_attacks['water_wave'])
+	self.assign_attack(AttackSlot.ABILITY1, self.all_attacks['fire_storm'])
+	self.assign_attack(AttackSlot.ABILITY2, self.all_attacks['fire_wall'])
 	
 	super()
 	
