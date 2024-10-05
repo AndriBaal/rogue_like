@@ -1,8 +1,9 @@
-extends AnimatedSprite2D
+extends GPUParticles2D
 
 
 func _ready() -> void:
-	self.animation_finished.connect(self._finished)
+	self.finished.connect(self._finished)
+	self.restart()
 	
 func _finished():
 	self.queue_free()

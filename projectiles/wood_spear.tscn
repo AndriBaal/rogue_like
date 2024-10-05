@@ -3,14 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/projectile.tscn" id="1_7biws"]
 [ext_resource type="Texture2D" uid="uid://rpglxpawno6y" path="res://projectiles/wood_spear.png" id="2_x3yym"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebny4"]
-size = Vector2(20, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btwpa"]
+size = Vector2(20, 5.33333)
 
 [node name="Projectile" instance=ExtResource("1_7biws")]
 scale = Vector2(3, 3)
 
-[node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("RectangleShape2D_ebny4")
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="sprite" parent="." index="0"]
 texture = ExtResource("2_x3yym")
+
+[node name="collider" parent="." index="1"]
+position = Vector2(0, 8.9407e-08)
+shape = SubResource("RectangleShape2D_btwpa")

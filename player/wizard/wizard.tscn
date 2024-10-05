@@ -11,6 +11,10 @@
 scale = Vector2(2.75, 2.75)
 script = ExtResource("2_qjxi4")
 
+[node name="light" parent="." index="1"]
+color = Color(0.897807, 0.330636, 0, 1)
+texture_scale = 0.35
+
 [node name="walk_sprite" parent="." index="2"]
 texture = ExtResource("3_vlwt7")
 

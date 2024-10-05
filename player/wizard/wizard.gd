@@ -1,7 +1,7 @@
 extends Player
 
-var fire_ball = preload("res://projectiles/fire_ball.tscn")
-var water_wave = preload("res://projectiles/water_wave.tscn")
+const FIRE_BAll = preload("res://projectiles/fire_ball.tscn")
+const WATER_WAVE = preload("res://projectiles/water_wave.tscn")
 
 const PROJECTILE_OFFSET := 80.0
 
@@ -48,10 +48,10 @@ func _ready():
 	super()
 	
 func _fire_ball(player_position, look_direction):
-	self.game.spawn_projectile(self.fire_ball.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
+	self.game.spawn_projectile(self.FIRE_BAll.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 	
 func _water_wave(player_position, look_direction):
-	self.game.spawn_projectile(self.water_wave.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
+	self.game.spawn_projectile(self.WATER_WAVE.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 	
 func _fire_storm(player_position, _look_direction):
 	const AMOUNT = 15
@@ -60,7 +60,7 @@ func _fire_storm(player_position, _look_direction):
 		var angle = i * angle_step
 		var spawn_position = player_position + Vector2(cos(angle), sin(angle)) * PROJECTILE_OFFSET
 		var direction_vector = Vector2(cos(angle), sin(angle)).normalized()
-		var f = self.fire_ball.instantiate()
+		var f = self.FIRE_BAll.instantiate()
 		f.scale *= 1.5
 		f.max_age = 1.0
 		self.game.spawn_projectile(f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true)
@@ -75,7 +75,7 @@ func _fire_wall(player_position, look_direction):
 		var angle = center_angle - (ARC_ANGLE / 2) + i * angle_step
 		var spawn_position = player_position + Vector2(cos(angle), sin(angle)) * PROJECTILE_OFFSET
 		var direction_vector = Vector2(cos(angle), sin(angle)).normalized()
-		var f = self.fire_ball.instantiate()
+		var f = self.FIRE_BAll.instantiate()
 		f.max_age = 2.0
 		self.game.spawn_projectile(f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true)
 		

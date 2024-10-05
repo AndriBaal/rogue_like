@@ -4,19 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://4yytlgojqgo2" path="res://projectiles/fire_ball.png" id="2_2i11u"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="3_s3hbl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_64ar0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fn4jq"]
 size = Vector2(12, 7)
 
-[node name="Projectile" instance=ExtResource("1_vqir2")]
+[node name="fire_ball" instance=ExtResource("1_vqir2")]
 scale = Vector2(6, 6)
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="sprite" parent="." index="0"]
 texture = ExtResource("2_2i11u")
 
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("RectangleShape2D_64ar0")
+[node name="collider" parent="." index="1"]
+shape = SubResource("RectangleShape2D_fn4jq")
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="2"]
-color = Color(1, 0.282353, 0.0705882, 1)
+position = Vector2(2.66667, -3)
+color = Color(0.98, 0.228667, 0, 1)
 texture = ExtResource("3_s3hbl")
-texture_scale = 0.1
+texture_scale = 0.06

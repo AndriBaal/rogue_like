@@ -3,16 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/projectile.tscn" id="1_l3w0f"]
 [ext_resource type="Texture2D" uid="uid://cwa5aq5s5jhy4" path="res://projectiles/water_wave.png" id="2_fgjtb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dbbsa"]
-size = Vector2(6, 24)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bokki"]
+size = Vector2(6.16667, 24)
 
 [node name="Projectile" instance=ExtResource("1_l3w0f")]
 scale = Vector2(6, 6)
 speed = 400.0
+color = Color(0, 0.596847, 0.954277, 1)
 pierce = 10
 
-[node name="Sprite2D" parent="." index="0"]
+[node name="sprite" parent="." index="0"]
 texture = ExtResource("2_fgjtb")
 
-[node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("RectangleShape2D_dbbsa")
+[node name="collider" parent="." index="1"]
+position = Vector2(-0.0833333, 0)
+shape = SubResource("RectangleShape2D_bokki")

@@ -16,7 +16,7 @@
 	- [X] Cool down UI
 	- [ ] Stats and Upgrade stats on level up
 	? [ ] Knockback projectiles
-	- [ ] Projectile despawn animation
+	- [ ] Projectile despawn animation (using glow particles)
 	- [ ] Abilities (buyable with XP)
 		- [ ] Fire:
 			- [ ] Primary: Fireball

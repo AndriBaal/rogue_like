@@ -1,102 +1,31 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgcgh27l20ofo"]
+[gd_scene load_steps=6 format=3 uid="uid://cgcgh27l20ofo"]
 
-[ext_resource type="Texture2D" uid="uid://c32nmgo3okjql" path="res://enemies/despawn.png" id="1_5ilsu"]
+[ext_resource type="Texture2D" uid="uid://btbun1m5lc0th" path="res://enemies/despawn.png" id="1_5ilsu"]
 [ext_resource type="Script" path="res://enemies/despawn.gd" id="2_t455y"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gjt6b"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(0, 0, 34, 34)
+[sub_resource type="Curve" id="Curve_ch8ni"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5c2tg"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(34, 0, 34, 34)
+[sub_resource type="CurveTexture" id="CurveTexture_y8bs0"]
+curve = SubResource("Curve_ch8ni")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0n8qm"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(68, 0, 34, 34)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hf3iu"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_y8bs0")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tpvkr"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(102, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4f0yo"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(136, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7uv8"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(170, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qm610"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(204, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ht0od"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(238, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_762o3"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(272, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_63trb"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(306, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ugjhm"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(340, 0, 34, 34)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijqcx"]
-atlas = ExtResource("1_5ilsu")
-region = Rect2(374, 0, 34, 34)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0mjxr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gjt6b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5c2tg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0n8qm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tpvkr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4f0yo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l7uv8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qm610")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ht0od")
-}, {
-"duration": 2.0,
-"texture": SubResource("AtlasTexture_762o3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_63trb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ugjhm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ijqcx")
-}],
-"loop": false,
-"name": &"default",
-"speed": 18.0
-}]
-
-[node name="despawn" type="AnimatedSprite2D"]
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_0mjxr")
-autoplay = "default"
+[node name="despawn" type="GPUParticles2D"]
+modulate = Color(0.290453, 0.0773342, 1, 1)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_hf3iu")
+texture = ExtResource("1_5ilsu")
+one_shot = true
+explosiveness = 1.0
 script = ExtResource("2_t455y")

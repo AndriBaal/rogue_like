@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btbun1m5lc0th"
-path="res://.godot/imported/despawn.png-7f2d43112b6f65162610ccd64c004825.ctex"
+uid="uid://b0ij5u0jkjwcv"
+path="res://.godot/imported/light_old.png-9ff122963592ea8e2bf1a72c6dd02197.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/despawn.png"
-dest_files=["res://.godot/imported/despawn.png-7f2d43112b6f65162610ccd64c004825.ctex"]
+source_file="res://light_old.png"
+dest_files=["res://.godot/imported/light_old.png-9ff122963592ea8e2bf1a72c6dd02197.ctex"]
 
 [params]
 
