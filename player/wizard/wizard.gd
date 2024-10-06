@@ -6,6 +6,13 @@ const WATER_WAVE = preload("res://projectiles/water_wave.tscn")
 const PROJECTILE_OFFSET := 80.0
 
 func _ready():
+	self.skill_tree = [
+		{
+			'name': '',
+			'children': [],
+			'type': ''
+		}
+	]
 	self.all_attacks = {
 		'fire_ball': {
 			'name': 'Fire Ball',

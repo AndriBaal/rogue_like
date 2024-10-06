@@ -50,7 +50,7 @@ enum PlayerState {
 @onready var idle_attack_sprite := $idle_attack_sprite
 @onready var health_bar := $ui/health_bar
 @onready var mana_bar := $ui/mana_bar
-@onready var inventory := $ui/tabs
+@onready var inventory := $ui/inventory
 
 @export var xp_for_lvl_up := 50
 @export var speed := 600.0
@@ -78,6 +78,7 @@ enum PlayerState {
 
 @export var all_attacks := {}
 @export var attacks := {}
+@export var skill_tree := []
 
 @export var max_potions := 3
 @export var potions := max_potions

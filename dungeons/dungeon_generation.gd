@@ -50,7 +50,7 @@ class Dungeon:
 	var options: DungeonOptions
 	var rooms_left: Dictionary
 	var tile_size: Vector2
-	var rooms: Array[Dictionary] = []
+	var rooms: Array = []
 	var random := RandomNumberGenerator.new()
 
 	func _init(options: DungeonOptions):
@@ -59,15 +59,10 @@ class Dungeon:
 		self.rooms_left = options.rooms_left.duplicate(true)
 
 		var room = options.possible_rooms["start"].instantiate()
-		var tilemap: TileMapLayer = room.get_node("tiles")
+		room.start()
+		var tilemap: TileMapLayer = room.get_node('tiles')
 		self.tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 
-		room = {
-			"room": room,
-			"entrances": self._get_room_entrances(room),
-			"children": [],
-			#"parent": null,
-		}
 		self.rooms.push_back(room)
 		self._grow_rooms(self.rooms, true)
 
@@ -101,19 +96,18 @@ class Dungeon:
 		return room_type
 
 	func _recurse_room_intersections(rooms, rect, rect_offset, rect_cells) -> bool:
-		for room in rooms:
-			var existing_r = room["room"]
-			var existing_tile_map: TileMapLayer = existing_r.get_node("tiles")
+		for exsting_room in rooms:
+			var existing_tile_map: TileMapLayer = exsting_room.get_node("tiles")
 			var existing_rect = existing_tile_map.get_used_rect()
-			var existing_offset = Vector2i(existing_r.position / self.tile_size)
+			var existing_offset = Vector2i(exsting_room.position / self.tile_size)
 			existing_rect.position += existing_offset
 			if rect.intersects(existing_rect):
 				var existing_cells = existing_tile_map.get_used_cells()
 				for r_cell in rect_cells:
 					for er_cell in existing_cells:
 						if er_cell + existing_offset == r_cell + rect_offset:
-							return true	
-			if self._recurse_room_intersections(room["children"], rect, rect_offset, rect_cells):
+							return true
+			if self._recurse_room_intersections(exsting_room.children, rect, rect_offset, rect_cells):
 				return true
 		return false
 
@@ -123,18 +117,19 @@ class Dungeon:
 		var random_key = self.random.randi_range(0, rt.size() - 1)
 		var room = rt[random_key]
 		# room_type.remove_at(random_key) # TODO: add remove to avoid duplicate rooms
-		return room.instantiate()
+		var r = room.instantiate()
+		r.start()
+		return r
 
 	func _grow_rooms(rooms, only_bad = false):
 		var new_rooms = []
 		var room_amount = len(rooms)
 		for i_room in range(room_amount):
 			var room = rooms[i_room]
-			var r = room["room"]
-			var children = room["children"]
-			var entrances = room["entrances"]
-			var tilemap: TileMapLayer = r.get_node("tiles")
-			var tilemap_entrances: TileMapLayer = r.get_node("entrances")
+			var children = room.children
+			var entrances = room.entrances
+			var tilemap: TileMapLayer = room.get_node("tiles")
+			var tilemap_entrances: TileMapLayer = room.get_node("entrances")
 			var tile_source = tilemap.tile_set.get_source(TILE_ID)
 			var tile_amount = tile_source.get_tiles_count() / 2
 
@@ -161,10 +156,10 @@ class Dungeon:
 				# TODO: Implement other types of hallways
 				var dist := self.random.randi_range(2, 8)
 				var room_type = self._get_room_type(only_bad)
-				var new_r = self._get_room(room_type)
+				var new_room = self._get_room(room_type)
 
-				var new_tilemap = new_r.get_node("tiles")
-				var new_entrances = self._get_room_entrances(new_r)
+				var new_tilemap = new_room.get_node("tiles")
+				var new_entrances = new_room.entrances
 
 				var allowed_entrances = []
 				for new_entrance in new_entrances:
@@ -184,11 +179,11 @@ class Dungeon:
 					0, len(allowed_entrances) - 1
 				)]
 
-				var offset = new_r.to_global(
+				var offset = new_room.to_global(
 					new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
 				)
 
-				var start_entrance = r.to_global(
+				var start_entrance = room.to_global(
 					tilemap.to_global(tilemap.map_to_local(entrance["start"]))
 				)
 
@@ -197,9 +192,9 @@ class Dungeon:
 					+ (Vector2(-new_entrance["direction"]) * float(dist) * Vector2(self.tile_size))
 				)
 
-				new_r.position = end_entrance - offset
+				new_room.position = end_entrance - offset
 
-				var rect_offset = Vector2i(new_r.position / self.tile_size)
+				var rect_offset = Vector2i(new_room.position / self.tile_size)
 				var rect_cells = new_tilemap.get_used_cells()
 				var rect: Rect2i = new_tilemap.get_used_rect()
 				rect.position += rect_offset
@@ -209,12 +204,6 @@ class Dungeon:
 					or self._recurse_room_intersections(new_rooms, rect, rect_offset, rect_cells)
 				):
 					continue
-
-				var new_room = {
-					"room": new_r,
-					"entrances": new_entrances,
-					"children": [],
-				}
 
 				var entrance_start = entrance["start"]
 				var entrance_end = entrance["end"]
@@ -233,7 +222,7 @@ class Dungeon:
 						var tile_pos = tile + i * entrance.direction
 						if wall:
 							var diff = tile - wall
-							var wall_tile = self.get_wall_from_direction(diff)
+							var wall_tile = self._get_wall_from_direction(diff)
 							tilemap.set_cell(
 								tile_pos + diff,
 								TILE_ID,
@@ -244,7 +233,6 @@ class Dungeon:
 
 				new_entrance["has_connection"] = true
 				entrance["has_connection"] = true
-				new_r.data = new_room
 				children.push_back(new_room)
 				new_rooms.push_back(new_room)
 				self.rooms_left[room_type] -= 1
@@ -252,14 +240,6 @@ class Dungeon:
 			for entrance in entrances:
 				if entrance["has_connection"]:
 					for tile in [entrance["start"], entrance["end"]]:
-						#for neighbour in [
-							#TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE, 
-							#TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE,
-							#TileSet.CellNeighbor.CELL_NEIGHBOR_LEFT_SIDE,
-							#TileSet.CellNeighbor.CELL_NEIGHBOR_TOP_SIDE,
-						#]:
-							#var neighbour_cell := tilemap_entrances.get_neighbor_cell(tile, neighbour)
-							
 						for neighbour_cell in tilemap_entrances.get_surrounding_cells(tile):
 							if tilemap_entrances.get_cell_tile_data(neighbour_cell):
 								var neighbour_atlas := tilemap_entrances.get_cell_atlas_coords(neighbour_cell)
@@ -267,57 +247,17 @@ class Dungeon:
 								tilemap.set_cell(neighbour_cell, TILE_ID, neighbour_atlas, neighbour_alt)
 					
 					for tile in [entrance["start"], entrance["end"]]:
-						var random_tile = Vector2(
-							self.random.randi_range(0, tile_amount - 1),
-							1
-						)
-						tilemap.set_cell(tile, TILE_ID, random_tile)
-			tilemap_entrances.clear()
+						#var random_tile = Vector2(
+							#self.random.randi_range(0, tile_amount - 1),
+							#1
+						#)
+						var t = self._get_door_tile(entrance['direction'])
+						tilemap.set_cell(tile, TILE_ID, t[0], t[1])
+			tilemap_entrances.queue_free()
 		if not new_rooms.is_empty():
 			self._grow_rooms(new_rooms)
 
-	func _get_room_entrances(room) -> Array:
-		var tilemap: TileMapLayer = room.get_node("entrances")
-		var cells = tilemap.get_used_cells()
-		var entrances = []
-
-		for cell in cells:
-			var tile_data = tilemap.get_cell_tile_data(cell)
-			if not tile_data:
-				continue
-			var entrance_data = tile_data.get_custom_data("entrance")
-			if not entrance_data:
-				continue
-
-			for neighbour in [TileSet.CellNeighbor.CELL_NEIGHBOR_RIGHT_SIDE, TileSet.CellNeighbor.CELL_NEIGHBOR_BOTTOM_SIDE]:
-				var neighbour_cell = tilemap.get_neighbor_cell(cell, neighbour)
-				var neighbour_data = tilemap.get_cell_tile_data(neighbour_cell)
-				if not neighbour_data:
-					continue
-
-				entrance_data = neighbour_data.get_custom_data("entrance")
-				if not entrance_data:
-					continue
-
-				var alt = tilemap.get_cell_alternative_tile(cell)
-				var direction = self._get_direction_from_alt(alt)
-
-				(
-					entrances
-					. push_back(
-						{
-							"start": cell,
-							"end": neighbour_cell,
-							"direction": direction,
-							"has_connection": false,
-						}
-					)
-				)
-				break
-		return entrances
-
-	static func get_wall_from_direction(direction: Vector2i):
-
+	func _get_wall_from_direction(direction: Vector2i):
 		match direction:
 			Vector2i(1, 0):
 				return [Vector2i(2, 0), 0]
@@ -328,7 +268,18 @@ class Dungeon:
 			Vector2i(0, 1):
 				return [Vector2i(2, 0), TileSetAtlasSource.TRANSFORM_TRANSPOSE |TileSetAtlasSource.TRANSFORM_FLIP_H]
 		
-	func _get_direction_from_alt(alt: int) -> Vector2i:
+	func _get_door_tile(direction: Vector2i):
+		match direction:
+			Vector2i(1, 0):
+				return [Vector2i(9, 0), 0]
+			Vector2i(-1, 0):
+				return [Vector2i(9, 0), TileSetAtlasSource.TRANSFORM_FLIP_H]
+			Vector2i(0, -1):
+				return [Vector2i(7, 0), 0]
+			Vector2i(0, 1):
+				return [Vector2i(7, 0), 0]
+		
+	static func _get_direction_from_alt(alt: int) -> Vector2i:
 		var flip_h = bool(alt & TileSetAtlasSource.TRANSFORM_FLIP_H)
 		var flip_v = bool(alt & TileSetAtlasSource.TRANSFORM_FLIP_V)
 		var transpose = bool(alt & TileSetAtlasSource.TRANSFORM_TRANSPOSE)

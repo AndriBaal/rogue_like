@@ -36,7 +36,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("1_jhxcc")
 texture_progress = ExtResource("3_h1sdt")
 
-[node name="tabs" parent="." instance=ExtResource("4_ncvwd")]
+[node name="inventory" parent="." instance=ExtResource("4_ncvwd")]
 
 [node name="attack" type="VBoxContainer" parent="."]
 anchors_preset = 3

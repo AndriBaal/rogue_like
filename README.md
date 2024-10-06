@@ -44,8 +44,8 @@
 		- [ ] Relaxed
 	- [x] Dungeon Generation
 	- [ ] Doors
-	- [ ] Minimap Teleporting
-	- [ ] Make room locked when entering
+	- [x] Minimap Teleporting
+	- [x] Make room locked when entering
 	- [ ] Chest with loot
 	- [ ] Decorations
 		- [ ] Crates

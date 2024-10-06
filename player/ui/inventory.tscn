@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c655q7qjaofbe"]
 
-[ext_resource type="Script" path="res://player/ui/inventory.gd" id="1_i5atc"]
+[ext_resource type="PackedScene" uid="uid://rlmwcg7qv6vy" path="res://player/ui/map/map.tscn" id="1_2pmjg"]
 
 [node name="tabs" type="TabContainer"]
 visible = false
@@ -19,7 +19,6 @@ scale = Vector2(1.00068, 1)
 tab_alignment = 1
 current_tab = 3
 clip_tabs = false
-script = ExtResource("1_i5atc")
 
 [node name="Character" type="ColorRect" parent="."]
 visible = false
@@ -83,24 +82,5 @@ layout_mode = 2
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 2
 
-[node name="Map" type="ColorRect" parent="."]
-clip_contents = true
+[node name="Map" parent="." instance=ExtResource("1_2pmjg")]
 layout_mode = 2
-color = Color(0.217701, 0.217701, 0.217701, 1)
-metadata/_tab_index = 3
-
-[node name="cam" type="Camera2D" parent="Map"]
-position = Vector2(383.739, 272)
-process_callback = 0
-
-[node name="player" type="ColorRect" parent="Map/cam"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 0
-grow_vertical = 0
-color = Color(1, 0, 0, 1)

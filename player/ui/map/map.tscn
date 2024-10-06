@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://rlmwcg7qv6vy"]
+
+[ext_resource type="Script" path="res://player/ui/map/map.gd" id="1_rhld5"]
+
+[node name="Map" type="ColorRect"]
+clip_contents = true
+color = Color(0.217701, 0.217701, 0.217701, 1)
+script = ExtResource("1_rhld5")
+metadata/_tab_index = 3
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2(383.739, 272)
+process_callback = 0
+
+[node name="player" type="ColorRect" parent="cam"]
+z_index = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(1, 0, 0, 1)
