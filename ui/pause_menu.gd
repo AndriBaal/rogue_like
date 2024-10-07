@@ -6,7 +6,7 @@ func _ready() -> void:
 	$quit.pressed.connect(self._quit)
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("menu"):
+	if Input.is_action_just_pressed("menu") and not $/root/game.has_node('game_over'):
 		self._continue()
 		
 func _continue():

@@ -8,6 +8,7 @@ size = Vector2(20, 5.33333)
 
 [node name="Projectile" instance=ExtResource("1_7biws")]
 scale = Vector2(3, 3)
+color = Color(0.352941, 0.0784314, 0.00392157, 1)
 
 [node name="sprite" parent="." index="0"]
 texture = ExtResource("2_x3yym")

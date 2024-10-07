@@ -1,10 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bm7qmh0hqchmk"]
-
-[ext_resource type="Texture2D" uid="uid://jpsk6pusg7km" path="res://player/attacks/fire_ball.png" id="1_jsqja"]
+[gd_scene format=3 uid="uid://bm7qmh0hqchmk"]
 
 [node name="attack" type="TextureRect"]
+visible = false
 clip_contents = true
-texture = ExtResource("1_jsqja")
 expand_mode = 4
 
 [node name="occluder" type="ColorRect" parent="."]

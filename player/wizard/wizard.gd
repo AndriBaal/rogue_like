@@ -6,16 +6,10 @@ const WATER_WAVE = preload("res://projectiles/water_wave.tscn")
 const PROJECTILE_OFFSET := 80.0
 
 func _ready():
-	self.skill_tree = [
-		{
-			'name': '',
-			'children': [],
-			'type': ''
-		}
-	]
-	self.all_attacks = {
+	self.attacks = {
 		'fire_ball': {
 			'name': 'Fire Ball',
+			'description': 'aaa',
 			'action': self._fire_ball,
 			'mana_cost': 5.0,
 			'cool_down': 0.5,
@@ -24,6 +18,7 @@ func _ready():
 		},
 		'water_wave': {
 			'name': 'Water Wave',
+			'description': 'bbb',
 			'action': self._water_wave,
 			'mana_cost': 10.0,
 			'cool_down': 1.0,
@@ -32,25 +27,66 @@ func _ready():
 		},
 		'fire_storm': {
 			'name': 'Fire Storm',
+			'description': 'aaa1',
 			'action': self._fire_storm,
 			'mana_cost': 15.0,
 			'cool_down': 2.0,
 			'type': AttackType.ABILITY,
-			'icon': preload("res://player/attacks/fire_ball.png")
+			'icon': preload("res://player/attacks/fire_storm.png")
 		},
 		'fire_wall': {
 			'name': 'Fire Wall',
+			'description': 'aaa2',
 			'action': self._fire_wall,
 			'mana_cost': 20.0,
 			'cool_down': 2.0,
 			'type': AttackType.ABILITY,
-			'icon': preload("res://player/attacks/fire_ball.png")
+			'icon': preload("res://player/attacks/fire_wall.png")
+		},
+		# TODO
+		'counter': {
+			
 		}
 	}
-	self.assign_attack(AttackSlot.PRIMARY_ATTACK, self.all_attacks['fire_ball'])
-	self.assign_attack(AttackSlot.SECONDARY_ATTACK, self.all_attacks['water_wave'])
-	self.assign_attack(AttackSlot.ABILITY1, self.all_attacks['fire_storm'])
-	self.assign_attack(AttackSlot.ABILITY2, self.all_attacks['fire_wall'])
+	#self.assign_attack(AttackSlot.PRIMARY_ATTACK, self.all_attacks['fire_ball'])
+	#self.assign_attack(AttackSlot.SECONDARY_ATTACK, self.all_attacks['water_wave'])
+	#self.assign_attack(AttackSlot.ABILITY1, self.all_attacks['fire_storm'])
+	#self.assign_attack(AttackSlot.ABILITY2, self.all_attacks['fire_wall'])
+	
+	
+	self.skill_tree = [
+		{
+			'type': SkillTree.SkillType.ATTACK,
+			'attack_name': 'fire_ball',
+			'position': Vector2(-250.0, 150.0),
+			'children': [
+				{
+					'type': SkillTree.SkillType.ATTACK,
+					'attack_name': 'fire_storm',
+					'position': Vector2(-300.0, 0.0),
+					'children': [
+						
+					]
+				},
+				{
+					'type': SkillTree.SkillType.ATTACK,
+					'attack_name': 'fire_wall',
+					'position': Vector2(-200.0, 0.0),
+					'children': [
+						
+					],
+				}
+			],
+		},
+		{
+			'type': SkillTree.SkillType.ATTACK,
+			'attack_name': 'water_wave',
+			'position': Vector2(0.0, 150.0),
+			'children': [
+				
+			]
+		}
+	]
 	
 	super()
 	

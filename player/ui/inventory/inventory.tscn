@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://1up0xo0sygli"]
+
+[ext_resource type="PackedScene" uid="uid://cdk8e27l0bfhw" path="res://player/ui/inventory/skill_tree/skill_tree.tscn" id="1_jl2iq"]
+[ext_resource type="PackedScene" uid="uid://rlmwcg7qv6vy" path="res://player/ui/inventory/map/map.tscn" id="1_t4l5u"]
+
+[node name="tabs" type="TabContainer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -300.0
+offset_right = 376.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00068, 1)
+tab_alignment = 1
+current_tab = 2
+clip_tabs = false
+
+[node name="Character" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+color = Color(0.442066, 0, 0.0822867, 1)
+metadata/_tab_index = 0
+
+[node name="SkillTree" parent="." instance=ExtResource("1_jl2iq")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Map" parent="." instance=ExtResource("1_t4l5u")]
+layout_mode = 2
+metadata/_tab_index = 2

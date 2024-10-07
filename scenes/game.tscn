@@ -1,15 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqs0n48ll4s83"]
+[gd_scene load_steps=4 format=3 uid="uid://bqs0n48ll4s83"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_n35nx"]
 [ext_resource type="PackedScene" uid="uid://bvth46mu6adxs" path="res://player/wizard/wizard.tscn" id="2_6ghqu"]
 [ext_resource type="PackedScene" uid="uid://brnalduy51441" path="res://ui/pause_menu.tscn" id="3_1unu5"]
-
-[sub_resource type="Environment" id="Environment_m241l"]
-background_mode = 3
-glow_enabled = true
-glow_intensity = 4.4
-glow_strength = 1.15
-glow_hdr_scale = 0.75
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_n35nx")
@@ -25,9 +18,6 @@ script = ExtResource("1_n35nx")
 [node name="effects" type="Node2D" parent="."]
 
 [node name="darkness" type="CanvasModulate" parent="."]
-color = Color(0.266575, 0.266575, 0.266575, 1)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_m241l")
+color = Color(0.205117, 0.205117, 0.205117, 1)
 
 [node name="pause_menu" parent="." instance=ExtResource("3_1unu5")]

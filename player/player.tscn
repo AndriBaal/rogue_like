@@ -20,9 +20,10 @@ script = ExtResource("1_vfs3i")
 process_callback = 0
 
 [node name="light" type="PointLight2D" parent="."]
+color = Color(1, 0.677, 0.43, 1)
 shadow_enabled = true
 texture = ExtResource("2_niumg")
-texture_scale = 1.5
+texture_scale = 1.1
 
 [node name="walk_sprite" type="Sprite2D" parent="."]
 visible = false

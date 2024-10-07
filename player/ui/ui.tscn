@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="1_jhxcc"]
 [ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="2_k1slm"]
 [ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="3_h1sdt"]
-[ext_resource type="PackedScene" uid="uid://c655q7qjaofbe" path="res://player/ui/inventory.tscn" id="4_ncvwd"]
+[ext_resource type="PackedScene" uid="uid://1up0xo0sygli" path="res://player/ui/inventory/inventory.tscn" id="4_ncvwd"]
 [ext_resource type="Texture2D" uid="uid://dpmd72e6ptcph" path="res://player/ui/xp_bar_background.png" id="5_dmxq1"]
 [ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/attack.tscn" id="5_he2ld"]
 [ext_resource type="Texture2D" uid="uid://cgw0xav55ee5g" path="res://player/ui/xp_bar.png" id="6_l456t"]
 [ext_resource type="Texture2D" uid="uid://cvw8ugcmardiy" path="res://items/heal_empty.png" id="7_p3f37"]
 [ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/heal.png" id="8_gp3gb"]
-[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin.png" id="9_wllro"]
+[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="9_wllro"]
 
 [node name="ui" type="CanvasLayer"]
 
@@ -35,8 +35,6 @@ value = 100.0
 nine_patch_stretch = true
 texture_under = ExtResource("1_jhxcc")
 texture_progress = ExtResource("3_h1sdt")
-
-[node name="inventory" parent="." instance=ExtResource("4_ncvwd")]
 
 [node name="attack" type="VBoxContainer" parent="."]
 anchors_preset = 3
@@ -137,3 +135,7 @@ horizontal_alignment = 2
 position = Vector2(87, 14)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("9_wllro")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 16)
+
+[node name="inventory" parent="." instance=ExtResource("4_ncvwd")]

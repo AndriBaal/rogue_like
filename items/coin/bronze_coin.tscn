@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7hob2yxxnki0"]
+
+[ext_resource type="PackedScene" uid="uid://brgk5wcrviajs" path="res://items/coin/coin.tscn" id="1_4qara"]
+
+[node name="coin" instance=ExtResource("1_4qara")]
+value = 1
+
+[node name="sprite" parent="." index="1"]
+region_rect = Rect2(24, 0, 12, 16)

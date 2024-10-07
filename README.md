@@ -17,6 +17,9 @@
 	- [ ] Stats and Upgrade stats on level up
 	? [ ] Knockback projectiles
 	- [ ] Projectile despawn animation (using glow particles)
+	- [ ] Perks:
+		- Moneygraber (get x% more money)
+		
 	- [ ] Abilities (buyable with XP)
 		- [ ] Fire:
 			- [ ] Primary: Fireball
@@ -66,6 +69,8 @@
 		- [ ] Enemy throw attack sound
 		- [ ] Enemy Damage hit
 		- [ ] Player roll
+		- [ ] Level Up
+		- [ ] Buy confirm
 	- [x] Redo tiles
 	- [ ] Enemies
 		? [ ] Damage Number
@@ -88,9 +93,9 @@
 
 ## PLANNED
 
+- [ ] Items (Amulets, rings, armor, staff, etc.)
 - [ ] Other classes (warrior, bard, assasin, etc.)
 - [ ] Coop
-- [ ] Items
 - [ ] Controller support
 - [ ] Add Input hinting
 - [ ] Improve Camera with Limits, so yuo can see more during a fight

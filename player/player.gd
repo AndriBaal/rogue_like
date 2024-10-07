@@ -76,11 +76,16 @@ enum PlayerState {
 	AttackSlot.ABILITY2 : 0.0,
 }
 
-@export var all_attacks := {}
 @export var attacks := {}
+@export var active_attacks := {
+	AttackSlot.PRIMARY_ATTACK : null,
+	AttackSlot.SECONDARY_ATTACK : null,
+	AttackSlot.ABILITY1 : null,
+	AttackSlot.ABILITY2 : null,
+}
 @export var skill_tree := []
 
-@export var max_potions := 3
+@export var max_potions := 4
 @export var potions := max_potions
 @export var heal_per_potion = 8
 
@@ -95,6 +100,7 @@ var game_over := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	self._update_potion_ui()
+	self._update_skill_tree()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -130,15 +136,17 @@ func _process(delta: float) -> void:
 		self._use_potion()
 	
 	for attack_slot in self.attack_cooldowns:
-		self.attack_cooldowns[attack_slot] -= delta
-		var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(attack_slot))
-		var occluder = attack_ui.get_node('occluder')
-		var ratio = max(0.0, self.attack_cooldowns[attack_slot] / self.attacks[attack_slot]['cool_down'])
-		occluder.scale.y = ratio
+		var attack = self.active_attacks[attack_slot]
+		if attack:
+			self.attack_cooldowns[attack_slot] -= delta
+			var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(attack_slot))
+			var occluder = attack_ui.get_node('occluder')
+			var ratio = max(0.0, self.attack_cooldowns[attack_slot] / attack['cool_down'])
+			occluder.scale.y = ratio
 	if not inventory.visible and new_state != PlayerState.ROLL:
-		for attack_slot in self.attacks:
+		for attack_slot in self.active_attacks:
 			if Input.is_action_pressed(slot_to_string(attack_slot)):
-				var attack = self.attacks[attack_slot]
+				var attack = self.active_attacks[attack_slot]
 				if not attack:
 					continue
 				
@@ -293,13 +301,13 @@ func _update_health_ui():
 
 func gain_xp(xp: int):
 	self.xp += xp
-	if self.xp > self.xp_for_lvl_up:
-		var new_levels = self.xp / self.xp_for_lvl_up
-		self.xp = 0
-		self.level += new_levels
-		$ui/xp/level.text = "LVL. %s" % self.level
-	$ui/xp/bar.max_value = float(self.xp_for_lvl_up)
-	$ui/xp/bar.value = float(self.xp)
+	var bar = $ui/xp/bar
+	while self.xp > self.xp_for_lvl_up:
+		self.xp -= self.xp_for_lvl_up
+		self.level += 1
+	bar.max_value = float(self.xp_for_lvl_up)
+	bar.value = float(self.xp)
+	$ui/xp/level.text = "LVL. %s" % self.level
 	
 func _use_potion():
 	if self.potions == 0:
@@ -347,7 +355,8 @@ func assign_attack(slot: AttackSlot, attack: Dictionary):
 		
 	var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(slot))
 	attack_ui.texture = attack['icon']
-	self.attacks[slot] = attack.duplicate()
+	attack_ui.visible = true
+	self.active_attacks[slot] = attack.duplicate()
 
 func add_money(amount: int):
 	self.money += amount
@@ -355,3 +364,6 @@ func add_money(amount: int):
 	
 func _update_money_ui():
 	$ui/money/label.text = str(self.money)
+
+func _update_skill_tree():
+	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks)

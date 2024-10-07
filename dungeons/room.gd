@@ -130,6 +130,7 @@ func _process(_delta: float) -> void:
 		self._open_room()
 		self.active = false
 		self.finished = true
+		return
 		
 	if not active:
 		var player_size = self.target.get_node('collider').shape.get_rect().size * self.target.scale / 2.0

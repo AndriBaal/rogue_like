@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 const SCALE := 10.0
-const TELEPORT_BUTTON = preload('res://player/ui/map/teleport.tscn')
+const TELEPORT_BUTTON = preload('res://player/ui/inventory/map/teleport.tscn')
 
 func close_teleporters():
 	for teleporter in self.teleporters:
@@ -38,10 +38,10 @@ func add_rect(cell, tile_size, color := Color.WHITE):
 func add_teleport(position):
 	self.tile_size = tile_size
 	var teleporter := TELEPORT_BUTTON.instantiate()
-	var a = func():
+	var teleport = func():
 		self.player.position = Vector2(position) * tile_size + tile_size / 2.0
 		
-	teleporter.pressed.connect(a)
+	teleporter.pressed.connect(teleport)
 	teleporter.position = position * SCALE - teleporter.get_global_rect().size / 2.0
 	self.teleporters.push_back(teleporter)
 	self.cam.add_child(teleporter)

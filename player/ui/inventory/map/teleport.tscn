@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://dg0aeb7mobw1o"]
 
-[ext_resource type="Texture2D" uid="uid://cxmjwhrf48ybc" path="res://player/ui/map/teleport.png" id="1_ehglx"]
+[ext_resource type="Texture2D" uid="uid://cxmjwhrf48ybc" path="res://player/ui/inventory/map/teleport.png" id="1_ehglx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkf3g"]
 
@@ -28,6 +28,7 @@
 offset_left = -16.0
 offset_top = -26.0
 scale = Vector2(2, 2)
+tooltip_text = "Teleport"
 theme_override_styles/focus = SubResource("StyleBoxEmpty_gkf3g")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ayuq0")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_5y1f4")

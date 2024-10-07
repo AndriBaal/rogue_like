@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://brgk5wcrviajs"]
 
 [ext_resource type="PackedScene" uid="uid://bmaleurogevn7" path="res://items/item.tscn" id="1_iqmqm"]
-[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin.png" id="2_qi7b1"]
-[ext_resource type="Script" path="res://items/coin.gd" id="2_s7tvb"]
+[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="2_qi7b1"]
+[ext_resource type="Script" path="res://items/coin/coin.gd" id="2_s7tvb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2myxh"]
 size = Vector2(12, 16)
@@ -10,9 +10,12 @@ size = Vector2(12, 16)
 [node name="coin" instance=ExtResource("1_iqmqm")]
 scale = Vector2(3.5, 3.5)
 script = ExtResource("2_s7tvb")
+value = 5
 
 [node name="collider" parent="." index="0"]
 shape = SubResource("RectangleShape2D_2myxh")
 
 [node name="sprite" parent="." index="1"]
 texture = ExtResource("2_qi7b1")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 16)

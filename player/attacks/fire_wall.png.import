@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0ij5u0jkjwcv"
-path="res://.godot/imported/light_old.png-9ff122963592ea8e2bf1a72c6dd02197.ctex"
+uid="uid://cc5kreidlmwmf"
+path="res://.godot/imported/fire_wall.png-f12bd83077b5288ae0807acc5939525a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://light_old.png"
-dest_files=["res://.godot/imported/light_old.png-9ff122963592ea8e2bf1a72c6dd02197.ctex"]
+source_file="res://player/attacks/fire_wall.png"
+dest_files=["res://.godot/imported/fire_wall.png-f12bd83077b5288ae0807acc5939525a.ctex"]
 
 [params]
 

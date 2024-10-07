@@ -2,6 +2,8 @@ extends Item
 
 class_name Coin
 
+@export var value := 5
+
 #const SCALE_X := 3.5
 #const SCALE_SPEED: float = 7.5
 #var current_scale: float = SCALE_X
@@ -16,5 +18,5 @@ class_name Coin
 	#self.scale.x = self.current_scale
 
 func _on_collect():
-	player.add_money(5)
+	player.add_money(self.value)
 	self.queue_free() 

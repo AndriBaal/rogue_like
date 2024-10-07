@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dgm7aj3cq2hy7"]
+
+[node name="skill_tree_connection" type="Line2D"]
+points = PackedVector2Array(0, 0, 100, 100)
+default_color = Color(0, 1, 1, 1)
+begin_cap_mode = 2
+end_cap_mode = 2

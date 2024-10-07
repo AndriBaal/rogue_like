@@ -17,7 +17,6 @@ texture = ExtResource("2_2i11u")
 shape = SubResource("RectangleShape2D_fn4jq")
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="2"]
-position = Vector2(2.66667, -3)
 color = Color(0.98, 0.228667, 0, 1)
 texture = ExtResource("3_s3hbl")
 texture_scale = 0.06

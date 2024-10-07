@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvlialhvvgxif"]
 
-[ext_resource type="Texture2D" uid="uid://b3lj5ktkrdbjt" path="res://projectiles/TEST.png" id="1_62lfp"]
+[ext_resource type="Texture2D" uid="uid://dvt4asmcnpxs4" path="res://projectiles/destroy.png" id="1_62lfp"]
 [ext_resource type="Script" path="res://enemies/despawn.gd" id="2_lrx3j"]
 
 [sub_resource type="Curve" id="Curve_1bg17"]

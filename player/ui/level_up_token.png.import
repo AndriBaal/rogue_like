@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ja0ab8jtq81y"
-path="res://.godot/imported/coin.png-0249efe21d1d6da3644d8dd4ef836b18.ctex"
+uid="uid://dgogtje3dbow4"
+path="res://.godot/imported/level_up_token.png-c69811c8c887d1bbfd3bf1501e9e9c6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://items/coin.png"
-dest_files=["res://.godot/imported/coin.png-0249efe21d1d6da3644d8dd4ef836b18.ctex"]
+source_file="res://player/ui/level_up_token.png"
+dest_files=["res://.godot/imported/level_up_token.png-c69811c8c887d1bbfd3bf1501e9e9c6e.ctex"]
 
 [params]
 

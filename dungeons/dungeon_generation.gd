@@ -120,6 +120,14 @@ class Dungeon:
 		var r = room.instantiate()
 		r.start()
 		return r
+		
+	func _random_order(array: Array) -> Array:
+		var indices = []
+		while indices.size() < array.size():
+			var random_index = self.random.randi_range(0, array.size() - 1)
+			if random_index not in indices:
+				indices.append(random_index)
+		return indices
 
 	func _grow_rooms(rooms, only_bad = false):
 		var new_rooms = []
@@ -133,13 +141,7 @@ class Dungeon:
 			var tile_source = tilemap.tile_set.get_source(TILE_ID)
 			var tile_amount = tile_source.get_tiles_count() / 2
 
-			var entrance_indices = []
-			while entrance_indices.size() < entrances.size():
-				var random_index = self.random.randi_range(0, entrances.size() - 1)
-				if random_index not in entrance_indices:
-					entrance_indices.append(random_index)
-
-			for i_entrance in entrance_indices:
+			for i_entrance in self._random_order(entrances):
 				var entrance = entrances[i_entrance]
 				if not self._rooms_left():
 					break
@@ -172,70 +174,71 @@ class Dungeon:
 				if not allowed_entrances:
 					continue
 
-				# TODO: Try other allowed_entrances when one fails
 				# TODO: Maybe rotate Rooms
 				# TODO: Add multilevel dungeons
-				var new_entrance = allowed_entrances[self.random.randi_range(
-					0, len(allowed_entrances) - 1
-				)]
+				for i_allowed_entrance in self._random_order(allowed_entrances):
+					var new_entrance = allowed_entrances[self.random.randi_range(
+						0, len(allowed_entrances) - 1
+					)]
 
-				var offset = new_room.to_global(
-					new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
-				)
+					var offset = new_room.to_global(
+						new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
+					)
 
-				var start_entrance = room.to_global(
-					tilemap.to_global(tilemap.map_to_local(entrance["start"]))
-				)
+					var start_entrance = room.to_global(
+						tilemap.to_global(tilemap.map_to_local(entrance["start"]))
+					)
 
-				var end_entrance = (
-					start_entrance
-					+ (Vector2(-new_entrance["direction"]) * float(dist) * Vector2(self.tile_size))
-				)
+					var end_entrance = (
+						start_entrance
+						+ (Vector2(-new_entrance["direction"]) * float(dist) * Vector2(self.tile_size))
+					)
 
-				new_room.position = end_entrance - offset
+					new_room.position = end_entrance - offset
 
-				var rect_offset = Vector2i(new_room.position / self.tile_size)
-				var rect_cells = new_tilemap.get_used_cells()
-				var rect: Rect2i = new_tilemap.get_used_rect()
-				rect.position += rect_offset
+					var rect_offset = Vector2i(new_room.position / self.tile_size)
+					var rect_cells = new_tilemap.get_used_cells()
+					var rect: Rect2i = new_tilemap.get_used_rect()
+					rect.position += rect_offset
 
-				if (
-					self._recurse_room_intersections(self.rooms, rect, rect_offset, rect_cells)
-					or self._recurse_room_intersections(new_rooms, rect, rect_offset, rect_cells)
-				):
-					continue
+					if (
+						self._recurse_room_intersections(self.rooms, rect, rect_offset, rect_cells)
+						or self._recurse_room_intersections(new_rooms, rect, rect_offset, rect_cells)
+					):
+						continue
 
-				var entrance_start = entrance["start"]
-				var entrance_end = entrance["end"]
-				# hallway
-				for tile in [entrance_start, entrance_end]:
-					var wall
-					if tile == entrance_start:
-						wall = entrance_end
-					elif tile == entrance_end:
-						wall = entrance_start
-					for i in range(dist):
-						var random_tile = Vector2(
-							self.random.randi_range(0, tile_amount - 1),
-							1
-						)
-						var tile_pos = tile + i * entrance.direction
-						if wall:
-							var diff = tile - wall
-							var wall_tile = self._get_wall_from_direction(diff)
-							tilemap.set_cell(
-								tile_pos + diff,
-								TILE_ID,
-								wall_tile[0],
-								wall_tile[1],
+					var entrance_start = entrance["start"]
+					var entrance_end = entrance["end"]
+					# hallway
+					for tile in [entrance_start, entrance_end]:
+						var wall
+						if tile == entrance_start:
+							wall = entrance_end
+						elif tile == entrance_end:
+							wall = entrance_start
+						for i in range(dist):
+							var random_tile = Vector2(
+								self.random.randi_range(0, tile_amount - 1),
+								1
 							)
-						tilemap.set_cell(tile_pos, TILE_ID, random_tile)
+							var tile_pos = tile + i * entrance.direction
+							if wall:
+								var diff = tile - wall
+								var wall_tile = self._get_wall_from_direction(diff)
+								tilemap.set_cell(
+									tile_pos + diff,
+									TILE_ID,
+									wall_tile[0],
+									wall_tile[1],
+								)
+							tilemap.set_cell(tile_pos, TILE_ID, random_tile)
 
-				new_entrance["has_connection"] = true
-				entrance["has_connection"] = true
-				children.push_back(new_room)
-				new_rooms.push_back(new_room)
-				self.rooms_left[room_type] -= 1
+					new_entrance["has_connection"] = true
+					entrance["has_connection"] = true
+					children.push_back(new_room)
+					new_rooms.push_back(new_room)
+					self.rooms_left[room_type] -= 1
+					break
 
 			for entrance in entrances:
 				if entrance["has_connection"]:

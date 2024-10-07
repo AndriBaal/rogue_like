@@ -13,6 +13,10 @@ const HIT_ANIMATION_DURATION := 0.25
 
 var despawn := preload("res://enemies/despawn.tscn")
 
+@onready var game = $/root/game
+@onready var target = $/root/game/player
+@onready var navigation := $navigation
+
 @export var max_health: float = 12.0
 @export var health: float = 12.0
 @export var attack_radius: float = 400.0
@@ -20,20 +24,16 @@ var despawn := preload("res://enemies/despawn.tscn")
 @export var movement_speed: float = 200.0
 @export var melee_damage: float = 5.0
 @export var attack_sprite: Sprite2D
-@export var target_vector: Vector2
 @export var hit_animation_timer := HIT_ANIMATION_DURATION
 @export var xp: int = 20
 @export var target_visible: bool = false
 
-@onready var game = $/root/game
-@onready var target = $/root/game/player
-@onready var navigation := $navigation
-
 @export var animation_timer := 0.0
-
+@export var target_vector: Vector2
 @export var state := EnemyState.IDLE
 @export var movement: Vector2
-var direction := Direction.SOUTH
+@export var direction := Direction.SOUTH
+
 
 func _ready() -> void:
 	pass
@@ -157,6 +157,19 @@ func death():
 	d.position = self.global_position
 	d.scale *= self.global_scale
 	$/root/game/effects.add_child(d)
+	
+	for item in self.loot_pool():
+		for _amount in range(item['amount']):
+			var chance = randf()
+			if chance <= item['drop_chance']:
+				const ITEM_SPREAD := 75.0
+				var i = item['scene'].instantiate()
+				var offset := Vector2(
+					randf_range(-ITEM_SPREAD, ITEM_SPREAD), 
+					randf_range(-ITEM_SPREAD, ITEM_SPREAD)
+				)
+				i.position = self.global_position + offset
+				$/root/game/items.add_child(i)
 
 func start_attack() -> void:
 	self.movement = Vector2.ZERO
@@ -164,4 +177,8 @@ func start_attack() -> void:
 	
 func attack():
 	pass
+	
+func loot_pool() -> Array:
+	return []
+
 	
