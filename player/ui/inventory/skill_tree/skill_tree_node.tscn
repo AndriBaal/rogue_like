@@ -1,20 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl68tk521b21x"]
+[gd_scene load_steps=4 format=3 uid="uid://dl68tk521b21x"]
 
-[ext_resource type="Texture2D" uid="uid://jpsk6pusg7km" path="res://player/attacks/fire_ball.png" id="1_ttr22"]
+[ext_resource type="Script" path="res://player/ui/inventory/skill_tree/skill_tree_node.gd" id="1_hab2q"]
+[ext_resource type="Texture2D" uid="uid://jpsk6pusg7km" path="res://player/ui/attacks/fire_ball.png" id="1_ttr22"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evrtp"]
-bg_color = Color(0.261113, 0.261113, 0.261112, 1)
+bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="skill_tree_node" type="Control"]
+modulate = Color(0.391185, 0.391185, 0.391185, 1)
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
+script = ExtResource("1_hab2q")
 
 [node name="button" type="Button" parent="."]
 layout_mode = 0

@@ -256,7 +256,7 @@ class Dungeon:
 						#)
 						var t = self._get_door_tile(entrance['direction'])
 						tilemap.set_cell(tile, TILE_ID, t[0], t[1])
-			tilemap_entrances.queue_free()
+			tilemap_entrances.clear()
 		if not new_rooms.is_empty():
 			self._grow_rooms(new_rooms)
 

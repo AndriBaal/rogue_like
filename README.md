@@ -34,7 +34,7 @@
 				- [ ] Counter
 				- [ ] 
 		- [ ] Earth:
-			- [ ] Primary: Basic Fireball
+			- [ ] Primary: Rock throw
 			- [ ] Abilities:
 				- [ ] Buff circle
 				- [ ] 
@@ -82,6 +82,7 @@
 				- [ ] Eye patch
 			- [ ] Slime
 			- ...
+		- [ ] Boss: Goblin King
 	- [ ] Rooms
 		- [ ] 8 bad rooms (0 / 8)
 		- [ ] 2 good rooms (0 / 2)
@@ -89,7 +90,6 @@
 		- [ ] 2 neutral (0 / 2)
 			- Gambling
 		- [ ] 1 boss room
-			- [ ] Goblin King
 
 ## PLANNED
 

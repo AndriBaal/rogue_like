@@ -2,6 +2,6 @@
 
 [node name="skill_tree_connection" type="Line2D"]
 points = PackedVector2Array(0, 0, 100, 100)
-default_color = Color(0, 1, 1, 1)
+default_color = Color(0.308769, 0.308769, 0.308769, 1)
 begin_cap_mode = 2
 end_cap_mode = 2

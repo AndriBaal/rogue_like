@@ -2,6 +2,7 @@ extends Player
 
 const FIRE_BAll = preload("res://projectiles/fire_ball.tscn")
 const WATER_WAVE = preload("res://projectiles/water_wave.tscn")
+const ROCK = preload("res://projectiles/rock.tscn")
 
 const PROJECTILE_OFFSET := 80.0
 
@@ -10,49 +11,57 @@ func _ready():
 		'fire_ball': {
 			'name': 'Fire Ball',
 			'description': 'aaa',
-			'action': self._fire_ball,
+			'action': '_fire_ball',
 			'mana_cost': 5.0,
 			'cool_down': 0.5,
 			'type': AttackType.PRIMARY,
-			'icon': preload("res://player/attacks/fire_ball.png")
+			'icon': preload("res://player/ui/attacks/fire_ball.png")
 		},
 		'water_wave': {
 			'name': 'Water Wave',
 			'description': 'bbb',
-			'action': self._water_wave,
+			'action': '_water_wave',
 			'mana_cost': 10.0,
 			'cool_down': 1.0,
 			'type': AttackType.PRIMARY,
-			'icon': preload("res://player/attacks/water_wave.png")
+			'icon': preload("res://player/ui/attacks/water_wave.png")
 		},
 		'fire_storm': {
 			'name': 'Fire Storm',
 			'description': 'aaa1',
-			'action': self._fire_storm,
+			'action': '_fire_storm',
 			'mana_cost': 15.0,
 			'cool_down': 2.0,
 			'type': AttackType.ABILITY,
-			'icon': preload("res://player/attacks/fire_storm.png")
+			'icon': preload("res://player/ui/attacks/fire_storm.png")
 		},
 		'fire_wall': {
 			'name': 'Fire Wall',
 			'description': 'aaa2',
-			'action': self._fire_wall,
+			'action': '_fire_wall',
 			'mana_cost': 20.0,
 			'cool_down': 2.0,
 			'type': AttackType.ABILITY,
-			'icon': preload("res://player/attacks/fire_wall.png")
+			'icon': preload("res://player/ui/attacks/fire_wall.png")
+		},
+		'rock_throw': {
+			'name': 'Rockthrow',
+			'description': 'ccc',
+			'action': '_rock_throw',
+			'mana_cost': 20.0,
+			'cool_down': 2.0,
+			'type': AttackType.PRIMARY,
+			'icon': preload("res://player/ui/attacks/rock_throw.png")
 		},
 		# TODO
 		'counter': {
 			
 		}
 	}
-	#self.assign_attack(AttackSlot.PRIMARY_ATTACK, self.all_attacks['fire_ball'])
+	#self.assign_attack(AttackSlot.PRIMARY_ATTACK, self.attacks['rock_throw'])
 	#self.assign_attack(AttackSlot.SECONDARY_ATTACK, self.all_attacks['water_wave'])
 	#self.assign_attack(AttackSlot.ABILITY1, self.all_attacks['fire_storm'])
 	#self.assign_attack(AttackSlot.ABILITY2, self.all_attacks['fire_wall'])
-	
 	
 	self.skill_tree = [
 		{
@@ -64,17 +73,13 @@ func _ready():
 					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'fire_storm',
 					'position': Vector2(-300.0, 0.0),
-					'children': [
-						
-					]
+					'children': []
 				},
 				{
 					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'fire_wall',
 					'position': Vector2(-200.0, 0.0),
-					'children': [
-						
-					],
+					'children': [],
 				}
 			],
 		},
@@ -82,9 +87,13 @@ func _ready():
 			'type': SkillTree.SkillType.ATTACK,
 			'attack_name': 'water_wave',
 			'position': Vector2(0.0, 150.0),
-			'children': [
-				
-			]
+			'children': []
+		},
+		{
+			'type': SkillTree.SkillType.ATTACK,
+			'attack_name': 'rock_throw',
+			'position': Vector2(250.0, 150.0),
+			'children': []
 		}
 	]
 	
@@ -95,6 +104,9 @@ func _fire_ball(player_position, look_direction):
 	
 func _water_wave(player_position, look_direction):
 	self.game.spawn_projectile(self.WATER_WAVE.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
+
+func _rock_throw(player_position, look_direction):
+	self.game.spawn_projectile(self.ROCK.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 	
 func _fire_storm(player_position, _look_direction):
 	const AMOUNT = 15

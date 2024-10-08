@@ -5,27 +5,27 @@ class_name Player
 
 enum AttackSlot {
 	PRIMARY_ATTACK,
-	SECONDARY_ATTACK,
 	ABILITY1,
-	ABILITY2
+	ABILITY2,
+	ABILITY3
 }
 
 static func slot_to_string(slot: AttackSlot):
 	match slot:
 		AttackSlot.PRIMARY_ATTACK:
 			return 'primary_attack'
-		AttackSlot.SECONDARY_ATTACK:
-			return 'secondary_attack'
 		AttackSlot.ABILITY1:
 			return 'ability1'
 		AttackSlot.ABILITY2:
 			return 'ability2'
+		AttackSlot.ABILITY3:
+			return 'ability3'
 			
 static func slot_to_type(slot: AttackSlot):
 	match slot:
-		AttackSlot.PRIMARY_ATTACK, AttackSlot.SECONDARY_ATTACK:
+		AttackSlot.PRIMARY_ATTACK:
 			return AttackType.PRIMARY
-		AttackSlot.ABILITY1, AttackSlot.ABILITY2:
+		AttackSlot.ABILITY1, AttackSlot.ABILITY2, AttackSlot.ABILITY3:
 			return AttackType.ABILITY
 
 enum AttackType {
@@ -71,17 +71,17 @@ enum PlayerState {
 @export var mana := max_mana
 @export var attack_cooldowns := {
 	AttackSlot.PRIMARY_ATTACK : 0.0,
-	AttackSlot.SECONDARY_ATTACK : 0.0,
 	AttackSlot.ABILITY1 : 0.0,
 	AttackSlot.ABILITY2 : 0.0,
+	AttackSlot.ABILITY3 : 0.0,
 }
 
 @export var attacks := {}
 @export var active_attacks := {
 	AttackSlot.PRIMARY_ATTACK : null,
-	AttackSlot.SECONDARY_ATTACK : null,
 	AttackSlot.ABILITY1 : null,
 	AttackSlot.ABILITY2 : null,
+	AttackSlot.ABILITY3 : null,
 }
 @export var skill_tree := []
 
@@ -95,12 +95,14 @@ enum PlayerState {
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
 @export var money := 0
+@export var skill_tokens := 1
+@export var level_up_tokens := 1
 
 var game_over := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	self._update_potion_ui()
-	self._update_skill_tree()
+	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks,self.skill_tokens)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -158,7 +160,7 @@ func _process(delta: float) -> void:
 						
 				if self.attack_cooldowns[attack_slot] <= 0.0 and self._use_mana(attack['mana_cost']):
 					self.attack_cooldowns[attack_slot] = attack['cool_down']
-					attack['action'].call(player_position, look)
+					self.call(attack['action'], player_position, look)
 					
 
 	if new_state != self.state:
@@ -210,22 +212,23 @@ func _process(delta: float) -> void:
 	active_sprite.frame_coords.y = self.direction
 	self._compute_immunity(delta, active_sprite)
 
-	var zoom_change := 0.0
-	const ZOOM_SPEED: float = 1.0
-	const ZOOM_MIN: float = 0.1
-	const ZOOM_MAX: float = 5.0
 
-	if Input.is_action_pressed("zoom_out"):
-		zoom_change = -ZOOM_SPEED * delta
+	if not inventory.visible:
+		const ZOOM_SPEED: float = 1.0
+		const ZOOM_MIN: float = 0.1
+		const ZOOM_MAX: float = 5.0
+		var zoom_change := 0.0
+		if Input.is_action_pressed("zoom_out"):
+			zoom_change = -ZOOM_SPEED * delta
 
-	elif Input.is_action_pressed("zoom_in"):
-		zoom_change = ZOOM_SPEED * delta
+		elif Input.is_action_pressed("zoom_in"):
+			zoom_change = ZOOM_SPEED * delta
 
-	var new_zoom = camera.zoom * (1 + zoom_change)
-	new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
-	new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
+		var new_zoom = camera.zoom * (1 + zoom_change)
+		new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
+		new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
 
-	camera.zoom = new_zoom
+		camera.zoom = new_zoom
 
 func _physics_process(_delta: float) -> void:
 	var speed = self.speed if self.state != PlayerState.ROLL else self.roll_speed
@@ -280,7 +283,7 @@ func has_iframes() -> bool:
 	return false
 
 func deal_damage(damage: float) -> bool: # Returns a bool, if the projectile should be destroyed
-	if self.has_iframes():
+	if self.has_iframes() or damage == 0.0:
 		return false
 
 	self.immunity_timer = 0.0
@@ -305,9 +308,15 @@ func gain_xp(xp: int):
 	while self.xp > self.xp_for_lvl_up:
 		self.xp -= self.xp_for_lvl_up
 		self.level += 1
+		self._level_up()
 	bar.max_value = float(self.xp_for_lvl_up)
 	bar.value = float(self.xp)
 	$ui/xp/level.text = "LVL. %s" % self.level
+	
+func _level_up():
+	self.skill_tokens += 1
+	self.level_up_tokens += 1
+	$ui/inventory/SkillTree._update_skill_token_ui(self.skill_tokens)
 	
 func _use_potion():
 	if self.potions == 0:
@@ -364,6 +373,3 @@ func add_money(amount: int):
 	
 func _update_money_ui():
 	$ui/money/label.text = str(self.money)
-
-func _update_skill_tree():
-	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks)
