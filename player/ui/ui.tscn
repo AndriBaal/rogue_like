@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ckh3bn2sp2o6b"]
+[gd_scene load_steps=10 format=3 uid="uid://ckh3bn2sp2o6b"]
 
 [ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="1_jhxcc"]
 [ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="2_k1slm"]
@@ -7,8 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dpmd72e6ptcph" path="res://player/ui/xp_bar_background.png" id="5_dmxq1"]
 [ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/attack.tscn" id="5_he2ld"]
 [ext_resource type="Texture2D" uid="uid://cgw0xav55ee5g" path="res://player/ui/xp_bar.png" id="6_l456t"]
-[ext_resource type="Texture2D" uid="uid://cvw8ugcmardiy" path="res://items/heal_empty.png" id="7_p3f37"]
-[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/heal.png" id="8_gp3gb"]
+[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/flask.png" id="7_07sen"]
 [ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="9_wllro"]
 
 [node name="ui" type="CanvasLayer"]
@@ -98,11 +97,10 @@ text = "LVL 1"
 position = Vector2(72, 160)
 scale = Vector2(4, 4)
 
-[node name="empty" type="Sprite2D" parent="health"]
-texture = ExtResource("7_p3f37")
-
-[node name="full" type="Sprite2D" parent="health"]
-texture = ExtResource("8_gp3gb")
+[node name="flask" type="Sprite2D" parent="health"]
+texture = ExtResource("7_07sen")
+region_enabled = true
+region_rect = Rect2(0, 0, 17, 26)
 
 [node name="amount" type="Label" parent="health"]
 offset_left = 6.0

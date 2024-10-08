@@ -332,16 +332,13 @@ func refill_potion(amount: int):
 	self._update_potion_ui()
 	
 func _update_potion_ui():
-	var empty := $ui/health/empty
-	var full := $ui/health/full
+	var flask := $ui/health/flask
 	var amount: Label = $ui/health/amount
 	if self.potions == 0:
-		empty.visible = true
-		full.visible = false
+		flask.region_rect.position.x = flask.region_rect.size.x
 		amount.visible = false
 	else:
-		empty.visible = false
-		full.visible = true
+		flask.region_rect.position.x = 0
 		amount.visible = true
 		amount.text = int_to_roman(self.potions)
 	

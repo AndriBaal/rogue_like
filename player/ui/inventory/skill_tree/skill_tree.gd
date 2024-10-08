@@ -7,11 +7,11 @@ enum SkillType {
 	# TODO
 }
 
+const SKILL_TREE_NODE := preload('res://player/ui/inventory/skill_tree/skill_tree_node.tscn')
+const SKILL_TREE_CONNECTION := preload('res://player/ui/inventory/skill_tree/skill_tree_connection.tscn')
+
 @onready var cam := $cam
 @onready var player: Player = $/root/game/player
-
-static var SKILL_TREE_NODE := preload('res://player/ui/inventory/skill_tree/skill_tree_node.tscn')
-static var SKILL_TREE_CONNECTION := preload('res://player/ui/inventory/skill_tree/skill_tree_connection.tscn')
 var last_mouse_pos := Vector2.ZERO
 
 @export var selected_skill: SkillTreeNode
