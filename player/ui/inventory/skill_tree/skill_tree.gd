@@ -40,15 +40,11 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 		var type = skill['type']
 		
 		var icon
-		var name
 		var s
-		var description
 		match type:
 			SkillType.ATTACK:
 				s = attacks[skill['attack_name']]
 				icon = s['icon']
-				name = '[center]' + s['name'] + '[/center]'
-				description = s['description']
 		node.get_node('button/background/texture').texture = icon
 		node.position = skill['position']
 		
@@ -57,28 +53,17 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 			var connection := SKILL_TREE_CONNECTION.instantiate()
 			connection.points[0] = skill['position']
 			connection.points[1] = child['position']
-			self.cam.add_child(connection)
+			$cam.add_child(connection)
 			node.connections.push_back(connection)
-		
-		var on_click = func():
-			$select.visible = true
-			$select/title.text = name
-			$select/description.text = description
-			if node.unlocked or not node.available:
-				$select/unlock.disabled = true
-			else:
-				$select/unlock.disabled = false
-			self.selected_skill = node
-			
+					
 		node.type = type
 		node.skill = s
-		node.get_node('button').pressed.connect(on_click)
 		if parent:
 			parent.child_skills.push_back(node)
 		else:
 			node.make_available()
 		
-		self.cam.add_child(node)
+		$cam.add_child(node)
 		self._recurse_skill_tree(node, children, attacks)
 	
 func _unlock():

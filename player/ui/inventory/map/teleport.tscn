@@ -1,43 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg0aeb7mobw1o"]
+[gd_scene load_steps=3 format=3 uid="uid://dg0aeb7mobw1o"]
 
 [ext_resource type="Texture2D" uid="uid://cxmjwhrf48ybc" path="res://player/ui/inventory/map/teleport.png" id="1_ehglx"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkf3g"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ayuq0"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5y1f4"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76lsk"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1s0di"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t5ec3"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t23ss"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2f0ul"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a0quj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_po57i"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j6tr4"]
+[ext_resource type="Script" path="res://player/ui/inventory/map/teleport.gd" id="2_g8t2k"]
 
 [node name="Teleport" type="Button"]
+z_index = 1
 offset_left = -16.0
 offset_top = -26.0
 scale = Vector2(2, 2)
 tooltip_text = "Teleport"
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gkf3g")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ayuq0")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_5y1f4")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_76lsk")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1s0di")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_t5ec3")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_t23ss")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_2f0ul")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_a0quj")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_po57i")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_j6tr4")
 icon = ExtResource("1_ehglx")
+flat = true
+script = ExtResource("2_g8t2k")

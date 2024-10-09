@@ -13,8 +13,10 @@ metadata/_tab_index = 3
 position = Vector2(380, 287.5)
 process_callback = 0
 
+[node name="tiles" type="Node2D" parent="cam"]
+
 [node name="player" type="ColorRect" parent="cam"]
-z_index = 1
+z_index = 2
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -25,3 +27,5 @@ offset_bottom = 10.0
 grow_horizontal = 0
 grow_vertical = 0
 color = Color(1, 0, 0, 1)
+
+[node name="teleporters" type="Node2D" parent="cam"]
