@@ -95,14 +95,30 @@ enum PlayerState {
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
 @export var money := 0
-@export var skill_tokens := 1
-@export var level_up_tokens := 1
+
+@export var health_stat := 1
+@export var attack_stat := 1
+@export var speed_stat := 1
+
+@export var level_up_tokens := 5:
+	get:
+		return level_up_tokens
+	set(val):
+		level_up_tokens = val
+		$ui/inventory/Character.update_level_up_token_ui(val)
+@export var skill_tokens := 5:
+	get:
+		return skill_tokens
+	set(val):
+		skill_tokens = val
+		$ui/inventory/SkillTree.update_skill_token_ui(val)
+
 
 var game_over := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	self._update_potion_ui()
-	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks,self.skill_tokens)
+	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
@@ -270,6 +286,15 @@ func heal(heal: float):
 	self.health += heal
 	self.health = min(self.health, self.max_health)
 	self._update_health_ui()
+	
+
+func increase_max_health(inc: float):
+	self.max_health += inc
+	self.heal(inc)
+
+func decrease_max_health(inc: float):
+	self.max_health -= inc
+	self.heal(0.0)
 
 func has_iframes() -> bool:
 	if self.immunity_timer < self.immunity_seconds:
@@ -316,7 +341,8 @@ func gain_xp(xp: int):
 func _level_up():
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
-	$ui/inventory/SkillTree._update_skill_token_ui(self.skill_tokens)
+	#self.skill_tree_node.add_tokens(1)
+	#self.character_node.add_tokens(1)
 	
 func _use_potion():
 	if self.potions == 0:
@@ -331,6 +357,7 @@ func refill_potion(amount: int):
 	self.potions = min(self.potions, self.max_potions)
 	self._update_potion_ui()
 	
+# TODO: Refactor to potion UI
 func _update_potion_ui():
 	var flask := $ui/health/flask
 	var amount: Label = $ui/health/amount
@@ -370,3 +397,16 @@ func add_money(amount: int):
 	
 func _update_money_ui():
 	$ui/money/label.text = str(self.money)
+	
+func decrease_stat(property: String):
+	self[property] -= 1
+	
+	match property:
+		'health_stat':
+			self.decrease_max_health(5.0)
+	
+func increase_stat(property: String):
+	self[property] += 1
+	match property:
+		'health_stat':
+			self.increase_max_health(5.0)

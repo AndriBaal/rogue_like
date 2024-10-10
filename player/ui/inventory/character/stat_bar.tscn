@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3t8jpbvn5k4i"]
+
+[ext_resource type="Script" path="res://player/ui/inventory/character/stat_bar.gd" id="1_ur8hm"]
+
+[node name="stat_bar" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1010.0
+offset_bottom = -621.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(7.77843, 7.77843)
+script = ExtResource("1_ur8hm")
+
+[node name="label" type="Label" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "HP:"
+
+[node name="decrease" type="Button" parent="."]
+layout_mode = 2
+text = "-"
+
+[node name="level" type="Label" parent="."]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="increase" type="Button" parent="."]
+layout_mode = 2
+text = "+"

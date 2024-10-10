@@ -50,15 +50,19 @@ grow_vertical = 0
 scale = Vector2(0.623178, 0.623178)
 
 [node name="primary_attack" parent="attack" instance=ExtResource("5_he2ld")]
+visible = false
 layout_mode = 2
 
 [node name="ability1" parent="attack" instance=ExtResource("5_he2ld")]
+visible = false
 layout_mode = 2
 
 [node name="ability2" parent="attack" instance=ExtResource("5_he2ld")]
+visible = false
 layout_mode = 2
 
 [node name="ability3" parent="attack" instance=ExtResource("5_he2ld")]
+visible = false
 layout_mode = 2
 
 [node name="xp" type="Control" parent="."]
@@ -137,3 +141,4 @@ region_enabled = true
 region_rect = Rect2(0, 0, 12, 16)
 
 [node name="inventory" parent="." instance=ExtResource("4_ncvwd")]
+visible = false

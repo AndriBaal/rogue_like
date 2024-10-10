@@ -11,11 +11,6 @@ class_name Map
 @export var tile_size: Vector2
 var last_mouse_pos := Vector2.ZERO
 
-
-func _ready() -> void:
-	pass
-
-
 const SCALE := 10.0
 const TELEPORT_BUTTON = preload('res://player/ui/inventory/map/teleport.tscn')
 
@@ -43,7 +38,7 @@ func add_teleport(position):
 
 func _process(_delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
-	if self.visible:
+	if self.visible and self.get_parent().visible:
 		if Input.is_action_pressed("primary_attack"):
 			self.cam.position += mouse_pos - self.last_mouse_pos
 		self.map_player.position = self.player.position / self.tile_size * SCALE - self.map_player.size / 2.0

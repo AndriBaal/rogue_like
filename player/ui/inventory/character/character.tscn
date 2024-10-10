@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7t4ymojsp2th"]
+
+[ext_resource type="Script" path="res://player/ui/inventory/character/character.gd" id="1_nms8g"]
+[ext_resource type="Texture2D" uid="uid://dgogtje3dbow4" path="res://player/ui/level_up_token.png" id="2_8nd6e"]
+[ext_resource type="Texture2D" uid="uid://bi4wrsbqnkjjy" path="res://player/wizard/idle.png" id="3_em7ca"]
+[ext_resource type="PackedScene" uid="uid://d3t8jpbvn5k4i" path="res://player/ui/inventory/character/stat_bar.tscn" id="4_gmytn"]
+[ext_resource type="PackedScene" uid="uid://cd80kewjxyb45" path="res://player/ui/inventory/character/attack_slot.tscn" id="4_lhn5o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caxmn"]
+atlas = ExtResource("3_em7ca")
+region = Rect2(0, 0, 72, 72)
+
+[node name="character" type="ColorRect"]
+clip_contents = true
+custom_minimum_size = Vector2(760, 575)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -392.0
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.124715, 0.00844388, 0.0181949, 1)
+script = ExtResource("1_nms8g")
+
+[node name="level_up_tokens" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 19.0
+offset_top = 18.0
+offset_right = 19.0
+offset_bottom = 18.0
+scale = Vector2(1.7527, 1.78922)
+
+[node name="TextureRect" type="TextureRect" parent="level_up_tokens"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8nd6e")
+
+[node name="label" type="Label" parent="level_up_tokens"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 12.0
+offset_right = 122.0
+offset_bottom = 28.0
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 77.0
+offset_top = 90.0
+offset_right = 149.0
+offset_bottom = 162.0
+scale = Vector2(3.56849, 3.56849)
+texture = SubResource("AtlasTexture_caxmn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 130.0
+offset_right = 549.0
+offset_bottom = 238.0
+scale = Vector2(2.10359, 2.10082)
+
+[node name="hp" parent="VBoxContainer" instance=ExtResource("4_gmytn")]
+layout_mode = 2
+alignment = 2
+property = "health_stat"
+label = "HP"
+
+[node name="atk" parent="VBoxContainer" instance=ExtResource("4_gmytn")]
+layout_mode = 2
+alignment = 2
+property = "attack_stat"
+label = "ATK"
+
+[node name="spd" parent="VBoxContainer" instance=ExtResource("4_gmytn")]
+layout_mode = 2
+alignment = 2
+property = "speed_stat"
+label = "SPD"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 444.0
+offset_right = 343.0
+offset_bottom = 495.0
+scale = Vector2(2.22135, 2.22135)
+
+[node name="HFlowContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="button" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button2" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button3" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button4" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button5" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button6" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button7" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2
+
+[node name="button8" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+layout_mode = 2

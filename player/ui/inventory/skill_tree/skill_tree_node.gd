@@ -19,7 +19,7 @@ func _on_click():
 	skill_tree.get_node('select/title').text = '[center]' + self.skill['name'] + '[/center]'
 	skill_tree.get_node('select/description').text = self.skill['description']
 	var unlock = skill_tree.get_node('select/unlock')
-	if self.unlocked or not self.available:
+	if self.unlocked or not self.available or skill_tree.player.skill_tokens == 0:
 		unlock.disabled = true
 	else:
 		unlock.disabled = false
@@ -32,8 +32,7 @@ func unlock():
 		connection.default_color = Color.WHITE
 	for child in self.child_skills:
 		child.make_available()
-		
-		
+
 func make_available():
 	self.available = true
 	self.modulate = Color.WHITE

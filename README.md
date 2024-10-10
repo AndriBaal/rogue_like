@@ -7,14 +7,15 @@
 - [ ] Custom cursor
 - [ ] Splash screen?
 ? [ ] UI Theme
-- [ ] Spieler:
-	? [ ] Silver, Gold and Bronze Coins (so far only gold)
+- [ ] Player:
+	- [x] Silver, Gold and Bronze Coins (so far only gold)
 	? [ ] Collect animation
-	- [X] Game Over screen
+	- [x] Game Over screen
+	? [ ] Roll particle effect
 	? [ ] Game Over screen transition
-	- [X] Fix Zoom
-	- [X] Cool down UI
-	- [ ] Stats and Upgrade stats on level up
+	- [x] Fix Zoom
+	- [x] Cool down UI
+	- [x] Stats and Upgrade stats on level up
 	? [ ] Knockback projectiles
 	- [ ] Projectile despawn animation (using glow particles)
 	- [ ] Perks:
@@ -22,19 +23,19 @@
 		
 	- [ ] Abilities (buyable with XP)
 		- [ ] Fire:
-			- [ ] Primary: Fireball
+			- [x] Primary: Fireball
 			- [ ] Abilities:
 				- [ ] 
 				- [ ] 
 				- [ ] Burning floor wave (aoe)
 		- [ ] Water:
-			- [ ] Primary: Water wave
+			- [x] Primary: Water wave
 			- [ ] Abilities:
 				- [ ] Teleport
 				- [ ] Counter
 				- [ ] 
 		- [ ] Earth:
-			- [ ] Primary: Rock throw
+			- [x] Primary: Rock throw
 			- [ ] Abilities:
 				- [ ] Buff circle
 				- [ ] 

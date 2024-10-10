@@ -21,6 +21,7 @@ position = Vector2(0, 287.5)
 process_callback = 0
 
 [node name="skill_tokens" type="Control" parent="."]
+z_index = 100
 layout_mode = 1
 anchors_preset = 0
 offset_left = 19.0

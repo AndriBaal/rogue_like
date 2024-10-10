@@ -15,23 +15,19 @@ const SKILL_TREE_CONNECTION := preload('res://player/ui/inventory/skill_tree/ski
 var last_mouse_pos := Vector2.ZERO
 
 @export var selected_skill: SkillTreeNode
-@export var skill_tree: Array
 
 func _ready() -> void:
 	$select/close.pressed.connect(func(): $select.visible = false)
 	$select/unlock.pressed.connect(self._unlock)
 
-
 func _process(delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
-	if self.visible:
+	if self.visible and self.get_parent().visible:
 		if Input.is_action_pressed("primary_attack"):
 			self.cam.position += mouse_pos - self.last_mouse_pos
 		self.last_mouse_pos = mouse_pos
 	
-func init_tree(skill_tree, attacks, tokens):
-	self._update_skill_token_ui(tokens)
-	self.skill_tree = skill_tree
+func init_tree(skill_tree, attacks):
 	self._recurse_skill_tree(null, skill_tree, attacks)
 	
 func _recurse_skill_tree(parent, skill_tree, attacks):
@@ -68,6 +64,7 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 	
 func _unlock():
 	$select.visible = false
+	self.player.skill_tokens -= 1
 	self.selected_skill.unlock()
 	match self.selected_skill.type:
 		SkillType.ATTACK:
@@ -80,6 +77,7 @@ func _unlock():
 			self.player.assign_attack(slot, attack)
 	self.selected_skill = null
 	
-func _update_skill_token_ui(amount):
-	$skill_tokens/label.text = str(amount)
+	
+func update_skill_token_ui(skill_tokens):
+	$skill_tokens/label.text = str(skill_tokens)
 	

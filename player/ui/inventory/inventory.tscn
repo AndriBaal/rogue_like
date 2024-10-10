@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://1up0xo0sygli"]
+[gd_scene load_steps=4 format=3 uid="uid://1up0xo0sygli"]
 
+[ext_resource type="PackedScene" uid="uid://c7t4ymojsp2th" path="res://player/ui/inventory/character/character.tscn" id="1_28y7s"]
 [ext_resource type="PackedScene" uid="uid://cdk8e27l0bfhw" path="res://player/ui/inventory/skill_tree/skill_tree.tscn" id="1_jl2iq"]
 [ext_resource type="PackedScene" uid="uid://rlmwcg7qv6vy" path="res://player/ui/inventory/map/map.tscn" id="1_t4l5u"]
 
 [node name="tabs" type="TabContainer"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -18,13 +18,11 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.00068, 1)
 tab_alignment = 1
-current_tab = 2
+current_tab = 0
 clip_tabs = false
 
-[node name="Character" type="ColorRect" parent="."]
-visible = false
+[node name="Character" parent="." instance=ExtResource("1_28y7s")]
 layout_mode = 2
-color = Color(0.442066, 0, 0.0822867, 1)
 metadata/_tab_index = 0
 
 [node name="SkillTree" parent="." instance=ExtResource("1_jl2iq")]
@@ -35,5 +33,6 @@ metadata/_tab_index = 1
 
 [node name="Map" parent="." instance=ExtResource("1_t4l5u")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
