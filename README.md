@@ -1,4 +1,7 @@
 # Rogue Like
+## BUGS
+- [ ] When you load a game the menu points in the inventory are stacked
+- [ ] Can use skill point on already unlocked ability
 
 ## TODO
 
@@ -8,6 +11,7 @@
 - [ ] Splash screen?
 ? [ ] UI Theme
 - [ ] Player:
+- [ ] Adjust POV
 	- [x] Silver, Gold and Bronze Coins (so far only gold)
 	? [ ] Collect animation
 	- [x] Game Over screen
