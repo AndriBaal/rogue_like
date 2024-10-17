@@ -49,7 +49,7 @@ emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_akn77")
 texture = ExtResource("3_q6273")
-lifetime = 0.65
+lifetime = 0.7
 one_shot = true
 explosiveness = 0.6
 

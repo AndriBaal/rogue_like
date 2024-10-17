@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 [debug]
 
+settings/stdout/print_fps=true
 gdscript/warnings/shadowed_variable=0
 gdscript/warnings/integer_division=0
 
@@ -26,6 +27,8 @@ gdscript/warnings/integer_division=0
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://ui/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(19, 19)
 
 [filesystem]
 
@@ -33,10 +36,13 @@ import/blender/enabled=false
 
 [gui]
 
+fonts/dynamic_fonts/use_oversampling=false
 theme/custom="res://ui/theme.theme"
 theme/custom_font="res://ui/font.ttf"
+theme/default_font_antialiasing=0
 theme/default_font_hinting=0
 theme/default_font_subpixel_positioning=0
+theme/custom_image_hotspot=Vector2(19, 19)
 
 [input]
 

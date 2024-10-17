@@ -16,7 +16,7 @@ offset_left = -179.5
 offset_top = -40.0
 offset_right = 179.5
 offset_bottom = 51.0
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "New Game"
 
 [node name="load_game" type="Button" parent="title"]
@@ -29,7 +29,7 @@ offset_right = 180.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "Load Game"
 
 [node name="quit" type="Button" parent="title"]
@@ -44,7 +44,7 @@ offset_right = 180.0
 offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "Quit"
 
 [node name="title" type="Label" parent="title"]
@@ -78,7 +78,7 @@ offset_right = 180.0
 offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "Back"
 
 [node name="start" type="Button" parent="load_save"]
@@ -93,7 +93,7 @@ offset_right = -43.0
 offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 disabled = true
 text = "Start"
 
@@ -109,7 +109,7 @@ offset_right = 310.0
 offset_bottom = 167.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 disabled = true
 text = "Delete"
 
@@ -142,7 +142,7 @@ offset_right = 180.0
 offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "Back"
 
 [node name="start" type="Button" parent="create_game"]

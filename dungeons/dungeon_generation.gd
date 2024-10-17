@@ -254,7 +254,7 @@ class Dungeon:
 							#self.random.randi_range(0, tile_amount - 1),
 							#1
 						#)
-						var t = self._get_door_tile(entrance['direction'])
+						var t = self._get_door_tile(entrance['direction'], tile == entrance["start"])
 						tilemap.set_cell(tile, TILE_ID, t[0], t[1])
 			tilemap_entrances.clear()
 		if not new_rooms.is_empty():
@@ -271,16 +271,28 @@ class Dungeon:
 			Vector2i(0, 1):
 				return [Vector2i(2, 0), TileSetAtlasSource.TRANSFORM_TRANSPOSE |TileSetAtlasSource.TRANSFORM_FLIP_H]
 		
-	func _get_door_tile(direction: Vector2i):
+	func _get_door_tile(direction: Vector2i, start):
 		match direction:
 			Vector2i(1, 0):
-				return [Vector2i(9, 0), 0]
+				if start:
+					return [Vector2i(9, 0), TileSetAtlasSource.TRANSFORM_FLIP_V]
+				else:
+					return [Vector2i(9, 0), 0]
 			Vector2i(-1, 0):
-				return [Vector2i(9, 0), TileSetAtlasSource.TRANSFORM_FLIP_H]
+				if start:
+					return [Vector2i(9, 0), TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V]
+				else:
+					return [Vector2i(9, 0), TileSetAtlasSource.TRANSFORM_FLIP_H]	
 			Vector2i(0, -1):
-				return [Vector2i(7, 0), 0]
+				if start:
+					return [Vector2i(7, 0), 0]
+				else:
+					return [Vector2i(7, 0), TileSetAtlasSource.TRANSFORM_FLIP_H]	
 			Vector2i(0, 1):
-				return [Vector2i(7, 0), 0]
+				if start:
+					return [Vector2i(7, 0), 0]
+				else:
+					return [Vector2i(7, 0), TileSetAtlasSource.TRANSFORM_FLIP_H]
 		
 	static func _get_direction_from_alt(alt: int) -> Vector2i:
 		var flip_h = bool(alt & TileSetAtlasSource.TRANSFORM_FLIP_H)

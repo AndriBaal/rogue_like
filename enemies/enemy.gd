@@ -143,8 +143,12 @@ func _compute_hit_animation(delta, active_sprite):
 	active_sprite.modulate = color
 	
 func deal_damage(damage: float):
-	if self.state == EnemyState.IDLE: # Prevent player from cheesing inactive 
+	if self.health <= 0.0: # Enemy is already dead
 		return
+		
+	if self.state == EnemyState.IDLE: # Prevent player from cheesing inactive enemy
+		return
+		
 	self.health -= damage
 	self.hit_animation_timer = 0.0
 	if self.health <= 0.0:

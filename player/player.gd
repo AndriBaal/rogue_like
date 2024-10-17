@@ -24,7 +24,7 @@ static func string_to_slot(string: String) -> PlayerAttackSlot:
 			push_error('Unknown string to slot')
 			return PlayerAttackSlot.PRIMARY_ATTACK
 
-static func slot_to_string(slot: PlayerAttackSlot):
+static func slot_to_string(slot: PlayerAttackSlot) -> String:
 	match slot:
 		PlayerAttackSlot.PRIMARY_ATTACK:
 			return 'primary_attack'
@@ -34,18 +34,35 @@ static func slot_to_string(slot: PlayerAttackSlot):
 			return 'ability2'
 		PlayerAttackSlot.ABILITY3:
 			return 'ability3'
+		_:
+			push_error('Unknown slot')
+			return 'ERROR'
+
 			
-static func slot_to_type(slot: PlayerAttackSlot):
+static func slot_to_type(slot: PlayerAttackSlot) -> AttackType:
 	match slot:
 		PlayerAttackSlot.PRIMARY_ATTACK:
 			return AttackType.PRIMARY
 		PlayerAttackSlot.ABILITY1, PlayerAttackSlot.ABILITY2, PlayerAttackSlot.ABILITY3:
 			return AttackType.ABILITY
-
+		_:
+			push_error('Unknown slot')
+			return AttackType.PRIMARY
+			
 enum AttackType {
 	PRIMARY,
 	ABILITY
 }
+
+static func type_to_string(type: AttackType) -> String:
+	match type:
+		AttackType.PRIMARY:
+			return 'Primary'
+		AttackType.ABILITY:
+			return 'Ability'
+		_:
+			push_error('Unknown type')
+			return 'ERROR'
 
 enum PlayerState {
 	IDLE,
@@ -395,21 +412,27 @@ func int_to_roman(num: int) -> String:
 	
 	return result
 	
-func assign_attack(slot: PlayerAttackSlot, attack: Dictionary):
+func assign_attack(slot: PlayerAttackSlot, attack):
+	var slot_string = slot_to_string(slot)
+	var attack_ui = self.get_node('ui/attack/' + slot_string)
+	var attack_slot = self.get_node('ui/inventory/Character/attack_slots/' + slot_string)
+	if attack == null:
+		self.active_attacks[slot] = null
+		attack_slot.icon = null
+		attack_ui.texture = null
+		attack_ui.visible = false
+		return
 	assert('unlocked' in attack)
 	if slot_to_type(slot) != attack['type']:
 		push_error('Wrong attack type for slot!')
 		return
 	
 	var icon = attack['icon']
-	var slot_string = slot_to_string(slot)
-	var attack_ui = self.get_node('ui/attack/' + slot_string)
-	var attack_slot = self.get_node('ui/inventory/Character/attack_slots/' + slot_string)
 	attack_slot.icon = icon
 	attack_ui.texture = icon
 	attack_ui.visible = true
 	
-	self.active_attacks[slot] = attack.duplicate()
+	self.active_attacks[slot] = attack
 
 func add_money(amount: int):
 	self.money += amount

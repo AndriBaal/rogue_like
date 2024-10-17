@@ -15,3 +15,12 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_df1vt")
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 113.0
+offset_bottom = 58.0
+scale = Vector2(0.35484, 0.35484)
+text = "test"
+horizontal_alignment = 1

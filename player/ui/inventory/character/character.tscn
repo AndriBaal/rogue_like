@@ -86,24 +86,28 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.246
 offset_left = 12.0
-offset_top = 342.0
+offset_top = 317.0
 offset_right = 150.48
-offset_bottom = 382.0
+offset_bottom = 357.0
 scale = Vector2(2.26663, 2.26663)
 theme_override_constants/separation = 25
 alignment = 1
 
 [node name="primary_attack" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
+label = "PRIMARY"
 
 [node name="ability1" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
+label = "ABILITY 1"
 
 [node name="ability2" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
+label = "ABILITY 2"
 
 [node name="ability3" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
+label = "ABILITY 3"
 
 [node name="attack_selection" type="ColorRect" parent="."]
 unique_name_in_owner = true

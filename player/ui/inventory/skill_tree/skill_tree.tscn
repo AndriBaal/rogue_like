@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdk8e27l0bfhw"]
+[gd_scene load_steps=4 format=3 uid="uid://cdk8e27l0bfhw"]
 
 [ext_resource type="Script" path="res://player/ui/inventory/skill_tree/skill_tree.gd" id="1_pv1b7"]
 [ext_resource type="Texture2D" uid="uid://c6cgtqv3mjymi" path="res://player/ui/skill_token.png" id="2_y4nqx"]
+[ext_resource type="PackedScene" uid="uid://be5hrgq8a5c1" path="res://player/ui/inventory/home.tscn" id="3_5pm7e"]
 
 [node name="SkillTree" type="ColorRect"]
 clip_contents = true
@@ -49,7 +50,6 @@ offset_bottom = 28.0
 text = "1"
 
 [node name="select" type="Panel" parent="."]
-visible = false
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
@@ -66,7 +66,7 @@ anchor_right = 1.0
 offset_left = 10.0
 offset_top = 42.0
 offset_right = -7.96002
-offset_bottom = 173.0
+offset_bottom = 141.0
 grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
@@ -85,6 +85,15 @@ offset_bottom = 129.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "asdadasdads"
+
+[node name="type" type="Label" parent="select"]
+layout_mode = 0
+offset_left = -0.039978
+offset_top = 150.0
+offset_right = 186.96
+offset_bottom = 166.0
+text = "Type"
+horizontal_alignment = 1
 
 [node name="unlock" type="Button" parent="select"]
 layout_mode = 1
@@ -111,3 +120,6 @@ offset_right = -6.0
 offset_bottom = 31.0
 grow_horizontal = 0
 text = "X"
+
+[node name="center_camera" parent="." instance=ExtResource("3_5pm7e")]
+layout_mode = 1

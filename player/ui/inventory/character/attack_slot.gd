@@ -3,6 +3,11 @@ extends Button
 class_name AttackSlot
 
 @onready var game: Game = $/root/game
+@export var label: String:
+	get:
+		return $label.text
+	set(value):
+		$label.text = value
 
 const ATTACK_SELECTION = preload("res://player/ui/inventory/character/attack_selection.tscn")
 

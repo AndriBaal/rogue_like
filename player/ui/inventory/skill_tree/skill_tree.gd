@@ -18,7 +18,11 @@ var selected_skill: SkillTreeNode
 func _ready() -> void:
 	$select/close.pressed.connect(func(): $select.visible = false)
 	$select/unlock.pressed.connect(self._unlock)
-
+	$center_camera.pressed.connect(self._center_camera)
+	
+func _center_camera():
+	$cam.position = Vector2.ZERO
+	
 func _process(delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
 	if self.visible and self.get_parent().visible:
@@ -77,10 +81,9 @@ func _unlock():
 				if attack['type'] == type and player.active_attacks[s] == null:
 					slot = s
 					break
-			
-			player.assign_attack(slot, attack)
+			if slot != null:
+				player.assign_attack(slot, attack)
 	self.selected_skill = null
-	
-	
+
 func update_skill_token_ui(skill_tokens):
 	$skill_tokens/label.text = str(skill_tokens)

@@ -22,6 +22,7 @@ func _on_click():
 	skill_tree.get_node(^'select').visible = true
 	skill_tree.get_node(^'select/title').text = '[center]' + self.skill['name'] + '[/center]'
 	skill_tree.get_node(^'select/description').text = self.skill['description']
+	skill_tree.get_node(^'select/type').text = 'Type: ' + Player.type_to_string(self.skill['type'])
 	var unlock = skill_tree.get_node(^'select/unlock')
 	if self.unlocked or not self.available or game.player.skill_tokens == 0 or 'unlocked' in self.skill:
 		unlock.disabled = true

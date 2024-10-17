@@ -61,18 +61,21 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			destroy = true
 		
 	if destroy:
-		var d := DESTROY.instantiate()
+		var particle := DESTROY.instantiate()
 		var s = $collider.shape.get_rect().size
 		var size = min(s.x, s.y)
-		d.rotation = self.rotation - PI / 2
+		particle.rotation = self.rotation - PI / 2
 		
 		var space_state = self.get_world_2d().direct_space_state
 
 		var result = space_state.intersect_ray(PhysicsRayQueryParameters2D.create(self.global_position, self.global_position + 150.0 * self.direction))
 		if result:
-			d.position = result.position
+			particle.position = result.position
 		else:
-			d.position = self.global_position + self.direction * self.global_scale * Vector2(size, size)
-		d.self_modulate = self.color
-		$/root/game/effects.add_child(d)
+			particle.position = self.global_position + self.direction * self.global_scale * Vector2(size, size)
+		particle.self_modulate = self.color
+		
+		var diff = (particle.position - self.position).normalized()
+		particle.rotation = self.rotation + PI / 2.0
+		$/root/game/effects.add_child(particle)
 		self.queue_free()

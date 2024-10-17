@@ -4,7 +4,7 @@ const FIRE_BAll = preload("res://projectiles/fire_ball.tscn")
 const WATER_WAVE = preload("res://projectiles/water_wave.tscn")
 const ROCK = preload("res://projectiles/rock.tscn")
 
-const PROJECTILE_OFFSET := 80.0
+const PROJECTILE_OFFSET := 35.0
 
 func _ready():
 	self.attacks = {
