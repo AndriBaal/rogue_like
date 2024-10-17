@@ -20,6 +20,10 @@ script = ExtResource("1_pv1b7")
 position = Vector2(0, 287.5)
 process_callback = 0
 
+[node name="connections" type="Node2D" parent="cam"]
+
+[node name="nodes" type="Node2D" parent="cam"]
+
 [node name="skill_tokens" type="Control" parent="."]
 z_index = 100
 layout_mode = 1

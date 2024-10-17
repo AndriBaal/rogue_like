@@ -12,6 +12,7 @@ func _ready() -> void:
 	$label.text = self.label + ':'
 	$increase.pressed.connect(self._increase)
 	$decrease.pressed.connect(self._decrease)
+	%close.pressed.connect(self._close_attack_selection)
 
 func _decrease():
 	if self.player[self.property] <= 1:
@@ -28,3 +29,6 @@ func _increase():
 
 func _update_ui():
 	$level.text = str(self.player[self.property])
+
+func _close_attack_selection():
+	pass

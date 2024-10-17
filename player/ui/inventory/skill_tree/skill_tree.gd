@@ -11,10 +11,9 @@ const SKILL_TREE_NODE := preload('res://player/ui/inventory/skill_tree/skill_tre
 const SKILL_TREE_CONNECTION := preload('res://player/ui/inventory/skill_tree/skill_tree_connection.tscn')
 
 @onready var cam := $cam
-@onready var player: Player = $/root/game/player
+@onready var game: Game = $/root/game
 var last_mouse_pos := Vector2.ZERO
-
-@export var selected_skill: SkillTreeNode
+var selected_skill: SkillTreeNode
 
 func _ready() -> void:
 	$select/close.pressed.connect(func(): $select.visible = false)
@@ -41,7 +40,7 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 			SkillType.ATTACK:
 				s = attacks[skill['attack_name']]
 				icon = s['icon']
-		node.get_node('button/background/texture').texture = icon
+		node.get_node(^'button/background/texture').texture = icon
 		node.position = skill['position']
 		
 		var children = skill['children']
@@ -49,7 +48,7 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 			var connection := SKILL_TREE_CONNECTION.instantiate()
 			connection.points[0] = skill['position']
 			connection.points[1] = child['position']
-			$cam.add_child(connection)
+			$cam/connections.add_child(connection)
 			node.connections.push_back(connection)
 					
 		node.type = type
@@ -59,25 +58,29 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 		else:
 			node.make_available()
 		
-		$cam.add_child(node)
+		$cam/nodes.add_child(node)
 		self._recurse_skill_tree(node, children, attacks)
 	
 func _unlock():
+	var player = self.game.player
 	$select.visible = false
-	self.player.skill_tokens -= 1
+	self.game.attack_selection.visible = false
+	player.skill_tokens -= 1
 	self.selected_skill.unlock()
 	match self.selected_skill.type:
 		SkillType.ATTACK:
 			var attack = self.selected_skill.skill
 			var slot = null
-			if attack['type'] == Player.AttackType.PRIMARY:
-				slot = Player.AttackSlot.PRIMARY_ATTACK
-			else:
-				slot = Player.AttackSlot.ABILITY1
-			self.player.assign_attack(slot, attack)
+			
+			for s in Player.PlayerAttackSlot.values():
+				var type = Player.slot_to_type(s)
+				if attack['type'] == type and player.active_attacks[s] == null:
+					slot = s
+					break
+			
+			player.assign_attack(slot, attack)
 	self.selected_skill = null
 	
 	
 func update_skill_token_ui(skill_tokens):
 	$skill_tokens/label.text = str(skill_tokens)
-	

@@ -1,21 +1,22 @@
 # Rogue Like
 ## BUGS
 - [ ] When you load a game the menu points in the inventory are stacked
-- [ ] Can use skill point on already unlocked ability
 
 ## TODO
 
 - [ ] Name
 - [ ] Logo
 - [ ] Custom cursor
-- [ ] Splash screen?
+? [ ] Splash screen
 ? [ ] UI Theme
 - [ ] Player:
-- [ ] Adjust POV
+	- [ ] Adjust POV
+	- [ ] Show difference between primary attacks and abilities
 	- [x] Silver, Gold and Bronze Coins (so far only gold)
 	? [ ] Collect animation
 	- [x] Game Over screen
 	? [ ] Roll particle effect
+	? [ ] Level Up Particle Effect
 	? [ ] Game Over screen transition
 	- [x] Fix Zoom
 	- [x] Cool down UI

@@ -54,14 +54,10 @@ func _ready():
 			'icon': preload("res://player/ui/attacks/rock_throw.png")
 		},
 		# TODO
-		'counter': {
-			
-		}
+		#'counter': {
+			#
+		#}
 	}
-	#self.assign_attack(AttackSlot.PRIMARY_ATTACK, self.attacks['rock_throw'])
-	#self.assign_attack(AttackSlot.SECONDARY_ATTACK, self.all_attacks['water_wave'])
-	#self.assign_attack(AttackSlot.ABILITY1, self.all_attacks['fire_storm'])
-	#self.assign_attack(AttackSlot.ABILITY2, self.all_attacks['fire_wall'])
 	
 	self.skill_tree = [
 		{

@@ -3,29 +3,43 @@ extends CharacterBody2D
 class_name Player
 
 
-enum AttackSlot {
+enum PlayerAttackSlot {
 	PRIMARY_ATTACK,
 	ABILITY1,
 	ABILITY2,
 	ABILITY3
 }
 
-static func slot_to_string(slot: AttackSlot):
+static func string_to_slot(string: String) -> PlayerAttackSlot:
+	match string:
+		'primary_attack':
+			return PlayerAttackSlot.PRIMARY_ATTACK
+		'ability1':
+			return PlayerAttackSlot.ABILITY1
+		'ability2':
+			return PlayerAttackSlot.ABILITY2
+		'ability3':
+			return PlayerAttackSlot.ABILITY3
+		_:
+			push_error('Unknown string to slot')
+			return PlayerAttackSlot.PRIMARY_ATTACK
+
+static func slot_to_string(slot: PlayerAttackSlot):
 	match slot:
-		AttackSlot.PRIMARY_ATTACK:
+		PlayerAttackSlot.PRIMARY_ATTACK:
 			return 'primary_attack'
-		AttackSlot.ABILITY1:
+		PlayerAttackSlot.ABILITY1:
 			return 'ability1'
-		AttackSlot.ABILITY2:
+		PlayerAttackSlot.ABILITY2:
 			return 'ability2'
-		AttackSlot.ABILITY3:
+		PlayerAttackSlot.ABILITY3:
 			return 'ability3'
 			
-static func slot_to_type(slot: AttackSlot):
+static func slot_to_type(slot: PlayerAttackSlot):
 	match slot:
-		AttackSlot.PRIMARY_ATTACK:
+		PlayerAttackSlot.PRIMARY_ATTACK:
 			return AttackType.PRIMARY
-		AttackSlot.ABILITY1, AttackSlot.ABILITY2, AttackSlot.ABILITY3:
+		PlayerAttackSlot.ABILITY1, PlayerAttackSlot.ABILITY2, PlayerAttackSlot.ABILITY3:
 			return AttackType.ABILITY
 
 enum AttackType {
@@ -41,14 +55,13 @@ enum PlayerState {
 	ROLL
 }
 
-@onready var game := $/root/game
+@onready var game: Game = $/root/game
 @onready var camera := $camera
 @onready var walk_sprite := $walk_sprite
 @onready var walk_attack_sprite := $walk_attack_sprite
 @onready var idle_sprite := $idle_sprite
 @onready var roll_sprite := $roll_sprite
 @onready var idle_attack_sprite := $idle_attack_sprite
-@onready var health_bar := $ui/health_bar
 @onready var mana_bar := $ui/mana_bar
 @onready var inventory := $ui/inventory
 
@@ -61,7 +74,18 @@ enum PlayerState {
 @export var movement: Vector2
 @export var animation_timer := 0.0
 @export var immunity_timer := immunity_seconds
-@export var max_health := 20.0
+@export var max_health := 20.0:
+	get:
+		return max_health
+	set(value):
+		if value > max_health:
+			var diff = max_health
+			max_health = value
+			heal(diff)
+		else:
+			max_health = value
+			heal(0.0)
+		
 @export var health := max_health
 @export var xp := 0
 @export var level := 1
@@ -70,18 +94,18 @@ enum PlayerState {
 @export var max_mana := 50.0
 @export var mana := max_mana
 @export var attack_cooldowns := {
-	AttackSlot.PRIMARY_ATTACK : 0.0,
-	AttackSlot.ABILITY1 : 0.0,
-	AttackSlot.ABILITY2 : 0.0,
-	AttackSlot.ABILITY3 : 0.0,
+	PlayerAttackSlot.PRIMARY_ATTACK : 0.0,
+	PlayerAttackSlot.ABILITY1 : 0.0,
+	PlayerAttackSlot.ABILITY2 : 0.0,
+	PlayerAttackSlot.ABILITY3 : 0.0,
 }
 
 @export var attacks := {}
 @export var active_attacks := {
-	AttackSlot.PRIMARY_ATTACK : null,
-	AttackSlot.ABILITY1 : null,
-	AttackSlot.ABILITY2 : null,
-	AttackSlot.ABILITY3 : null,
+	PlayerAttackSlot.PRIMARY_ATTACK : null,
+	PlayerAttackSlot.ABILITY1 : null,
+	PlayerAttackSlot.ABILITY2 : null,
+	PlayerAttackSlot.ABILITY3 : null,
 }
 @export var skill_tree := []
 
@@ -157,8 +181,8 @@ func _process(delta: float) -> void:
 		var attack = self.active_attacks[attack_slot]
 		if attack:
 			self.attack_cooldowns[attack_slot] -= delta
-			var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(attack_slot))
-			var occluder = attack_ui.get_node('occluder')
+			var attack_ui = self.get_node('ui/attack/' + slot_to_string(attack_slot))
+			var occluder = attack_ui.get_node(^'occluder')
 			var ratio = max(0.0, self.attack_cooldowns[attack_slot] / attack['cool_down'])
 			occluder.scale.y = ratio
 	if not inventory.visible and new_state != PlayerState.ROLL:
@@ -188,6 +212,8 @@ func _process(delta: float) -> void:
 		self.animation_timer = 0.0
 		match new_state:
 			PlayerState.ROLL:
+				var particle = %roll_particle
+				particle.restart()
 				self.roll_timer = self.roll_duration
 				self.roll_sprite.visible = true
 				self.movement = new_movement if is_moving else look
@@ -229,17 +255,11 @@ func _process(delta: float) -> void:
 	self._compute_immunity(delta, active_sprite)
 
 
-	if not inventory.visible:
+	if not inventory.visible and self.game.mouse_wheel_delta:
 		const ZOOM_SPEED: float = 1.0
 		const ZOOM_MIN: float = 0.1
 		const ZOOM_MAX: float = 5.0
-		var zoom_change := 0.0
-		if Input.is_action_pressed("zoom_out"):
-			zoom_change = -ZOOM_SPEED * delta
-
-		elif Input.is_action_pressed("zoom_in"):
-			zoom_change = ZOOM_SPEED * delta
-
+		var zoom_change := self.game.mouse_wheel_delta * 0.1
 		var new_zoom = camera.zoom * (1 + zoom_change)
 		new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
 		new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
@@ -288,14 +308,6 @@ func heal(heal: float):
 	self._update_health_ui()
 	
 
-func increase_max_health(inc: float):
-	self.max_health += inc
-	self.heal(inc)
-
-func decrease_max_health(inc: float):
-	self.max_health -= inc
-	self.heal(0.0)
-
 func has_iframes() -> bool:
 	if self.immunity_timer < self.immunity_seconds:
 		return true
@@ -307,7 +319,8 @@ func has_iframes() -> bool:
 		
 	return false
 
-func deal_damage(damage: float) -> bool: # Returns a bool, if the projectile should be destroyed
+# Returns a true, if the projectile should be destroyed
+func deal_damage(damage: float) -> bool:
 	if self.has_iframes() or damage == 0.0:
 		return false
 
@@ -315,17 +328,18 @@ func deal_damage(damage: float) -> bool: # Returns a bool, if the projectile sho
 	self.health -= damage
 	$hurt_audio.play()
 	if self.health <= 0.0:
-		self.death()
+		self._death()
 	self._update_health_ui()
 	return true
 	
-func death():
+func _death():
 	var game_over = self.game_over.instantiate()
 	self.game.add_child(game_over)
 	
 func _update_health_ui():
-	self.health_bar.max_value = self.max_health
-	self.health_bar.value = self.health
+	var health_bar := $ui/health_bar
+	health_bar.max_value = self.max_health
+	health_bar.value = self.health
 
 func gain_xp(xp: int):
 	self.xp += xp
@@ -351,7 +365,7 @@ func _use_potion():
 	self.potions -= 1
 	self.heal(self.heal_per_potion)
 	self._update_potion_ui()
-	
+
 func refill_potion(amount: int):
 	self.potions += amount
 	self.potions = min(self.potions, self.max_potions)
@@ -381,32 +395,38 @@ func int_to_roman(num: int) -> String:
 	
 	return result
 	
-func assign_attack(slot: AttackSlot, attack: Dictionary):
+func assign_attack(slot: PlayerAttackSlot, attack: Dictionary):
+	assert('unlocked' in attack)
 	if slot_to_type(slot) != attack['type']:
 		push_error('Wrong attack type for slot!')
 		return
-		
-	var attack_ui = self.get_node('ui/attack/%s' % slot_to_string(slot))
-	attack_ui.texture = attack['icon']
+	
+	var icon = attack['icon']
+	var slot_string = slot_to_string(slot)
+	var attack_ui = self.get_node('ui/attack/' + slot_string)
+	var attack_slot = self.get_node('ui/inventory/Character/attack_slots/' + slot_string)
+	attack_slot.icon = icon
+	attack_ui.texture = icon
 	attack_ui.visible = true
+	
 	self.active_attacks[slot] = attack.duplicate()
 
 func add_money(amount: int):
 	self.money += amount
 	self._update_money_ui()
-	
+
 func _update_money_ui():
 	$ui/money/label.text = str(self.money)
-	
+
 func decrease_stat(property: String):
 	self[property] -= 1
 	
 	match property:
 		'health_stat':
-			self.decrease_max_health(5.0)
-	
+			self.max_health -= 5.0
+
 func increase_stat(property: String):
 	self[property] += 1
 	match property:
 		'health_stat':
-			self.increase_max_health(5.0)
+			self.max_health += 5.0

@@ -60,7 +60,7 @@ class Dungeon:
 
 		var room = options.possible_rooms["start"].instantiate()
 		room.start()
-		var tilemap: TileMapLayer = room.get_node('tiles')
+		var tilemap: TileMapLayer = room.get_node(^'tiles')
 		self.tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 
 		self.rooms.push_back(room)
@@ -97,7 +97,7 @@ class Dungeon:
 
 	func _recurse_room_intersections(rooms, rect, rect_offset, rect_cells) -> bool:
 		for exsting_room in rooms:
-			var existing_tile_map: TileMapLayer = exsting_room.get_node("tiles")
+			var existing_tile_map: TileMapLayer = exsting_room.get_node(^"tiles")
 			var existing_rect = existing_tile_map.get_used_rect()
 			var existing_offset = Vector2i(exsting_room.position / self.tile_size)
 			existing_rect.position += existing_offset
@@ -136,8 +136,8 @@ class Dungeon:
 			var room = rooms[i_room]
 			var children = room.children
 			var entrances = room.entrances
-			var tilemap: TileMapLayer = room.get_node("tiles")
-			var tilemap_entrances: TileMapLayer = room.get_node("entrances")
+			var tilemap: TileMapLayer = room.get_node(^"tiles")
+			var tilemap_entrances: TileMapLayer = room.get_node(^"entrances")
 			var tile_source = tilemap.tile_set.get_source(TILE_ID)
 			var tile_amount = tile_source.get_tiles_count() / 2
 
@@ -160,7 +160,7 @@ class Dungeon:
 				var room_type = self._get_room_type(only_bad)
 				var new_room = self._get_room(room_type)
 
-				var new_tilemap = new_room.get_node("tiles")
+				var new_tilemap = new_room.get_node(^"tiles")
 				var new_entrances = new_room.entrances
 
 				var allowed_entrances = []

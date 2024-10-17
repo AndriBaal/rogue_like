@@ -15,22 +15,22 @@ func _generate_level():
 	var scene
 	if Menu.LOAD_SAVE:
 		scene = load("user://%s.scn" % Menu.GAME_NAME).instantiate()
-		scene.get_node("pause_menu").visible = false
+		scene.get_node(^"pause_menu").visible = false
 	else:
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
 			DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2)
 		)
-		var player = scene.get_node("player")
+		var player = scene.get_node(^"player")
 		var starting_room = dungeon.rooms[0]
 		player.position = starting_room.global_position
 
-		var room_node = scene.get_node("rooms")
+		var room_node = scene.get_node(^"rooms")
 		for room in dungeon.rooms:
 			self._recurse_add_rooms(room_node, room)
 			
-		#var mini_map = player.get_node('ui/tabs')
-		#var tilemap = starting_room.get_node('tiles')
+		#var mini_map = player.get_node(^'ui/tabs')
+		#var tilemap = starting_room.get_node(^'tiles')
 		#var tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 		#mini_map.init_mini_map(cells, tile_size)
 		
@@ -38,7 +38,7 @@ func _generate_level():
 
 
 func _recurse_add_rooms(root, room):
-	var tilemap = room.get_node('tiles')
+	var tilemap = room.get_node(^'tiles')
 	var tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 			
 	root.add_child(room)

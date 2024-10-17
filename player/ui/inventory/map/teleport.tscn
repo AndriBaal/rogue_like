@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg0aeb7mobw1o"]
+[gd_scene load_steps=4 format=3 uid="uid://dg0aeb7mobw1o"]
 
 [ext_resource type="Texture2D" uid="uid://cxmjwhrf48ybc" path="res://player/ui/inventory/map/teleport.png" id="1_ehglx"]
 [ext_resource type="Script" path="res://player/ui/inventory/map/teleport.gd" id="2_g8t2k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4xr7"]
 
 [node name="Teleport" type="Button"]
 z_index = 1
@@ -9,6 +11,7 @@ offset_left = -16.0
 offset_top = -26.0
 scale = Vector2(2, 2)
 tooltip_text = "Teleport"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_e4xr7")
 icon = ExtResource("1_ehglx")
 flat = true
 script = ExtResource("2_g8t2k")

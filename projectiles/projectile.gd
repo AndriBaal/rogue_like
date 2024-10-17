@@ -22,7 +22,7 @@ func start(friendly: bool, origin: Vector2, target: Vector2) -> void:
 	self.rotation = atan2(self.direction.y, self.direction.x)
 
 func _ready() -> void:
-	self.body_entered.connect(self._on_body_entered)
+	self.body_shape_entered.connect(self._on_body_shape_entered)
 
 func _physics_process(delta: float) -> void:
 	self.max_age -= delta
@@ -32,8 +32,9 @@ func _physics_process(delta: float) -> void:
 	self.rotation += self.rotation_speed * delta
 	self.position += self.speed * self.direction * delta
 
-func _on_body_entered(body):
+func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, local_shape_index: int):
 	var destroy := false
+	var inner_collider := local_shape_index == 0
 	if self.friendly:
 		# Player hits himself
 		if body.get_instance_id() == self.player.get_instance_id():
@@ -46,8 +47,8 @@ func _on_body_entered(body):
 				self.pierce -= 1
 			else:
 				destroy = true
-		else:
-				destroy = true
+		elif inner_collider:
+			destroy = true
 	else:
 		# Player is hit
 		if body.get_instance_id() == self.player.get_instance_id():
@@ -56,8 +57,8 @@ func _on_body_entered(body):
 		# Other enemy is hit
 		elif 'health' in body:
 			return
-		# Wall is hit
-		destroy = true
+		elif inner_collider:
+			destroy = true
 		
 	if destroy:
 		var d := DESTROY.instantiate()

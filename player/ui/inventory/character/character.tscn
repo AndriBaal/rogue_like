@@ -81,37 +81,56 @@ alignment = 2
 property = "speed_stat"
 label = "SPD"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
+[node name="attack_slots" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.246
 offset_left = 12.0
-offset_top = 444.0
-offset_right = 343.0
-offset_bottom = 495.0
-scale = Vector2(2.22135, 2.22135)
+offset_top = 342.0
+offset_right = 150.48
+offset_bottom = 382.0
+scale = Vector2(2.26663, 2.26663)
+theme_override_constants/separation = 25
+alignment = 1
 
-[node name="HFlowContainer" type="HBoxContainer" parent="ScrollContainer"]
+[node name="primary_attack" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 
-[node name="button" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+[node name="ability1" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 
-[node name="button2" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+[node name="ability2" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 
-[node name="button3" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+[node name="ability3" parent="attack_slots" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 
-[node name="button4" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+[node name="attack_selection" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_top = 448.0
+offset_right = 760.0
+offset_bottom = 575.0
+color = Color(1, 1, 1, 0.203922)
+
+[node name="scroll" type="ScrollContainer" parent="attack_selection"]
+layout_mode = 2
+offset_left = 19.0
+offset_top = 7.0
+offset_right = 362.0
+offset_bottom = 61.0
+scale = Vector2(2, 2)
+
+[node name="box" type="HBoxContainer" parent="attack_selection/scroll"]
 layout_mode = 2
 
-[node name="button5" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
+[node name="close" type="Button" parent="attack_selection"]
+unique_name_in_owner = true
 layout_mode = 2
-
-[node name="button6" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
-layout_mode = 2
-
-[node name="button7" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
-layout_mode = 2
-
-[node name="button8" parent="ScrollContainer/HFlowContainer" instance=ExtResource("4_lhn5o")]
-layout_mode = 2
+offset_left = 713.0
+offset_top = 15.0
+offset_right = 741.0
+offset_bottom = 53.0
+grow_horizontal = 0
+text = "X"

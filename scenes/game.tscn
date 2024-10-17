@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://brnalduy51441" path="res://ui/pause_menu.tscn" id="3_1unu5"]
 
 [node name="game" type="Node2D"]
+process_priority = 1
 script = ExtResource("1_n35nx")
 
 [node name="rooms" type="Node2D" parent="."]

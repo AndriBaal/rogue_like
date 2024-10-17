@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd80kewjxyb45"]
+[gd_scene load_steps=2 format=3 uid="uid://5htdmhgijmm0"]
 
-[ext_resource type="Script" path="res://player/ui/inventory/character/attack_slot.gd" id="1_df1vt"]
+[ext_resource type="Script" path="res://player/ui/inventory/character/attack_selection.gd" id="1_g51pi"]
 
 [node name="button" type="Button"]
 custom_minimum_size = Vector2(40, 40)
@@ -14,4 +14,4 @@ offset_right = 40.0
 offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_df1vt")
+script = ExtResource("1_g51pi")

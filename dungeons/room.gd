@@ -133,7 +133,7 @@ func _process(_delta: float) -> void:
 		return
 		
 	if not active:
-		var player_size = self.target.get_node('collider').shape.get_rect().size * self.target.scale / 2.0
+		var player_size = self.target.get_node(^'collider').shape.get_rect().size * self.target.scale / 2.0
 		for entrance in self.entrances:
 			var direction = entrance['direction']
 			for v in [entrance['start'], entrance['end']]:

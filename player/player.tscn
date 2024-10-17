@@ -1,10 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=11 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
 [ext_resource type="Texture2D" uid="uid://brn2daw8eshl5" path="res://player/wizard/roll.png" id="3_56ane"]
 [ext_resource type="AudioStream" uid="uid://c5637qrydm4yb" path="res://player/wizard/hurt.mp3" id="3_d513c"]
+[ext_resource type="Texture2D" uid="uid://dl3ev3baxoaw6" path="res://player/roll_particle.png" id="3_q6273"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
+
+[sub_resource type="Curve" id="Curve_mhb5k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4946, 0.536563), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_srsbe"]
+curve = SubResource("Curve_mhb5k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_akn77"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.5
+scale_max = 3.5
+scale_curve = SubResource("CurveTexture_srsbe")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
 radius = 24.0
@@ -24,6 +42,16 @@ color = Color(1, 0.677, 0.43, 1)
 shadow_enabled = true
 texture = ExtResource("2_niumg")
 texture_scale = 1.1
+
+[node name="roll_particle" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_akn77")
+texture = ExtResource("3_q6273")
+lifetime = 0.65
+one_shot = true
+explosiveness = 0.6
 
 [node name="walk_sprite" type="Sprite2D" parent="."]
 visible = false
@@ -50,6 +78,7 @@ hframes = 17
 vframes = 8
 
 [node name="collider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_0d6cu")
 
 [node name="hurt_audio" type="AudioStreamPlayer2D" parent="."]
