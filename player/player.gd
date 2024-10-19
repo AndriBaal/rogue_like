@@ -155,7 +155,7 @@ enum PlayerState {
 		$ui/inventory/SkillTree.update_skill_token_ui(val)
 
 
-var game_over := preload("res://ui/game_over.tscn")
+const GAME_OVER := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	self._update_potion_ui()
@@ -350,7 +350,7 @@ func deal_damage(damage: float) -> bool:
 	return true
 	
 func _death():
-	var game_over = self.game_over.instantiate()
+	var game_over = self.GAME_OVER.instantiate()
 	self.game.add_child(game_over)
 	
 func _update_health_ui():

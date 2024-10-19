@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqfhn2yf7sdvw"
-path="res://.godot/imported/idle.png-31760798c4b2b5a7805615c7e3811360.ctex"
+uid="uid://d0hgh3cug5teo"
+path="res://.godot/imported/walk.png-ded9bf582cb63680cc6c1f39b37b5a2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/goblin/idle.png"
-dest_files=["res://.godot/imported/idle.png-31760798c4b2b5a7805615c7e3811360.ctex"]
+source_file="res://enemies/goblin_axe/walk.png"
+dest_files=["res://.godot/imported/walk.png-ded9bf582cb63680cc6c1f39b37b5a2e.ctex"]
 
 [params]
 

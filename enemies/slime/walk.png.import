@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://12tvq7xs3fq4"
-path="res://.godot/imported/idle_attack.png-74f7e2080573ce43816b92af1112ad93.ctex"
+uid="uid://dp4nsag3nu3py"
+path="res://.godot/imported/walk.png-4254d3e0b83e5259c4f789ba588a8d3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/goblin/idle_attack.png"
-dest_files=["res://.godot/imported/idle_attack.png-74f7e2080573ce43816b92af1112ad93.ctex"]
+source_file="res://enemies/slime/walk.png"
+dest_files=["res://.godot/imported/walk.png-4254d3e0b83e5259c4f789ba588a8d3a.ctex"]
 
 [params]
 

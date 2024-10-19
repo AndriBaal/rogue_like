@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dogeclivltb1b"
-path="res://.godot/imported/axe_2.png-7a44c3bef902af97ea7ba50c609cba7c.ctex"
+uid="uid://bk6x1nj2gjstq"
+path="res://.godot/imported/walk.png-fde9cc366bf43c53372bb5d8b62f9715.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tmp/axe_2.png"
-dest_files=["res://.godot/imported/axe_2.png-7a44c3bef902af97ea7ba50c609cba7c.ctex"]
+source_file="res://enemies/goblin_spear/walk.png"
+dest_files=["res://.godot/imported/walk.png-fde9cc366bf43c53372bb5d8b62f9715.ctex"]
 
 [params]
 

@@ -11,7 +11,10 @@ enum EnemyState {
 
 const HIT_ANIMATION_DURATION := 0.25
 
-var despawn := preload("res://enemies/despawn.tscn")
+const DESPAWN := preload("res://enemies/despawn.tscn")
+const BRONZE_COIN = preload("res://items/coin/bronze_coin.tscn")
+const SILVER_COIN = preload("res://items/coin/silver_coin.tscn")
+const GOLD_COIN = preload("res://items/coin/gold_coin.tscn")
 
 @onready var game = $/root/game
 @onready var target = $/root/game/player
@@ -36,7 +39,7 @@ var despawn := preload("res://enemies/despawn.tscn")
 
 
 func _ready() -> void:
-	pass
+	$navigation.velocity_computed.connect(self.velocity_computed)
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO
@@ -106,6 +109,7 @@ func _physics_process(_delta: float) -> void:
 		EnemyState.IDLE:
 			return
 		EnemyState.MOVING:
+			# TODO: Optimize do not pathfind every frame
 			$navigation.target_position = target.position
 			var current_agent_position: Vector2 = self.global_position
 			var next_path_position: Vector2 = $navigation.get_next_path_position()
@@ -157,27 +161,33 @@ func deal_damage(damage: float):
 
 func death():
 	self.queue_free()
-	var d := self.despawn.instantiate()
+	var d := self.DESPAWN.instantiate()
 	d.position = self.global_position
 	d.scale *= self.global_scale
 	$/root/game/effects.add_child(d)
 	
 	for item in self.loot_pool():
-		for _amount in range(item['amount']):
-			var chance = randf()
-			if chance <= item['drop_chance']:
-				const ITEM_SPREAD := 75.0
-				var i = item['scene'].instantiate()
-				var offset := Vector2(
-					randf_range(-ITEM_SPREAD, ITEM_SPREAD), 
-					randf_range(-ITEM_SPREAD, ITEM_SPREAD)
-				)
-				i.position = self.global_position + offset
-				$/root/game/items.add_child(i)
+		
+		var chance = randf()
+		if chance > item['chance']:
+			continue
+		var amount = item['amount']
+		for _amount in range(amount.x, randi_range(amount.x, amount.y)):
+			const ITEM_SPREAD := 75.0
+			var i = item['scene'].instantiate()
+			var offset := Vector2(
+				randf_range(-ITEM_SPREAD, ITEM_SPREAD), 
+				randf_range(-ITEM_SPREAD, ITEM_SPREAD)
+			)
+			i.position = self.global_position + offset
+			$/root/game/items.add_child(i)
 
 func start_attack() -> void:
 	self.movement = Vector2.ZERO
 	self.attack_sprite = $idle_attack_sprite
+	
+func velocity_computed(safe: Vector2):
+	print(safe)
 	
 func attack():
 	pass

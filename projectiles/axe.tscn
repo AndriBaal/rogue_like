@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3a1ncy2mum6q"]
+
+[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/projectile.tscn" id="1_0svef"]
+[ext_resource type="Texture2D" uid="uid://dogeclivltb1b" path="res://projectiles/axe.png" id="2_wotpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndsfr"]
+size = Vector2(16, 24)
+
+[node name="projectile" instance=ExtResource("1_0svef")]
+scale = Vector2(3, 3)
+speed = 450.0
+damage = 6.0
+color = Color(1, 1, 1, 1)
+pierce = 1
+rotation_speed = 20.0
+
+[node name="sprite" parent="." index="0"]
+texture = ExtResource("2_wotpv")
+
+[node name="collider" parent="." index="1"]
+shape = SubResource("RectangleShape2D_ndsfr")

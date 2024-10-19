@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c53bxpt1madvl"]
+
+[ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_2rd5g"]
+[ext_resource type="Script" path="res://enemies/goblin_axe/goblin_axe.gd" id="2_du1hb"]
+[ext_resource type="Texture2D" uid="uid://tqufk1vniars" path="res://enemies/goblin_axe/idle.png" id="3_0bag1"]
+[ext_resource type="Texture2D" uid="uid://de7j4r7he8cpa" path="res://enemies/goblin_axe/idle_attack.png" id="4_g0vn3"]
+[ext_resource type="Texture2D" uid="uid://d0hgh3cug5teo" path="res://enemies/goblin_axe/walk.png" id="5_gf2y4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
+radius = 25.0
+
+[node name="enemy" instance=ExtResource("1_2rd5g")]
+scale = Vector2(3, 3)
+script = ExtResource("2_du1hb")
+
+[node name="idle_sprite" parent="." index="0"]
+texture = ExtResource("3_0bag1")
+vframes = 8
+
+[node name="idle_attack_sprite" parent="." index="1"]
+texture = ExtResource("4_g0vn3")
+hframes = 11
+vframes = 8
+
+[node name="walk_sprite" parent="." index="2"]
+texture = ExtResource("5_gf2y4")
+hframes = 9
+vframes = 8
+
+[node name="collider" parent="." index="3"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_s84cm")

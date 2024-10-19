@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bnqdjjmtuwmy5"]
 
 [ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_4243h"]
-[ext_resource type="Script" path="res://enemies/goblin/goblin.gd" id="2_3p0th"]
-[ext_resource type="Texture2D" uid="uid://bqfhn2yf7sdvw" path="res://enemies/goblin/idle.png" id="2_rfiit"]
-[ext_resource type="Texture2D" uid="uid://12tvq7xs3fq4" path="res://enemies/goblin/idle_attack.png" id="4_5sqfl"]
-[ext_resource type="Texture2D" uid="uid://bk6x1nj2gjstq" path="res://enemies/goblin/walk.png" id="5_18tvq"]
+[ext_resource type="Script" path="res://enemies/goblin_spear/goblin_spear.gd" id="2_3p0th"]
+[ext_resource type="Texture2D" uid="uid://bqfhn2yf7sdvw" path="res://enemies/goblin_spear/idle.png" id="2_rfiit"]
+[ext_resource type="Texture2D" uid="uid://12tvq7xs3fq4" path="res://enemies/goblin_spear/idle_attack.png" id="4_5sqfl"]
+[ext_resource type="Texture2D" uid="uid://bk6x1nj2gjstq" path="res://enemies/goblin_spear/walk.png" id="5_18tvq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
 radius = 25.0
@@ -12,6 +12,12 @@ radius = 25.0
 [node name="enemy" instance=ExtResource("1_4243h")]
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_3p0th")
+max_health = 24.0
+health = 24.0
+attack_radius = 350.0
+attack_speed = 2.1
+movement_speed = 150.0
+melee_damage = 10.0
 
 [node name="idle_sprite" parent="." index="0"]
 texture = ExtResource("2_rfiit")

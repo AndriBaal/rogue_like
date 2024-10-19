@@ -101,6 +101,7 @@ texture_region_size = Vector2i(48, 48)
 5:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_aspeu")
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24, -12, 12, -12, 12, 24, 24, 24, 24, -24, -24, -24)
 5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+14:0/next_alternative_id = 2
 14:0/0 = 0
 14:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 14:0/0/custom_data_1 = true

@@ -18,3 +18,7 @@ visible = false
 
 [node name="navigation" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+avoidance_enabled = true
+radius = 25.0
+max_neighbors = 5
+debug_enabled = true
