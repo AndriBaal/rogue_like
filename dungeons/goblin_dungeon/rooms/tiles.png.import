@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpmd72e6ptcph"
-path="res://.godot/imported/xp_bar_background.png-34013440f8f426ca1777ea4522e58791.ctex"
+uid="uid://vjv1oc5d2bii"
+path="res://.godot/imported/tiles.png-4a343de25b4b42f1a938f3f4adb95074.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/xp_bar_background.png"
-dest_files=["res://.godot/imported/xp_bar_background.png-34013440f8f426ca1777ea4522e58791.ctex"]
+source_file="res://dungeons/goblin_dungeon/rooms/tiles.png"
+dest_files=["res://.godot/imported/tiles.png-4a343de25b4b42f1a938f3f4adb95074.ctex"]
 
 [params]
 

@@ -11,14 +11,17 @@
 scale = Vector2(2.75, 2.75)
 script = ExtResource("2_qjxi4")
 
-[node name="walk_sprite" parent="." index="2"]
+[node name="walk_sprite" parent="." index="3"]
 texture = ExtResource("3_vlwt7")
 
-[node name="idle_sprite" parent="." index="3"]
+[node name="idle_sprite" parent="." index="4"]
 texture = ExtResource("4_4n8le")
 
-[node name="idle_attack_sprite" parent="." index="4"]
+[node name="idle_attack_sprite" parent="." index="5"]
 texture = ExtResource("5_yh1x0")
 
-[node name="walk_attack_sprite" parent="." index="5"]
+[node name="walk_attack_sprite" parent="." index="6"]
 texture = ExtResource("6_1yv4r")
+
+[node name="collider" parent="." index="8"]
+position = Vector2(0, 3)

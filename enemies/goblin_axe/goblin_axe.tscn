@@ -7,11 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://d0hgh3cug5teo" path="res://enemies/goblin_axe/walk.png" id="5_gf2y4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
-radius = 25.0
+radius = 10.6719
 
-[node name="enemy" instance=ExtResource("1_2rd5g")]
+[node name="goblin_axe" instance=ExtResource("1_2rd5g")]
 scale = Vector2(3, 3)
 script = ExtResource("2_du1hb")
+max_health = 24.0
+health = 24.0
+attack_radius = 350.0
+attack_speed = 2.1
+movement_speed = 150.0
+melee_damage = 10.0
 
 [node name="idle_sprite" parent="." index="0"]
 texture = ExtResource("3_0bag1")

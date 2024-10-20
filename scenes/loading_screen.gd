@@ -38,9 +38,6 @@ func _generate_level():
 
 
 func _recurse_add_rooms(root, room):
-	var tilemap = room.get_node(^'tiles')
-	var tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
-			
 	root.add_child(room)
 	for child in room.children:
 		self._recurse_add_rooms(root, child)

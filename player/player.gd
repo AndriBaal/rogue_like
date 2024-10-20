@@ -79,12 +79,12 @@ enum PlayerState {
 @onready var idle_sprite := $idle_sprite
 @onready var roll_sprite := $roll_sprite
 @onready var idle_attack_sprite := $idle_attack_sprite
-@onready var mana_bar := $ui/mana_bar
+@onready var mana_bar := $ui/main/mana_bar
 @onready var inventory := $ui/inventory
 
 @export var xp_for_lvl_up := 50
 @export var speed := 600.0
-@export var immunity_seconds := 0.75
+@export var immunity_seconds := 1.5
 
 @export var direction := Direction.SOUTH
 @export var state: PlayerState = PlayerState.IDLE
@@ -130,6 +130,7 @@ enum PlayerState {
 @export var potions := max_potions
 @export var heal_per_potion = 8
 
+@export var roll_cost = 5.0
 @export var roll_duration := 0.55
 @export var roll_speed := 750.0
 @export var roll_timer := 0.0
@@ -162,8 +163,23 @@ func _ready() -> void:
 	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("inventory"):
+	if Input.is_action_just_pressed("skill_tree"):
 		self.inventory.visible = !self.inventory.visible
+		$ui/inventory/SkillTree.visible = true
+		$ui/inventory/Character.visible = false
+		$ui/inventory/Map.visible = false
+		
+	if Input.is_action_just_pressed("character"):
+		self.inventory.visible = !self.inventory.visible
+		$ui/inventory/Character.visible = true
+		$ui/inventory/SkillTree.visible = false
+		$ui/inventory/Map.visible = false
+	
+	if Input.is_action_just_pressed("map"):
+		self.inventory.visible = !self.inventory.visible
+		$ui/inventory/Map.visible = true
+		$ui/inventory/Character.visible = false
+		$ui/inventory/SkillTree.visible = false
 	
 	var new_movement := Input.get_vector(
 		"move_left",
@@ -182,7 +198,7 @@ func _process(delta: float) -> void:
 	
 
 	self.roll_timer -= delta
-	if roll or roll_timer >= 0.0:
+	if roll and _use_mana(self.roll_cost) or roll_timer >= 0.0:
 		new_state = PlayerState.ROLL
 	elif not is_moving:
 		new_state = PlayerState.IDLE
@@ -198,7 +214,7 @@ func _process(delta: float) -> void:
 		var attack = self.active_attacks[attack_slot]
 		if attack:
 			self.attack_cooldowns[attack_slot] -= delta
-			var attack_ui = self.get_node('ui/attack/' + slot_to_string(attack_slot))
+			var attack_ui = self.get_node('ui/main/attack/' + slot_to_string(attack_slot))
 			var occluder = attack_ui.get_node(^'occluder')
 			var ratio = max(0.0, self.attack_cooldowns[attack_slot] / attack['cool_down'])
 			occluder.scale.y = ratio
@@ -221,6 +237,7 @@ func _process(delta: float) -> void:
 					
 
 	if new_state != self.state:
+		self.make_intangible(false)
 		self.walk_sprite.visible = false
 		self.idle_sprite.visible = false
 		self.idle_attack_sprite.visible = false
@@ -255,6 +272,7 @@ func _process(delta: float) -> void:
 			active_sprite = self.roll_sprite
 			active_sprite.frame_coords.x = int(abs(self.roll_timer - self.roll_duration) / self.roll_duration * active_sprite.hframes)
 			self.animation_timer += delta
+			self.make_intangible(self.has_roll_iframes())
 		PlayerState.IDLE:
 			active_sprite = self.idle_sprite
 		PlayerState.IDLE_ATTACK:
@@ -273,10 +291,10 @@ func _process(delta: float) -> void:
 
 
 	if not inventory.visible and self.game.mouse_wheel_delta:
-		const ZOOM_SPEED: float = 1.0
+		const ZOOM_SPEED: float = 0.1
 		const ZOOM_MIN: float = 0.1
 		const ZOOM_MAX: float = 5.0
-		var zoom_change := self.game.mouse_wheel_delta * 0.1
+		var zoom_change := self.game.mouse_wheel_delta * ZOOM_SPEED
 		var new_zoom = camera.zoom * (1 + zoom_change)
 		new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
 		new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
@@ -324,17 +342,28 @@ func heal(heal: float):
 	self.health = min(self.health, self.max_health)
 	self._update_health_ui()
 	
-
-func has_iframes() -> bool:
-	if self.immunity_timer < self.immunity_seconds:
-		return true
+func make_intangible(intangible):
+	if intangible:
+		self.collision_layer = 0b10
+		self.collision_mask = 0b10
+	else:
+		self.collision_layer = 0b01
+		self.collision_mask = 0b01
+		
 	
+func has_hit_iframes() -> bool:
+	return self.immunity_timer < self.immunity_seconds
+	
+func has_roll_iframes() -> bool:
 	if self.state == PlayerState.ROLL:
 		var roll_state = self.roll_timer / self.roll_duration
 		if roll_state >= self.roll_immunity_range.x and roll_state <= self.roll_immunity_range.y:
 			return true
-		
+			
 	return false
+
+func has_iframes() -> bool:
+	return self.has_hit_iframes() or self.has_roll_iframes()
 
 # Returns a true, if the projectile should be destroyed
 func deal_damage(damage: float) -> bool:
@@ -354,20 +383,20 @@ func _death():
 	self.game.add_child(game_over)
 	
 func _update_health_ui():
-	var health_bar := $ui/health_bar
+	var health_bar := $ui/main/health_bar
 	health_bar.max_value = self.max_health
 	health_bar.value = self.health
 
 func gain_xp(xp: int):
 	self.xp += xp
-	var bar = $ui/xp/bar
+	var bar = $ui/main/xp/bar
 	while self.xp > self.xp_for_lvl_up:
 		self.xp -= self.xp_for_lvl_up
 		self.level += 1
 		self._level_up()
 	bar.max_value = float(self.xp_for_lvl_up)
 	bar.value = float(self.xp)
-	$ui/xp/level.text = "LVL. %s" % self.level
+	$ui/main/xp/level.text = str(self.level)
 	
 func _level_up():
 	self.skill_tokens += 1
@@ -390,13 +419,13 @@ func refill_potion(amount: int):
 	
 # TODO: Refactor to potion UI
 func _update_potion_ui():
-	var flask := $ui/health/flask
-	var amount: Label = $ui/health/amount
+	var sprite := $ui/main/potion/sprite
+	var amount: Label = $ui/main/potion/amount
 	if self.potions == 0:
-		flask.region_rect.position.x = flask.region_rect.size.x
+		sprite.region_rect.position.x = sprite.region_rect.size.x
 		amount.visible = false
 	else:
-		flask.region_rect.position.x = 0
+		sprite.region_rect.position.x = 0
 		amount.visible = true
 		amount.text = int_to_roman(self.potions)
 	
@@ -414,12 +443,12 @@ func int_to_roman(num: int) -> String:
 	
 func assign_attack(slot: PlayerAttackSlot, attack):
 	var slot_string = slot_to_string(slot)
-	var attack_ui = self.get_node('ui/attack/' + slot_string)
+	var attack_ui = self.get_node('ui/main/attack/' + slot_string)
 	var attack_slot = self.get_node('ui/inventory/Character/attack_slots/' + slot_string)
 	if attack == null:
 		self.active_attacks[slot] = null
 		attack_slot.icon = null
-		attack_ui.texture = null
+		attack_ui.texture = null	
 		attack_ui.visible = false
 		return
 	assert('unlocked' in attack)
@@ -439,7 +468,7 @@ func add_money(amount: int):
 	self._update_money_ui()
 
 func _update_money_ui():
-	$ui/money/label.text = str(self.money)
+	$ui/main/money/label.text = str(self.money)
 
 func decrease_stat(property: String):
 	self[property] -= 1

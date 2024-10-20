@@ -151,7 +151,6 @@ func _close_room():
 	for entrance in self.entrances:
 		if not entrance['has_connection']:
 			continue
-		var direction = entrance['direction']
 		for tile in [entrance["start"], entrance["end"]]:
 			var atlas = self.tiles.get_cell_atlas_coords(tile) - Vector2i(1, 0)
 			var alt = self.tiles.get_cell_alternative_tile(tile)

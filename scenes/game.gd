@@ -13,7 +13,7 @@ func spawn_projectile(projectile, origin: Vector2, target: Vector2, friendly: bo
 	self.projectiles.add_child(projectile)
 	projectile.set_owner($/root/game)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	self.mouse_wheel_delta = 0.0
 	
 func _input(event):

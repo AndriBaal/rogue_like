@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://dungeons/room.gd" id="1_6u1al"]
 
 [node name="room" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_6u1al")
 
 [node name="tiles" type="TileMapLayer" parent="."]
@@ -13,4 +14,7 @@ scale = Vector2(3, 3)
 z_index = -1
 scale = Vector2(3, 3)
 
+[node name="decorations" type="CanvasGroup" parent="."]
+
 [node name="enemies" type="Node2D" parent="."]
+y_sort_enabled = true

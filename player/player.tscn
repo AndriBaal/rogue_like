@@ -25,11 +25,11 @@ scale_max = 3.5
 scale_curve = SubResource("CurveTexture_srsbe")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
-radius = 24.0
+radius = 17.4545
 
 [node name="player" type="CharacterBody2D"]
+y_sort_enabled = true
 scale = Vector2(2, 2)
-collision_layer = 3
 motion_mode = 1
 floor_block_on_wall = false
 script = ExtResource("1_vfs3i")
@@ -41,10 +41,11 @@ process_callback = 0
 color = Color(1, 0.677, 0.43, 1)
 shadow_enabled = true
 texture = ExtResource("2_niumg")
-texture_scale = 0.4
+texture_scale = 0.35
 
 [node name="roll_particle" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, 12)
 emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_akn77")

@@ -7,17 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bk6x1nj2gjstq" path="res://enemies/goblin_spear/walk.png" id="5_18tvq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
-radius = 25.0
+radius = 12.8
 
-[node name="enemy" instance=ExtResource("1_4243h")]
+[node name="goblin_spear" instance=ExtResource("1_4243h")]
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_3p0th")
-max_health = 24.0
-health = 24.0
-attack_radius = 350.0
-attack_speed = 2.1
-movement_speed = 150.0
-melee_damage = 10.0
 
 [node name="idle_sprite" parent="." index="0"]
 texture = ExtResource("2_rfiit")
@@ -34,5 +28,5 @@ hframes = 9
 vframes = 8
 
 [node name="collider" parent="." index="3"]
-position = Vector2(0, 3)
+position = Vector2(0, 3.2)
 shape = SubResource("CircleShape2D_s84cm")

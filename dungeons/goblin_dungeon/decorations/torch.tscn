@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://yu08hkkjpwth"]
+
+[ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="1_38sll"]
+[ext_resource type="Texture2D" uid="uid://cp4y4r8va2jhc" path="res://dungeons/goblin_dungeon/decorations/torch.png" id="1_rksi7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2o75"]
+atlas = ExtResource("1_rksi7")
+region = Rect2(0, 48, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5imny"]
+atlas = ExtResource("1_rksi7")
+region = Rect2(14, 48, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbdko"]
+atlas = ExtResource("1_rksi7")
+region = Rect2(0, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5l65"]
+atlas = ExtResource("1_rksi7")
+region = Rect2(14, 0, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qf2l"]
+atlas = ExtResource("1_rksi7")
+region = Rect2(0, 24, 14, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i0td"]
+atlas = ExtResource("1_rksi7")
+region = Rect2(14, 24, 14, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xxayf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2o75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5imny")
+}],
+"loop": true,
+"name": &"bottom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbdko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5l65")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qf2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i0td")
+}],
+"loop": true,
+"name": &"top",
+"speed": 5.0
+}]
+
+[node name="Torch" type="AnimatedSprite2D"]
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_xxayf")
+animation = &"bottom"
+autoplay = "bottom"
+frame_progress = 0.698155
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+color = Color(0.97, 0.226333, 0, 1)
+texture = ExtResource("1_38sll")
+texture_scale = 0.25

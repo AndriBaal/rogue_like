@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://bm7qmh0hqchmk"]
 
 [node name="attack" type="TextureRect"]
-clip_contents = true
-expand_mode = 4
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+expand_mode = 5
+stretch_mode = 6
 
 [node name="occluder" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
+anchor_left = -0.1
+anchor_right = 1.1
 anchor_bottom = 1.0
 grow_vertical = 2
-scale = Vector2(1, 0.5)
+scale = Vector2(1, 1e-05)
 color = Color(0.494118, 0.494118, 0.494118, 0.6)

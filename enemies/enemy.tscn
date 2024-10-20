@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nevkm"]
 
 [node name="enemy" type="CharacterBody2D"]
+y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_nevkm")
 
@@ -17,8 +18,13 @@ visible = false
 [node name="collider" type="CollisionShape2D" parent="."]
 
 [node name="navigation" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 25.0
-max_neighbors = 5
-debug_enabled = true
+radius = 20.0
+time_horizon_agents = 0.0
+
+[node name="path_calculation" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true

@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2mmv8dwvmbxq"]
+
+[ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_ch1wk"]
+[ext_resource type="Texture2D" uid="uid://boiknn887tn0k" path="res://enemies/slime/idle.png" id="2_0e4id"]
+[ext_resource type="Script" path="res://enemies/slime/slime.gd" id="2_616ph"]
+[ext_resource type="Texture2D" uid="uid://cb5hpq1opf5di" path="res://enemies/slime/trail.png" id="2_xfqy7"]
+[ext_resource type="Texture2D" uid="uid://dp4nsag3nu3py" path="res://enemies/slime/walk.png" id="3_dwcur"]
+
+[sub_resource type="Curve" id="Curve_n087l"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.941685, 0.997623), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nw7pt"]
+curve = SubResource("Curve_n087l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yiv6a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(15, 1, 1)
+angle_min = -720.0
+angle_max = 116.0
+gravity = Vector3(0, 0, 0)
+scale_min = 4.2
+scale_max = 4.2
+scale_curve = SubResource("CurveTexture_nw7pt")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rc0bd"]
+radius = 15.2013
+
+[node name="slime" instance=ExtResource("1_ch1wk")]
+modulate = Color(0.22, 0, 5.914, 1)
+scale = Vector2(2.5, 2.5)
+script = ExtResource("2_616ph")
+attack_radius = -1.0
+movement_speed = 275.0
+
+[node name="trail" type="GPUParticles2D" parent="." index="0"]
+visible = false
+modulate = Color(1, 1, 1, 0.352941)
+position = Vector2(0, -4.4)
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_yiv6a")
+texture = ExtResource("2_xfqy7")
+lifetime = 2.0
+
+[node name="idle_sprite" parent="." index="1"]
+texture = ExtResource("2_0e4id")
+vframes = 8
+region_rect = Rect2(0, 0, 48, 48)
+
+[node name="walk_sprite" parent="." index="3"]
+texture = ExtResource("3_dwcur")
+hframes = 9
+vframes = 8
+region_rect = Rect2(0, 0, 48, 48)
+
+[node name="collider" parent="." index="4"]
+position = Vector2(0, 0.4)
+shape = SubResource("CircleShape2D_rc0bd")

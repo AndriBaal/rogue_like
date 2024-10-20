@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwm7h2kkeutni"
-path="res://.godot/imported/xp_bar.png-1a02bc5fc09d81e7d2f8f8f0d26c3b6b.ctex"
+uid="uid://b10sadkplfjja"
+path="res://.godot/imported/rock_spike.png-6c6715b2650571c0881a2cbd75ebf813.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/xp_bar.png"
-dest_files=["res://.godot/imported/xp_bar.png-1a02bc5fc09d81e7d2f8f8f0d26c3b6b.ctex"]
+source_file="res://player/ui/attacks/rock_spike.png"
+dest_files=["res://.godot/imported/rock_spike.png-6c6715b2650571c0881a2cbd75ebf813.ctex"]
 
 [params]
 

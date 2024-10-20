@@ -27,18 +27,18 @@ func open_teleporters():
 	for teleporter in self.teleporters.get_children():
 		teleporter.disabled = false
 	
-func add_rect(cell, tile_size, color := Color.GRAY):
+func add_rect(cell, tile_size, rect_color := Color.GRAY):
 	self.tile_size = tile_size
 	var color_rect := ColorRect.new()
-	color_rect.color = color
+	color_rect.color = rect_color
 	color_rect.size = cell.size * SCALE
 	color_rect.position = cell.position * SCALE
 	tiles.add_child(color_rect)
 	
-func add_teleport(position):
+func add_teleport(teleport_position):
 	var teleporter := TELEPORT_BUTTON.instantiate()		
-	teleporter.position = position * SCALE - teleporter.get_global_rect().size / 2.0
-	teleporter.teleport_position = Vector2(position) * tile_size + tile_size / 2.0
+	teleporter.position = teleport_position * SCALE - teleporter.get_global_rect().size / 2.0
+	teleporter.teleport_position = Vector2(teleport_position) * tile_size + tile_size / 2.0
 	teleporters.add_child(teleporter)
 
 func _process(_delta: float) -> void:

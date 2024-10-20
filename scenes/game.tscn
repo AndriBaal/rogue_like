@@ -1,18 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqs0n48ll4s83"]
+[gd_scene load_steps=5 format=3 uid="uid://bqs0n48ll4s83"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_n35nx"]
 [ext_resource type="PackedScene" uid="uid://bvth46mu6adxs" path="res://player/wizard/wizard.tscn" id="2_6ghqu"]
 [ext_resource type="PackedScene" uid="uid://brnalduy51441" path="res://ui/pause_menu.tscn" id="3_1unu5"]
 
+[sub_resource type="Environment" id="Environment_ed0iv"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+glow_hdr_threshold = 0.2
+
 [node name="game" type="Node2D"]
 process_priority = 1
+y_sort_enabled = true
 script = ExtResource("1_n35nx")
 
 [node name="rooms" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="projectiles" type="Node2D" parent="."]
 
 [node name="player" parent="." instance=ExtResource("2_6ghqu")]
+z_as_relative = false
+y_sort_enabled = false
 
 [node name="items" type="Node2D" parent="."]
 
@@ -20,5 +30,8 @@ script = ExtResource("1_n35nx")
 
 [node name="darkness" type="CanvasModulate" parent="."]
 color = Color(0.205117, 0.205117, 0.205117, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ed0iv")
 
 [node name="pause_menu" parent="." instance=ExtResource("3_1unu5")]

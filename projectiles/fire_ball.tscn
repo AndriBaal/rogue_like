@@ -9,6 +9,8 @@ size = Vector2(12, 7)
 
 [node name="fire_ball" instance=ExtResource("1_vqir2")]
 scale = Vector2(6, 6)
+color = Color(55.645, 0.537, 0, 1)
+damage_type = 1
 
 [node name="sprite" parent="." index="0"]
 texture = ExtResource("2_2i11u")

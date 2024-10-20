@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://je516rkx6ova"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_a5w4i"]
-[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/tiles.tres" id="2_io2jm"]
+[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_io2jm"]
 
 [node name="room" instance=ExtResource("1_a5w4i")]
 

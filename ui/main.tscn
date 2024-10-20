@@ -1,0 +1,128 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcdcka5joye5q"]
+
+[ext_resource type="Texture2D" uid="uid://c3ymvinqflylj" path="res://player/ui/test.png" id="1_n4l5a"]
+[ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="2_s1grn"]
+[ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="3_fcdm5"]
+[ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="4_jncpu"]
+[ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/attack.tscn" id="5_lnf3w"]
+[ext_resource type="Texture2D" uid="uid://dwm7h2kkeutni" path="res://player/ui/xp_bar.png" id="7_a8xg5"]
+[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/flask.png" id="8_dw87j"]
+[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="9_yh8bj"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 639.0
+offset_bottom = 128.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_n4l5a")
+expand_mode = 1
+
+[node name="health_bar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 77.0
+offset_right = 466.0
+offset_bottom = 96.0
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_s1grn")
+texture_progress = ExtResource("3_fcdm5")
+
+[node name="mana_bar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 102.0
+offset_right = 466.0
+offset_bottom = 120.0
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_s1grn")
+texture_progress = ExtResource("4_jncpu")
+
+[node name="attack" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 7.0
+offset_right = 470.0
+offset_bottom = 64.0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="primary_attack" parent="attack" instance=ExtResource("5_lnf3w")]
+layout_mode = 2
+
+[node name="ability1" parent="attack" instance=ExtResource("5_lnf3w")]
+layout_mode = 2
+
+[node name="ability2" parent="attack" instance=ExtResource("5_lnf3w")]
+layout_mode = 2
+
+[node name="ability3" parent="attack" instance=ExtResource("5_lnf3w")]
+layout_mode = 2
+
+[node name="xp" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="bar" type="TextureProgressBar" parent="xp"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 49.0
+offset_bottom = 89.0
+step = 0.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("7_a8xg5")
+
+[node name="level" type="Label" parent="xp"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 95.0
+offset_right = 49.0
+offset_bottom = 123.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="potion" type="Node2D" parent="."]
+position = Vector2(560, 48)
+scale = Vector2(2.5, 2.5)
+
+[node name="sprite" type="Sprite2D" parent="potion"]
+texture = ExtResource("8_dw87j")
+region_enabled = true
+region_rect = Rect2(0, 0, 17, 26)
+
+[node name="amount" type="Label" parent="potion"]
+offset_left = 6.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 6.0
+scale = Vector2(0.5, 0.5)
+text = "III"
+
+[node name="money" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 540.0
+offset_top = 101.0
+offset_right = 540.0
+offset_bottom = 101.0
+scale = Vector2(0.45, 0.45)
+
+[node name="label" type="Label" parent="money"]
+layout_mode = 0
+offset_top = 4.44444
+offset_right = 151.0
+offset_bottom = 46.4444
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="money" type="Sprite2D" parent="money"]
+position = Vector2(175.556, 22.2222)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_yh8bj")
+region_enabled = true
+region_rect = Rect2(0, 0, 12, 16)

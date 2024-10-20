@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=4 uid="uid://diso6aeyxfhhl"]
+
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8n4ip"]
+[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_auvdt"]
+[ext_resource type="PackedScene" uid="uid://c2mmv8dwvmbxq" path="res://enemies/slime/slime.tscn" id="3_r3w6a"]
+[ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="4_jxifh"]
+
+[node name="room" instance=ExtResource("1_8n4ip")]
+
+[node name="tiles" parent="." index="0"]
+tile_map_data = PackedByteArray("AAD9/wIAAAAKAAEAAAD9/wEAAAANAAEAAAD9/wAAAAAHAAEAAAD9////AAALAAEAAAD9//7/AAAGAAEAAAD9//3/AAAFAAEAAAD+//3/AAADAAEAAAD///3/AAAAAAEAAAAAAP3/AAANAAEAAAABAP3/AAAIAAEAAAACAP3/AAAAAAEAAAADAP3/AAALAAEAAAADAP7/AAAIAAEAAAADAP//AAALAAEAAAADAAAAAAAEAAEAAAADAAEAAAAEAAEAAAADAAIAAAALAAEAAAACAAIAAAAKAAEAAAABAAIAAAANAAEAAAAAAAIAAAAHAAEAAAD//wIAAAANAAEAAAD+/wIAAAABAAEAAAACAP//AAAEAAEAAAABAP//AAAAAAEAAAAAAP//AAAOAAEAAAAAAAAAAAAOAAEAAAAAAAEAAAAJAAEAAAD//wEAAAAOAAEAAAABAP7/AAACAAEAAAACAP7/AAACAAEAAAACAAAAAAAOAAEAAAACAAEAAAADAAEAAAABAAAAAAAIAAEAAAABAAEAAAALAAEAAAD+//7/AAAGAAEAAAD+////AAAAAAEAAAD///7/AAANAAEAAAAAAP7/AAAOAAEAAAD/////AAABAAEAAAD//wAAAAALAAEAAAD+/wAAAAAIAAEAAAD+/wEAAAAFAAEAAAD9//z/AAAAAAAAAAD+//z/AAAAAAAAAAD///z/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAADAAAAAAD8//z/AAADAAAAABAEAP3/AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAACAAAAAAAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAAAAAADAAMAAAACAAAAAFACAAMAAAACAAAAAFABAAMAAAACAAAAAFAAAAMAAAACAAAAAFD//wMAAAACAAAAAFD+/wMAAAACAAAAAFD9/wMAAAACAAAAAFD8//3/AAACAAAAADD8//7/AAACAAAAADD8////AAACAAAAADD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAACAAAAADAEAAMAAAAEAAAAAAD8/wMAAAAEAAAAABA=")
+tile_set = ExtResource("2_auvdt")
+
+[node name="entrances" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD+/wMAAAAFAAAAAHD//wMAAAANAAAAAAAAAAMAAAANAAAAAAABAAMAAAAFAAAAAGAEAP7/AAABAAAAAAAEAP//AAANAAAAAGAEAAAAAAANAAAAAGAEAAEAAAAFAAAAAGD8//7/AAABAAAAABD8////AAANAAAAAFD8/wAAAAANAAAAAFD8/wEAAAAFAAAAAHAAAPz/AAANAAAAADD///z/AAANAAAAADABAPz/AAABAAAAAAD+//z/AAABAAAAABA=")
+tile_set = ExtResource("2_auvdt")
+
+[node name="slime" parent="enemies" index="0" instance=ExtResource("3_r3w6a")]
+
+[node name="Torch" parent="." index="4" instance=ExtResource("4_jxifh")]
+position = Vector2(-409, 299)
+animation = &"side"
+autoplay = "side"
+frame_progress = 0.0
+
+[node name="Torch2" parent="." index="5" instance=ExtResource("4_jxifh")]
+position = Vector2(-409, -362)
+animation = &"side"
+autoplay = "side"
+frame_progress = 0.0
+
+[node name="Torch3" parent="." index="6" instance=ExtResource("4_jxifh")]
+position = Vector2(552, -352)
+animation = &"side"
+autoplay = "side"
+frame_progress = 0.0
+flip_h = true
+
+[node name="Torch4" parent="." index="7" instance=ExtResource("4_jxifh")]
+position = Vector2(552, 326)
+animation = &"side"
+autoplay = "side"
+frame_progress = 0.0
+flip_h = true

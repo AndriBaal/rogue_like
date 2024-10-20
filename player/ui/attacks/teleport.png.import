@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vjv1oc5d2bii"
-path="res://.godot/imported/tiles.png-fec73dad5a0a3d21f799b2a40fb72a98.ctex"
+uid="uid://hhycudeubf4v"
+path="res://.godot/imported/teleport.png-27974fcc365fe7b1a6fa6c666fcc824f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dungeons/goblin_dungeon/tiles.png"
-dest_files=["res://.godot/imported/tiles.png-fec73dad5a0a3d21f799b2a40fb72a98.ctex"]
+source_file="res://player/ui/attacks/teleport.png"
+dest_files=["res://.godot/imported/teleport.png-27974fcc365fe7b1a6fa6c666fcc824f.ctex"]
 
 [params]
 

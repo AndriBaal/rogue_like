@@ -23,7 +23,7 @@ func _ready() -> void:
 func _center_camera():
 	$cam.position = Vector2.ZERO
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
 	if self.visible and self.get_parent().visible:
 		if Input.is_action_pressed("primary_attack"):

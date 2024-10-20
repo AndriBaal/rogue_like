@@ -3,39 +3,49 @@
 
 ## BUGS
 - [ ] When you load a game the menu points in the inventory are stacked
+- [ ] Camera is not perfectly ceneted on the start of skill tree and map
+- [ ] Dungeon generation issue (Sometimes wrong entrances get generated, mostly top entrances)
+
 
 ## TODO
-
-
 
 - [ ] Name
 - [x] Logo (temporary)
 - [x] Custom cursor
 ? [ ] Splash screen
+? [ ] Enemy Spawn animation
+? [ ] Room complete indicator (Make a rewarding effect when clearing a room)
 ? [ ] UI Theme
+? [ ] Make second cursor for UI
+- [ ] Reset camera when opening skill tree or map
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
-- [ ] Introduce Stamina
+- [ ] Slime variations
+- [ ] Add torges in corridors
+- [x] Fix pathfinding with multiple enemies (good enough for now)
+- [x] Roll through enemies
+- [x] Player UI Remake
+- [ ] Optimize room occluding
 - [ ] Adjust POV (???)
 - [x] Show difference between primary attacks and abilities
 - [x] Silver, Gold and Bronze Coins (so far only gold)
 ? [ ] Collect animation
-- [ ] Roll cooldown with Stamina
+- [x] Roll cooldown with Mana
 - [x] Game Over screen
 ? [ ] Close inventory button
 ? [ ] Shortcut for map, inventory and character
 - [x] Reset camera in map and skilltree
 - [x] Roll particle effect
-- [ ] Border around items and UI
-- [ ] Spacial Audio
-- [ ] Usability: Button for everything UI (Invenotry, etc.) (Close button, etc.)
+- [ ] Redo inventory
+- [ ] Border around inventory
+- [ ] Close button for inventory
 ? [ ] Level Up Particle Effect
 ? [ ] Game Over screen transition
 - [x] Fix Zoom
 - [x] Cool down UI
 - [x] Stats and Upgrade stats on level up
 ? [ ] Knockback projectiles
-- [ ] Postprocessing with Glow
+- [x] Postprocessing with Glow
 
 - [ ] Attributes:
 	- [ ] Health: increases max health
@@ -53,27 +63,33 @@
 	- [ ] Fire:
 		- [x] Primary: Fireball
 		- [ ] Abilities:
-			- [ ] 
+			- [ ] Fire wave around player
 			- [ ] 
 			- [ ] Burning floor wave (aoe)
+		- [ ] Perks:
+			- [ ] Fire roll, burn floor on ground
 	- [ ] Water:
 		- [x] Primary: Water wave
 		- [ ] Abilities:
 			- [ ] Teleport
 			- [ ] Counter
 			- [ ] 
+		- [ ] Perks:
+			pass
 	- [ ] Earth:
 		- [x] Primary: Rock throw
 		- [ ] Abilities:
 			- [ ] Buff circle
+			- [ ] Earth spike
+			- [ ] Rock Roll
+		- [ ] Perks:
 			- [ ] 
-			- [ ] (Final)
 - [ ] 3 Soundtracks:
 	- [ ] Boss
 		- [ ] Track
 		- [ ] Integrated
 	- [ ] Regular Fight
-		- [ ] Track
+		- [x] Track
 		- [ ] Integrated
 	- [ ] Relaxed
 		- [ ] Track
@@ -96,7 +112,7 @@
 - [ ] Sounds
 	- [ ] Coin Collect
 	- [ ] Ui Button Click
-	- [ ] Fire Ball woosh
+	- [ ] Attack sounds(fireball, water wave, rock)
 	- [ ] Player Damage hit
 	- [ ] Player heal potion
 	- [ ] Enemy throw attack sound
@@ -109,12 +125,10 @@
 - [ ] Enemies
 	? [ ] Damage Number
 	- [X] Path Finding
-	- [ ] 4 enemy types (1 / 4)
+	- [ ] 4 enemy types (3 / 4)
 		- [x] Thrower
-		- [ ] Axe Thrower
-			- [ ] Left handed
-			- [ ] Eye patch
-		- [ ] Slime
+		- [x] Axe Thrower
+		- [x] Slime
 		- ...
 	- [ ] Boss: Goblin King
 - [ ] Rooms
@@ -134,7 +148,10 @@
 		- [ ] Short range projectiles
 - [ ] Coop
 - [ ] Roll preview
+- [ ] Add different consumables
+- [ ] Spacial Audio
 - [ ] Controller support
+- [ ] Status effects (frozen, crippled, time freeze)
 - [ ] Chest with Item loot
 - [ ] Add Input hinting
 - [ ] Improve Camera with Limits, so yuo can see more during a fight

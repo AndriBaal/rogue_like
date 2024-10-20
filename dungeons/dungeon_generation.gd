@@ -29,20 +29,21 @@ class DungeonOptions:
 		match self.type:
 			DungeonType.GOBLIN:
 				self.possible_rooms = {
-					"start": load("res://dungeons/goblin_dungeon/start.tscn"),
+					"start": load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
 					"bad":
 					[
-						load("res://dungeons/goblin_dungeon/enemy1.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room1.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room2.tscn"),
 					],
 					"good":
 					[
-						load("res://dungeons/goblin_dungeon/start.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
 					],
 					"neutral":
 					[
-						load("res://dungeons/goblin_dungeon/start.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
 					],
-					"boss": load("res://dungeons/goblin_dungeon/enemy1.tscn")
+					"boss": load("res://dungeons/goblin_dungeon/rooms/enemy_room1.tscn")
 				}
 
 
@@ -107,6 +108,7 @@ class Dungeon:
 					for er_cell in existing_cells:
 						if er_cell + existing_offset == r_cell + rect_offset:
 							return true
+				print('false alarm')
 			if self._recurse_room_intersections(exsting_room.children, rect, rect_offset, rect_cells):
 				return true
 		return false

@@ -2,6 +2,12 @@ extends Area2D
 
 class_name Projectile
 
+enum DamageType {
+	MAGIC,
+	FIRE,
+	PHYSICAL
+}
+
 const DESTROY = preload('res://projectiles/destroy.tscn')
 
 @onready var player = $/root/game/player
@@ -11,9 +17,10 @@ const DESTROY = preload('res://projectiles/destroy.tscn')
 @export var damage: float = 4.0
 @export var friendly: bool
 @export var direction: Vector2
-@export var color: Color = Color(1 * 2.0, 0.270588  * 2.0, 0, 1  * 2.0)
+@export var color: Color = Color.WHITE
 @export var pierce := 0
 @export var rotation_speed := 0.0
+@export var damage_type := DamageType.PHYSICAL
 
 func start(friendly: bool, origin: Vector2, target: Vector2) -> void:
 	self.friendly = friendly
@@ -75,7 +82,6 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			particle.position = self.global_position + self.direction * self.global_scale * Vector2(size, size)
 		particle.self_modulate = self.color
 		
-		var diff = (particle.position - self.position).normalized()
 		particle.rotation = self.rotation + PI / 2.0
 		$/root/game/effects.add_child(particle)
 		self.queue_free()

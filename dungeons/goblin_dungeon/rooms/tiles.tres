@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=13 format=3 uid="uid://c5uuoljrgef53"]
 
-[ext_resource type="Texture2D" uid="uid://vjv1oc5d2bii" path="res://dungeons/goblin_dungeon/tiles.png" id="1_nutsy"]
+[ext_resource type="Texture2D" uid="uid://vjv1oc5d2bii" path="res://dungeons/goblin_dungeon/rooms/tiles.png" id="1_me7op"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_et0ad"]
 
@@ -35,7 +35,7 @@ polygon = PackedVector2Array(14, 24, 14, -14, -24, -14, 14, -14)
 polygon = PackedVector2Array(-14, -81, -14, 88, -14, 88)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mycbb"]
-texture = ExtResource("1_nutsy")
+texture = ExtResource("1_me7op")
 texture_region_size = Vector2i(48, 48)
 1:0/0 = 0
 1:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_gihpk")
@@ -142,7 +142,8 @@ texture_region_size = Vector2i(48, 48)
 [resource]
 tile_size = Vector2i(48, 48)
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 navigation_layer_0/layers = 1
 custom_data_layer_0/name = "entrance"
 custom_data_layer_0/type = 1

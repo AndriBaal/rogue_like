@@ -32,7 +32,7 @@ offset_right = 757.0
 offset_bottom = 297.896
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "Retry"
 
 [node name="return" type="Button" parent="."]
@@ -45,5 +45,5 @@ offset_right = 757.0
 offset_bottom = 418.896
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 64
 text = "Return"

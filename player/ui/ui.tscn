@@ -1,144 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckh3bn2sp2o6b"]
+[gd_scene load_steps=3 format=3 uid="uid://ckh3bn2sp2o6b"]
 
-[ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="1_jhxcc"]
-[ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="2_k1slm"]
-[ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="3_h1sdt"]
+[ext_resource type="PackedScene" uid="uid://dcdcka5joye5q" path="res://ui/main.tscn" id="1_05314"]
 [ext_resource type="PackedScene" uid="uid://1up0xo0sygli" path="res://player/ui/inventory/inventory.tscn" id="4_ncvwd"]
-[ext_resource type="Texture2D" uid="uid://dpmd72e6ptcph" path="res://player/ui/xp_bar_background.png" id="5_dmxq1"]
-[ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/attack.tscn" id="5_he2ld"]
-[ext_resource type="Texture2D" uid="uid://cgw0xav55ee5g" path="res://player/ui/xp_bar.png" id="6_l456t"]
-[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/flask.png" id="7_07sen"]
-[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="9_wllro"]
 
 [node name="ui" type="CanvasLayer"]
 
-[node name="health_bar" type="TextureProgressBar" parent="."]
-anchors_preset = -1
-anchor_right = 0.501
-offset_right = -150.152
-offset_bottom = 40.0
-step = 0.0
-value = 100.0
-nine_patch_stretch = true
-texture_under = ExtResource("1_jhxcc")
-texture_progress = ExtResource("2_k1slm")
-
-[node name="mana_bar" type="TextureProgressBar" parent="."]
-anchors_preset = -1
-anchor_right = 0.501
-offset_top = 40.0
-offset_right = -150.152
-offset_bottom = 80.0
-step = 0.0
-value = 100.0
-nine_patch_stretch = true
-texture_under = ExtResource("1_jhxcc")
-texture_progress = ExtResource("3_h1sdt")
-
-[node name="attack" type="VBoxContainer" parent="."]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -87.9999
-offset_top = -398.0
-offset_right = 27.0001
-offset_bottom = 74.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(0.623178, 0.623178)
-
-[node name="primary_attack" parent="attack" instance=ExtResource("5_he2ld")]
-visible = false
-layout_mode = 2
-
-[node name="ability1" parent="attack" instance=ExtResource("5_he2ld")]
-visible = false
-layout_mode = 2
-
-[node name="ability2" parent="attack" instance=ExtResource("5_he2ld")]
-visible = false
-layout_mode = 2
-
-[node name="ability3" parent="attack" instance=ExtResource("5_he2ld")]
-visible = false
-layout_mode = 2
-
-[node name="xp" type="Control" parent="."]
-layout_mode = 3
+[node name="main" parent="." instance=ExtResource("1_05314")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
+offset_left = -239.0
+offset_top = -96.0
+offset_right = 400.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="bar" type="TextureProgressBar" parent="xp"]
-layout_mode = 0
-offset_left = -221.0
-offset_top = -24.0
-offset_right = 379.0
-offset_bottom = 6.0
-step = 0.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_dmxq1")
-texture_progress = ExtResource("6_l456t")
-
-[node name="level" type="Label" parent="xp"]
-layout_mode = 0
-offset_left = -281.0
-offset_top = -20.0
-offset_right = -240.0
-offset_bottom = 3.0
-text = "LVL 1"
-
-[node name="health" type="Node2D" parent="."]
-position = Vector2(72, 160)
-scale = Vector2(4, 4)
-
-[node name="flask" type="Sprite2D" parent="health"]
-texture = ExtResource("7_07sen")
-region_enabled = true
-region_rect = Rect2(0, 0, 17, 26)
-
-[node name="amount" type="Label" parent="health"]
-offset_left = 6.0
-offset_top = -10.0
-offset_right = 30.0
-offset_bottom = 6.0
-scale = Vector2(0.5, 0.5)
-text = "III"
-
-[node name="money" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -152.0
-offset_top = 32.0
-offset_right = -152.0
-offset_bottom = 32.0
-grow_horizontal = 0
-
-[node name="label" type="Label" parent="money"]
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 32.0
-theme_override_font_sizes/font_size = 32
-text = "0"
-horizontal_alignment = 2
-
-[node name="money" type="Sprite2D" parent="money"]
-position = Vector2(87, 14)
-scale = Vector2(2.5, 2.5)
-texture = ExtResource("9_wllro")
-region_enabled = true
-region_rect = Rect2(0, 0, 12, 16)
+scale = Vector2(0.75, 0.75)
 
 [node name="inventory" parent="." instance=ExtResource("4_ncvwd")]
 visible = false
