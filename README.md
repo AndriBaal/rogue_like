@@ -28,7 +28,7 @@
 - [x] Roll through enemies
 - [x] Player UI Remake
 - [ ] Optimize room occluding
-- [ ] Adjust POV (???)
+- [x] Adjust POV
 - [x] Show difference between primary attacks and abilities
 - [x] Silver, Gold and Bronze Coins (so far only gold)
 ? [ ] Collect animation
@@ -115,9 +115,9 @@
 	- [ ] Explosing Barrels
 - [ ] Sounds
 	- [ ] Coin Collect
-	- [ ] Ui Button Click
+	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
-	- [ ] Player Damage hit
+	- [x] Player Damage hit
 	- [ ] Player heal potion
 	- [ ] Enemy throw attack sound
 	- [ ] Enemy Damage hit
