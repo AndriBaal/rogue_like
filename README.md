@@ -105,7 +105,7 @@
 - [x] Make room locked when entering
 - [ ] Decorations
 	- [ ] Crates
-	- [ ] Torch
+	- [x] Torch
 	- [ ] Lanterns
 	- [ ] Chest
 	- [ ] Pots
