@@ -78,7 +78,7 @@ func _physics_process(_delta: float) -> void:
 	var new_state
 	if self.state == EnemyState.ATTACKING and self.animation_timer > self.attack_speed:		
 		if distance <= self.attack_radius and self._target_visible():
-			self.state = EnemyState.INACTIVE
+			self.state = EnemyState.INACTIVE # TODO: Refactor this
 			new_state = EnemyState.ATTACKING
 		else:
 			new_state = EnemyState.MOVING
@@ -175,6 +175,7 @@ func _velocity_computed(safe: Vector2):
 	if res:
 		for i in range(self.get_slide_collision_count()):
 			var collision = self.get_slide_collision(i)
+			#var collider = collision.get_collider()
 			if collision.get_collider_id() == self.target.get_instance_id():
 				self.target.deal_damage(self.melee_damage)
 	

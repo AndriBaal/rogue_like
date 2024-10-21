@@ -15,9 +15,17 @@ const TELEPORT_BUTTON = preload('res://player/ui/inventory/map/teleport.tscn')
 
 func _ready() -> void:
 	$center_camera.pressed.connect(self._center_camera)
+	self.visibility_changed.connect(self._visibility_changed)
+	
+func _visibility_changed():
+	if self.visible:
+		self._center_camera()
 	
 func _center_camera():
-	$cam.position = Vector2.ZERO
+	var cam: Camera2D = $cam
+	var a = cam.get_viewport().get_visible_rect().size / 2.0
+	print(cam.get_viewport().size)
+	cam.position = Vector2(a.x, a.y)
 
 func close_teleporters():
 	for teleporter in self.teleporters.get_children():
@@ -43,7 +51,7 @@ func add_teleport(teleport_position):
 
 func _process(_delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
-	if self.visible and self.get_parent().visible:
+	if self.visible and self.get_parent().visible and mouse_pos.x > 0.0 and mouse_pos.y > 0.0:
 		if Input.is_action_pressed("primary_attack"):
 			$cam.position += mouse_pos - self.last_mouse_pos
 		self.map_player.position = self.player.position / self.tile_size * SCALE - self.map_player.size / 2.0

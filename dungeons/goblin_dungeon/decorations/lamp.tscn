@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtb0xq4f20v8o"]
+
+[ext_resource type="Texture2D" uid="uid://vsqv8511y61g" path="res://dungeons/goblin_dungeon/decorations/lamp.png" id="1_v783u"]
+[ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_g1osc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wykep"]
+atlas = ExtResource("1_v783u")
+region = Rect2(0, 0, 48, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf6or"]
+atlas = ExtResource("1_v783u")
+region = Rect2(48, 0, 48, 88)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6m8i4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wykep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf6or")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Lamp" type="AnimatedSprite2D"]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6m8i4")
+autoplay = "default"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -3)
+color = Color(0.97, 0.226333, 0, 1)
+texture = ExtResource("2_g1osc")
+texture_scale = 0.3

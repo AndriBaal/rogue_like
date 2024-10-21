@@ -19,13 +19,20 @@ func _ready() -> void:
 	$select/close.pressed.connect(func(): $select.visible = false)
 	$select/unlock.pressed.connect(self._unlock)
 	$center_camera.pressed.connect(self._center_camera)
+	self.visibility_changed.connect(self._visibility_changed)
+	
+func _visibility_changed():
+	if self.visible:
+		self._center_camera()
 	
 func _center_camera():
-	$cam.position = Vector2.ZERO
+	var cam: Camera2D = $cam
+	var a = cam.get_viewport().get_visible_rect().size / 2.0
+	cam.position = Vector2(a.x, a.y)
 	
 func _process(_delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
-	if self.visible and self.get_parent().visible:
+	if self.visible and self.get_parent().visible and mouse_pos.x > 0.0 and mouse_pos.y > 0.0:
 		if Input.is_action_pressed("primary_attack"):
 			self.cam.position += mouse_pos - self.last_mouse_pos
 		self.last_mouse_pos = mouse_pos

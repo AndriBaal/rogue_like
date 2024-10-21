@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bk6x1nj2gjstq" path="res://enemies/goblin_spear/walk.png" id="5_18tvq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
-radius = 12.8
+radius = 22.4
 
 [node name="goblin_spear" instance=ExtResource("1_4243h")]
 scale = Vector2(2.5, 2.5)

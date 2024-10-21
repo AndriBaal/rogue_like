@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://de7j4r7he8cpa" path="res://enemies/goblin_axe/idle_attack.png" id="4_g0vn3"]
 [ext_resource type="Texture2D" uid="uid://d0hgh3cug5teo" path="res://enemies/goblin_axe/walk.png" id="5_gf2y4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
-radius = 10.6719
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pnlb"]
+radius = 21.3333
 
 [node name="goblin_axe" instance=ExtResource("1_2rd5g")]
 scale = Vector2(3, 3)
@@ -34,5 +34,5 @@ hframes = 9
 vframes = 8
 
 [node name="collider" parent="." index="3"]
-position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_s84cm")
+position = Vector2(0, 2.66667)
+shape = SubResource("CircleShape2D_0pnlb")

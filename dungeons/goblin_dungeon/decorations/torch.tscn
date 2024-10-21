@@ -74,4 +74,4 @@ frame_progress = 0.698155
 position = Vector2(0, -3)
 color = Color(0.97, 0.226333, 0, 1)
 texture = ExtResource("1_38sll")
-texture_scale = 0.25
+texture_scale = 0.28

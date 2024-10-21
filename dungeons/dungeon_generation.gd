@@ -108,7 +108,6 @@ class Dungeon:
 					for er_cell in existing_cells:
 						if er_cell + existing_offset == r_cell + rect_offset:
 							return true
-				print('false alarm')
 			if self._recurse_room_intersections(exsting_room.children, rect, rect_offset, rect_cells):
 				return true
 		return false

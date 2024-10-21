@@ -3,9 +3,9 @@
 
 ## BUGS
 - [ ] When you load a game the menu points in the inventory are stacked
-- [ ] Camera is not perfectly ceneted on the start of skill tree and map
-- [ ] Dungeon generation issue (Sometimes wrong entrances get generated, mostly top entrances)
-
+- [x] Camera is not perfectly ceneted on the start of skill tree and map
+- [x] Dungeon generation issue (Sometimes wrong entrances get generated, mostly top entrances)
+- [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
 
@@ -17,11 +17,13 @@
 ? [ ] Room complete indicator (Make a rewarding effect when clearing a room)
 ? [ ] UI Theme
 ? [ ] Make second cursor for UI
-- [ ] Reset camera when opening skill tree or map
+? [ ] Rework enemy hitboxes (Make 2 hitboxes)
+- [x] Reset camera when opening skill tree or map
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
+- [ ] Add Zoom to camera in map and skill tree
 - [ ] Slime variations
-- [ ] Add torges in corridors
+- [ ] Add torches in corridors
 - [x] Fix pathfinding with multiple enemies (good enough for now)
 - [x] Roll through enemies
 - [x] Player UI Remake
@@ -39,6 +41,8 @@
 - [ ] Redo inventory
 - [ ] Border around inventory
 - [ ] Close button for inventory
+- [ ] Redo torch / lamp animation
+- [ ] Redo lamp sprite
 ? [ ] Level Up Particle Effect
 ? [ ] Game Over screen transition
 - [x] Fix Zoom
@@ -147,8 +151,8 @@
 		- [ ] Faster roll
 		- [ ] Short range projectiles
 - [ ] Coop
-- [ ] Roll preview
-- [ ] Add different consumables
+- [ ] Roll preview (see where player is rolling when holding space)
+- [ ] Add different consumables (potion options, food, etc.)
 - [ ] Spacial Audio
 - [ ] Controller support
 - [ ] Status effects (frozen, crippled, time freeze)

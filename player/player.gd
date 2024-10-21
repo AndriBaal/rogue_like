@@ -198,7 +198,9 @@ func _process(delta: float) -> void:
 	
 
 	self.roll_timer -= delta
-	if roll and _use_mana(self.roll_cost) or roll_timer >= 0.0:
+	var roll_begin = roll and self._has_enough_mana(self.roll_cost) and self.state != PlayerState.ROLL
+	var still_rolling =  roll_timer >= 0.0 and self.state == PlayerState.ROLL
+	if roll_begin or still_rolling:
 		new_state = PlayerState.ROLL
 	elif not is_moving:
 		new_state = PlayerState.IDLE
@@ -248,6 +250,7 @@ func _process(delta: float) -> void:
 			PlayerState.ROLL:
 				var particle = %roll_particle
 				particle.restart()
+				self._use_mana(self.roll_cost)
 				self.roll_timer = self.roll_duration
 				self.roll_sprite.visible = true
 				self.movement = new_movement if is_moving else look
@@ -315,8 +318,11 @@ func _update_mana_ui():
 	self.mana_bar.max_value = self.max_mana
 	self.mana_bar.value = self.mana
 
-func _use_mana(mana) -> bool:
-	if self.mana - mana >= 0.0:
+func _has_enough_mana(mana: float) -> bool:
+	return self.mana - mana >= 0.0
+	
+func _use_mana(mana: float) -> bool:
+	if self._has_enough_mana(mana):
 		self.mana -= mana
 		self._update_mana_ui()
 		return true
