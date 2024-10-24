@@ -3,6 +3,8 @@ extends Node2D
 class_name Game
 
 @onready var projectiles = $projectiles
+@onready var effects = $effects
+@onready var ui_effects = $ui_effects
 @onready var player: Player = $player
 @onready var attack_selection = $player/ui/inventory/Character/attack_selection
 

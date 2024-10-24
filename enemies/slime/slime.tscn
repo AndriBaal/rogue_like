@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2mmv8dwvmbxq"]
+[gd_scene load_steps=10 format=3 uid="uid://1l3j3ujx2pol"]
 
 [ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_ch1wk"]
 [ext_resource type="Texture2D" uid="uid://boiknn887tn0k" path="res://enemies/slime/idle.png" id="2_0e4id"]
@@ -57,3 +57,6 @@ region_rect = Rect2(0, 0, 48, 48)
 [node name="collider" parent="." index="4"]
 position = Vector2(0, 0.4)
 shape = SubResource("CircleShape2D_rc0bd")
+
+[node name="name" parent="hp_bar" index="0"]
+text = "Slime"

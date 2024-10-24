@@ -35,3 +35,6 @@ color = Color(0.205117, 0.205117, 0.205117, 1)
 environment = SubResource("Environment_ed0iv")
 
 [node name="pause_menu" parent="." instance=ExtResource("3_1unu5")]
+
+[node name="ui_effects" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true

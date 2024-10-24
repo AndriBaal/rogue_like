@@ -19,10 +19,12 @@
 ? [ ] Make second cursor for UI
 ? [ ] Rework enemy hitboxes (Make 2 hitboxes)
 - [x] Reset camera when opening skill tree or map
+- [x] Enemy helathbar and damage numbers
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
 - [ ] Add Zoom to camera in map and skill tree
 - [ ] Slime variations
+- [ ] Fix pathfinding collision with multiple enemies (increase attack range)
 - [ ] Add torches in corridors
 - [x] Fix pathfinding with multiple enemies (good enough for now)
 - [x] Roll through enemies
@@ -134,7 +136,9 @@
 		- [x] Axe Thrower
 		- [x] Slime
 		- ...
-	- [ ] Boss: Goblin King
+	- [ ] Boss: Goblin King (Ogre)
+		- [ ] One Eye
+		- [ ] blue color
 - [ ] Rooms
 	- [ ] 8 bad rooms (0 / 8)
 	- [ ] 2 good rooms (0 / 2)

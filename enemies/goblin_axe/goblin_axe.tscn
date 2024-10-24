@@ -36,3 +36,6 @@ vframes = 8
 [node name="collider" parent="." index="3"]
 position = Vector2(0, 2.66667)
 shape = SubResource("CircleShape2D_0pnlb")
+
+[node name="name" parent="hp_bar" index="0"]
+text = "Goblin Chief"

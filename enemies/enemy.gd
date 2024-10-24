@@ -12,16 +12,27 @@ enum EnemyState {
 const HIT_ANIMATION_DURATION := 0.25
 
 const DESPAWN := preload("res://enemies/despawn.tscn")
-const BRONZE_COIN = preload("res://items/coin/bronze_coin.tscn")
-const SILVER_COIN = preload("res://items/coin/silver_coin.tscn")
-const GOLD_COIN = preload("res://items/coin/gold_coin.tscn")
+const BRONZE_COIN := preload("res://items/coin/bronze_coin.tscn")
+const SILVER_COIN := preload("res://items/coin/silver_coin.tscn")
+const GOLD_COIN := preload("res://items/coin/gold_coin.tscn")
+const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 
-@onready var game = $/root/game
+@onready var game: Game = $/root/game
 @onready var target = $/root/game/player
 @onready var navigation := $navigation
+@onready var hp_bar := %hp_bar
 
 @export var max_health: float = 12.0
-@export var health: float = 12.0
+@export var health: float = 12.0:
+	get:
+		return health
+	set(value):
+		health = value
+		%hp_bar.value = health
+		if health <= 0.0:
+			target.gain_xp(xp)
+			call_deferred("death")
+			
 @export var attack_radius: float = 400.0
 @export var attack_speed: float = 1.4
 @export var movement_speed: float = 200.0
@@ -43,8 +54,9 @@ func _ready() -> void:
 	self.navigation.velocity_computed.connect(self._velocity_computed)
 	$path_calculation.timeout.connect(self._calc_path_to_target)
 	
-	self.hp_bar_offset = %hp_bar.global_position
-	%hp_bar.position += self.global_position
+	self.hp_bar_offset = self.hp_bar.global_position
+	self.hp_bar.position += self.global_position
+	self.hp_bar.max_value = self.health
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO
@@ -137,17 +149,18 @@ func _compute_hit_animation(delta, active_sprite):
 	active_sprite.modulate = color
 	
 func deal_damage(damage: float):
-	if self.health <= 0.0: # Enemy is already dead
-		return
-		
 	if self.state == EnemyState.INACTIVE: # Prevent player from cheesing inactive enemy
 		return
 		
+	if health <= 0.0: # Enemy is already dead
+		return
+		
+	var damage_number = DAMAGE_NUMBER.instantiate()
+	damage_number.start(self.global_position, damage)
+	self.game.ui_effects.add_child(damage_number)
+	
 	self.health -= damage
 	self.hit_animation_timer = 0.0
-	if self.health <= 0.0:
-		self.target.gain_xp(self.xp)
-		self.call_deferred("death")
 
 func death():
 	self.queue_free()
