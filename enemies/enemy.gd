@@ -36,10 +36,15 @@ const GOLD_COIN = preload("res://items/coin/gold_coin.tscn")
 @export var movement: Vector2
 @export var direction := Direction.SOUTH
 
+@export var hp_bar_offset := Vector2.ZERO
+
 
 func _ready() -> void:
 	self.navigation.velocity_computed.connect(self._velocity_computed)
 	$path_calculation.timeout.connect(self._calc_path_to_target)
+	
+	self.hp_bar_offset = %hp_bar.global_position
+	%hp_bar.position += self.global_position
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO
@@ -65,6 +70,8 @@ func _process(delta: float) -> void:
 	if active_sprite:
 		active_sprite.frame_coords.y = self.direction
 		self._compute_hit_animation(delta, active_sprite)
+		
+	$hp_bar.position = self.global_position + self.hp_bar_offset
 
 func _physics_process(_delta: float) -> void:
 	if self.state == EnemyState.INACTIVE:

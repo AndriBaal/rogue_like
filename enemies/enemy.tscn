@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvsrhnrd1kp5h"]
+[gd_scene load_steps=4 format=3 uid="uid://bvsrhnrd1kp5h"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nevkm"]
+[ext_resource type="Texture2D" uid="uid://cyif6pshom3p2" path="res://enemies/health_bar_background.png" id="2_bn8hd"]
+[ext_resource type="Texture2D" uid="uid://cmqv50be3k5xe" path="res://enemies/health_bar.png" id="3_bb7jy"]
 
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -28,3 +30,32 @@ time_horizon_agents = 0.0
 [node name="path_calculation" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="hp_bar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+top_level = true
+z_index = 100
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -404.0
+offset_right = -548.0
+offset_bottom = -396.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_bn8hd")
+texture_progress = ExtResource("3_bb7jy")
+
+[node name="name" type="Label" parent="hp_bar"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 80.0
+offset_bottom = -1.0
+text = "test"
+horizontal_alignment = 1
