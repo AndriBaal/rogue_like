@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cttw6ahelkyw0"]
+
+[ext_resource type="PackedScene" uid="uid://c2mmv8dwvmbxq" path="res://enemies/slime/slime.tscn" id="1_k10nx"]
+
+[node name="slime_yellow" instance=ExtResource("1_k10nx")]
+modulate = Color(1, 0.996078, 0, 1)
+scale = Vector2(3.4, 3.4)
+movement_speed = 200.0
+melee_damage = 8.0

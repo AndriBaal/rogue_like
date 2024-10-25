@@ -12,45 +12,43 @@
 - [ ] Name
 - [x] Logo (temporary)
 - [x] Custom cursor
-? [ ] Splash screen
-? [ ] Enemy Spawn animation
-? [ ] Room complete indicator (Make a rewarding effect when clearing a room)
-? [ ] UI Theme
-? [ ] Make second cursor for UI
-? [ ] Rework enemy hitboxes (Make 2 hitboxes)
 - [x] Reset camera when opening skill tree or map
 - [x] Enemy helathbar and damage numbers
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
 - [ ] Add Zoom to camera in map and skill tree
-- [ ] Slime variations
+- [x] Slime variations
 - [ ] Fix pathfinding collision with multiple enemies (increase attack range)
 - [ ] Add torches in corridors
 - [x] Fix pathfinding with multiple enemies (good enough for now)
 - [x] Roll through enemies
 - [x] Player UI Remake
-- [ ] Optimize room occluding
+? [ ] Optimize room occluding
+? [ ] Coin Collect animation
+? [ ] Game Over screen transition
+? [ ] Knockback projectiles
+? [ ] Splash screen
+? [ ] Enemy Spawn animation
+? [ ] Room complete indicator (Make a rewarding effect when clearing a room)
+? [ ] UI Theme
+? [ ] Make second cursor for UI
+? [ ] Level Up effect
+? [ ] Rework enemy hitboxes (Make 2 hitboxes)
 - [x] Adjust POV
 - [x] Show difference between primary attacks and abilities
 - [x] Silver, Gold and Bronze Coins (so far only gold)
-? [ ] Collect animation
 - [x] Roll cooldown with Mana
 - [x] Game Over screen
-? [ ] Close inventory button
-? [ ] Shortcut for map, inventory and character
+- [x] Shortcut for map, inventory and character
 - [x] Reset camera in map and skilltree
 - [x] Roll particle effect
 - [ ] Redo inventory
 - [ ] Border around inventory
-- [ ] Close button for inventory
-- [ ] Redo torch / lamp animation
-- [ ] Redo lamp sprite
-? [ ] Level Up Particle Effect
-? [ ] Game Over screen transition
+- [ ] Redo torch animation
+- [ ] Close inventory button
 - [x] Fix Zoom
 - [x] Cool down UI
 - [x] Stats and Upgrade stats on level up
-? [ ] Knockback projectiles
 - [x] Postprocessing with Glow
 
 - [ ] Attributes:

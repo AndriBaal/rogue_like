@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1l3j3ujx2pol"]
+[gd_scene load_steps=10 format=3 uid="uid://c2mmv8dwvmbxq"]
 
 [ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_ch1wk"]
 [ext_resource type="Texture2D" uid="uid://boiknn887tn0k" path="res://enemies/slime/idle.png" id="2_0e4id"]
@@ -28,7 +28,6 @@ scale_curve = SubResource("CurveTexture_nw7pt")
 radius = 21.2151
 
 [node name="slime" instance=ExtResource("1_ch1wk")]
-modulate = Color(0.22, 0, 5.914, 1)
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_616ph")
 attack_radius = -1.0

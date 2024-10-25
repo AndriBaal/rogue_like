@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7l3kq72pba3o"]
+
+[ext_resource type="PackedScene" uid="uid://c2mmv8dwvmbxq" path="res://enemies/slime/slime.tscn" id="1_avtiq"]
+
+[node name="slime_blue" instance=ExtResource("1_avtiq")]
+modulate = Color(0, 0, 1, 1)

@@ -63,7 +63,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Torch" type="AnimatedSprite2D"]
+[node name="torch" type="AnimatedSprite2D"]
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_xxayf")
 animation = &"bottom"

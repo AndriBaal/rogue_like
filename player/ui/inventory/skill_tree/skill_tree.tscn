@@ -49,6 +49,7 @@ offset_bottom = 28.0
 text = "1"
 
 [node name="select" type="Panel" parent="."]
+visible = false
 z_index = 2
 layout_mode = 1
 anchors_preset = -1
