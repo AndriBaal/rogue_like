@@ -9,6 +9,7 @@ class DungeonOptions:
 	var random_seed: int
 	var rooms_left: Dictionary
 	var possible_rooms: Dictionary
+	var decorations: Dictionary
 
 	func _init(
 		type: DungeonType,
@@ -23,11 +24,14 @@ class DungeonOptions:
 			"good": good_rooms,
 			"bad": bad_rooms,
 			"neutral": neutral_rooms,
-			"boss": 0,  # TODO: Change to 1
+			"boss": 1,
 		}
 
 		match self.type:
 			DungeonType.GOBLIN:
+				self.decorations = {
+					'torch': load("res://dungeons/goblin_dungeon/decorations/torch.tscn")
+				}
 				self.possible_rooms = {
 					"start": load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
 					"bad":
@@ -43,7 +47,7 @@ class DungeonOptions:
 					[
 						load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
 					],
-					"boss": load("res://dungeons/goblin_dungeon/rooms/enemy_room1.tscn")
+					"boss": load("res://dungeons/goblin_dungeon/rooms/boss_room.tscn")
 				}
 
 
@@ -115,9 +119,13 @@ class Dungeon:
 	func _get_room(room_type):
 		var possible_rooms = self.options.possible_rooms
 		var rt = possible_rooms[room_type]
-		var random_key = self.random.randi_range(0, rt.size() - 1)
-		var room = rt[random_key]
-		# room_type.remove_at(random_key) # TODO: add remove to avoid duplicate rooms
+		var room
+		if not rt is Array:
+			room = rt
+		else:
+			var random_key = self.random.randi_range(0, rt.size() - 1)
+			room = rt[random_key]
+			# room_type.remove_at(random_key) # TODO: add remove to avoid duplicate rooms
 		var r = room.instantiate()
 		r.start()
 		return r

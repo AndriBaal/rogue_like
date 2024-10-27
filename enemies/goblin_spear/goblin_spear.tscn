@@ -12,6 +12,7 @@ radius = 22.4
 [node name="goblin_spear" instance=ExtResource("1_4243h")]
 scale = Vector2(2.5, 2.5)
 script = ExtResource("2_3p0th")
+attack_radius = 800.0
 
 [node name="idle_sprite" parent="." index="0"]
 texture = ExtResource("2_rfiit")
