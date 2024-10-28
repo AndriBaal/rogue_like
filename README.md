@@ -67,7 +67,7 @@
 - [ ] Decorations
 	- [ ] Crates
 	- [x] Torch
-	? [ ] Lanterns
+	- [ ] ?Lanterns
 	- [ ] Chest
 	- [ ] Pots
 	- [ ] Table
@@ -87,7 +87,7 @@
 	- [ ] Buy confirm
 	- [ ] Player walk
 - [ ] Enemies
-	? [ ] Damage Number
+	- [ ] ?Damage Number
 	- [X] Path Finding
 	- [ ] 4 enemy types (3 / 4)
 		- [x] Thrower
@@ -129,24 +129,24 @@
 - [x] Dungeon Generation
 - [x] Doors
 - [x] Postprocessing with Glow
-? [ ] Optimize room occluding
-? [ ] Coin Collect animation
-? [ ] Game Over screen transition
-? [ ] Knockback projectiles
-? [ ] Splash screen
-? [ ] Enemy Spawn animation
-? [ ] Room complete indicator (Make a rewarding effect when clearing a room)
-? [ ] UI Theme
-? [ ] Make second cursor for UI
-? [ ] Level Up effect
-? [ ] Rework enemy hitboxes (Make 2 hitboxes)
-? [ ] Attributes:
+- [ ] ?Optimize room occluding
+- [ ] ?Coin Collect animation
+- [ ] ?Game Over screen transition
+- [ ] ?Knockback projectiles
+- [ ] ?Splash screen
+- [ ] ?Enemy Spawn animation
+- [ ] ?Room complete indicator (Make a rewarding effect when clearing a room)
+- [ ] ?UI Theme
+- [ ] ?Make second cursor for UI
+- [ ] ?Level Up effect
+- [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
+- [ ] ?Attributes:
 	- [ ] Health: increases max health
-	? [ ] Wisdom: increases max mana and mana regeneration
-	? [ ] Endurance: increases max stamina and stamina regeneration
+	- [ ] ?Wisdom: increases max mana and mana regeneration
+	- [ ] ?Endurance: increases max stamina and stamina regeneration
 	- [ ] Power: Increases Attack Power
 	- [ ] Agility: Increases movementspeed and roll
-	? [ ] Luck: Increase drop chances
+	- [ ] ?Luck: Increase drop chances
 
 
 ## PLANNED
@@ -160,6 +160,7 @@
 - [ ] Other Dungeons
 	- [ ] ...
 - [ ] Coop
+- [ ] Restart soundtrack when tabing into game
 - [ ] Roll preview (see where player is rolling when holding space)
 - [ ] Add different consumables (potion options, food, etc.)
 - [ ] Spacial Audio
