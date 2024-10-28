@@ -218,30 +218,65 @@ class Dungeon:
 
 					var entrance_start = entrance["start"]
 					var entrance_end = entrance["end"]
+					
+					
+					var amount_of_lights = max(ceil(dist / 3.0), 2.0)
+					var lights_per = float(dist) * self.tile_size * Vector2(entrance["direction"]) / float(amount_of_lights)
 					# hallway
-					for tile in [entrance_start, entrance_end]:
-						var wall
+					var f = randi_range(0, 1)
+					for tile: Vector2i in [entrance_start, entrance_end]:
+						var wall: Vector2i
 						if tile == entrance_start:
 							wall = entrance_end
 						elif tile == entrance_end:
 							wall = entrance_start
+						var diff := tile - wall
 						for i in range(dist):
 							var random_tile = Vector2(
 								self.random.randi_range(0, tile_amount - 1),
 								1
 							)
 							var tile_pos = tile + i * entrance.direction
-							if wall:
-								var diff = tile - wall
-								var wall_tile = self._get_wall_from_direction(diff)
-								tilemap.set_cell(
-									tile_pos + diff,
-									TILE_ID,
-									wall_tile[0],
-									wall_tile[1],
-								)
+							
+							var wall_tile = self._get_wall_from_direction(diff)
+							tilemap.set_cell(
+								tile_pos + diff,
+								TILE_ID,
+								wall_tile[0],
+								wall_tile[1],
+							)
 							tilemap.set_cell(tile_pos, TILE_ID, random_tile)
-
+						
+						var a = tilemap.to_global(tilemap.map_to_local(tile))
+						for light in range(1, amount_of_lights):
+							if (light + f) % 2 == 0:
+								continue
+							var torch = self.options.decorations['torch'].instantiate()
+							var torch_position = a + light * lights_per
+							var torch_offset
+							var torch_animation
+							var flip := false
+							match diff:
+								Vector2i(1, 0):
+									torch_offset = Vector2(self.tile_size.x * 0.35, 0.0)
+									torch_animation = 'side'
+									flip = true
+								Vector2i(-1, 0):
+									torch_offset = Vector2(-self.tile_size.x * 0.35, 0.0)
+									torch_animation = 'side'
+								Vector2i(0, 1):
+									torch_offset = Vector2(0.0, self.tile_size.y * 0.3)
+									torch_animation = 'bottom'
+								Vector2i(0, -1):
+									torch_offset = Vector2(0.0, -self.tile_size.y)
+									torch_animation = 'top'
+								_:
+									push_error('unreachable')
+							torch.play(torch_animation)
+							torch.flip_h = flip
+							torch.position = torch_position + torch_offset
+							room.get_node('decorations').add_child(torch)
+						f += 1
 					new_entrance["has_connection"] = true
 					entrance["has_connection"] = true
 					children.push_back(new_room)
@@ -266,6 +301,10 @@ class Dungeon:
 						var t = self._get_door_tile(entrance['direction'], tile == entrance["start"])
 						tilemap.set_cell(tile, TILE_ID, t[0], t[1])
 			tilemap_entrances.clear()
+
+		if new_rooms.is_empty() and self._rooms_left() > 0:
+			push_error('Error in dungeon generation, not all rooms used')
+
 		if not new_rooms.is_empty():
 			self._grow_rooms(new_rooms)
 

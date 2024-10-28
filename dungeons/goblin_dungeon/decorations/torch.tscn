@@ -67,7 +67,6 @@ animations = [{
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_xxayf")
 animation = &"bottom"
-autoplay = "bottom"
 frame_progress = 0.698155
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

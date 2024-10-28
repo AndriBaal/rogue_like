@@ -18,7 +18,8 @@
 - [ ] Show skill name / description in Inventory
 - [ ] Add Zoom to camera in map and skill tree
 - [ ] Fix pathfinding collision with multiple enemies (increase attack range)
-- [ ] Add torches in corridors
+- [x] Add torches in corridors
+- [x] Level Up effect
 - [ ] Redo inventory
 - [ ] Border around inventory
 - [ ] Redo torch animation
@@ -37,8 +38,9 @@
 			- [ ] Burning floor wave (aoe)
 		- [ ] Perks:
 			- [ ] Fire roll, burn floor on ground
-	- [ ] Water:
-		- [x] Primary: Water wave
+	- [ ] Ice:
+		- [ ] 1st Primary: Ice spear
+		- [x] 2nd Primary: Ice wave
 		- [ ] Abilities:
 			- [ ] Teleport
 			- [ ] Counter
@@ -138,7 +140,6 @@
 - [ ] ?Room complete indicator (Make a rewarding effect when clearing a room)
 - [ ] ?UI Theme
 - [ ] ?Make second cursor for UI
-- [ ] ?Level Up effect
 - [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
 - [ ] ?Attributes:
 	- [ ] Health: increases max health

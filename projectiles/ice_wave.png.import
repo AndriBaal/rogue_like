@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwa5aq5s5jhy4"
-path="res://.godot/imported/water_wave.png-8cd8dc2505ae0e167a549d2104301317.ctex"
+path="res://.godot/imported/ice_wave.png-a82d7b99f5f5a2a0ca0dcf54f3ee04b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://projectiles/water_wave.png"
-dest_files=["res://.godot/imported/water_wave.png-8cd8dc2505ae0e167a549d2104301317.ctex"]
+source_file="res://projectiles/ice_wave.png"
+dest_files=["res://.godot/imported/ice_wave.png-a82d7b99f5f5a2a0ca0dcf54f3ee04b9.ctex"]
 
 [params]
 

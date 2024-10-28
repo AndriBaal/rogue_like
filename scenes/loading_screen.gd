@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _generate_level():
-	var scene
+	var scene: Node
 	if Menu.LOAD_SAVE:
 		scene = load("user://%s.scn" % Menu.GAME_NAME).instantiate()
 		scene.get_node(^"pause_menu").visible = false

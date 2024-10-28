@@ -30,7 +30,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 		health = value
 		%hp_bar.value = health
 		if health <= 0.0:
-			target.gain_xp(xp)
+			target.xp += xp
 			call_deferred("death")
 			
 @export var attack_radius: float = 400.0

@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=13 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
 [ext_resource type="Texture2D" uid="uid://brn2daw8eshl5" path="res://player/wizard/roll.png" id="3_56ane"]
+[ext_resource type="Texture2D" uid="uid://c5sroy6qqj43e" path="res://player/level_up.png" id="3_bjjbt"]
 [ext_resource type="AudioStream" uid="uid://c5637qrydm4yb" path="res://player/wizard/hurt.mp3" id="3_d513c"]
 [ext_resource type="Texture2D" uid="uid://dl3ev3baxoaw6" path="res://player/roll_particle.png" id="3_q6273"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4946, 0.536563), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.823232, 0.858696), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_srsbe"]
@@ -21,8 +22,16 @@ initial_velocity_min = 30.0
 initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
 scale_min = 2.5
-scale_max = 3.5
+scale_max = 4.0
 scale_curve = SubResource("CurveTexture_srsbe")
+anim_speed_max = 16.0
+anim_offset_max = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6okp0"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
 radius = 17.4545
@@ -51,6 +60,16 @@ amount = 12
 process_material = SubResource("ParticleProcessMaterial_akn77")
 texture = ExtResource("3_q6273")
 lifetime = 0.7
+one_shot = true
+explosiveness = 0.6
+
+[node name="level_up" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_6okp0")
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_akn77")
+texture = ExtResource("3_bjjbt")
+lifetime = 1.5
 one_shot = true
 explosiveness = 0.6
 

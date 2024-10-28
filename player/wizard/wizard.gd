@@ -1,7 +1,7 @@
 extends Player
 
 const FIRE_BAll = preload("res://projectiles/fire_ball.tscn")
-const WATER_WAVE = preload("res://projectiles/water_wave.tscn")
+const ICE_WAVE = preload("res://projectiles/ice_wave.tscn")
 const ROCK = preload("res://projectiles/rock.tscn")
 
 const PROJECTILE_OFFSET := 35.0
@@ -17,14 +17,14 @@ func _ready():
 			'type': AttackType.PRIMARY,
 			'icon': preload("res://player/ui/attacks/fire_ball.png")
 		},
-		'water_wave': {
-			'name': 'Water Wave',
+		'ice_wave': {
+			'name': 'Ice Wave',
 			'description': 'bbb',
-			'action': '_water_wave',
+			'action': '_ice_wave',
 			'mana_cost': 10.0,
 			'cool_down': 1.0,
 			'type': AttackType.PRIMARY,
-			'icon': preload("res://player/ui/attacks/water_wave.png")
+			'icon': preload("res://player/ui/attacks/ice_wave.png")
 		},
 		'fire_storm': {
 			'name': 'Fire Storm',
@@ -81,7 +81,7 @@ func _ready():
 		},
 		{
 			'type': SkillTree.SkillType.ATTACK,
-			'attack_name': 'water_wave',
+			'attack_name': 'ice_wave',
 			'position': Vector2(0.0, 150.0),
 			'children': []
 		},
@@ -90,16 +90,34 @@ func _ready():
 			'attack_name': 'rock_throw',
 			'position': Vector2(250.0, 150.0),
 			'children': []
-		}
+		},
 	]
 	
 	super()
 	
+func _ice_spear(player_position, look_direction):
+	pass
+	
+func _teleport(player_position, look_direction):
+	pass
+	
+func _deflect(player_position, look_direction):
+	pass
+	
+func _rock_wall(player_position, look_direction):
+	pass
+	
+func _rock_spike(player_position, look_direction):
+	pass
+	
+func _rock_roll(player_position, look_direction):
+	pass
+	
 func _fire_ball(player_position, look_direction):
 	self.game.spawn_projectile(self.FIRE_BAll.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 	
-func _water_wave(player_position, look_direction):
-	self.game.spawn_projectile(self.WATER_WAVE.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
+func _ice_wave(player_position, look_direction):
+	self.game.spawn_projectile(self.ICE_WAVE.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 
 func _rock_throw(player_position, look_direction):
 	self.game.spawn_projectile(self.ROCK.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)

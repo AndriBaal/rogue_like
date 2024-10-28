@@ -7,9 +7,9 @@ const LIFE_TIME := 0.75
 
 var alive := 0.0
 
-func start(position: Vector2, damage: float):
+func start(_position: Vector2, damage: float):
 	self.text = str(int(damage))
-	self.position = position
+	self.position = _position
 
 func _process(delta: float) -> void:
 	self.position.y -= delta * VELOCITY

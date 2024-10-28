@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_g1osc"]
 
 [node name="light" type="PointLight2D"]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(3, 3)
 color = Color(0.97, 0.226333, 0, 1)
 texture = ExtResource("2_g1osc")
 texture_scale = 0.3

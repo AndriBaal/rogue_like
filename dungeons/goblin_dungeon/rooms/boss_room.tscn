@@ -10,6 +10,5 @@ tile_map_data = PackedByteArray("AAD9/wEAAAAHAAEAAAD9/wAAAAAGAAEAAAD9////AAAHAAE
 tile_set = ExtResource("2_du24d")
 
 [node name="entrances" parent="." index="1"]
-z_index = 100
 tile_map_data = PackedByteArray("AAD//wcAAAANAAAAAAAAAAcAAAANAAAAAAD+/wcAAAAFAAAAAAABAAcAAAAFAAAAABA=")
 tile_set = ExtResource("2_du24d")

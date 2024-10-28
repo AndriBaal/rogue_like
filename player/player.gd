@@ -104,7 +104,19 @@ enum PlayerState {
 			heal(0.0)
 		
 @export var health := max_health
-@export var xp := 0
+@export var xp := 0:
+	get:
+		return xp
+	set(value):
+		xp = max(value, 0)
+		var bar = $ui/main/xp/bar
+		while xp > xp_for_lvl_up:
+			xp -= xp_for_lvl_up
+			level += 1
+			_level_up()
+		bar.max_value = float(xp_for_lvl_up)
+		bar.value = float(xp)
+		$ui/main/xp/level.text = str(level)
 @export var level := 1
 
 @export var mana_per_second = 5.0
@@ -392,19 +404,9 @@ func _update_health_ui():
 	var health_bar := $ui/main/health_bar
 	health_bar.max_value = self.max_health
 	health_bar.value = self.health
-
-func gain_xp(xp: int):
-	self.xp += xp
-	var bar = $ui/main/xp/bar
-	while self.xp > self.xp_for_lvl_up:
-		self.xp -= self.xp_for_lvl_up
-		self.level += 1
-		self._level_up()
-	bar.max_value = float(self.xp_for_lvl_up)
-	bar.value = float(self.xp)
-	$ui/main/xp/level.text = str(self.level)
 	
 func _level_up():
+	$level_up.restart()
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
 	#self.skill_tree_node.add_tokens(1)

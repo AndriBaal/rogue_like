@@ -24,8 +24,8 @@ path_desired_distance = 10.0
 target_desired_distance = 5.0
 path_postprocessing = 1
 avoidance_enabled = true
-radius = 20.0
-time_horizon_agents = 0.0
+radius = 50.0
+time_horizon_agents = 0.5
 
 [node name="path_calculation" type="Timer" parent="."]
 wait_time = 0.5
