@@ -7,6 +7,8 @@
 - [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [ ] Add more entrances for boss room
 	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room)
+- [ ] Out of bounds glitch (probably when boss room cannot generate)
+- [ ] The same spell can be equiped multiple times
 - [x] Camera is not perfectly ceneted on the start of skill tree and map
 - [x] Dungeon generation issue (Sometimes wrong entrances get generated, mostly top entrances)
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
@@ -17,6 +19,8 @@
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
 - [ ] Add Zoom to camera in map and skill tree
+- [ ] Add Level Up Text
+- [ ] Remove projectiles on room enter
 - [ ] Fix pathfinding collision with multiple enemies (increase attack range)
 - [x] Add torches in corridors
 - [x] Level Up effect
@@ -169,4 +173,5 @@
 - [ ] Status effects (frozen, crippled, time freeze)
 - [ ] Chest with Item loot
 - [ ] Add Input hinting
+- [ ] ghosting effect on health
 - [ ] Improve Camera with Limits, so yuo can see more during a fight
