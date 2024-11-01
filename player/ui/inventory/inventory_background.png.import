@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chq5tbgpql4ne"
-path="res://.godot/imported/rock_throw.png-a0b68f6bd6dd09d75f6220fb959392bc.ctex"
+uid="uid://bwyd23ex5wysq"
+path="res://.godot/imported/inventory_background.png-ef6bbfffea30c3a1c58359e7a773ec84.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/attacks/rock_throw.png"
-dest_files=["res://.godot/imported/rock_throw.png-a0b68f6bd6dd09d75f6220fb959392bc.ctex"]
+source_file="res://player/ui/inventory/inventory_background.png"
+dest_files=["res://.godot/imported/inventory_background.png-ef6bbfffea30c3a1c58359e7a773ec84.ctex"]
 
 [params]
 

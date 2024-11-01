@@ -15,7 +15,7 @@ func _ready():
 			'mana_cost': 5.0,
 			'cool_down': 0.5,
 			'type': AttackType.PRIMARY,
-			'icon': preload("res://player/ui/attacks/fire_ball.png")
+			'icon': preload("res://player/wizard/attacks/fire_ball.png")
 		},
 		'ice_wave': {
 			'name': 'Ice Wave',
@@ -24,7 +24,25 @@ func _ready():
 			'mana_cost': 10.0,
 			'cool_down': 1.0,
 			'type': AttackType.PRIMARY,
-			'icon': preload("res://player/ui/attacks/ice_wave.png")
+			'icon': preload("res://player/wizard/attacks/ice_wave.png")
+		},
+		'ice_teleport': {
+			'name': 'Ice Teleport',
+			'description': 'bbb',
+			'action': '_ice_teleport',
+			'mana_cost': 10.0,
+			'cool_down': 1.0,
+			'type': AttackType.ABILITY,
+			'icon': preload("res://player/wizard/attacks/ice_teleport.png")
+		},
+		'ice_deflect': {
+			'name': 'Ice Deflect',
+			'description': 'bbb',
+			'action': '_ice_deflect',
+			'mana_cost': 10.0,
+			'cool_down': 1.0,
+			'type': AttackType.ABILITY,
+			'icon': preload("res://player/wizard/attacks/ice_deflect.png")
 		},
 		'fire_storm': {
 			'name': 'Fire Storm',
@@ -33,7 +51,7 @@ func _ready():
 			'mana_cost': 15.0,
 			'cool_down': 2.0,
 			'type': AttackType.ABILITY,
-			'icon': preload("res://player/ui/attacks/fire_storm.png")
+			'icon': preload("res://player/wizard/attacks/fire_storm.png")
 		},
 		'fire_wall': {
 			'name': 'Fire Wall',
@@ -42,21 +60,35 @@ func _ready():
 			'mana_cost': 20.0,
 			'cool_down': 2.0,
 			'type': AttackType.ABILITY,
-			'icon': preload("res://player/ui/attacks/fire_wall.png")
+			'icon': preload("res://player/wizard/attacks/fire_wall.png")
 		},
 		'rock_throw': {
-			'name': 'Rockthrow',
+			'name': 'Rock Throw',
 			'description': 'ccc',
 			'action': '_rock_throw',
 			'mana_cost': 20.0,
 			'cool_down': 2.0,
 			'type': AttackType.PRIMARY,
-			'icon': preload("res://player/ui/attacks/rock_throw.png")
+			'icon': preload("res://player/wizard/attacks/rock_throw.png")
 		},
-		# TODO
-		#'counter': {
-			#
-		#}
+		'rock_roll': {
+			'name': 'Rock Roll',
+			'description': 'ccc',
+			'action': '_rock_roll',
+			'mana_cost': 20.0,
+			'cool_down': 2.0,
+			'type': AttackType.ABILITY,
+			'icon': preload("res://player/wizard/attacks/rock_roll.png")
+		},
+		'rock_spike': {
+			'name': 'Rock Spike',
+			'description': 'ccc',
+			'action': '_rock_spike',
+			'mana_cost': 20.0,
+			'cool_down': 2.0,
+			'type': AttackType.ABILITY,
+			'icon': preload("res://player/wizard/attacks/rock_spike.png")
+		},
 	}
 	
 	self.skill_tree = [
@@ -83,13 +115,39 @@ func _ready():
 			'type': SkillTree.SkillType.ATTACK,
 			'attack_name': 'ice_wave',
 			'position': Vector2(0.0, 150.0),
-			'children': []
+			'children': [
+				{
+					'type': SkillTree.SkillType.ATTACK,
+					'attack_name': 'ice_deflect',
+					'position': Vector2(-50.0, 0.0),
+					'children': []
+				},
+				{
+					'type': SkillTree.SkillType.ATTACK,
+					'attack_name': 'ice_teleport',
+					'position': Vector2(50.0, 0.0),
+					'children': [],
+				}
+			]
 		},
 		{
 			'type': SkillTree.SkillType.ATTACK,
 			'attack_name': 'rock_throw',
 			'position': Vector2(250.0, 150.0),
-			'children': []
+			'children': [
+				{
+					'type': SkillTree.SkillType.ATTACK,
+					'attack_name': 'rock_roll',
+					'position': Vector2(300.0, 0.0),
+					'children': []
+				},
+				{
+					'type': SkillTree.SkillType.ATTACK,
+					'attack_name': 'rock_throw',
+					'position': Vector2(200.0, 0.0),
+					'children': [],
+				}
+			]
 		},
 	]
 	
@@ -98,10 +156,11 @@ func _ready():
 func _ice_spear(player_position, look_direction):
 	pass
 	
-func _teleport(player_position, look_direction):
-	pass
+func _ice_teleport(player_position, look_direction):
+	self.position = self.game.get_local_mouse_position()
+	$teleport.restart()
 	
-func _deflect(player_position, look_direction):
+func _ice_deflect(player_position, look_direction):
 	pass
 	
 func _rock_wall(player_position, look_direction):

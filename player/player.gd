@@ -317,7 +317,7 @@ func _process(delta: float) -> void:
 		camera.zoom = new_zoom
 
 func _physics_process(_delta: float) -> void:
-	var speed = self.speed if self.state != PlayerState.ROLL else self.roll_speed
+	var speed = self.speed + 30 * self.speed_stat if self.state != PlayerState.ROLL else self.roll_speed
 	self.velocity = self.movement.normalized() * speed
 	self.move_and_slide()
 	
@@ -407,6 +407,7 @@ func _update_health_ui():
 	
 func _level_up():
 	$level_up.restart()
+	%level_up_animation.play('level_up')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
 	#self.skill_tree_node.add_tokens(1)

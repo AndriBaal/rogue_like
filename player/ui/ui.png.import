@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0uj0o2s2out8"
-path="res://.godot/imported/fire_storm.png-3770a3c300348416a2916ee6d968eb5e.ctex"
+uid="uid://c3ymvinqflylj"
+path="res://.godot/imported/ui.png-5746296642a0097fe652095e5783885d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/attacks/fire_storm.png"
-dest_files=["res://.godot/imported/fire_storm.png-3770a3c300348416a2916ee6d968eb5e.ctex"]
+source_file="res://player/ui/ui.png"
+dest_files=["res://.godot/imported/ui.png-5746296642a0097fe652095e5783885d.ctex"]
 
 [params]
 

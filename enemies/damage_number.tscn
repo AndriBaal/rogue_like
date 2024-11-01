@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://byflgumhj03o2"]
+[gd_scene load_steps=2 format=3 uid="uid://b6osvon47m3mf"]
 
 [ext_resource type="Script" path="res://enemies/damage_number.gd" id="1_x8hi7"]
 
@@ -6,9 +6,11 @@
 light_mask = 0
 z_index = 10
 offset_left = -48.0
-offset_top = -16.0
-scale = Vector2(2, 2)
+offset_top = -24.0
+offset_right = 48.0
+offset_bottom = 24.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-text = "12"
+theme_override_font_sizes/font_size = 48
+text = "1"
 horizontal_alignment = 1
 script = ExtResource("1_x8hi7")

@@ -4,6 +4,7 @@ class_name Room
 
 @onready var map = $/root/game/player/ui/inventory/Map
 @onready var target = $/root/game/player
+@onready var game: Game = $/root/game
 @onready var enemies := $enemies
 @onready var tiles : TileMapLayer = $tiles
 
@@ -148,6 +149,11 @@ func _process(_delta: float) -> void:
 					
 func _close_room():
 	map.close_teleporters()
+	
+	# Clear all projectiles on room enter
+	for child in self.game.projectiles.get_children():
+		child.queue_free()
+	
 	for entrance in self.entrances:
 		if not entrance['has_connection']:
 			continue

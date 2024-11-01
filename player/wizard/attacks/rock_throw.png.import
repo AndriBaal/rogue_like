@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cc5kreidlmwmf"
-path="res://.godot/imported/fire_wall.png-26924bfb2d91498b4f2c47f91076f3ef.ctex"
+uid="uid://chq5tbgpql4ne"
+path="res://.godot/imported/rock_throw.png-d2af56867c50b3c29435b6a14c8a0ade.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/attacks/fire_wall.png"
-dest_files=["res://.godot/imported/fire_wall.png-26924bfb2d91498b4f2c47f91076f3ef.ctex"]
+source_file="res://player/wizard/attacks/rock_throw.png"
+dest_files=["res://.godot/imported/rock_throw.png-d2af56867c50b3c29435b6a14c8a0ade.ctex"]
 
 [params]
 

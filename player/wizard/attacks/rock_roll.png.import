@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oexkvd6pldby"
-path="res://.godot/imported/ice_wave.png-146241b99b43d99ed40d9098d8147f72.ctex"
+uid="uid://m1378aumeio8"
+path="res://.godot/imported/rock_roll.png-6b6efa04cb8101fc7f164532a997ba98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/attacks/ice_wave.png"
-dest_files=["res://.godot/imported/ice_wave.png-146241b99b43d99ed40d9098d8147f72.ctex"]
+source_file="res://player/wizard/attacks/rock_roll.png"
+dest_files=["res://.godot/imported/rock_roll.png-6b6efa04cb8101fc7f164532a997ba98.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jpsk6pusg7km"
-path="res://.godot/imported/fire_ball.png-c0ce674547960754e97d819e77556bc0.ctex"
+uid="uid://oexkvd6pldby"
+path="res://.godot/imported/ice_wave.png-869df7c348b6daff651a2fe6b2bcc6c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/attacks/fire_ball.png"
-dest_files=["res://.godot/imported/fire_ball.png-c0ce674547960754e97d819e77556bc0.ctex"]
+source_file="res://player/wizard/attacks/ice_wave.png"
+dest_files=["res://.godot/imported/ice_wave.png-869df7c348b6daff651a2fe6b2bcc6c3.ctex"]
 
 [params]
 

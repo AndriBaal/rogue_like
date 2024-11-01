@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dl68tk521b21x"]
 
 [ext_resource type="Script" path="res://player/ui/inventory/skill_tree/skill_tree_node.gd" id="1_hab2q"]
-[ext_resource type="Texture2D" uid="uid://jpsk6pusg7km" path="res://player/ui/attacks/fire_ball.png" id="1_ttr22"]
+[ext_resource type="Texture2D" uid="uid://jpsk6pusg7km" path="res://player/wizard/attacks/fire_ball.png" id="1_ttr22"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qb4q7"]
 

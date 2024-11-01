@@ -8,7 +8,8 @@
 background_mode = 3
 glow_enabled = true
 glow_blend_mode = 1
-glow_hdr_threshold = 0.2
+glow_hdr_threshold = 0.18
+glow_hdr_luminance_cap = 8.0
 
 [node name="game" type="Node2D"]
 process_priority = 1

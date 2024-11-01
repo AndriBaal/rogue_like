@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://c4y2d0bmkadl8"]
+[gd_scene load_steps=7 format=4 uid="uid://c4y2d0bmkadl8"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_gv10x"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_sunbj"]
 [ext_resource type="PackedScene" uid="uid://bnqdjjmtuwmy5" path="res://enemies/goblin_spear/goblin_spear.tscn" id="3_bgxr0"]
+[ext_resource type="PackedScene" uid="uid://bl6hh70t0akfl" path="res://dungeons/goblin_dungeon/decorations/spikes.tscn" id="4_u7ri6"]
 [ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="4_xo1im"]
 [ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="5_ud7hd"]
 
@@ -91,6 +92,12 @@ animation = &"side"
 autoplay = "side"
 frame_progress = 0.0
 flip_h = true
+
+[node name="spikes" parent="decorations" index="13" instance=ExtResource("4_u7ri6")]
+position = Vector2(356, -219)
+
+[node name="spikes2" parent="decorations" index="14" instance=ExtResource("4_u7ri6")]
+position = Vector2(356, -363)
 
 [node name="enemy" parent="enemies" index="0" instance=ExtResource("3_bgxr0")]
 z_as_relative = false

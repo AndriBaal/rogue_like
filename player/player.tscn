@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=19 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c5sroy6qqj43e" path="res://player/level_up.png" id="3_bjjbt"]
 [ext_resource type="AudioStream" uid="uid://c5637qrydm4yb" path="res://player/wizard/hurt.mp3" id="3_d513c"]
 [ext_resource type="Texture2D" uid="uid://dl3ev3baxoaw6" path="res://player/roll_particle.png" id="3_q6273"]
+[ext_resource type="Texture2D" uid="uid://jelmk651lrvx" path="res://player/wizard/attacks/teleport.png" id="5_pkjc4"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
@@ -22,10 +23,8 @@ initial_velocity_min = 30.0
 initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
 scale_min = 2.5
-scale_max = 4.0
+scale_max = 3.5
 scale_curve = SubResource("CurveTexture_srsbe")
-anim_speed_max = 16.0
-anim_offset_max = 1.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6okp0"]
 particles_animation = true
@@ -33,8 +32,62 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
+[sub_resource type="Curve" id="Curve_gxoci"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740122, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fns1n"]
+curve = SubResource("Curve_gxoci")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tmdcj"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 10.0
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 35.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -26.25
+linear_accel_max = -8.75
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_fns1n")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
 radius = 17.4545
+
+[sub_resource type="Animation" id="Animation_x7qcv"]
+resource_name = "level_up"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/level_up_text:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 0.999998),
+"update": 0,
+"values": [Vector2(528, 300), Vector2(528, 250)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui/level_up_text:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0140224, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ff65m"]
+_data = {
+"level_up": SubResource("Animation_x7qcv")
+}
 
 [node name="player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -66,7 +119,7 @@ explosiveness = 0.6
 [node name="level_up" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6okp0")
 emitting = false
-amount = 16
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_akn77")
 texture = ExtResource("3_bjjbt")
 lifetime = 1.5
@@ -97,6 +150,15 @@ texture = ExtResource("3_56ane")
 hframes = 17
 vframes = 8
 
+[node name="teleport" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_tmdcj")
+texture = ExtResource("5_pkjc4")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+
 [node name="collider" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_0d6cu")
@@ -105,3 +167,29 @@ shape = SubResource("CircleShape2D_0d6cu")
 stream = ExtResource("3_d513c")
 
 [node name="ui" parent="." instance=ExtResource("5_qixdu")]
+
+[node name="level_up_animation" type="AnimationPlayer" parent="ui"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ff65m")
+}
+
+[node name="level_up_text" type="Label" parent="ui"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -24.0
+offset_right = 48.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.340788, 0.484546, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "LVL+"

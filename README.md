@@ -3,12 +3,14 @@
 
 ## BUGS
 
+- [ ] Fix multihit with ice wave
+- [ ] Fix standing in spikes
 - [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [ ] Add more entrances for boss room
 	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room)
 - [ ] Out of bounds glitch (probably when boss room cannot generate)
-- [ ] The same spell can be equiped multiple times
+- [x] The same spell can be equiped multiple times
 - [x] Camera is not perfectly ceneted on the start of skill tree and map
 - [x] Dungeon generation issue (Sometimes wrong entrances get generated, mostly top entrances)
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
@@ -16,49 +18,58 @@
 ## TODO
 
 - [ ] Name
+- [x] Apply random offset to damage number
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
+- [ ] Show tutorial (breadcrumb popups in bottom right corner with tips on how to buy stuff)
 - [ ] Add Zoom to camera in map and skill tree
-- [ ] Add Level Up Text
-- [ ] Remove projectiles on room enter
+- [x] Add Level Up Text
+- [ ] Redo skill icon
+- [x] Remove projectiles on room enter
 - [ ] Fix pathfinding collision with multiple enemies (increase attack range)
 - [x] Add torches in corridors
 - [x] Level Up effect
 - [ ] Redo inventory
 - [ ] Border around inventory
-- [ ] Redo torch animation
+- [ ] ?Redo torch animation
 - [ ] Close inventory button
-
-- [ ] Implement perks in Player / Skill Tree
-- [ ] Perks:
-	- Moneygraber (get x% more money)
-	
+- [ ] Balance:
+	- [ ] Enemy xp reward, coins, speed, attack, and range
+	- [ ] Ability cost, cooldowns and description
+	- [ ] Primary attack should not use mana
 - [ ] Abilities (buyable with XP)
 	- [ ] Fire:
 		- [x] Primary: Fireball
 		- [ ] Abilities:
+			- [ ] Fire beam many small little fire projectiles
 			- [ ] Fire wave around player
-			- [ ] 
+			- [ ] Heat buff (speed and damage)
 			- [ ] Burning floor wave (aoe)
 		- [ ] Perks:
 			- [ ] Fire roll, burn floor on ground
+		- ?Effects:
+			- [ ] ?Burn
 	- [ ] Ice:
 		- [ ] 1st Primary: Ice spear
-		- [x] 2nd Primary: Ice wave
 		- [ ] Abilities:
 			- [ ] Teleport
 			- [ ] Counter
-			- [ ] 
+			- [ ] Ice wave
 		- [ ] Perks:
 			pass
+		- ?Effects:
+			- [ ] ?Freeze
+			- [ ] ?Bleed
 	- [ ] Earth:
 		- [x] Primary: Rock throw
 		- [ ] Abilities:
-			- [ ] Buff circle
+			- [ ] Buff circle or rock wall
 			- [ ] Earth spike
 			- [ ] Rock Roll
 		- [ ] Perks:
-			- [ ] 
+			- [ ]
+		- ?Effects:
+			- [ ] ?Crippled
 - [ ] 3 Soundtracks:
 	- [ ] Boss
 		- [ ] Track
@@ -71,15 +82,16 @@
 		- [ ] Integrated
 - [ ] Lighting Overhaul / Design
 - [ ] Decorations
-	- [ ] Crates
 	- [x] Torch
-	- [ ] ?Lanterns
-	- [ ] Chest
 	- [ ] Pots
 	- [ ] Table
 	- [ ] Barrels
+	- [ ] Crates
 	- [ ] Spike (with Damage)
-	- [ ] Explosing Barrels
+	- [ ] ?Make decorations destroyable
+	- [ ] ?Explosing Barrels
+	- [ ] ?Lanterns
+	- [ ] ?Chest
 - [ ] Sounds
 	- [ ] Coin Collect
 	- [x] Ui Button Click
@@ -87,29 +99,50 @@
 	- [x] Player Damage hit
 	- [ ] Player heal potion
 	- [ ] Enemy throw attack sound
-	- [ ] Enemy Damage hit
+	- [ ] Enemy Damage hit (hitmarker)
 	- [ ] Player roll
 	- [ ] Level Up
 	- [ ] Buy confirm
 	- [ ] Player walk
 - [ ] Enemies
-	- [ ] ?Damage Number
+	- [x] Damage Number
+	- [ ] Healthbar
 	- [X] Path Finding
 	- [ ] 4 enemy types (3 / 4)
 		- [x] Thrower
 		- [x] Axe Thrower
-		- [x] Slime
-		- ...
+		- [x] Slime (Red, Green, Blue)
+		- [ ] ...
 	- [ ] Boss: Goblin King (Ogre)
-		- [ ] One Eye
-		- [ ] blue color
+		- [ ] 4 Attacks
 - [ ] Rooms
 	- [ ] 8 bad rooms (0 / 8)
 	- [ ] 2 good rooms (0 / 2)
-		- [ ] Shop
+		- [ ] Shop (Buy potions, level points and skill points)
 	- [ ] 2 neutral (0 / 2)
-		- Gambling
-	- [ ] 1 boss room
+		- [ ] Gambling
+	- [x] 1 boss room
+- [ ] Attributes:
+	- [x] Health: increases max health
+	- [ ] Power: Increases Attack Power
+	- [x] Agility: Increases movementspeed (?and roll)
+	- [ ] ?Luck: Increase drop chances
+	- [ ] ?Wisdom: increases max mana and mana regeneration
+	- [ ] ?Endurance: increases max stamina and stamina regeneration
+
+- [ ] ?Implement perks in Player / Skill Tree
+- [ ] ?Perks:
+	- Moneygraber (get x% more money)
+- [ ] ?Optimize room occluding
+- [ ] ?Coin Collect animation
+- [ ] ?Game Over screen transition
+- [ ] ?Knockback projectiles
+- [ ] ?Splash screen
+- [ ] ?Enemy Spawn animation
+- [ ] ?Room complete indicator (Make a rewarding effect when clearing a room)
+- [ ] ?UI Theme
+- [ ] ?Make second cursor for UI
+- [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
 - [x] Redo tiles
 - [x] Logo (temporary)
 - [x] Custom cursor
@@ -135,26 +168,10 @@
 - [x] Dungeon Generation
 - [x] Doors
 - [x] Postprocessing with Glow
-- [ ] ?Optimize room occluding
-- [ ] ?Coin Collect animation
-- [ ] ?Game Over screen transition
-- [ ] ?Knockback projectiles
-- [ ] ?Splash screen
-- [ ] ?Enemy Spawn animation
-- [ ] ?Room complete indicator (Make a rewarding effect when clearing a room)
-- [ ] ?UI Theme
-- [ ] ?Make second cursor for UI
-- [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
-- [ ] ?Attributes:
-	- [ ] Health: increases max health
-	- [ ] ?Wisdom: increases max mana and mana regeneration
-	- [ ] ?Endurance: increases max stamina and stamina regeneration
-	- [ ] Power: Increases Attack Power
-	- [ ] Agility: Increases movementspeed and roll
-	- [ ] ?Luck: Increase drop chances
-
 
 ## PLANNED
+
+- [ ] Refactor methods with get / set
 - [ ] Boss entrance (ogre smahes through walls, hatching from egg, etc.)
 - [ ] Mini Map
 - [ ] Items (Amulets, rings, armor, staff, etc.)
