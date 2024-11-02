@@ -64,6 +64,7 @@ animations = [{
 }]
 
 [node name="torch" type="AnimatedSprite2D"]
+z_index = 2
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_xxayf")
 animation = &"bottom"

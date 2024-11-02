@@ -49,15 +49,16 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			return
 			
 		# Enemy is hit
-		if 'health' in body and body not in self.hit:
-			self.hit[body] = true
-			body.deal_damage(self.damage * self.game.player.attack_factor(self.damage_type))
-			if self.pierce > 0:
-				self.pierce -= 1
-			else:
+		if body not in hit:
+			if not inner_collider and 'health' in body:
+				self.hit[body] = true
+				body.deal_damage(self.damage * self.game.player.attack_factor(self.damage_type))
+				if self.pierce > 0:
+					self.pierce -= 1
+				else:
+					destroy = true
+			elif inner_collider:
 				destroy = true
-		elif inner_collider:
-			destroy = true
 	else:
 		# Player is hit
 		if body.get_instance_id() == self.game.player.get_instance_id():

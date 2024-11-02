@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=21 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://jelmk651lrvx" path="res://player/wizard/attacks/teleport.png" id="5_pkjc4"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 [ext_resource type="AudioStream" uid="uid://bpwly4eci4tk5" path="res://player/roll.mp3" id="8_1wfet"]
+[ext_resource type="AudioStream" uid="uid://vf2nxlwf5ehs" path="res://player/potion.mp3" id="8_qyqkr"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.823232, 0.858696), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
@@ -165,6 +166,9 @@ shape = SubResource("CircleShape2D_0d6cu")
 
 [node name="hurt_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_d513c")
+
+[node name="potion_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_qyqkr")
 
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_1wfet")

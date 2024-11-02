@@ -58,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "xxx xxx xxx xxx xxx xxx xxx xxx  xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx"
 label_settings = SubResource("LabelSettings_8eolo")
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="close" type="Button" parent="."]

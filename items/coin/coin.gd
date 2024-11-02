@@ -18,6 +18,5 @@ class_name Coin
 	#self.scale.x = self.current_scale
 
 func _on_collect():
-	player.add_money(self.value) 
-	$collect_audio.play()
-	self.queue_free() 
+	player.add_money(self.value)
+	super()

@@ -14,6 +14,12 @@ region = Rect2(0, 0, 72, 72)
 
 [node name="character" instance=ExtResource("1_06nmt")]
 
+[node name="navigation" parent="." index="0"]
+offset_left = 24.0
+offset_top = 0.0
+offset_right = 110.0
+offset_bottom = 78.0
+
 [node name="navigation_icon" parent="navigation" index="0"]
 texture = ExtResource("2_r0thj")
 

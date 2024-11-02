@@ -93,7 +93,7 @@
 	- [ ] ?Lanterns
 	- [ ] ?Chest
 - [ ] Sounds
-	- [ ] Coin Collect
+	- [x] Coin Collect
 	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
 	- [x] Player Damage hit

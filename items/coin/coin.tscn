@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4l7511fso3um"]
+[gd_scene load_steps=6 format=3 uid="uid://b4l7511fso3um"]
 
 [ext_resource type="PackedScene" uid="uid://bmaleurogevn7" path="res://items/item.tscn" id="1_iqmqm"]
 [ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="2_qi7b1"]
 [ext_resource type="Script" path="res://items/coin/coin.gd" id="2_s7tvb"]
+[ext_resource type="AudioStream" uid="uid://1x37d4a4puf3" path="res://items/coin/collect.wav" id="4_j6iyh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2myxh"]
 size = Vector2(12, 16)
@@ -19,3 +20,6 @@ shape = SubResource("RectangleShape2D_2myxh")
 texture = ExtResource("2_qi7b1")
 region_enabled = true
 region_rect = Rect2(0, 0, 12, 16)
+
+[node name="collect_audio" parent="." index="2"]
+stream = ExtResource("4_j6iyh")
