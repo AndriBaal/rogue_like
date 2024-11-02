@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Room
 
-@onready var map = $/root/game/player/ui/inventory/Map
+@onready var map = $/root/game/player/ui/inventory/map/content
 @onready var target = $/root/game/player
 @onready var game: Game = $/root/game
 @onready var enemies := $enemies

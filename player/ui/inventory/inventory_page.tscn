@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://bln7lwjvf2tj6"]
+
+[ext_resource type="Script" path="res://player/ui/inventory/inventory_page.gd" id="1_j41m4"]
+[ext_resource type="StyleBox" uid="uid://bdqf4ti4i2s68" path="res://player/ui/inventory/inventory_navigation.tres" id="2_khbha"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mps2p"]
+bg_color = Color(0.164706, 0.184314, 0.305882, 1)
+
+[node name="invenotry_page" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_j41m4")
+
+[node name="navigation" type="Button" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -4.0
+offset_right = 106.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = ExtResource("2_khbha")
+theme_override_styles/disabled_mirrored = ExtResource("2_khbha")
+theme_override_styles/disabled = ExtResource("2_khbha")
+theme_override_styles/hover_pressed_mirrored = ExtResource("2_khbha")
+theme_override_styles/hover_pressed = ExtResource("2_khbha")
+theme_override_styles/hover_mirrored = ExtResource("2_khbha")
+theme_override_styles/hover = ExtResource("2_khbha")
+theme_override_styles/pressed_mirrored = ExtResource("2_khbha")
+theme_override_styles/pressed = ExtResource("2_khbha")
+theme_override_styles/normal_mirrored = ExtResource("2_khbha")
+theme_override_styles/normal = ExtResource("2_khbha")
+
+[node name="navigation_icon" type="TextureRect" parent="navigation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="content" type="Panel" parent="."]
+z_index = 1
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 72.0
+offset_right = 720.0
+offset_bottom = 564.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mps2p")

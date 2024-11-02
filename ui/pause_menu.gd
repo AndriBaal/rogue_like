@@ -32,5 +32,5 @@ func _save():
 func _set_owner(node, root):
 	if node != root:
 		node.owner = root
-	for child in node.get_children():
+	for child in node.get_children(true):
 		_set_owner(child, root)

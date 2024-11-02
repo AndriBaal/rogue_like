@@ -3,14 +3,14 @@ extends Area2D
 class_name Projectile
 
 enum DamageType {
-	MAGIC,
+	ICE,
 	FIRE,
 	PHYSICAL
 }
 
 const DESTROY = preload('res://projectiles/destroy.tscn')
 
-@onready var player = $/root/game/player
+@onready var game: Game = $/root/game
 
 @export var speed: float = 650.0
 @export var max_age: float = 10.0
@@ -44,12 +44,12 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 	var inner_collider := local_shape_index == 0
 	if self.friendly:
 		# Player hits himself
-		if body.get_instance_id() == self.player.get_instance_id():
+		if body.get_instance_id() == self.game.player.get_instance_id():
 			return
 			
 		# Enemy is hit
 		if 'health' in body:
-			body.deal_damage(self.damage)
+			body.deal_damage(self.damage * self.game.player.attack_factor(self.damage_type))
 			if self.pierce > 0:
 				self.pierce -= 1
 			else:
@@ -58,7 +58,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			destroy = true
 	else:
 		# Player is hit
-		if body.get_instance_id() == self.player.get_instance_id():
+		if body.get_instance_id() == self.game.player.get_instance_id():
 			if not body.deal_damage(self.damage):
 				return
 		# Other enemy is hit

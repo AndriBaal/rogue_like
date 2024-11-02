@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://be5hrgq8a5c1"]
 
-[ext_resource type="Texture2D" uid="uid://b8g2u4f8oygro" path="res://ui/home.png" id="1_a5crn"]
+[ext_resource type="Texture2D" uid="uid://b8g2u4f8oygro" path="res://ui/home.png" id="1_4ryin"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wbm78"]
 
@@ -9,11 +9,13 @@ z_index = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -53.0
-offset_right = 53.0
+offset_left = 10.0
+offset_top = -66.0
+offset_right = 63.0
+offset_bottom = -13.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 48
 theme_override_styles/focus = SubResource("StyleBoxEmpty_wbm78")
-icon = ExtResource("1_a5crn")
+icon = ExtResource("1_4ryin")
 flat = true
 expand_icon = true

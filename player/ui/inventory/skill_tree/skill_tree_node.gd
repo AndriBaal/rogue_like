@@ -15,7 +15,7 @@ func _ready() -> void:
 	$button.pressed.connect(self._on_click)
 
 func _on_click():
-	var skill_tree = $/root/game/player/ui/inventory/SkillTree
+	var skill_tree = $/root/game/player/ui/inventory/skill_tree/content
 	for child in self.get_parent().get_children():
 		if child.modulate == Color.YELLOW:
 			child.modulate = Color.WHITE

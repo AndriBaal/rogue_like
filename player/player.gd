@@ -73,14 +73,8 @@ enum PlayerState {
 }
 
 @onready var game: Game = $/root/game
-@onready var camera := $camera
-@onready var walk_sprite := $walk_sprite
-@onready var walk_attack_sprite := $walk_attack_sprite
-@onready var idle_sprite := $idle_sprite
-@onready var roll_sprite := $roll_sprite
-@onready var idle_attack_sprite := $idle_attack_sprite
 @onready var mana_bar := $ui/main/mana_bar
-@onready var inventory := $ui/inventory
+@onready var inventory: Inventory = $ui/inventory
 
 @export var xp_for_lvl_up := 50
 @export var speed := 600.0
@@ -159,39 +153,26 @@ enum PlayerState {
 		return level_up_tokens
 	set(val):
 		level_up_tokens = val
-		$ui/inventory/Character.update_level_up_token_ui(val)
+		$ui/inventory/character/content.update_level_up_token_ui(val)
 @export var skill_tokens := 5:
 	get:
 		return skill_tokens
 	set(val):
 		skill_tokens = val
-		$ui/inventory/SkillTree.update_skill_token_ui(val)
+		$ui/inventory/skill_tree/content.update_skill_token_ui(val)
 
 
 const GAME_OVER := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	self._update_potion_ui()
-	$ui/inventory/SkillTree.init_tree(self.skill_tree, self.attacks)
+	$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("skill_tree"):
-		self.inventory.visible = !self.inventory.visible
-		$ui/inventory/SkillTree.visible = true
-		$ui/inventory/Character.visible = false
-		$ui/inventory/Map.visible = false
-		
-	if Input.is_action_just_pressed("character"):
-		self.inventory.visible = !self.inventory.visible
-		$ui/inventory/Character.visible = true
-		$ui/inventory/SkillTree.visible = false
-		$ui/inventory/Map.visible = false
-	
-	if Input.is_action_just_pressed("map"):
-		self.inventory.visible = !self.inventory.visible
-		$ui/inventory/Map.visible = true
-		$ui/inventory/Character.visible = false
-		$ui/inventory/SkillTree.visible = false
+	for action in ["skill_tree", "character", "map"]:
+		if Input.is_action_just_pressed(action):
+			self.inventory.visible = !self.inventory.visible
+			self.inventory.make_active(action)
 	
 	var new_movement := Input.get_vector(
 		"move_left",
@@ -252,29 +233,29 @@ func _process(delta: float) -> void:
 
 	if new_state != self.state:
 		self.make_intangible(false)
-		self.walk_sprite.visible = false
-		self.idle_sprite.visible = false
-		self.idle_attack_sprite.visible = false
-		self.walk_attack_sprite.visible = false
-		self.roll_sprite.visible = false
+		$walk_sprite.visible = false
+		$idle_sprite.visible = false
+		$idle_attack_sprite.visible = false
+		$walk_attack_sprite.visible = false
+		$roll_sprite.visible = false
 		self.animation_timer = 0.0
 		match new_state:
 			PlayerState.ROLL:
-				var particle = %roll_particle
-				particle.restart()
+				$roll_particle.restart()
+				$roll_audio.play()
 				self._use_mana(self.roll_cost)
 				self.roll_timer = self.roll_duration
-				self.roll_sprite.visible = true
+				$roll_sprite.visible = true
 				self.movement = new_movement if is_moving else look
 				self.direction = Direction.from_vector(self.movement)
 			PlayerState.IDLE_ATTACK:
-				self.idle_attack_sprite.visible = true
+				$idle_attack_sprite.visible = true
 			PlayerState.IDLE:
-				self.idle_sprite.visible = true
+				$idle_sprite.visible = true
 			PlayerState.WALK:
-				self.walk_sprite.visible = true
+				$walk_sprite.visible = true
 			PlayerState.WALK_ATTACK:
-				self.walk_attack_sprite.visible = true
+				$walk_attack_sprite.visible = true
 
 	if new_state != PlayerState.ROLL:
 		self.direction = new_direction
@@ -284,20 +265,20 @@ func _process(delta: float) -> void:
 	var active_sprite
 	match self.state:
 		PlayerState.ROLL:
-			active_sprite = self.roll_sprite
+			active_sprite = $roll_sprite
 			active_sprite.frame_coords.x = int(abs(self.roll_timer - self.roll_duration) / self.roll_duration * active_sprite.hframes)
 			self.animation_timer += delta
 			self.make_intangible(self.has_roll_iframes())
 		PlayerState.IDLE:
-			active_sprite = self.idle_sprite
+			active_sprite = $idle_sprite
 		PlayerState.IDLE_ATTACK:
-			active_sprite = self.idle_attack_sprite
+			active_sprite = $idle_attack_sprite
 		PlayerState.WALK:
-			active_sprite = self.walk_sprite
+			active_sprite = $walk_sprite
 			active_sprite.frame_coords.x = int(self.animation_timer * 24.0) % active_sprite.hframes
 			self.animation_timer += delta
 		PlayerState.WALK_ATTACK:
-			active_sprite = self.walk_attack_sprite
+			active_sprite = $walk_attack_sprite
 			active_sprite.frame_coords.x = int(self.animation_timer * 24.0) % active_sprite.hframes
 			self.animation_timer += delta
 
@@ -310,11 +291,11 @@ func _process(delta: float) -> void:
 		const ZOOM_MIN: float = 0.1
 		const ZOOM_MAX: float = 5.0
 		var zoom_change := self.game.mouse_wheel_delta * ZOOM_SPEED
-		var new_zoom = camera.zoom * (1 + zoom_change)
+		var new_zoom = $camera.zoom * (1 + zoom_change)
 		new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
 		new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
 
-		camera.zoom = new_zoom
+		$camera.zoom = new_zoom
 
 func _physics_process(_delta: float) -> void:
 	var speed = self.speed + 30 * self.speed_stat if self.state != PlayerState.ROLL else self.roll_speed
@@ -426,7 +407,6 @@ func refill_potion(amount: int):
 	self.potions = min(self.potions, self.max_potions)
 	self._update_potion_ui()
 	
-# TODO: Refactor to potion UI
 func _update_potion_ui():
 	var sprite := $ui/main/potion/sprite
 	var amount: Label = $ui/main/potion/amount
@@ -449,11 +429,14 @@ func int_to_roman(num: int) -> String:
 			num -= value
 	
 	return result
+
+func attack_factor(_type: Projectile.DamageType) -> float:
+	return 1.0 + self.attack_stat * 0.1
 	
 func assign_attack(slot: PlayerAttackSlot, attack):
 	var slot_string = slot_to_string(slot)
 	var attack_ui = self.get_node('ui/main/attack/' + slot_string)
-	var attack_slot = self.get_node('ui/inventory/Character/attack_slots/' + slot_string)
+	var attack_slot = self.get_node('ui/inventory/character/content/attack_slots/' + slot_string)
 	if attack == null:
 		self.active_attacks[slot] = null
 		attack_slot.icon = null

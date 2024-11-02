@@ -100,7 +100,7 @@
 	- [ ] Player heal potion
 	- [ ] Enemy throw attack sound
 	- [ ] Enemy Damage hit (hitmarker)
-	- [ ] Player roll
+	- [x] Player roll
 	- [ ] Level Up
 	- [ ] Buy confirm
 	- [ ] Player walk
@@ -124,7 +124,7 @@
 	- [x] 1 boss room
 - [ ] Attributes:
 	- [x] Health: increases max health
-	- [ ] Power: Increases Attack Power
+	- [x] Power: Increases Attack Power
 	- [x] Agility: Increases movementspeed (?and roll)
 	- [ ] ?Luck: Increase drop chances
 	- [ ] ?Wisdom: increases max mana and mana regeneration

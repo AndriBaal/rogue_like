@@ -176,7 +176,7 @@ func death():
 			continue
 		var amount = item['amount']
 		for _amount in range(amount.x, randi_range(amount.x, amount.y)):
-			const ITEM_SPREAD := 75.0
+			const ITEM_SPREAD := 150.0
 			var i = item['scene'].instantiate()
 			var offset := Vector2(
 				randf_range(-ITEM_SPREAD, ITEM_SPREAD), 
@@ -188,7 +188,7 @@ func death():
 func start_attack() -> void:
 	self.movement = Vector2.ZERO
 	self.attack_sprite = $idle_attack_sprite
-	
+
 func _velocity_computed(safe: Vector2):
 	self.velocity = safe
 	var res = self.move_and_slide()
@@ -198,10 +198,10 @@ func _velocity_computed(safe: Vector2):
 			#var collider = collision.get_collider()
 			if collision.get_collider_id() == self.target.get_instance_id():
 				self.target.deal_damage(self.melee_damage)
-	
+
 func attack():
 	pass
-	
+
 func state_changed(_old_state: EnemyState, new_state: EnemyState) -> void:
 	if self.attack_sprite:
 		self.attack_sprite.visible = false

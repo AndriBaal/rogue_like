@@ -1,4 +1,4 @@
-extends ColorRect
+extends Panel
 
 class_name Map
 
@@ -24,7 +24,6 @@ func _visibility_changed():
 func _center_camera():
 	var cam: Camera2D = $cam
 	var a = cam.get_viewport().get_visible_rect().size / 2.0
-	print(cam.get_viewport().size)
 	cam.position = Vector2(a.x, a.y)
 
 func close_teleporters():

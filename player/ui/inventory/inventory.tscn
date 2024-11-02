@@ -1,37 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://1up0xo0sygli"]
+[gd_scene load_steps=8 format=3 uid="uid://1up0xo0sygli"]
 
-[ext_resource type="PackedScene" uid="uid://c7t4ymojsp2th" path="res://player/ui/inventory/character/character.tscn" id="1_28y7s"]
-[ext_resource type="PackedScene" uid="uid://cdk8e27l0bfhw" path="res://player/ui/inventory/skill_tree/skill_tree.tscn" id="1_jl2iq"]
-[ext_resource type="PackedScene" uid="uid://rlmwcg7qv6vy" path="res://player/ui/inventory/map/map.tscn" id="1_t4l5u"]
+[ext_resource type="Texture2D" uid="uid://bwyd23ex5wysq" path="res://player/ui/inventory/inventory_background.png" id="1_ohe02"]
+[ext_resource type="Script" path="res://player/ui/inventory/inventory.gd" id="2_tsg26"]
+[ext_resource type="Texture2D" uid="uid://co64ex1uqjbbg" path="res://player/ui/inventory/close.png" id="5_80u3n"]
+[ext_resource type="PackedScene" uid="uid://5sis1fh7xghe" path="res://player/ui/inventory/skill_tree/skill_tree.tscn" id="7_7k1rb"]
+[ext_resource type="PackedScene" uid="uid://wn2fyhe4j4cp" path="res://player/ui/inventory/character/character.tscn" id="8_drxqg"]
+[ext_resource type="PackedScene" uid="uid://b0uhsdjx683h0" path="res://player/ui/inventory/map/map.tscn" id="9_uui1q"]
 
-[node name="tabs" type="TabContainer"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pk65j"]
+
+[node name="tabs" type="NinePatchRect"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -380.0
-offset_top = -299.5
+offset_top = -300.0
 offset_right = 380.0
-offset_bottom = 299.5
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-tab_alignment = 1
-current_tab = 0
-clip_tabs = false
+texture = ExtResource("1_ohe02")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+script = ExtResource("2_tsg26")
 
-[node name="Character" parent="." instance=ExtResource("1_28y7s")]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="SkillTree" parent="." instance=ExtResource("1_jl2iq")]
+[node name="close" type="Button" parent="."]
 unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
+layout_mode = 0
+offset_left = 660.0
+offset_top = 10.0
+offset_right = 700.0
+offset_bottom = 50.0
+scale = Vector2(2, 2)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pk65j")
+icon = ExtResource("5_80u3n")
+flat = true
 
-[node name="Map" parent="." instance=ExtResource("1_t4l5u")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
+[node name="skill_tree" parent="." instance=ExtResource("7_7k1rb")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="character" parent="." instance=ExtResource("8_drxqg")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="map" parent="." instance=ExtResource("9_uui1q")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

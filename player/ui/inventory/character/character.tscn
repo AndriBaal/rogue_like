@@ -1,44 +1,42 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7t4ymojsp2th"]
+[gd_scene load_steps=9 format=3 uid="uid://wn2fyhe4j4cp"]
 
+[ext_resource type="PackedScene" uid="uid://bln7lwjvf2tj6" path="res://player/ui/inventory/inventory_page.tscn" id="1_06nmt"]
 [ext_resource type="Script" path="res://player/ui/inventory/character/character.gd" id="1_nms8g"]
 [ext_resource type="Texture2D" uid="uid://dgogtje3dbow4" path="res://player/ui/level_up_token.png" id="2_8nd6e"]
+[ext_resource type="Texture2D" uid="uid://d1v1qa6gfhe7m" path="res://player/ui/inventory/character/icon.png" id="2_r0thj"]
 [ext_resource type="Texture2D" uid="uid://bi4wrsbqnkjjy" path="res://player/wizard/idle.png" id="3_em7ca"]
 [ext_resource type="PackedScene" uid="uid://d3t8jpbvn5k4i" path="res://player/ui/inventory/character/stat_bar.tscn" id="4_gmytn"]
 [ext_resource type="PackedScene" uid="uid://cd80kewjxyb45" path="res://player/ui/inventory/character/attack_slot.tscn" id="4_lhn5o"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_caxmn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl1x8"]
 atlas = ExtResource("3_em7ca")
 region = Rect2(0, 0, 72, 72)
 
-[node name="character" type="ColorRect"]
-clip_contents = true
-custom_minimum_size = Vector2(760, 575)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -392.0
-offset_bottom = -73.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.124715, 0.00844388, 0.0181949, 1)
+[node name="character" instance=ExtResource("1_06nmt")]
+
+[node name="navigation_icon" parent="navigation" index="0"]
+texture = ExtResource("2_r0thj")
+
+[node name="content" parent="." index="1"]
 script = ExtResource("1_nms8g")
 
-[node name="level_up_tokens" type="Control" parent="."]
-layout_mode = 1
+[node name="level_up_tokens" type="Control" parent="content" index="0"]
+unique_name_in_owner = true
+layout_mode = 3
 anchors_preset = 0
 offset_left = 19.0
-offset_top = 18.0
+offset_top = 20.0
 offset_right = 19.0
-offset_bottom = 18.0
+offset_bottom = 20.0
 scale = Vector2(1.7527, 1.78922)
 
-[node name="TextureRect" type="TextureRect" parent="level_up_tokens"]
+[node name="TextureRect" type="TextureRect" parent="content/level_up_tokens" index="0"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_8nd6e")
 
-[node name="label" type="Label" parent="level_up_tokens"]
+[node name="label" type="Label" parent="content/level_up_tokens" index="1"]
 layout_mode = 0
 offset_left = 50.0
 offset_top = 12.0
@@ -46,95 +44,95 @@ offset_right = 122.0
 offset_bottom = 28.0
 text = "1"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 2
-offset_left = 77.0
-offset_top = 90.0
-offset_right = 149.0
-offset_bottom = 162.0
-scale = Vector2(3.56849, 3.56849)
-texture = SubResource("AtlasTexture_caxmn")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="content" index="1"]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 130.0
-offset_right = 549.0
-offset_bottom = 238.0
+offset_left = 19.0
+offset_top = 31.0
+offset_right = 91.0
+offset_bottom = 103.0
+scale = Vector2(3.56849, 3.56849)
+texture = SubResource("AtlasTexture_dl1x8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="content" index="2"]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 70.0
+offset_right = 461.0
+offset_bottom = 150.0
 scale = Vector2(2.10359, 2.10082)
 
-[node name="hp" parent="VBoxContainer" instance=ExtResource("4_gmytn")]
+[node name="hp" parent="content/VBoxContainer" index="0" instance=ExtResource("4_gmytn")]
 layout_mode = 2
 alignment = 2
 property = "health_stat"
 label = "HP"
 
-[node name="atk" parent="VBoxContainer" instance=ExtResource("4_gmytn")]
+[node name="atk" parent="content/VBoxContainer" index="1" instance=ExtResource("4_gmytn")]
 layout_mode = 2
 alignment = 2
 property = "attack_stat"
 label = "ATK"
 
-[node name="spd" parent="VBoxContainer" instance=ExtResource("4_gmytn")]
+[node name="spd" parent="content/VBoxContainer" index="2" instance=ExtResource("4_gmytn")]
 layout_mode = 2
 alignment = 2
 property = "speed_stat"
 label = "SPD"
 
-[node name="attack_slots" type="HBoxContainer" parent="."]
+[node name="attack_slots" type="HBoxContainer" parent="content" index="3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.246
-offset_left = 12.0
-offset_top = 317.0
-offset_right = 150.48
-offset_bottom = 357.0
+offset_left = 19.0
+offset_top = 260.0
+offset_right = 144.88
+offset_bottom = 300.0
 scale = Vector2(2.26663, 2.26663)
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="primary_attack" parent="attack_slots" instance=ExtResource("4_lhn5o")]
+[node name="primary_attack" parent="content/attack_slots" index="0" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 label = "PRIMARY"
 
-[node name="ability1" parent="attack_slots" instance=ExtResource("4_lhn5o")]
+[node name="ability1" parent="content/attack_slots" index="1" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 label = "ABILITY 1"
 
-[node name="ability2" parent="attack_slots" instance=ExtResource("4_lhn5o")]
+[node name="ability2" parent="content/attack_slots" index="2" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 label = "ABILITY 2"
 
-[node name="ability3" parent="attack_slots" instance=ExtResource("4_lhn5o")]
+[node name="ability3" parent="content/attack_slots" index="3" instance=ExtResource("4_lhn5o")]
 layout_mode = 2
 label = "ABILITY 3"
 
-[node name="attack_selection" type="ColorRect" parent="."]
+[node name="attack_selection" type="ColorRect" parent="content" index="4"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
-offset_top = 448.0
-offset_right = 760.0
-offset_bottom = 575.0
+offset_top = 376.0
+offset_right = 720.0
+offset_bottom = 492.0
 color = Color(1, 1, 1, 0.203922)
 
-[node name="scroll" type="ScrollContainer" parent="attack_selection"]
+[node name="scroll" type="ScrollContainer" parent="content/attack_selection" index="0"]
 layout_mode = 2
 offset_left = 19.0
-offset_top = 7.0
-offset_right = 362.0
-offset_bottom = 61.0
+offset_top = 13.0
+offset_right = 341.0
+offset_bottom = 59.0
 scale = Vector2(2, 2)
 
-[node name="box" type="HBoxContainer" parent="attack_selection/scroll"]
+[node name="box" type="HBoxContainer" parent="content/attack_selection/scroll" index="0"]
 layout_mode = 2
 
-[node name="close" type="Button" parent="attack_selection"]
+[node name="close" type="Button" parent="content/attack_selection" index="1"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 713.0
-offset_top = 15.0
-offset_right = 741.0
-offset_bottom = 53.0
+offset_left = 677.0
+offset_top = 17.0
+offset_right = 705.0
+offset_bottom = 55.0
 grow_horizontal = 0
 text = "X"

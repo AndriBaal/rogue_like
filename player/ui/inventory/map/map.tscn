@@ -1,21 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://rlmwcg7qv6vy"]
+[gd_scene load_steps=5 format=3 uid="uid://b0uhsdjx683h0"]
 
+[ext_resource type="PackedScene" uid="uid://bln7lwjvf2tj6" path="res://player/ui/inventory/inventory_page.tscn" id="1_dm4j2"]
 [ext_resource type="Script" path="res://player/ui/inventory/map/map.gd" id="1_rhld5"]
-[ext_resource type="PackedScene" uid="uid://be5hrgq8a5c1" path="res://player/ui/inventory/home.tscn" id="2_ljhlx"]
+[ext_resource type="Texture2D" uid="uid://li8thkll734f" path="res://player/ui/inventory/map/icon.png" id="2_20ox0"]
+[ext_resource type="PackedScene" uid="uid://be5hrgq8a5c1" path="res://player/ui/inventory/home_button.tscn" id="3_356fg"]
 
-[node name="Map" type="ColorRect"]
-clip_contents = true
-custom_minimum_size = Vector2(760, 575)
-color = Color(0, 0.220946, 0.117944, 1)
+[node name="map" instance=ExtResource("1_dm4j2")]
+
+[node name="navigation" parent="." index="0"]
+offset_left = 216.0
+offset_top = 0.0
+offset_right = 302.0
+offset_bottom = 78.0
+
+[node name="navigation_icon" parent="navigation" index="0"]
+texture = ExtResource("2_20ox0")
+
+[node name="content" parent="." index="1"]
 script = ExtResource("1_rhld5")
-metadata/_tab_index = 3
 
-[node name="cam" type="Camera2D" parent="."]
+[node name="cam" type="Camera2D" parent="content" index="0"]
 process_callback = 0
 
-[node name="tiles" type="Node2D" parent="cam"]
+[node name="tiles" type="Node2D" parent="content/cam" index="0"]
 
-[node name="player" type="ColorRect" parent="cam"]
+[node name="player" type="ColorRect" parent="content/cam" index="1"]
 z_index = 2
 anchors_preset = 3
 anchor_left = 1.0
@@ -28,7 +37,11 @@ grow_horizontal = 0
 grow_vertical = 0
 color = Color(1, 0, 0, 1)
 
-[node name="teleporters" type="Node2D" parent="cam"]
+[node name="teleporters" type="Node2D" parent="content/cam" index="2"]
 
-[node name="center_camera" parent="." instance=ExtResource("2_ljhlx")]
+[node name="center_camera" parent="content" index="1" instance=ExtResource("3_356fg")]
 layout_mode = 1
+offset_left = 12.0
+offset_top = -64.0
+offset_right = 65.0
+offset_bottom = -11.0

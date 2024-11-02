@@ -6,7 +6,7 @@ class_name Game
 @onready var effects = $effects
 @onready var ui_effects = $ui_effects
 @onready var player: Player = $player
-@onready var attack_selection = $player/ui/inventory/Character/attack_selection
+@onready var attack_selection = $player/ui/inventory/character/content/attack_selection
 
 var mouse_wheel_delta := 0.0
 
