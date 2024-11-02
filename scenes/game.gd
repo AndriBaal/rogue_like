@@ -8,7 +8,14 @@ class_name Game
 @onready var player: Player = $player
 @onready var attack_selection = $player/ui/inventory/character/content/attack_selection
 
+const POP_UP := preload("res://ui/pop_up.tscn")
+
 var mouse_wheel_delta := 0.0
+
+func spawn_pop_up(title, description):
+	var pop_up = POP_UP.instantiate()
+	pop_up.start(title, description)
+	$player/ui.add_child(pop_up)
 
 func spawn_projectile(projectile, origin: Vector2, target: Vector2, friendly: bool = false) -> void:
 	projectile.start(friendly, origin, target)

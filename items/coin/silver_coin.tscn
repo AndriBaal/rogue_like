@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckin58abo0tnu"]
 
-[ext_resource type="PackedScene" uid="uid://brgk5wcrviajs" path="res://items/coin/coin.tscn" id="1_tvfcy"]
+[ext_resource type="PackedScene" uid="uid://b4l7511fso3um" path="res://items/coin/coin.tscn" id="1_tvfcy"]
 
 [node name="coin" instance=ExtResource("1_tvfcy")]
 value = 2

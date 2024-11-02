@@ -32,7 +32,6 @@ wait_time = 0.5
 autostart = true
 
 [node name="hp_bar" type="TextureProgressBar" parent="."]
-unique_name_in_owner = true
 top_level = true
 z_index = 100
 anchors_preset = 8

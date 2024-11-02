@@ -21,6 +21,7 @@ const DESTROY = preload('res://projectiles/destroy.tscn')
 @export var pierce := 0
 @export var rotation_speed := 0.0
 @export var damage_type := DamageType.PHYSICAL
+@export var hit := {}
 
 func start(friendly: bool, origin: Vector2, target: Vector2) -> void:
 	self.friendly = friendly
@@ -48,7 +49,8 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			return
 			
 		# Enemy is hit
-		if 'health' in body:
+		if 'health' in body and body not in self.hit:
+			self.hit[body] = true
 			body.deal_damage(self.damage * self.game.player.attack_factor(self.damage_type))
 			if self.pierce > 0:
 				self.pierce -= 1

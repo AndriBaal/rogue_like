@@ -8,3 +8,5 @@ script = ExtResource("1_jy4u2")
 [node name="collider" type="CollisionShape2D" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="."]
+
+[node name="collect_audio" type="AudioStreamPlayer2D" parent="."]

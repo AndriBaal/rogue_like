@@ -165,8 +165,10 @@ enum PlayerState {
 const GAME_OVER := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
+	self.game.spawn_pop_up('Welcome', "It's time to play the gameeeeeeeeeeeeeeee!")
 	self._update_potion_ui()
 	$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
+	
 
 func _process(delta: float) -> void:
 	for action in ["skill_tree", "character", "map"]:
@@ -388,11 +390,9 @@ func _update_health_ui():
 	
 func _level_up():
 	$level_up.restart()
-	%level_up_animation.play('level_up')
+	$ui/level_up_animation.play('level_up')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
-	#self.skill_tree_node.add_tokens(1)
-	#self.character_node.add_tokens(1)
 	
 func _use_potion():
 	if self.potions == 0:

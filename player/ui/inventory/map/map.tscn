@@ -41,7 +41,3 @@ color = Color(1, 0, 0, 1)
 
 [node name="center_camera" parent="content" index="1" instance=ExtResource("3_356fg")]
 layout_mode = 1
-offset_left = 12.0
-offset_top = -64.0
-offset_right = 65.0
-offset_bottom = -11.0

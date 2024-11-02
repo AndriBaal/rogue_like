@@ -4,7 +4,7 @@ class_name DamageNumber
 
 const VELOCITY := 100.0
 const LIFE_TIME := 0.75
-const OFFSET_RANGE := Vector2(20.0, 20.0)
+const OFFSET_RANGE := Vector2(40.0, 40.0)
 
 var alive := 0.0
 

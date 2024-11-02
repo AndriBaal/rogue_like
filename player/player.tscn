@@ -173,7 +173,6 @@ volume_db = 24.0
 [node name="ui" parent="." instance=ExtResource("5_qixdu")]
 
 [node name="level_up_animation" type="AnimationPlayer" parent="ui"]
-unique_name_in_owner = true
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ff65m")

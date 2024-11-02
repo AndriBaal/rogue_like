@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj7votnrikjyv"]
 
-[ext_resource type="PackedScene" uid="uid://brgk5wcrviajs" path="res://items/coin/coin.tscn" id="1_8ocfo"]
+[ext_resource type="PackedScene" uid="uid://b4l7511fso3um" path="res://items/coin/coin.tscn" id="1_8ocfo"]
 
 [node name="coin" instance=ExtResource("1_8ocfo")]

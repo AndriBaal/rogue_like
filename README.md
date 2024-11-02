@@ -3,8 +3,9 @@
 
 ## BUGS
 
-- [ ] Fix multihit with ice wave
-- [ ] Fix standing in spikes
+- [x] Fix multihit with ice wave
+- [x] Fix standing in spikes
+- [x] Center camera does not center correctly
 - [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [ ] Add more entrances for boss room
@@ -22,17 +23,16 @@
 - [ ] Show Mana cost and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
 - [ ] Show tutorial (breadcrumb popups in bottom right corner with tips on how to buy stuff)
-- [ ] Add Zoom to camera in map and skill tree
 - [x] Add Level Up Text
-- [ ] Redo skill icon
+- [ ] Redo skill / upgrade token icons
 - [x] Remove projectiles on room enter
 - [ ] Fix pathfinding collision with multiple enemies (increase attack range)
 - [x] Add torches in corridors
 - [x] Level Up effect
-- [ ] Redo inventory
-- [ ] Border around inventory
+- [x] Redo inventory
+- [x] Border around inventory
 - [ ] ?Redo torch animation
-- [ ] Close inventory button
+- [x] Close inventory button
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description
@@ -106,7 +106,7 @@
 	- [ ] Player walk
 - [ ] Enemies
 	- [x] Damage Number
-	- [ ] Healthbar
+	- [x] Healthbar
 	- [X] Path Finding
 	- [ ] 4 enemy types (3 / 4)
 		- [x] Thrower
@@ -135,6 +135,7 @@
 	- Moneygraber (get x% more money)
 - [ ] ?Optimize room occluding
 - [ ] ?Coin Collect animation
+- [ ] ?Add Zoom to camera in map and skill tree
 - [ ] ?Game Over screen transition
 - [ ] ?Knockback projectiles
 - [ ] ?Splash screen

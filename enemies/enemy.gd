@@ -20,7 +20,6 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @onready var game: Game = $/root/game
 @onready var target = $/root/game/player
 @onready var navigation := $navigation
-@onready var hp_bar := %hp_bar
 
 @export var max_health: float = 12.0
 @export var health: float = 12.0:
@@ -28,7 +27,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 		return health
 	set(value):
 		health = value
-		%hp_bar.value = health
+		$hp_bar.value = health
 		if health <= 0.0:
 			target.xp += xp
 			call_deferred("death")
@@ -54,9 +53,10 @@ func _ready() -> void:
 	self.navigation.velocity_computed.connect(self._velocity_computed)
 	$path_calculation.timeout.connect(self._calc_path_to_target)
 	
-	self.hp_bar_offset = self.hp_bar.global_position
-	self.hp_bar.position += self.global_position
-	self.hp_bar.max_value = self.health
+	var hp_bar = $hp_bar
+	self.hp_bar_offset = hp_bar.position
+	hp_bar.position += self.global_position
+	hp_bar.max_value = self.health
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO
@@ -82,7 +82,7 @@ func _process(delta: float) -> void:
 	if active_sprite:
 		active_sprite.frame_coords.y = self.direction
 		self._compute_hit_animation(delta, active_sprite)
-		
+	
 	$hp_bar.position = self.global_position + self.hp_bar_offset
 
 func _physics_process(_delta: float) -> void:
@@ -176,7 +176,7 @@ func death():
 			continue
 		var amount = item['amount']
 		for _amount in range(amount.x, randi_range(amount.x, amount.y)):
-			const ITEM_SPREAD := 150.0
+			const ITEM_SPREAD := 70.0
 			var i = item['scene'].instantiate()
 			var offset := Vector2(
 				randf_range(-ITEM_SPREAD, ITEM_SPREAD), 

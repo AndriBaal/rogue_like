@@ -27,7 +27,7 @@ func _visibility_changed():
 	
 func _center_camera():
 	var cam: Camera2D = $cam
-	var a = cam.get_viewport().get_visible_rect().size / 2.0
+	var a = self.get_global_rect().size / 2.0
 	cam.position = Vector2(a.x, a.y)
 	
 func _process(_delta: float) -> void:

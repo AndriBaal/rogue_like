@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl00csk8yn7pi"]
+
+[ext_resource type="Texture2D" uid="uid://bwyd23ex5wysq" path="res://player/ui/inventory/inventory_background.png" id="1_4wv0s"]
+[ext_resource type="Script" path="res://ui/pop_up.gd" id="2_trmrf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_66kdr"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_8eolo"]
+font_size = 32
+
+[node name="pop_up" type="NinePatchRect"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4wv0s")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+script = ExtResource("2_trmrf")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 30.0
+offset_right = 20.0
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_66kdr")
+horizontal_alignment = 1
+
+[node name="description" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.5
+offset_top = -98.5
+offset_right = 274.5
+offset_bottom = 98.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "xxx xxx xxx xxx xxx xxx xxx xxx  xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx"
+label_settings = SubResource("LabelSettings_8eolo")
+autowrap_mode = 3
+
+[node name="close" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.5
+offset_top = -83.0
+offset_right = 88.5
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "OK"
