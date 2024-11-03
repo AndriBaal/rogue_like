@@ -67,7 +67,7 @@
 			- [ ] Earth spike
 			- [ ] Rock Roll
 		- [ ] Perks:
-			- [ ]
+			- [ ] Rolling deals damage
 		- ?Effects:
 			- [ ] ?Crippled
 - [ ] 3 Soundtracks:
@@ -87,7 +87,7 @@
 	- [ ] Table
 	- [ ] Barrels
 	- [ ] Crates
-	- [ ] Spike (with Damage)
+	- [x] Spike (with Damage)
 	- [ ] ?Make decorations destroyable
 	- [ ] ?Explosing Barrels
 	- [ ] ?Lanterns

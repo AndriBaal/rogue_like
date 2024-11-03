@@ -288,16 +288,15 @@ func _process(delta: float) -> void:
 	self._compute_immunity(delta, active_sprite)
 
 
-	if not inventory.visible and self.game.mouse_wheel_delta:
+func _input(event: InputEvent) -> void:
+	if not inventory.visible:
 		const ZOOM_SPEED: float = 0.1
 		const ZOOM_MIN: float = 0.1
 		const ZOOM_MAX: float = 5.0
-		var zoom_change := self.game.mouse_wheel_delta * ZOOM_SPEED
-		var new_zoom = $camera.zoom * (1 + zoom_change)
-		new_zoom.x = clamp(new_zoom.x, ZOOM_MIN, ZOOM_MAX)
-		new_zoom.y = clamp(new_zoom.y, ZOOM_MIN, ZOOM_MAX)
-
-		$camera.zoom = new_zoom
+		var camera = $camera
+		var step = ZOOM_SPEED * Input.get_axis("zoom_out", "zoom_in")
+		camera.zoom.x = clamp(camera.zoom.x + step, ZOOM_MIN, ZOOM_MAX)
+		camera.zoom.y = clamp(camera.zoom.y + step, ZOOM_MIN, ZOOM_MAX)
 
 func _physics_process(_delta: float) -> void:
 	var speed = self.speed + 30 * self.speed_stat if self.state != PlayerState.ROLL else self.roll_speed
