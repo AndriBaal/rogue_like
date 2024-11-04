@@ -26,7 +26,7 @@
 - [x] Add Level Up Text
 - [ ] Redo skill / upgrade token icons
 - [x] Remove projectiles on room enter
-- [ ] Fix pathfinding collision with multiple enemies (increase attack range)
+- [ ] Fix pathfinding collision with multiple enemies (increase attack range and make mask so you don't collide with other enemies)
 - [x] Add torches in corridors
 - [x] Level Up effect
 - [x] Redo inventory

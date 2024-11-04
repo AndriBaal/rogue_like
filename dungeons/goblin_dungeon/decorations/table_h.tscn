@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b08vc48hasdm"]
+
+[ext_resource type="Texture2D" uid="uid://bul1dq5ew7g07" path="res://dungeons/goblin_dungeon/decorations/table_h.png" id="1_1frj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjvh5"]
+size = Vector2(64, 33)
+
+[node name="table_h" type="StaticBody2D"]
+y_sort_enabled = true
+scale = Vector2(3, 3)
+collision_layer = 8
+collision_mask = 0
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_1frj7")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_gjvh5")

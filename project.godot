@@ -130,6 +130,17 @@ skill_tree={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="projectile"
+2d_physics/layer_4="table"
+2d_physics/layer_5="wall"
+2d_physics/layer_6="item"
+2d_physics/layer_7="trap"
+2d_physics/layer_8="player_invincible"
+
 [physics]
 
 2d/run_on_separate_thread=true

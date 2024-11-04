@@ -143,7 +143,7 @@ func _ready():
 				},
 				{
 					'type': SkillTree.SkillType.ATTACK,
-					'attack_name': 'rock_throw',
+					'attack_name': 'rock_spike',
 					'position': Vector2(200.0, 0.0),
 					'children': [],
 				}

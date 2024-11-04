@@ -277,11 +277,11 @@ func _process(delta: float) -> void:
 			active_sprite = $idle_attack_sprite
 		PlayerState.WALK:
 			active_sprite = $walk_sprite
-			active_sprite.frame_coords.x = int(self.animation_timer * 24.0) % active_sprite.hframes
+			active_sprite.frame_coords.x = int(self.animation_timer * 32.0) % active_sprite.hframes
 			self.animation_timer += delta
 		PlayerState.WALK_ATTACK:
 			active_sprite = $walk_attack_sprite
-			active_sprite.frame_coords.x = int(self.animation_timer * 24.0) % active_sprite.hframes
+			active_sprite.frame_coords.x = int(self.animation_timer * 32.0) % active_sprite.hframes
 			self.animation_timer += delta
 
 	active_sprite.frame_coords.y = self.direction
@@ -295,8 +295,8 @@ func _input(event: InputEvent) -> void:
 		const ZOOM_MAX: float = 5.0
 		var camera = $camera
 		var step = ZOOM_SPEED * Input.get_axis("zoom_out", "zoom_in")
-		camera.zoom.x = clamp(camera.zoom.x + step, ZOOM_MIN, ZOOM_MAX)
-		camera.zoom.y = clamp(camera.zoom.y + step, ZOOM_MIN, ZOOM_MAX)
+		camera.zoom.x = clamp(camera.zoom.x * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
+		camera.zoom.y = clamp(camera.zoom.y * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
 
 func _physics_process(_delta: float) -> void:
 	var speed = self.speed + 30 * self.speed_stat if self.state != PlayerState.ROLL else self.roll_speed
@@ -344,13 +344,12 @@ func heal(heal: float):
 	
 func make_intangible(intangible):
 	if intangible:
-		self.collision_layer = 0b10
-		self.collision_mask = 0b10
+		self.collision_mask = (1 << 3) | (1 << 4)
+		self.collision_layer = 1 << 9
 	else:
-		self.collision_layer = 0b01
-		self.collision_mask = 0b01
+		self.collision_layer = 0b1
+		self.collision_mask = (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4)
 		
-	
 func has_hit_iframes() -> bool:
 	return self.immunity_timer < self.immunity_seconds
 	
