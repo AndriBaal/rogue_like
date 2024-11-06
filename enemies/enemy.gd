@@ -125,12 +125,12 @@ func _physics_process(_delta: float) -> void:
 func _target_visible():
 	const OFFSET := 50;
 	const MASK := 1 << 9 | 0b1 # Include desired layers, exclude enemies
-	
+
 	var right_offset = self.movement.rotated(PI / 2) * (OFFSET / 2)
 	var left_offset = self.movement.rotated(-PI / 2) * (OFFSET / 2)
-	
+
 	var space_state = self.get_world_2d().direct_space_state
-	
+
 	# TODO: make mask so you don't collide with other enemies
 	var left_ray_cast = PhysicsRayQueryParameters2D.create(
 		self.global_position + left_offset, 
@@ -145,7 +145,7 @@ func _target_visible():
 	)
 	right_ray_cast.collision_mask = MASK
 	var right_result = space_state.intersect_ray(right_ray_cast)
-	
+
 	return left_result and right_result and left_result.collider == self.target and right_result.collider == self.target
 
 func _calc_path_to_target():

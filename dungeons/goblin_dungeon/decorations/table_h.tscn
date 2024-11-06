@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bul1dq5ew7g07" path="res://dungeons/goblin_dungeon/decorations/table_h.png" id="1_1frj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjvh5"]
-size = Vector2(64, 33)
+size = Vector2(64, 34)
 
 [node name="table_h" type="StaticBody2D"]
 y_sort_enabled = true
@@ -15,5 +15,9 @@ collision_mask = 0
 texture = ExtResource("1_1frj7")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5.5)
+position = Vector2(-9.53674e-07, -5)
 shape = SubResource("RectangleShape2D_gjvh5")
+
+[node name="obstacle" type="NavigationObstacle2D" parent="."]
+radius = 33.33
+vertices = PackedVector2Array(94.6667, -63, 94.6667, 35.3333, -94.6667, 35.3333, -94, -64.3333)

@@ -9,7 +9,7 @@
 - [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [ ] Add more entrances for boss room
-	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room)
+	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room furthest left, right, bottm or top)
 - [ ] Out of bounds glitch (probably when boss room cannot generate)
 - [x] The same spell can be equiped multiple times
 - [x] Camera is not perfectly ceneted on the start of skill tree and map
@@ -20,7 +20,7 @@
 
 - [ ] Name
 - [x] Apply random offset to damage number
-- [ ] Show Mana cost and cooldown of skills in description and when selecting spells
+- [ ] Show Mana cost, damage and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
 - [ ] Show tutorial (breadcrumb popups in bottom right corner with tips on how to buy stuff)
 - [x] Add Level Up Text
@@ -47,7 +47,7 @@
 			- [ ] Burning floor wave (aoe)
 		- [ ] Perks:
 			- [ ] Fire roll, burn floor on ground
-		- ?Effects:
+		- [ ] ?Effects:
 			- [ ] ?Burn
 	- [ ] Ice:
 		- [ ] 1st Primary: Ice spear
@@ -55,11 +55,13 @@
 			- [ ] Teleport
 			- [ ] Counter
 			- [ ] Ice wave
+			- [ ] Time slow
 		- [ ] Perks:
 			pass
-		- ?Effects:
+		- [ ] ?Effects:
 			- [ ] ?Freeze
 			- [ ] ?Bleed
+			- [ ] ?Time slow
 	- [ ] Earth:
 		- [x] Primary: Rock throw
 		- [ ] Abilities:
@@ -68,7 +70,7 @@
 			- [ ] Rock Roll
 		- [ ] Perks:
 			- [ ] Rolling deals damage
-		- ?Effects:
+		- [ ] ?Effects:
 			- [ ] ?Crippled
 - [ ] 3 Soundtracks:
 	- [ ] Boss
