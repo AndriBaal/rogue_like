@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddlekr2sfppy8"]
+
+[ext_resource type="PackedScene" uid="uid://darmuu28jp40n" path="res://projectiles/projectile.tscn" id="1_lmskt"]
+[ext_resource type="Texture2D" uid="uid://dxrw8jxjhccg0" path="res://projectiles/ice_spear.png" id="2_eoac0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbc3g"]
+size = Vector2(18, 8)
+
+[node name="projectile" instance=ExtResource("1_lmskt")]
+scale = Vector2(5, 5)
+speed = 700.0
+pierce = 1
+
+[node name="sprite" parent="." index="0"]
+texture = ExtResource("2_eoac0")
+
+[node name="collider" parent="." index="1"]
+shape = SubResource("RectangleShape2D_xbc3g")

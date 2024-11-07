@@ -119,11 +119,12 @@ func _physics_process(_delta: float) -> void:
 		_ :
 			self.movement = Vector2.ZERO
 		
-	self.navigation.max_speed = self.movement_speed
 	self.navigation.velocity = self.movement.normalized() * self.movement_speed
+	if !self.navigation.avoidance_enabled:
+		self._velocity_computed(self.navigation.velocity)
 
 func _target_visible():
-	const OFFSET := 50;
+	const OFFSET := 50
 	const MASK := 1 << 9 | 0b1 # Include desired layers, exclude enemies
 
 	var right_offset = self.movement.rotated(PI / 2) * (OFFSET / 2)
@@ -230,6 +231,7 @@ func state_changed(_old_state: EnemyState, new_state: EnemyState) -> void:
 			self.start_attack()
 			self.attack_sprite.visible = true
 		EnemyState.MOVING:
+			$path_calculation.start()
 			self._calc_path_to_target()
 			$walk_sprite.visible = true
 	self.state = new_state

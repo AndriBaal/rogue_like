@@ -8,7 +8,7 @@
 size = Vector2(6.16667, 24)
 
 [node name="Projectile" instance=ExtResource("1_l3w0f")]
-scale = Vector2(6, 6)
+scale = Vector2(8, 8)
 speed = 400.0
 color = Color(0, 0.597, 63.172, 1)
 pierce = 10

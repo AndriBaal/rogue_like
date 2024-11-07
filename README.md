@@ -6,10 +6,12 @@
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
 - [x] Center camera does not center correctly
+- [ ] Fix pathfinding with tables
 - [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [ ] Add more entrances for boss room
 	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room furthest left, right, bottm or top)
+	- [ ] Seed: 2257926617, 550167171
 - [ ] Out of bounds glitch (probably when boss room cannot generate)
 - [x] The same spell can be equiped multiple times
 - [x] Camera is not perfectly ceneted on the start of skill tree and map
@@ -20,22 +22,20 @@
 
 - [ ] Name
 - [x] Apply random offset to damage number
+- [ ] Spawn boss room on edge of dungeon (furthest away edge)
 - [ ] Show Mana cost, damage and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
 - [ ] Show tutorial (breadcrumb popups in bottom right corner with tips on how to buy stuff)
 - [x] Add Level Up Text
-- [ ] Redo skill / upgrade token icons
 - [x] Remove projectiles on room enter
-- [ ] Fix pathfinding collision with multiple enemies (increase attack range and make mask so you don't collide with other enemies)
 - [x] Add torches in corridors
 - [x] Level Up effect
 - [x] Redo inventory
 - [x] Border around inventory
-- [ ] ?Redo torch animation
 - [x] Close inventory button
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
-	- [ ] Ability cost, cooldowns and description
+	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
 	- [ ] Primary attack should not use mana
 - [ ] Abilities (buyable with XP)
 	- [ ] Fire:
@@ -82,14 +82,13 @@
 	- [ ] Relaxed
 		- [ ] Track
 		- [ ] Integrated
-- [ ] Lighting Overhaul / Design
 - [ ] Decorations
 	- [x] Torch
-	- [ ] Pots
-	- [ ] Table
+	- [x] Table
 	- [ ] Barrels
 	- [ ] Crates
 	- [x] Spike (with Damage)
+	- [ ] ?Pots
 	- [ ] ?Make decorations destroyable
 	- [ ] ?Explosing Barrels
 	- [ ] ?Lanterns
@@ -132,6 +131,9 @@
 	- [ ] ?Wisdom: increases max mana and mana regeneration
 	- [ ] ?Endurance: increases max stamina and stamina regeneration
 
+- [ ] ?Lighting Overhaul / Design
+- [ ] ?Redo torch animation
+- [ ] ?Redo skill / upgrade token icons
 - [ ] ?Implement perks in Player / Skill Tree
 - [ ] ?Perks:
 	- Moneygraber (get x% more money)

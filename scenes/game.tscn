@@ -22,8 +22,8 @@ y_sort_enabled = true
 [node name="projectiles" type="Node2D" parent="."]
 
 [node name="player" parent="." instance=ExtResource("2_6ghqu")]
-z_as_relative = false
 y_sort_enabled = false
+collision_mask = 1
 
 [node name="items" type="Node2D" parent="."]
 

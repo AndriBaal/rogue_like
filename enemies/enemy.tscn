@@ -7,7 +7,7 @@
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 29
+collision_mask = 31
 motion_mode = 1
 script = ExtResource("1_nevkm")
 
@@ -22,11 +22,9 @@ visible = false
 [node name="collider" type="CollisionShape2D" parent="."]
 
 [node name="navigation" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-target_desired_distance = 5.0
+target_desired_distance = 60.0
+path_max_distance = 20.0
 path_postprocessing = 1
-avoidance_enabled = true
-time_horizon_agents = 0.5
 
 [node name="path_calculation" type="Timer" parent="."]
 wait_time = 0.5
@@ -57,5 +55,5 @@ offset_left = -32.0
 offset_top = -24.0
 offset_right = 80.0
 offset_bottom = -1.0
-text = "test"
+text = "enemy"
 horizontal_alignment = 1

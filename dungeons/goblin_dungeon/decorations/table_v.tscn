@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2fid15vvlc0f"]
+[gd_scene load_steps=4 format=3 uid="uid://sie6n6nusayk"]
 
 [ext_resource type="PackedScene" uid="uid://b08vc48hasdm" path="res://dungeons/goblin_dungeon/decorations/table_h.tscn" id="1_0lbks"]
 [ext_resource type="Texture2D" uid="uid://c5xttxw20y2k1" path="res://dungeons/goblin_dungeon/decorations/table_v.png" id="2_00bp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm3wr"]
-size = Vector2(44, 52.3333)
+size = Vector2(44, 50.6667)
 
 [node name="table_v" instance=ExtResource("1_0lbks")]
 
@@ -12,10 +12,5 @@ size = Vector2(44, 52.3333)
 texture = ExtResource("2_00bp3")
 
 [node name="collision" parent="." index="1"]
-position = Vector2(0, -4.16667)
+position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_vm3wr")
-
-[node name="obstacle" parent="." index="2"]
-vertices = PackedVector2Array(62.6667, -87.6667, 63, 64.3333, -63.6667, 64.3333, -64, -87.6667)
-affect_navigation_mesh = true
-carve_navigation_mesh = true

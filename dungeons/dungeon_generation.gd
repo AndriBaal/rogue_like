@@ -18,13 +18,14 @@ class DungeonOptions:
 		neutral_rooms: int,
 		random_seed: int = randi(),
 	):
+		print('Seed: ' + str(random_seed))
 		self.type = type
 		self.random_seed = random_seed
 		self.rooms_left = {
 			"good": good_rooms,
 			"bad": bad_rooms,
 			"neutral": neutral_rooms,
-			"boss": 1,
+			"boss": 0,
 		}
 
 		match self.type:

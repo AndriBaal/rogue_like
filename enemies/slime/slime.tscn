@@ -25,7 +25,7 @@ scale_max = 4.2
 scale_curve = SubResource("CurveTexture_nw7pt")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rc0bd"]
-radius = 21.2151
+radius = 21.727
 
 [node name="slime" instance=ExtResource("1_ch1wk")]
 scale = Vector2(2.5, 2.5)

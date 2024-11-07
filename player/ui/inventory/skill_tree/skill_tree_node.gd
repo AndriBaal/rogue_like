@@ -8,7 +8,6 @@ class_name SkillTreeNode
 @export var available := false
 @export var connections := []
 @export var child_skills := []
-@export var type: SkillTree.SkillType
 @export var skill: Dictionary
 
 func _ready() -> void:

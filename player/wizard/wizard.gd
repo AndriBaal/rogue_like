@@ -1,6 +1,7 @@
 extends Player
 
 const FIRE_BAll = preload("res://projectiles/fire_ball.tscn")
+const ICE_SPEAR = preload("res://projectiles/ice_spear.tscn")
 const ICE_WAVE = preload("res://projectiles/ice_wave.tscn")
 const ROCK = preload("res://projectiles/rock.tscn")
 
@@ -25,6 +26,15 @@ func _ready():
 			'cool_down': 1.0,
 			'type': AttackType.PRIMARY,
 			'icon': preload("res://player/wizard/attacks/ice_wave.png")
+		},
+		'ice_spear': {
+			'name': 'Ice Spear',
+			'description': 'bbb',
+			'action': '_ice_spear',
+			'mana_cost': 10.0,
+			'cool_down': 1.0,
+			'type': AttackType.PRIMARY,
+			'icon': preload("res://player/wizard/attacks/ice_spear.png")
 		},
 		'ice_teleport': {
 			'name': 'Ice Teleport',
@@ -93,18 +103,15 @@ func _ready():
 	
 	self.skill_tree = [
 		{
-			'type': SkillTree.SkillType.ATTACK,
 			'attack_name': 'fire_ball',
 			'position': Vector2(-250.0, 150.0),
 			'children': [
 				{
-					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'fire_storm',
 					'position': Vector2(-300.0, 0.0),
 					'children': []
 				},
 				{
-					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'fire_wall',
 					'position': Vector2(-200.0, 0.0),
 					'children': [],
@@ -112,37 +119,42 @@ func _ready():
 			],
 		},
 		{
-			'type': SkillTree.SkillType.ATTACK,
-			'attack_name': 'ice_wave',
+			'attack_name': 'ice_spear',
 			'position': Vector2(0.0, 150.0),
 			'children': [
 				{
-					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'ice_deflect',
 					'position': Vector2(-50.0, 0.0),
-					'children': []
+					'children': [
+						{
+							'attack_name': 'ice_wave',
+							'position': Vector2(0.0, -150.0),
+							'children': []
+						},
+					]
 				},
 				{
-					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'ice_teleport',
 					'position': Vector2(50.0, 0.0),
-					'children': [],
+					'children': [
+						{
+							'attack_name': 'ice_wave',
+							'children': []
+						},
+					],
 				}
 			]
 		},
 		{
-			'type': SkillTree.SkillType.ATTACK,
 			'attack_name': 'rock_throw',
 			'position': Vector2(250.0, 150.0),
 			'children': [
 				{
-					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'rock_roll',
 					'position': Vector2(300.0, 0.0),
 					'children': []
 				},
 				{
-					'type': SkillTree.SkillType.ATTACK,
 					'attack_name': 'rock_spike',
 					'position': Vector2(200.0, 0.0),
 					'children': [],
@@ -154,7 +166,7 @@ func _ready():
 	super()
 	
 func _ice_spear(player_position, look_direction):
-	pass
+	self.game.spawn_projectile(self.ICE_SPEAR.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 	
 func _ice_teleport(player_position, look_direction):
 	self.position = self.game.get_local_mouse_position()

@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://diso6aeyxfhhl"]
+[gd_scene load_steps=6 format=4 uid="uid://diso6aeyxfhhl"]
 
-[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8n4ip"]
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/goblin_dungeon/rooms/room.tscn" id="1_8n4ip"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_auvdt"]
 [ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="4_7ordh"]
-[ext_resource type="PackedScene" uid="uid://c2fid15vvlc0f" path="res://dungeons/goblin_dungeon/decorations/table_v.tscn" id="4_i5gyr"]
+[ext_resource type="PackedScene" uid="uid://sie6n6nusayk" path="res://dungeons/goblin_dungeon/decorations/table_v.tscn" id="4_i5gyr"]
 [ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="4_jxifh"]
-[ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="5_nhpf4"]
-[ext_resource type="PackedScene" uid="uid://cttw6ahelkyw0" path="res://enemies/slime/slime_green.tscn" id="6_gcvb2"]
 
 [node name="room" instance=ExtResource("1_8n4ip")]
 
@@ -48,15 +46,3 @@ flip_h = true
 position = Vector2(200, 16)
 
 [node name="slime" parent="enemies" index="0" instance=ExtResource("4_7ordh")]
-collision_layer = 3
-collision_mask = 7
-
-[node name="slime2" parent="enemies" index="1" instance=ExtResource("5_nhpf4")]
-position = Vector2(424, -8)
-collision_layer = 3
-collision_mask = 7
-
-[node name="slime3" parent="enemies" index="2" instance=ExtResource("6_gcvb2")]
-position = Vector2(-236, 1)
-collision_layer = 3
-collision_mask = 7

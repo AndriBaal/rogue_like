@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxms48yolfk2i"]
 
-[ext_resource type="Script" path="res://dungeons/room.gd" id="1_6u1al"]
+[ext_resource type="Script" path="res://dungeons/goblin_dungeon/rooms/room.gd" id="1_6u1al"]
 
 [node name="room" type="Node2D"]
 y_sort_enabled = true

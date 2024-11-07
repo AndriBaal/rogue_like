@@ -2,10 +2,6 @@ extends Panel
 
 class_name SkillTree
 
-enum SkillType {
-	ATTACK,
-	# TODO
-}
 
 const SKILL_TREE_NODE := preload('res://player/ui/inventory/skill_tree/skill_tree_node.tscn')
 const SKILL_TREE_CONNECTION := preload('res://player/ui/inventory/skill_tree/skill_tree_connection.tscn')
@@ -42,34 +38,33 @@ func init_tree(skill_tree, attacks):
 	
 func _recurse_skill_tree(parent, skill_tree, attacks):
 	for skill in skill_tree:
-		var node = SKILL_TREE_NODE.instantiate()
-		var type = skill['type']
-		
-		var icon
-		var s
-		match type:
-			SkillType.ATTACK:
-				s = attacks[skill['attack_name']]
-				icon = s['icon']
+		var attack_name = skill['attack_name']
+		if 'position' not in skill:
+			parent.child_skills.push_back($cam/nodes.get_node(attack_name))
+			return
+			
+		var attack = attacks[attack_name]
+		var node: SkillTreeNode = SKILL_TREE_NODE.instantiate()
+		var icon = attack['icon']
+		node.name = attack_name
 		node.get_node(^'button/background/texture').texture = icon
 		node.position = skill['position']
-		
-		var children = skill['children']
-		for child in children:
-			var connection := SKILL_TREE_CONNECTION.instantiate()
-			connection.points[0] = skill['position']
-			connection.points[1] = child['position']
-			$cam/connections.add_child(connection)
-			node.connections.push_back(connection)
-					
-		node.type = type
-		node.skill = s
+		node.skill = attack
 		if parent:
 			parent.child_skills.push_back(node)
 		else:
 			node.make_available()
 		
 		$cam/nodes.add_child(node)
+			
+		var children = skill['children']
+		for child in children:
+			var connection := SKILL_TREE_CONNECTION.instantiate()
+			connection.points[0] = skill['position']
+			connection.points[1] = child['position'] if 'position' in child else $cam/nodes.get_node(child['attack_name'])['position']
+			$cam/connections.add_child(connection)
+			node.connections.push_back(connection)
+					
 		self._recurse_skill_tree(node, children, attacks)
 	
 func _unlock():
@@ -77,19 +72,18 @@ func _unlock():
 	$select.visible = false
 	self.game.attack_selection.visible = false
 	player.skill_tokens -= 1
+		
 	self.selected_skill.unlock()
-	match self.selected_skill.type:
-		SkillType.ATTACK:
-			var attack = self.selected_skill.skill
-			var slot = null
-			
-			for s in Player.PlayerAttackSlot.values():
-				var type = Player.slot_to_type(s)
-				if attack['type'] == type and player.active_attacks[s] == null:
-					slot = s
-					break
-			if slot != null:
-				player.assign_attack(slot, attack)
+	var attack = self.selected_skill.skill
+	var slot = null
+	
+	for s in Player.PlayerAttackSlot.values():
+		var type = Player.slot_to_type(s)
+		if attack['type'] == type and player.active_attacks[s] == null:
+			slot = s
+			break
+	if slot != null:
+		player.assign_attack(slot, attack)
 	self.selected_skill = null
 
 func update_skill_token_ui(skill_tokens):

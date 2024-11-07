@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://c4y2d0bmkadl8"]
 
-[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_gv10x"]
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/goblin_dungeon/rooms/room.tscn" id="1_gv10x"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_sunbj"]
 [ext_resource type="PackedScene" uid="uid://bnqdjjmtuwmy5" path="res://enemies/goblin_spear/goblin_spear.tscn" id="3_bgxr0"]
 [ext_resource type="PackedScene" uid="uid://bl6hh70t0akfl" path="res://dungeons/goblin_dungeon/decorations/spikes.tscn" id="4_u7ri6"]
@@ -104,9 +104,7 @@ position = Vector2(356, -363)
 position = Vector2(-234, 305)
 
 [node name="enemy" parent="enemies" index="0" instance=ExtResource("3_bgxr0")]
-z_as_relative = false
 position = Vector2(-90, 58.0001)
 
 [node name="enemy2" parent="enemies" index="1" instance=ExtResource("4_xo1im")]
-z_as_relative = false
 position = Vector2(997, 114)
