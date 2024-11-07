@@ -169,7 +169,6 @@ func _ready() -> void:
 	self._update_potion_ui()
 	$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 	
-
 func _process(delta: float) -> void:
 	for action in ["skill_tree", "character", "map"]:
 		if Input.is_action_just_pressed(action):

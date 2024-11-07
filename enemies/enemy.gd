@@ -45,7 +45,6 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @export var state := EnemyState.INACTIVE
 @export var movement: Vector2
 @export var direction := Direction.SOUTH
-
 @export var hp_bar_offset := Vector2.ZERO
 
 
