@@ -22,7 +22,7 @@ y_sort_enabled = true
 [node name="projectiles" type="Node2D" parent="."]
 
 [node name="player" parent="." instance=ExtResource("2_6ghqu")]
-y_sort_enabled = false
+z_as_relative = false
 collision_mask = 1
 
 [node name="items" type="Node2D" parent="."]
@@ -39,3 +39,5 @@ environment = SubResource("Environment_ed0iv")
 
 [node name="ui_effects" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
+
+[node name="soundtrack" type="AudioStreamPlayer" parent="."]

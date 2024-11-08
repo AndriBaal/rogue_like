@@ -2,17 +2,19 @@
 
 [ext_resource type="Script" path="res://dungeons/goblin_dungeon/rooms/room.gd" id="1_6u1al"]
 
-[node name="room" type="Node2D"]
+[node name="room" type="NavigationRegion2D"]
 y_sort_enabled = true
 script = ExtResource("1_6u1al")
 
 [node name="tiles" type="TileMapLayer" parent="."]
 z_index = -1
 scale = Vector2(3, 3)
+navigation_enabled = false
 
 [node name="entrances" type="TileMapLayer" parent="."]
 z_index = 100
 scale = Vector2(3, 3)
+navigation_enabled = false
 
 [node name="decorations" type="CanvasGroup" parent="."]
 

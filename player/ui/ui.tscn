@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckh3bn2sp2o6b"]
 
-[ext_resource type="PackedScene" uid="uid://dcdcka5joye5q" path="res://ui/main.tscn" id="1_05314"]
+[ext_resource type="PackedScene" uid="uid://dcdcka5joye5q" path="res://player/ui/hud/hud.tscn" id="1_rhplm"]
 [ext_resource type="PackedScene" uid="uid://1up0xo0sygli" path="res://player/ui/inventory/inventory.tscn" id="4_ncvwd"]
 
 [node name="ui" type="CanvasLayer"]
 
-[node name="main" parent="." instance=ExtResource("1_05314")]
+[node name="hud" parent="." instance=ExtResource("1_rhplm")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

@@ -15,6 +15,5 @@ melee_damage = 8.0
 [node name="navigation" parent="." index="5"]
 path_desired_distance = 10.0
 target_desired_distance = 5.0
-path_max_distance = 100.0
 radius = 50.0
 time_horizon_agents = 0.5

@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://c5uuoljrgef53"]
+[gd_resource type="TileSet" load_steps=14 format=3 uid="uid://c5uuoljrgef53"]
 
 [ext_resource type="Texture2D" uid="uid://vjv1oc5d2bii" path="res://dungeons/goblin_dungeon/rooms/tiles.png" id="1_me7op"]
 
@@ -15,6 +15,12 @@ agent_radius = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_be87i"]
 polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nq8b4"]
+vertices = PackedVector2Array(24, 24, -24, 24, -24, -24, 24, -24)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)])
+agent_radius = 0.0
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gihpk"]
 polygon = PackedVector2Array(-14, -24, -14, -23, 24, -23, -14, -23)
@@ -103,7 +109,7 @@ texture_region_size = Vector2i(48, 48)
 5:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
 14:0/next_alternative_id = 2
 14:0/0 = 0
-14:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_et0ad")
+14:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_nq8b4")
 14:0/0/custom_data_1 = true
 14:0/0/custom_data_2 = true
 0:0/0 = 0

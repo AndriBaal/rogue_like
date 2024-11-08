@@ -8,6 +8,9 @@ const ROCK = preload("res://projectiles/rock.tscn")
 const PROJECTILE_OFFSET := 35.0
 
 func _ready():
+	if self.init:
+		return
+		
 	self.attacks = {
 		'fire_ball': {
 			'name': 'Fire Ball',

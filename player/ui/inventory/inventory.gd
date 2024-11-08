@@ -3,7 +3,7 @@ extends NinePatchRect
 class_name Inventory
 
 func _ready() -> void:
-	%close.pressed.connect(self._close)
+	$close.pressed.connect(self._close)
 
 func _close():
 	self.visible = false

@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		bodies[body] -= delta
 	
 func _body_entered(body):
-	if 'health' in body:
+	if 'health' in body and body not in self.bodies: # In case deserialized
 		self.bodies[body] = 0.0
 
 func _body_exited(body):

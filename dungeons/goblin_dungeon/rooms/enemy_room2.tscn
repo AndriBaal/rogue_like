@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=4 uid="uid://diso6aeyxfhhl"]
+[gd_scene load_steps=7 format=4 uid="uid://diso6aeyxfhhl"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/goblin_dungeon/rooms/room.tscn" id="1_8n4ip"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_auvdt"]
 [ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="4_7ordh"]
-[ext_resource type="PackedScene" uid="uid://sie6n6nusayk" path="res://dungeons/goblin_dungeon/decorations/table_v.tscn" id="4_i5gyr"]
+[ext_resource type="PackedScene" uid="uid://b08vc48hasdm" path="res://dungeons/goblin_dungeon/decorations/table_h.tscn" id="4_jke4t"]
 [ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="4_jxifh"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_plntd"]
+vertices = PackedVector2Array(302, 207, 566, 422, -422, 422, 90, 207, 566, -422, 302, 85, -422, -422, 90, 85)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(2, 6, 7, 3)])
+
 [node name="room" instance=ExtResource("1_8n4ip")]
+navigation_polygon = SubResource("NavigationPolygon_plntd")
 
 [node name="tiles" parent="." index="0"]
 tile_map_data = PackedByteArray("AAD9/wIAAAAKAAEAAAD9/wEAAAANAAEAAAD9/wAAAAAHAAEAAAD9////AAALAAEAAAD9//7/AAAGAAEAAAD9//3/AAAFAAEAAAD+//3/AAADAAEAAAD///3/AAAAAAEAAAAAAP3/AAANAAEAAAABAP3/AAAIAAEAAAACAP3/AAAAAAEAAAADAP3/AAALAAEAAAADAP7/AAAIAAEAAAADAP//AAALAAEAAAADAAAAAAAEAAEAAAADAAEAAAAEAAEAAAADAAIAAAALAAEAAAACAAIAAAAKAAEAAAABAAIAAAANAAEAAAAAAAIAAAAHAAEAAAD//wIAAAANAAEAAAD+/wIAAAABAAEAAAACAP//AAAEAAEAAAABAP//AAAAAAEAAAAAAP//AAAOAAEAAAAAAAAAAAAOAAEAAAAAAAEAAAAJAAEAAAD//wEAAAAOAAEAAAABAP7/AAACAAEAAAACAP7/AAACAAEAAAACAAAAAAAOAAEAAAACAAEAAAADAAEAAAABAAAAAAAIAAEAAAABAAEAAAALAAEAAAD+//7/AAAGAAEAAAD+////AAAAAAEAAAD///7/AAANAAEAAAAAAP7/AAAOAAEAAAD/////AAABAAEAAAD//wAAAAALAAEAAAD+/wAAAAAIAAEAAAD+/wEAAAAFAAEAAAD9//z/AAAAAAAAAAD+//z/AAAAAAAAAAD///z/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAADAAAAAAD8//z/AAADAAAAABAEAP3/AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAACAAAAAAAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAAAAAADAAMAAAACAAAAAFACAAMAAAACAAAAAFABAAMAAAACAAAAAFAAAAMAAAACAAAAAFD//wMAAAACAAAAAFD+/wMAAAACAAAAAFD9/wMAAAACAAAAAFD8//3/AAACAAAAADD8//7/AAACAAAAADD8////AAACAAAAADD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAACAAAAADAEAAMAAAAEAAAAAAD8/wMAAAAEAAAAABA=")
@@ -42,7 +47,8 @@ autoplay = "side"
 frame_progress = 0.0
 flip_h = true
 
-[node name="table_v" parent="decorations" index="4" instance=ExtResource("4_i5gyr")]
-position = Vector2(200, 16)
+[node name="table_h" parent="decorations" index="4" instance=ExtResource("4_jke4t")]
+position = Vector2(196, 161)
 
 [node name="slime" parent="enemies" index="0" instance=ExtResource("4_7ordh")]
+position = Vector2(-177, -229)

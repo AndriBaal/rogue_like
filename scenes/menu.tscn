@@ -9,7 +9,8 @@ script = ExtResource("1_t51rd")
 
 [node name="camera" type="Camera2D" parent="."]
 
-[node name="title" type="Node2D" parent="."]
+[node name="title" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="new_game" type="Button" parent="title"]
 offset_left = -179.5
@@ -20,6 +21,7 @@ theme_override_font_sizes/font_size = 64
 text = "New Game"
 
 [node name="load_game" type="Button" parent="title"]
+layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.173
 anchor_bottom = 0.173
@@ -33,6 +35,7 @@ theme_override_font_sizes/font_size = 64
 text = "Load Game"
 
 [node name="quit" type="Button" parent="title"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -48,6 +51,7 @@ theme_override_font_sizes/font_size = 64
 text = "Quit"
 
 [node name="title" type="Label" parent="title"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -63,10 +67,12 @@ theme_override_font_sizes/font_size = 80
 text = "Rogue Like"
 horizontal_alignment = 1
 
-[node name="load_save" type="Node2D" parent="."]
+[node name="load_save" type="Control" parent="."]
 visible = false
+anchors_preset = 0
 
 [node name="back" type="Button" parent="load_save"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -82,6 +88,7 @@ theme_override_font_sizes/font_size = 64
 text = "Back"
 
 [node name="start" type="Button" parent="load_save"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -98,6 +105,7 @@ disabled = true
 text = "Start"
 
 [node name="delete" type="Button" parent="load_save"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -114,6 +122,7 @@ disabled = true
 text = "Delete"
 
 [node name="save_files" type="ItemList" parent="load_save"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -127,10 +136,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
 
-[node name="create_game" type="Node2D" parent="."]
+[node name="create_game" type="Control" parent="."]
 visible = false
+anchors_preset = 0
 
 [node name="back" type="Button" parent="create_game"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -146,6 +157,7 @@ theme_override_font_sizes/font_size = 64
 text = "Back"
 
 [node name="start" type="Button" parent="create_game"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -162,31 +174,51 @@ disabled = true
 text = "Start"
 
 [node name="name" type="LineEdit" parent="create_game"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -297.0
-offset_top = -192.0
-offset_right = 296.0
-offset_bottom = -101.0
+offset_left = -296.0
+offset_top = -272.0
+offset_right = 297.0
+offset_bottom = -181.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 placeholder_text = "Name ..."
 max_length = 16
 
-[node name="error" type="Label" parent="create_game"]
+[node name="seed" type="LineEdit" parent="create_game"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -40.0
-offset_right = 156.0
-offset_bottom = 8.0
+offset_left = -296.0
+offset_top = -160.0
+offset_right = 297.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Seed... (optional)"
+max_length = 16
+virtual_keyboard_type = 2
+
+[node name="error" type="Label" parent="create_game"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -16.0
+offset_right = 152.0
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)

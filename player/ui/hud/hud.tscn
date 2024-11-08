@@ -1,19 +1,19 @@
 [gd_scene load_steps=9 format=3 uid="uid://dcdcka5joye5q"]
 
-[ext_resource type="Texture2D" uid="uid://c3ymvinqflylj" path="res://player/ui/ui.png" id="1_n4l5a"]
-[ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/health_bar_background.png" id="2_s1grn"]
-[ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/health_bar.png" id="3_fcdm5"]
-[ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/mana_bar.png" id="4_jncpu"]
-[ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/attack.tscn" id="5_lnf3w"]
-[ext_resource type="Texture2D" uid="uid://dwm7h2kkeutni" path="res://player/ui/xp_bar.png" id="7_a8xg5"]
-[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/flask.png" id="8_dw87j"]
-[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="9_yh8bj"]
+[ext_resource type="Texture2D" uid="uid://c3ymvinqflylj" path="res://player/ui/hud/hud.png" id="1_s117h"]
+[ext_resource type="Texture2D" uid="uid://cpawvfp0qegjy" path="res://player/ui/hud/health_bar_background.png" id="2_h672e"]
+[ext_resource type="Texture2D" uid="uid://b5fax5sdpu328" path="res://player/ui/hud/health_bar.png" id="3_d5qfv"]
+[ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/hud/mana_bar.png" id="4_7r0m3"]
+[ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/hud/attack.tscn" id="5_jwht0"]
+[ext_resource type="Texture2D" uid="uid://dwm7h2kkeutni" path="res://player/ui/hud/xp_bar.png" id="6_ex2cg"]
+[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/flask.png" id="7_534uu"]
+[ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="8_vaiq7"]
 
-[node name="TextureRect" type="TextureRect"]
+[node name="hud" type="TextureRect"]
 offset_right = 639.0
 offset_bottom = 128.0
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_n4l5a")
+texture = ExtResource("1_s117h")
 expand_mode = 1
 
 [node name="health_bar" type="TextureProgressBar" parent="."]
@@ -25,8 +25,8 @@ offset_bottom = 96.0
 step = 0.0
 value = 100.0
 nine_patch_stretch = true
-texture_under = ExtResource("2_s1grn")
-texture_progress = ExtResource("3_fcdm5")
+texture_under = ExtResource("2_h672e")
+texture_progress = ExtResource("3_d5qfv")
 
 [node name="mana_bar" type="TextureProgressBar" parent="."]
 layout_mode = 0
@@ -37,8 +37,8 @@ offset_bottom = 120.0
 step = 0.0
 value = 100.0
 nine_patch_stretch = true
-texture_under = ExtResource("2_s1grn")
-texture_progress = ExtResource("4_jncpu")
+texture_under = ExtResource("2_h672e")
+texture_progress = ExtResource("4_7r0m3")
 
 [node name="attack" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -49,16 +49,16 @@ offset_bottom = 64.0
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="primary_attack" parent="attack" instance=ExtResource("5_lnf3w")]
+[node name="primary_attack" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
 
-[node name="ability1" parent="attack" instance=ExtResource("5_lnf3w")]
+[node name="ability1" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
 
-[node name="ability2" parent="attack" instance=ExtResource("5_lnf3w")]
+[node name="ability2" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
 
-[node name="ability3" parent="attack" instance=ExtResource("5_lnf3w")]
+[node name="ability3" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
 
 [node name="xp" type="Control" parent="."]
@@ -73,7 +73,7 @@ offset_bottom = 89.0
 step = 0.0
 fill_mode = 3
 nine_patch_stretch = true
-texture_progress = ExtResource("7_a8xg5")
+texture_progress = ExtResource("6_ex2cg")
 
 [node name="level" type="Label" parent="xp"]
 layout_mode = 0
@@ -90,7 +90,7 @@ position = Vector2(560, 48)
 scale = Vector2(2.5, 2.5)
 
 [node name="sprite" type="Sprite2D" parent="potion"]
-texture = ExtResource("8_dw87j")
+texture = ExtResource("7_534uu")
 region_enabled = true
 region_rect = Rect2(0, 0, 17, 26)
 
@@ -123,6 +123,6 @@ vertical_alignment = 1
 [node name="money" type="Sprite2D" parent="money"]
 position = Vector2(175.556, 22.2222)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("9_yh8bj")
+texture = ExtResource("8_vaiq7")
 region_enabled = true
 region_rect = Rect2(0, 0, 12, 16)

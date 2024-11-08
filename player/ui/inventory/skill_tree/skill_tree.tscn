@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bln7lwjvf2tj6" path="res://player/ui/inventory/inventory_page.tscn" id="1_0n0cr"]
 [ext_resource type="Script" path="res://player/ui/inventory/skill_tree/skill_tree.gd" id="1_pv1b7"]
 [ext_resource type="Texture2D" uid="uid://5813uernhpcv" path="res://player/ui/inventory/skill_tree/icon.png" id="2_c854q"]
-[ext_resource type="Texture2D" uid="uid://c6cgtqv3mjymi" path="res://player/ui/skill_token.png" id="2_y4nqx"]
+[ext_resource type="Texture2D" uid="uid://c6cgtqv3mjymi" path="res://player/ui/inventory/skill_token.png" id="2_y4nqx"]
 [ext_resource type="PackedScene" uid="uid://be5hrgq8a5c1" path="res://player/ui/inventory/home_button.tscn" id="5_ugc26"]
 
 [node name="skill_tree" instance=ExtResource("1_0n0cr")]

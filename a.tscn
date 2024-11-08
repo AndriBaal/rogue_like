@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwrjdw62cxvyi"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8vbeo"]
+vertices = PackedVector2Array(-616.172, -213.312, 1840.92, -291.547, 1221, 94, -146, 50, 1432.8, 921.023, 781, 526, -637.797, 927.961, -169, 712)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 1, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(6, 0, 3, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-626, -223, 1855, -302, 1440, 931, -648, 938)])
+
+[node name="A" type="NavigationRegion2D"]
+navigation_polygon = SubResource("NavigationPolygon_8vbeo")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(-146, 50, 1221, 94, 781, 526, -169, 712)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

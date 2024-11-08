@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6cgtqv3mjymi"
-path="res://.godot/imported/skill_token.png-52fcb485c1780ad343e01a2f703661d2.ctex"
+uid="uid://dgogtje3dbow4"
+path="res://.godot/imported/level_up_token.png-ffa28cf52d55fc388964a680a0369465.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/skill_token.png"
-dest_files=["res://.godot/imported/skill_token.png-52fcb485c1780ad343e01a2f703661d2.ctex"]
+source_file="res://player/ui/inventory/level_up_token.png"
+dest_files=["res://.godot/imported/level_up_token.png-ffa28cf52d55fc388964a680a0369465.ctex"]
 
 [params]
 

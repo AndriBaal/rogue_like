@@ -6,12 +6,13 @@
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
 - [x] Center camera does not center correctly
-- [ ] Fix pathfinding with tables
+- [ ] ?Camera does not center correctly when starting a game becuase of the popup
+- [x] Fix pathfinding with tables
 - [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [ ] Add more entrances for boss room
 	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room furthest left, right, bottm or top)
-	- [ ] Seed: 2257926617, 550167171
+		- [ ] Seed: 2257926617, 550167171
 - [ ] Out of bounds glitch (probably when boss room cannot generate)
 - [x] The same spell can be equiped multiple times
 - [x] Camera is not perfectly ceneted on the start of skill tree and map
@@ -20,8 +21,9 @@
 
 ## TODO
 
-- [ ] Name
 - [x] Apply random offset to damage number
+- [x] Make seed input field
+- [ ] Name
 - [ ] Spawn boss room on edge of dungeon (furthest away edge)
 - [ ] Show Mana cost, damage and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
@@ -148,6 +150,7 @@
 - [ ] ?UI Theme
 - [ ] ?Make second cursor for UI
 - [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
+- [x] Spacial Audio
 - [x] Redo tiles
 - [x] Logo (temporary)
 - [x] Custom cursor
@@ -190,7 +193,6 @@
 - [ ] Restart soundtrack when tabing into game
 - [ ] Roll preview (see where player is rolling when holding space)
 - [ ] Add different consumables (potion options, food, etc.)
-- [ ] Spacial Audio
 - [ ] Controller support
 - [ ] Status effects (frozen, crippled, time freeze)
 - [ ] Chest with Item loot

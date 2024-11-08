@@ -4,11 +4,12 @@ class_name Menu
 
 static var GAME_NAME = null
 static var LOAD_SAVE := false
+static var SEED := 0
 
 var dir := DirAccess.open("user://")
 var files := []
-var regex := RegEx.new()
-
+var name_regex := RegEx.new()
+var valid_seed := ''
 
 func _ready():
 	$title/new_game.pressed.connect(self._new_game)
@@ -23,8 +24,9 @@ func _ready():
 	$create_game/back.pressed.connect(self._back)
 	$create_game/start.pressed.connect(self._start_new_game)
 	$create_game/name.text_changed.connect(self._new_game_name_changed)
+	$create_game/seed.text_changed.connect(self._new_game_seed_changed)
 
-	self.regex.compile("[^A-Za-z0-9]")
+	self.name_regex.compile("[^A-Za-z0-9]")
 	self._load_save_files()
 	self._new_game_name_changed($create_game/name.text)
 	self.get_tree().paused = false
@@ -92,14 +94,19 @@ func _delete_game():
 func _start_new_game():
 	LOAD_SAVE = false
 	GAME_NAME = $create_game/name.text
+	var seed = $create_game/seed
+	if not seed.text.is_empty() and seed.text.is_valid_int():
+		SEED = int(seed.text)
+	else:
+		SEED = randi()
 	self.get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
 
 
 func _new_game_name_changed(new_text: String):
-	var result = self.regex.search(new_text)
+	var result = self.name_regex.search(new_text)
 	var error = null
 	if new_text.is_empty():
-		error = "Please enter a name!"	
+		error = "Please enter a name!"
 	if result != null:
 		error = "Name contains invalid characters!"
 	for file in self.files:
@@ -113,3 +120,12 @@ func _new_game_name_changed(new_text: String):
 	var valid = false if error == null else true
 	error_label.visible = valid
 	$create_game/start.disabled = valid
+
+func _new_game_seed_changed(new_text: String):
+	var seed = $create_game/seed
+	if not seed.text.is_valid_int() and not new_text.is_empty():
+		seed.text = self.valid_seed
+		seed.caret_column = len(new_text)
+	else:
+		self.valid_seed = new_text
+		

@@ -29,7 +29,6 @@ patch_margin_bottom = 32
 script = ExtResource("2_tsg26")
 
 [node name="close" type="Button" parent="."]
-unique_name_in_owner = true
 layout_mode = 0
 offset_left = 660.0
 offset_top = 10.0

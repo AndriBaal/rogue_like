@@ -22,8 +22,6 @@ visible = false
 [node name="collider" type="CollisionShape2D" parent="."]
 
 [node name="navigation" type="NavigationAgent2D" parent="."]
-target_desired_distance = 60.0
-path_max_distance = 20.0
 path_postprocessing = 1
 
 [node name="path_calculation" type="Timer" parent="."]

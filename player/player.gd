@@ -73,7 +73,7 @@ enum PlayerState {
 }
 
 @onready var game: Game = $/root/game
-@onready var mana_bar := $ui/main/mana_bar
+@onready var mana_bar := $ui/hud/mana_bar
 @onready var inventory: Inventory = $ui/inventory
 
 @export var xp_for_lvl_up := 50
@@ -103,14 +103,14 @@ enum PlayerState {
 		return xp
 	set(value):
 		xp = max(value, 0)
-		var bar = $ui/main/xp/bar
+		var bar = $ui/hud/xp/bar
 		while xp > xp_for_lvl_up:
 			xp -= xp_for_lvl_up
 			level += 1
 			_level_up()
 		bar.max_value = float(xp_for_lvl_up)
 		bar.value = float(xp)
-		$ui/main/xp/level.text = str(level)
+		$ui/hud/xp/level.text = str(level)
 @export var level := 1
 
 @export var mana_per_second = 5.0
@@ -147,6 +147,7 @@ enum PlayerState {
 @export var health_stat := 1
 @export var attack_stat := 1
 @export var speed_stat := 1
+@export var init := false
 
 @export var level_up_tokens := 5:
 	get:
@@ -165,9 +166,11 @@ enum PlayerState {
 const GAME_OVER := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
-	self.game.spawn_pop_up('Welcome', "It's time to play the gameeeeeeeeeeeeeeee!")
-	self._update_potion_ui()
-	$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
+	if not init:
+		init = true
+		self.game.spawn_pop_up('Welcome', "It's time to play the gameeeeeeeeeeeeeeee!")
+		self._update_potion_ui()
+		$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 	
 func _process(delta: float) -> void:
 	for action in ["skill_tree", "character", "map"]:
@@ -210,7 +213,7 @@ func _process(delta: float) -> void:
 		var attack = self.active_attacks[attack_slot]
 		if attack:
 			self.attack_cooldowns[attack_slot] -= delta
-			var attack_ui = self.get_node('ui/main/attack/' + slot_to_string(attack_slot))
+			var attack_ui = self.get_node('ui/hud/attack/' + slot_to_string(attack_slot))
 			var occluder = attack_ui.get_node(^'occluder')
 			var ratio = max(0.0, self.attack_cooldowns[attack_slot] / attack['cool_down'])
 			occluder.scale.y = ratio
@@ -381,7 +384,7 @@ func _death():
 	self.game.add_child(game_over)
 	
 func _update_health_ui():
-	var health_bar := $ui/main/health_bar
+	var health_bar := $ui/hud/health_bar
 	health_bar.max_value = self.max_health
 	health_bar.value = self.health
 	
@@ -405,8 +408,8 @@ func refill_potion(amount: int):
 	self._update_potion_ui()
 	
 func _update_potion_ui():
-	var sprite := $ui/main/potion/sprite
-	var amount: Label = $ui/main/potion/amount
+	var sprite := $ui/hud/potion/sprite
+	var amount: Label = $ui/hud/potion/amount
 	if self.potions == 0:
 		sprite.region_rect.position.x = sprite.region_rect.size.x
 		amount.visible = false
@@ -432,7 +435,7 @@ func attack_factor(_type: Projectile.DamageType) -> float:
 	
 func assign_attack(slot: PlayerAttackSlot, attack):
 	var slot_string = slot_to_string(slot)
-	var attack_ui = self.get_node('ui/main/attack/' + slot_string)
+	var attack_ui = self.get_node('ui/hud/attack/' + slot_string)
 	var attack_slot = self.get_node('ui/inventory/character/content/attack_slots/' + slot_string)
 	if attack == null:
 		self.active_attacks[slot] = null
@@ -457,7 +460,7 @@ func add_money(amount: int):
 	self._update_money_ui()
 
 func _update_money_ui():
-	$ui/main/money/label.text = str(self.money)
+	$ui/hud/money/label.text = str(self.money)
 
 func decrease_stat(property: String):
 	self[property] -= 1

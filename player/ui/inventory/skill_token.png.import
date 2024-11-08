@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1n484wg4ivuj"
-path="res://.godot/imported/mana_bar.png-2e07000a9e0be44253c71c7b348dcb08.ctex"
+uid="uid://c6cgtqv3mjymi"
+path="res://.godot/imported/skill_token.png-def738d1724eb6758bde47d3b97d5b60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/ui/mana_bar.png"
-dest_files=["res://.godot/imported/mana_bar.png-2e07000a9e0be44253c71c7b348dcb08.ctex"]
+source_file="res://player/ui/inventory/skill_token.png"
+dest_files=["res://.godot/imported/skill_token.png-def738d1724eb6758bde47d3b97d5b60.ctex"]
 
 [params]
 

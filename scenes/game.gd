@@ -10,6 +10,8 @@ class_name Game
 
 const POP_UP := preload("res://ui/pop_up.tscn")
 
+func play_track(path):
+	pass
 
 func spawn_pop_up(title, description):
 	var pop_up = POP_UP.instantiate()

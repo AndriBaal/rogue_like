@@ -46,16 +46,19 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @export var movement: Vector2
 @export var direction := Direction.SOUTH
 @export var hp_bar_offset := Vector2.ZERO
+@export var init := false
 
 
 func _ready() -> void:
-	self.navigation.velocity_computed.connect(self._velocity_computed)
-	$path_calculation.timeout.connect(self._calc_path_to_target)
-	
-	var hp_bar = $hp_bar
-	self.hp_bar_offset = hp_bar.position
-	hp_bar.position += self.global_position
-	hp_bar.max_value = self.health
+	if not init:
+		init = true
+		self.navigation.velocity_computed.connect(self._velocity_computed)
+		$path_calculation.timeout.connect(self._calc_path_to_target)
+		
+		var hp_bar = $hp_bar
+		self.hp_bar_offset = hp_bar.position
+		hp_bar.position += self.global_position
+		hp_bar.max_value = self.health
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO
@@ -124,7 +127,7 @@ func _physics_process(_delta: float) -> void:
 
 func _target_visible():
 	const OFFSET := 50
-	const MASK := 1 << 9 | 0b1 # Include desired layers, exclude enemies
+	const MASK := 0b10001 # Player and Wall
 
 	var right_offset = self.movement.rotated(PI / 2) * (OFFSET / 2)
 	var left_offset = self.movement.rotated(-PI / 2) * (OFFSET / 2)

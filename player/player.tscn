@@ -91,7 +91,6 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D"]
-z_as_relative = false
 scale = Vector2(2, 2)
 collision_mask = 30
 motion_mode = 1
@@ -170,6 +169,9 @@ stream = ExtResource("3_d513c")
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_1wfet")
 volume_db = 24.0
+
+[node name="listener" type="AudioListener2D" parent="."]
+current = true
 
 [node name="ui" parent="." instance=ExtResource("5_qixdu")]
 

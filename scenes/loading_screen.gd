@@ -19,7 +19,7 @@ func _generate_level():
 	else:
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
-			DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2)
+			DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED)
 		)
 		var player = scene.get_node(^"player")
 		var starting_room = dungeon.rooms[0]

@@ -15,12 +15,17 @@ class_name Room
 @export var children := []
 @export var entrances: Array
 @export var tile_size: Vector2
+@export var init := false
 
 func start() -> void:
 	self.entrances = self._get_room_entrances()
 
 
 func _ready() -> void:
+	if self.init:
+		return
+	self.init = true
+	
 	# TODO: Maybe move this to other function than _ready
 	var used_cells = self.tiles.get_used_cells()
 	self.tile_size = Vector2(self.tiles.tile_set.tile_size) * self.tiles.scale
@@ -30,10 +35,10 @@ func _ready() -> void:
 		var data := self.tiles.get_cell_tile_data(cell)
 		var teleport = data.get_custom_data('teleport')
 		var show_on_minimap = data.get_custom_data('show_on_minimap')
-		
+
 		if teleport:
 			teleporters.push_back(cell + tile_position)
-		
+
 		if show_on_minimap:
 			floor_cells.push_back(cell + tile_position)
 	self.optimized_cells = self._optimize_cells(floor_cells)
