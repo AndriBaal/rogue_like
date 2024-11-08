@@ -16,7 +16,7 @@ func _ready():
 			'name': 'Fire Ball',
 			'description': 'aaa',
 			'action': '_fire_ball',
-			'mana_cost': 5.0,
+			'mana_cost': 0.0,
 			'cool_down': 0.5,
 			'type': AttackType.PRIMARY,
 			'icon': preload("res://player/wizard/attacks/fire_ball.png")
@@ -26,7 +26,7 @@ func _ready():
 			'description': 'bbb',
 			'action': '_ice_wave',
 			'mana_cost': 10.0,
-			'cool_down': 1.0,
+			'cool_down': 0.5,
 			'type': AttackType.PRIMARY,
 			'icon': preload("res://player/wizard/attacks/ice_wave.png")
 		},
@@ -34,8 +34,8 @@ func _ready():
 			'name': 'Ice Spear',
 			'description': 'bbb',
 			'action': '_ice_spear',
-			'mana_cost': 10.0,
-			'cool_down': 1.0,
+			'mana_cost': 0.0,
+			'cool_down': 0.4,
 			'type': AttackType.PRIMARY,
 			'icon': preload("res://player/wizard/attacks/ice_spear.png")
 		},
@@ -172,8 +172,10 @@ func _ice_spear(player_position, look_direction):
 	self.game.spawn_projectile(self.ICE_SPEAR.instantiate(), player_position + PROJECTILE_OFFSET * look_direction, look_direction, true)
 	
 func _ice_teleport(player_position, look_direction):
-	self.position = self.game.get_local_mouse_position()
-	$teleport.restart()
+	var mouse_pos = self.game.get_local_mouse_position()
+	if game.is_valid_position(mouse_pos):
+		self.position = mouse_pos
+		$teleport.restart()
 	
 func _ice_deflect(player_position, look_direction):
 	pass

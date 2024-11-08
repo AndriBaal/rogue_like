@@ -15,9 +15,9 @@ region = Rect2(0, 0, 72, 72)
 [node name="character" instance=ExtResource("1_06nmt")]
 
 [node name="navigation" parent="." index="0"]
-offset_left = 24.0
+offset_left = 16.0
 offset_top = 0.0
-offset_right = 110.0
+offset_right = 102.0
 offset_bottom = 78.0
 
 [node name="navigation_icon" parent="navigation" index="0"]
@@ -60,28 +60,27 @@ scale = Vector2(3.56849, 3.56849)
 texture = SubResource("AtlasTexture_dl1x8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="content" index="2"]
+clip_contents = true
 layout_mode = 0
-offset_left = 301.0
-offset_top = 70.0
-offset_right = 461.0
-offset_bottom = 150.0
+offset_left = 312.0
+offset_top = 64.0
+offset_right = 468.0
+offset_bottom = 144.0
 scale = Vector2(2.10359, 2.10082)
+alignment = 1
 
 [node name="hp" parent="content/VBoxContainer" index="0" instance=ExtResource("4_gmytn")]
 layout_mode = 2
-alignment = 2
 property = "health_stat"
 label = "HP"
 
 [node name="atk" parent="content/VBoxContainer" index="1" instance=ExtResource("4_gmytn")]
 layout_mode = 2
-alignment = 2
 property = "attack_stat"
 label = "ATK"
 
 [node name="spd" parent="content/VBoxContainer" index="2" instance=ExtResource("4_gmytn")]
 layout_mode = 2
-alignment = 2
 property = "speed_stat"
 label = "SPD"
 

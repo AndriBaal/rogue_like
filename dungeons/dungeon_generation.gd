@@ -71,7 +71,7 @@ class Dungeon:
 
 		self.rooms.push_back(room)
 		self._grow_rooms(self.rooms, true)
-		self._spawn_boss_room(self.rooms)
+		self._spawn_boss_room(self.rooms, [])
 		self._close_rooms(self.rooms)
 
 	func shuffle_array(arr):
@@ -200,6 +200,9 @@ class Dungeon:
 			
 			
 	func _connect_rooms(room, entrance, new_room):
+		if entrance["has_connection"]:
+			return false
+				
 		var children = room.children
 		var tilemap: TileMapLayer = room.get_node(^"tiles")
 		var tilemap_entrances: TileMapLayer = room.get_node(^"entrances")
@@ -224,10 +227,9 @@ class Dungeon:
 
 		# TODO: Maybe rotate Rooms
 		# TODO: Add multilevel dungeons
-		for i_allowed_entrance in self._random_order(allowed_entrances):
-			var new_entrance = allowed_entrances[self.random.randi_range(
-				0, len(allowed_entrances) - 1
-			)]
+		var random_entrances = self._random_order(allowed_entrances)
+		for i_allowed_entrance in random_entrances:
+			var new_entrance = allowed_entrances[i_allowed_entrance]
 
 			var offset = new_room.to_global(
 				new_tilemap.to_global(new_tilemap.map_to_local(new_entrance["start"]))
@@ -241,19 +243,20 @@ class Dungeon:
 				start_entrance
 				+ (Vector2(-new_entrance["direction"]) * float(dist) * Vector2(self.tile_size))
 			)
-
-			new_room.position = end_entrance - offset
-
-			var rect_offset = Vector2i(new_room.position / self.tile_size)
+			
+			var new_position = end_entrance - offset
+			var rect_offset = Vector2i(new_position / self.tile_size)
 			var rect_cells = new_tilemap.get_used_cells()
 			var rect: Rect2i = new_tilemap.get_used_rect()
 			rect.position += rect_offset
+	
 
 			if (
 				self._recurse_room_intersections(self.rooms, rect, rect_offset, rect_cells)
 			):
 				continue
 
+			new_room.position = new_position
 			var entrance_start = entrance["start"]
 			var entrance_end = entrance["end"]
 			
@@ -319,18 +322,30 @@ class Dungeon:
 			entrance["has_connection"] = true
 			children.push_back(new_room)
 			return new_room
-			
-	func _spawn_boss_room(rooms: Array):
-		# TODO: Make sure there is atleast one valid entrance
-		
-		var record = 0
-		var recurse_rooms = func(room):
+	
+	func _find_furthest_room(rooms: Array, furthest, banned: Array):
+		for room: Room in rooms:
 			var length = room.position.length()
-			if length > record:
-				record = length 
-		#
-		#var e = rooms.reduce(func(accum, room): return room.position.length() if room.position.length() > accum else accum, 0)
-		#print(e)
+			
+			if room.entrances_left() > 0 and length > furthest['room'].position.length() and room.get_instance_id() not in banned:
+				furthest['room'] = room
+			self._find_furthest_room(room.children, furthest, banned)
+			
+			
+	func _spawn_boss_room(rooms: Array, banned: Array):
+		var furthest = {'room': rooms[0]} # Dicto, so we can pass by reference
+		self._find_furthest_room(rooms, furthest, banned)
+		var room = furthest['room']
+		assert(furthest['room'].entrances_left() > 0)
+		var boss_room = self.options.possible_rooms['boss'].instantiate()
+		boss_room.start()
+		for i_entrance in self._random_order(room.entrances):
+			var entrance = room.entrances[i_entrance]
+			var result = self._connect_rooms(room, entrance, boss_room)
+			if result:
+				return
+		banned.push_back(room.get_instance_id())
+		push_error('Could not spawn boss room!')
 
 	func _get_wall_from_direction(direction: Vector2i):
 		match direction:

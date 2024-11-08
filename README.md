@@ -9,11 +9,11 @@
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [x] Fix pathfinding with tables
 - [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
-- [ ] Level generation: When Boss room is spawned early, no more rooms are being added:
-	- [ ] Add more entrances for boss room
-	- [ ] Make algorythm understand that there is a deadend (Place bossroom as last room furthest left, right, bottm or top)
-		- [ ] Seed: 2257926617, 550167171
-- [ ] Out of bounds glitch (probably when boss room cannot generate)
+- [x] Level generation: When Boss room is spawned early, no more rooms are being added:
+	- [x] Add more entrances for boss room
+	- [x] Make algorythm understand that there is a deadend (Place bossroom as last room furthest left, right, bottm or top)
+	- [x] Bugged Seeds: 2257926617, 550167171, 625328491, 475520497
+- [x] Out of bounds glitch (probably when boss room cannot generate)
 - [x] The same spell can be equiped multiple times
 - [x] Camera is not perfectly ceneted on the start of skill tree and map
 - [x] Dungeon generation issue (Sometimes wrong entrances get generated, mostly top entrances)
@@ -24,10 +24,12 @@
 - [x] Apply random offset to damage number
 - [x] Make seed input field
 - [ ] Name
+- [ ] Show nearby not visited rooms greyed out
+- [ ] Remove ui_effects
+- [ ] Tutorial
 - [ ] Spawn boss room on edge of dungeon (furthest away edge)
 - [ ] Show Mana cost, damage and cooldown of skills in description and when selecting spells
 - [ ] Show skill name / description in Inventory
-- [ ] Show tutorial (breadcrumb popups in bottom right corner with tips on how to buy stuff)
 - [x] Add Level Up Text
 - [x] Remove projectiles on room enter
 - [x] Add torches in corridors

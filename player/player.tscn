@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=21 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
@@ -59,27 +59,27 @@ radius = 17.4545
 
 [sub_resource type="Animation" id="Animation_x7qcv"]
 resource_name = "level_up"
-length = 2.0
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ui/level_up_text:position")
+tracks/0/path = NodePath("level_up_position:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.6),
-"transitions": PackedFloat32Array(1, 0.999998),
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(528, 300), Vector2(528, 250)]
+"values": [Vector2(0, 0), Vector2(0, -30)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ui/level_up_text:visible")
-tracks/1/interp = 1
+tracks/1/path = NodePath("level_up_position:visible")
+tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0140224, 2),
+"times": PackedFloat32Array(0, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -90,9 +90,12 @@ _data = {
 "level_up": SubResource("Animation_x7qcv")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tx0e8"]
+light_mode = 1
+
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
-collision_mask = 30
+collision_mask = 126
 motion_mode = 1
 floor_block_on_wall = false
 script = ExtResource("1_vfs3i")
@@ -173,29 +176,35 @@ volume_db = 24.0
 [node name="listener" type="AudioListener2D" parent="."]
 current = true
 
-[node name="ui" parent="." instance=ExtResource("5_qixdu")]
-
-[node name="level_up_animation" type="AnimationPlayer" parent="ui"]
-root_node = NodePath("../..")
+[node name="level_up_animation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ff65m")
 }
 
-[node name="level_up_text" type="Label" parent="ui"]
+[node name="level_up_position" type="Node2D" parent="."]
 visible = false
+
+[node name="level_up_text" type="Label" parent="level_up_position"]
+light_mask = 0
+z_index = 100
+material = SubResource("CanvasItemMaterial_tx0e8")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -24.0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(32, 16)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.340788, 0.484546, 1, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 32
 text = "LVL+"
+
+[node name="ui" parent="." instance=ExtResource("5_qixdu")]

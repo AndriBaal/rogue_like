@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://diso6aeyxfhhl"]
 
-[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/goblin_dungeon/rooms/room.tscn" id="1_8n4ip"]
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8n4ip"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_auvdt"]
 [ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="4_7ordh"]
 [ext_resource type="PackedScene" uid="uid://b08vc48hasdm" path="res://dungeons/goblin_dungeon/decorations/table_h.tscn" id="4_jke4t"]

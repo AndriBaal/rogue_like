@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqdsvm50yvtdk"]
+[gd_scene load_steps=5 format=3 uid="uid://bqdsvm50yvtdk"]
+
+[ext_resource type="Script" path="res://player/ui/inventory/character/attack_description.gd" id="1_ajt70"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxyob"]
 font_size = 48
@@ -17,6 +19,7 @@ offset_bottom = -178.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.141176, 0.141176, 0.141176, 0.745098)
+script = ExtResource("1_ajt70")
 
 [node name="title" type="Label" parent="."]
 layout_mode = 0

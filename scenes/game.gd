@@ -10,6 +10,25 @@ class_name Game
 
 const POP_UP := preload("res://ui/pop_up.tscn")
 
+func is_valid_position(position: Vector2):
+	for room in $rooms.get_children():
+		var tilemap: TileMapLayer = room.get_node('tiles')
+		var local = tilemap.local_to_map(tilemap.to_local(position))
+		var tile_data = tilemap.get_cell_tile_data(local)
+		if tile_data != null:
+			if tile_data.get_collision_polygons_count(0) == 0:
+				return true
+
+	return false
+		
+		#var tile_coords = tile_map.world_to_map(world_position)
+#
+		#var tile_id = tile_map.get_cellv(tile_coords)
+#
+		#if tile_id != TileMap.INVALID_CELL:
+			#print("Tile ID at mouse pointer on layer:", tile_map.name, "is", tile_id)
+			#break
+
 func play_track(path):
 	pass
 

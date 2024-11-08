@@ -50,8 +50,9 @@ func add_teleport(teleport_position):
 
 func _process(_delta: float) -> void:
 	var mouse_pos = self.get_local_mouse_position()
-	if self.visible and self.get_parent().visible and mouse_pos.x > 0.0 and mouse_pos.y > 0.0:
-		if Input.is_action_pressed("primary_attack"):
-			$cam.position += mouse_pos - self.last_mouse_pos
+	if self.visible and self.get_parent().visible:
+		if mouse_pos.x > 0.0 and mouse_pos.y > 0.0:
+			if Input.is_action_pressed("primary_attack"):
+				$cam.position += mouse_pos - self.last_mouse_pos
+			self.last_mouse_pos = mouse_pos
 		self.map_player.position = self.player.position / self.tile_size * SCALE - self.map_player.size / 2.0
-		self.last_mouse_pos = mouse_pos

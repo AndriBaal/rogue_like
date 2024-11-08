@@ -149,6 +149,7 @@ enum PlayerState {
 @export var speed_stat := 1
 @export var init := false
 
+
 @export var level_up_tokens := 5:
 	get:
 		return level_up_tokens
@@ -289,12 +290,11 @@ func _process(delta: float) -> void:
 	active_sprite.frame_coords.y = self.direction
 	self._compute_immunity(delta, active_sprite)
 
-
 func _input(event: InputEvent) -> void:
 	if not inventory.visible:
 		const ZOOM_SPEED: float = 0.1
-		const ZOOM_MIN: float = 0.1
-		const ZOOM_MAX: float = 5.0
+		const ZOOM_MIN: float = -INF
+		const ZOOM_MAX: float = INF
 		var camera = $camera
 		var step = ZOOM_SPEED * Input.get_axis("zoom_out", "zoom_in")
 		camera.zoom.x = clamp(camera.zoom.x * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
@@ -390,7 +390,7 @@ func _update_health_ui():
 	
 func _level_up():
 	$level_up.restart()
-	$ui/level_up_animation.play('level_up')
+	$level_up_animation.play('level_up')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
 	

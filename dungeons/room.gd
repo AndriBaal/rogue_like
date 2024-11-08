@@ -173,7 +173,11 @@ func _close_room():
 func _open_room():
 	map.open_teleporters()
 	for cell in self.optimized_cells:
-		map.add_rect(cell, self.tile_size)
+		map.add_rect(cell, self.tile_size, Color.LIGHT_GRAY)
+		
+	for child in self.children:
+		for cell in child.optimized_cells:
+			map.add_rect(cell, self.tile_size, Color.DIM_GRAY)
 		
 	for teleport in self.teleporters:
 		map.add_teleport(teleport)
@@ -190,6 +194,13 @@ func _open_room():
 			self.tiles.set_cell(
 				tile, DungeonGeneration.TILE_ID, atlas, alt
 			)
+			
+func entrances_left() -> int:
+	var left = 0
+	for entrance in self.entrances:
+		if not entrance['has_connection']:
+			left += 1
+	return left
 
 func cleared() -> bool:
 	var enemies_left = self.enemies.get_child_count()
