@@ -2,13 +2,14 @@
 
 
 ## BUGS
+- [x] Teleport through walls & objects
+- [ ] ?Camera does not center correctly when starting a game becuase of the popup
+- [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
 - [x] Center camera does not center correctly
-- [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [x] Fix pathfinding with tables
-- [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [x] Level generation: When Boss room is spawned early, no more rooms are being added:
 	- [x] Add more entrances for boss room
 	- [x] Make algorythm understand that there is a deadend (Place bossroom as last room furthest left, right, bottm or top)
@@ -21,22 +22,14 @@
 
 ## TODO
 
-- [x] Apply random offset to damage number
-- [x] Make seed input field
 - [ ] Name
-- [ ] Show nearby not visited rooms greyed out
-- [ ] Remove ui_effects
-- [ ] Tutorial
-- [ ] Spawn boss room on edge of dungeon (furthest away edge)
-- [ ] Show Mana cost, damage and cooldown of skills in description and when selecting spells
-- [ ] Show skill name / description in Inventory
-- [x] Add Level Up Text
-- [x] Remove projectiles on room enter
-- [x] Add torches in corridors
-- [x] Level Up effect
-- [x] Redo inventory
-- [x] Border around inventory
-- [x] Close inventory button
+- [x] Show nearby not visited rooms greyed out
+- [x] Remove ui_effects
+- [ ] Tutorial (maybe add tutorial text in starting room)
+- [ ] Create reusable sign or letter for everything, when player near -> text pop up
+- [x] Spawn boss room on edge of dungeon (furthest away edge)
+- [x] Show Mana cost, damage and cooldown of skills in description and when selecting spells
+- [x] Show skill name / description in Inventory
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
@@ -49,8 +42,8 @@
 			- [ ] Fire wave around player
 			- [ ] Heat buff (speed and damage)
 			- [ ] Burning floor wave (aoe)
-		- [ ] Perks:
-			- [ ] Fire roll, burn floor on ground
+		- [ ] ?Perks:
+			- [ ] ?Fire roll, burn floor on ground
 		- [ ] ?Effects:
 			- [ ] ?Burn
 	- [ ] Ice:
@@ -60,8 +53,8 @@
 			- [ ] Counter
 			- [ ] Ice wave
 			- [ ] Time slow
-		- [ ] Perks:
-			pass
+		- [ ] ?Perks:
+			- ?Extra damage against frozen enemies
 		- [ ] ?Effects:
 			- [ ] ?Freeze
 			- [ ] ?Bleed
@@ -72,8 +65,8 @@
 			- [ ] Buff circle or rock wall
 			- [ ] Earth spike
 			- [ ] Rock Roll
-		- [ ] Perks:
-			- [ ] Rolling deals damage
+		- [ ] ?Perks:
+			- [ ] ?Rolling deals damage
 		- [ ] ?Effects:
 			- [ ] ?Crippled
 - [ ] 3 Soundtracks:
@@ -127,7 +120,10 @@
 	- [ ] 2 neutral (0 / 2)
 		- [ ] Gambling
 	- [x] 1 boss room
-- [ ] Attributes:
+
+
+
+- [x] Attributes:
 	- [x] Health: increases max health
 	- [x] Power: Increases Attack Power
 	- [x] Agility: Increases movementspeed (?and roll)
@@ -152,6 +148,15 @@
 - [ ] ?UI Theme
 - [ ] ?Make second cursor for UI
 - [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
+- [x] Add Level Up Text
+- [x] Apply random offset to damage number
+- [x] Make seed input field
+- [x] Remove projectiles on room enter
+- [x] Add torches in corridors
+- [x] Level Up effect
+- [x] Redo inventory
+- [x] Border around inventory
+- [x] Close inventory button
 - [x] Spacial Audio
 - [x] Redo tiles
 - [x] Logo (temporary)

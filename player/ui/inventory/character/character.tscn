@@ -122,6 +122,7 @@ offset_bottom = 492.0
 color = Color(1, 1, 1, 0.203922)
 
 [node name="scroll" type="ScrollContainer" parent="content/attack_selection" index="0"]
+clip_contents = false
 layout_mode = 2
 offset_left = 19.0
 offset_top = 13.0

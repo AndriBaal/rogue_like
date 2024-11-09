@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5htdmhgijmm0"]
+[gd_scene load_steps=3 format=3 uid="uid://5htdmhgijmm0"]
 
 [ext_resource type="Script" path="res://player/ui/inventory/character/attack_selection.gd" id="1_g51pi"]
+[ext_resource type="PackedScene" uid="uid://bqdsvm50yvtdk" path="res://player/ui/inventory/character/attack_description.tscn" id="2_33awb"]
 
 [node name="button" type="Button"]
 custom_minimum_size = Vector2(40, 40)
@@ -15,3 +16,15 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g51pi")
+
+[node name="attack_description" parent="." instance=ExtResource("2_33awb")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = -112.0
+offset_right = 193.0
+offset_bottom = 168.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.4, 0.4)

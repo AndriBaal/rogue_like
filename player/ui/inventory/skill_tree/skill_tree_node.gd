@@ -19,9 +19,7 @@ func _on_click():
 		if child.modulate == Color.YELLOW:
 			child.modulate = Color.WHITE
 	skill_tree.get_node(^'select').visible = true
-	skill_tree.get_node(^'select/title').text = '[center]' + self.skill['name'] + '[/center]'
-	skill_tree.get_node(^'select/description').text = self.skill['description']
-	skill_tree.get_node(^'select/type').text = 'Type: ' + Player.type_to_string(self.skill['type'])
+	skill_tree.get_node(^'select/attack_description').render(self.skill)
 	var unlock = skill_tree.get_node(^'select/unlock')
 	if self.unlocked or not self.available or game.player.skill_tokens == 0 or 'unlocked' in self.skill:
 		unlock.disabled = true

@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=4 uid="uid://8qwhwls8p04a"]
+
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8l2ew"]
+[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_sqcvm"]
+[ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="3_xautg"]
+[ext_resource type="Texture2D" uid="uid://baxjsjipr6dvd" path="res://dungeons/goblin_dungeon/rooms/shop.png" id="4_qcstl"]
+
+[node name="room" instance=ExtResource("1_8l2ew")]
+
+[node name="tiles" parent="." index="0"]
+tile_map_data = PackedByteArray("AAD9/wMAAAACAAAAAFD+/wMAAAACAAAAAFD//wMAAAACAAAAAFAAAAMAAAACAAAAAFD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAACAAAAABD8/wMAAAAEAAAAABD9/wAAAAACAAEAAAD9/wEAAAALAAEAAAD9/wIAAAADAAEAAAD+/wAAAAAGAAEAAAD+/wEAAAACAAEAAAD+/wIAAAALAAEAAAD//wAAAAAMAAEAAAD//wEAAAABAAEAAAD//wIAAAANAAEAAAAAAAEAAAAOAAAAAAAAAAIAAAAOAAEAAAAAAAAAAAAFAAEAAAACAAAAAAACAAEAAAACAAEAAAAIAAEAAAACAAIAAAAMAAEAAAACAAMAAAACAAAAAFADAAAAAAAIAAEAAAADAAEAAAAMAAEAAAADAAIAAAAJAAEAAAADAAMAAAACAAAAAFAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAAAAAAEAAMAAAAEAAAAAAABAAIAAAADAAEAAAABAAEAAAAJAAEAAAABAAAAAAACAAEAAAD8//z/AAADAAAAABD8//3/AAACAAAAADD9//z/AAAAAAAAAAD9//3/AAABAAEAAAD+//z/AAAAAAAAAAD+//3/AAACAAEAAAD///z/AAAAAAAAAAD///3/AAAMAAEAAAAAAPz/AAAAAAAAAAAAAP3/AAAIAAEAAAABAP3/AAADAAEAAAACAPz/AAAAAAAAAAACAP3/AAADAAEAAAADAPz/AAAAAAAAAAADAP3/AAALAAEAAAAEAPz/AAADAAAAAAAEAP3/AAACAAAAAAD8//7/AAACAAAAADD9//7/AAAIAAEAAAD+//7/AAAKAAEAAAD///7/AAANAAEAAAAAAP7/AAANAAEAAAABAP7/AAANAAEAAAACAP7/AAAGAAEAAAADAP7/AAACAAEAAAAEAP7/AAACAAAAAAADAP//AAABAAEAAAACAP//AAADAAEAAAABAP//AAALAAEAAAAAAP//AAAMAAEAAAD/////AAALAAEAAAD+////AAADAAEAAAD9////AAALAAEAAAAEAP//AAACAAAAAAD8////AAACAAAAABABAPz/AAAAAAAAAAABAAMAAAACAAAAAFA=")
+tile_set = ExtResource("2_sqcvm")
+
+[node name="entrances" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD8//7/AAABAAAAABD8////AAANAAAAAFD8/wEAAAAFAAAAAAD8/wAAAAANAAAAAFAEAP//AAABAAAAAAAEAAAAAAANAAAAAGAEAAEAAAANAAAAAGAEAAIAAAAFAAAAABD+//z/AAABAAAAABD///z/AAANAAAAADAAAPz/AAANAAAAADABAPz/AAABAAAAAAD//wMAAAAFAAAAAAAAAAMAAAANAAAAAAABAAMAAAANAAAAAAACAAMAAAAFAAAAABA=")
+tile_set = ExtResource("2_sqcvm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="decorations" index="0"]
+position = Vector2(73, -104)
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="decorations/StaticBody2D" index="0"]
+texture = ExtResource("4_qcstl")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="decorations/StaticBody2D" index="1"]
+polygon = PackedVector2Array(-64, 42, 64, 42, 64, 10, 21, 10, 21, -51, -22, -51, -22, 10, -64, 10)
+
+[node name="light" parent="decorations" index="1" instance=ExtResource("3_xautg")]
+position = Vector2(286, -26)
+scale = Vector2(4.70089, 5.26574)
+
+[node name="light2" parent="decorations" index="2" instance=ExtResource("3_xautg")]
+position = Vector2(-150, -22)

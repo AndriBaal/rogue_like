@@ -43,5 +43,5 @@ script = SubResource("GDScript_dn1hf")
 texture = ExtResource("1_1frj7")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(-9.53674e-07, -5)
+position = Vector2(5.68434e-14, -3.33333)
 shape = SubResource("RectangleShape2D_gjvh5")

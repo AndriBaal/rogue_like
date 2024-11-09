@@ -9,6 +9,10 @@ class_name AttackSelection
 
 func _ready() -> void:
 	self.pressed.connect(self._select_attack)
+	$attack_description.render(self.attack)
+	
+func _process(delta: float) -> void:
+	$attack_description.visible = self.is_hovered()
 	
 func _select_attack():
 	var selection = game.attack_selection
