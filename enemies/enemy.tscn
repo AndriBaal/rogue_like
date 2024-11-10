@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvsrhnrd1kp5h"]
+[gd_scene load_steps=9 format=3 uid="uid://bvsrhnrd1kp5h"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nevkm"]
 [ext_resource type="Texture2D" uid="uid://cyif6pshom3p2" path="res://enemies/health_bar_background.png" id="2_bn8hd"]
+[ext_resource type="AudioStream" uid="uid://cn4gve885bv71" path="res://enemies/hit.wav" id="2_yiaub"]
 [ext_resource type="Texture2D" uid="uid://cmqv50be3k5xe" path="res://enemies/health_bar.png" id="3_bb7jy"]
+[ext_resource type="Texture2D" uid="uid://btbun1m5lc0th" path="res://enemies/despawn.png" id="3_uh4fr"]
+
+[sub_resource type="Curve" id="Curve_mvlvy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_y8bs0"]
+curve = SubResource("Curve_mvlvy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c3c18"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 75.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_y8bs0")
 
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -21,12 +40,20 @@ visible = false
 
 [node name="collider" type="CollisionShape2D" parent="."]
 
+[node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yiaub")
+
+[node name="despawn" type="GPUParticles2D" parent="."]
+modulate = Color(0.290453, 0.0773342, 1, 1)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_c3c18")
+texture = ExtResource("3_uh4fr")
+one_shot = true
+explosiveness = 1.0
+
 [node name="navigation" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
-
-[node name="path_calculation" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
 
 [node name="hp_bar" type="TextureProgressBar" parent="."]
 top_level = true

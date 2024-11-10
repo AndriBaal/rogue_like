@@ -10,8 +10,6 @@ size = Vector2(12, 16)
 
 [node name="coin" instance=ExtResource("1_iqmqm")]
 scale = Vector2(3.5, 3.5)
-collision_layer = 32
-collision_mask = 1
 script = ExtResource("2_s7tvb")
 value = 5
 

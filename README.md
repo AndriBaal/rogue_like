@@ -1,5 +1,7 @@
 # Rogue Like
 
+## Optimization
+- [ ] Only show & update rooms when visible on screen
 
 ## BUGS
 - [x] Teleport through walls & objects
@@ -21,7 +23,6 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
-
 - [ ] Name
 - [x] Show nearby not visited rooms greyed out
 - [x] Remove ui_effects
@@ -38,23 +39,27 @@
 	- [ ] Fire:
 		- [x] Primary: Fireball
 		- [ ] Abilities:
-			- [ ] Fire beam many small little fire projectiles
-			- [ ] Fire wave around player
+			- [ ] ?Fire beam many small little fire projectiles
+			- [x] Fire wave around player
+			- [x] Fire circle around player
 			- [ ] Heat buff (speed and damage)
-			- [ ] Burning floor wave (aoe)
+			- [ ] ?Burning floor wave (aoe)
 		- [ ] ?Perks:
+			- [ ] ?Fire does more damage
 			- [ ] ?Fire roll, burn floor on ground
 		- [ ] ?Effects:
 			- [ ] ?Burn
 	- [ ] Ice:
-		- [ ] 1st Primary: Ice spear
+		- [x] 1st Primary: Ice spear
 		- [ ] Abilities:
-			- [ ] Teleport
-			- [ ] Counter
-			- [ ] Ice wave
-			- [ ] Time slow
+			- [x] Teleport
+			- [x] Counter
+			- [x] Ice wave
+			- ?[ ] Time slow
 		- [ ] ?Perks:
-			- ?Extra damage against frozen enemies
+			- [ ] ?Frost does more damage
+			- [ ] ?Frozen enemies take more damage
+			- [ ] ?Extra damage against frozen enemies
 		- [ ] ?Effects:
 			- [ ] ?Freeze
 			- [ ] ?Bleed
@@ -66,6 +71,8 @@
 			- [ ] Earth spike
 			- [ ] Rock Roll
 		- [ ] ?Perks:
+			- [ ] ?More physical damage
+			- [ ] Crippled enemies take more damage
 			- [ ] ?Rolling deals damage
 		- [ ] ?Effects:
 			- [ ] ?Crippled
@@ -96,10 +103,11 @@
 	- [ ] Attack sounds(fireball, water wave, rock)
 	- [x] Player Damage hit
 	- [ ] Player heal potion
+	- [x] Parry
+	- [x] level up
 	- [ ] Enemy throw attack sound
-	- [ ] Enemy Damage hit (hitmarker)
+	- [x] Enemy Damage hit (hitmarker)
 	- [x] Player roll
-	- [ ] Level Up
 	- [ ] Buy confirm
 	- [ ] Player walk
 - [ ] Enemies

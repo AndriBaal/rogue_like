@@ -1,33 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://b08vc48hasdm"]
+[gd_scene load_steps=3 format=3 uid="uid://b08vc48hasdm"]
 
 [ext_resource type="Texture2D" uid="uid://bul1dq5ew7g07" path="res://dungeons/goblin_dungeon/decorations/table_h.png" id="1_1frj7"]
-
-[sub_resource type="GDScript" id="GDScript_dn1hf"]
-script/source = "extends StaticBody2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-	#var map: RID = get_world_2d().navigation_map
-	#NavigationServer2D.map_set_use_edge_connections(map, false)
-#
-#
-	#var source_geometry: NavigationMeshSourceGeometryData2D = NavigationMeshSourceGeometryData2D.new()
-	#var navigation_mesh: NavigationPolygon = NavigationPolygon.new()
-	#navigation_mesh.parsed_geometry_type = NavigationPolygon.PARSED_GEOMETRY_STATIC_COLLIDERS
-	#NavigationServer2D.parse_source_geometry_data(navigation_mesh, source_geometry, self)
-	#var obstacle_carve: bool = true
-#
-	#for projected_obstruction: Dictionary in source_geometry.get_projected_obstructions():
-		#source_geometry.add_projected_obstruction(projected_obstruction[\"vertices\"], obstacle_carve)
-#
-	#NavigationServer2D.bake_from_source_geometry_data(navigation_mesh, source_geometry)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjvh5"]
 size = Vector2(64, 34)
@@ -37,7 +10,6 @@ y_sort_enabled = true
 scale = Vector2(3, 3)
 collision_layer = 8
 collision_mask = 3
-script = SubResource("GDScript_dn1hf")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_1frj7")

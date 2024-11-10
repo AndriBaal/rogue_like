@@ -11,7 +11,6 @@ enum EnemyState {
 
 const HIT_ANIMATION_DURATION := 0.25
 
-const DESPAWN := preload("res://enemies/despawn.tscn")
 const BRONZE_COIN := preload("res://items/coin/bronze_coin.tscn")
 const SILVER_COIN := preload("res://items/coin/silver_coin.tscn")
 const GOLD_COIN := preload("res://items/coin/gold_coin.tscn")
@@ -47,23 +46,27 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @export var direction := Direction.SOUTH
 @export var hp_bar_offset := Vector2.ZERO
 @export var init := false
+@export var alive := true
 
 
 func _ready() -> void:
+	$despawn.finished.connect(self.queue_free)
 	if not init:
 		init = true
 		self.navigation.velocity_computed.connect(self._velocity_computed)
-		$path_calculation.timeout.connect(self._calc_path_to_target)
 		
 		var hp_bar = $hp_bar
 		self.hp_bar_offset = hp_bar.position
-		hp_bar.position += self.global_position
+		hp_bar.position = self.global_position + self.hp_bar_offset
 		hp_bar.max_value = self.health
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO
 
 func _process(delta: float) -> void:
+	if not alive:
+		return
+		
 	var active_sprite
 	match self.state:
 		EnemyState.INACTIVE:
@@ -88,8 +91,12 @@ func _process(delta: float) -> void:
 	$hp_bar.position = self.global_position + self.hp_bar_offset
 
 func _physics_process(_delta: float) -> void:
+	if not alive:
+		return
+		
 	if self.state == EnemyState.INACTIVE:
 		return
+	
 		
 	var target_position = target.global_position
 	var position_delta: Vector2 = target_position - self.global_position
@@ -118,6 +125,8 @@ func _physics_process(_delta: float) -> void:
 			var current_agent_position: Vector2 = self.global_position
 			var next_path_position: Vector2 = self.navigation.get_next_path_position()
 			self.movement = current_agent_position.direction_to(next_path_position)
+			if Engine.get_physics_frames() % 30 == 0:
+				self._calc_path_to_target()
 		_ :
 			self.movement = Vector2.ZERO
 		
@@ -178,13 +187,18 @@ func deal_damage(damage: float):
 	
 	self.health -= damage
 	self.hit_animation_timer = 0.0
+	$hit_sound.play()
 
 func death():
-	self.queue_free()
-	var d := self.DESPAWN.instantiate()
-	d.position = self.global_position
-	d.scale *= self.global_scale
-	$/root/game/effects.add_child(d)
+	self.alive = false	
+	
+	for child in self.get_children():
+		if 'visible' in child:
+			child.visible = false
+	var despawn = $despawn
+	despawn.visible = true
+	despawn.restart()
+	$collider.disabled = true
 	
 	for item in self.loot_pool():
 		
@@ -199,8 +213,8 @@ func death():
 				randf_range(-ITEM_SPREAD, ITEM_SPREAD), 
 				randf_range(-ITEM_SPREAD, ITEM_SPREAD)
 			)
-			i.position = self.global_position + offset
-			$/root/game/items.add_child(i)
+			i.position = self.position + offset
+			self.get_parent().get_parent().get_node('items').add_child(i)
 
 func start_attack() -> void:
 	self.movement = Vector2.ZERO
@@ -216,9 +230,6 @@ func _velocity_computed(safe: Vector2):
 			if collision.get_collider_id() == self.target.get_instance_id():
 				self.target.deal_damage(self.melee_damage)
 
-func attack():
-	pass
-
 func state_changed(_old_state: EnemyState, new_state: EnemyState) -> void:
 	if self.attack_sprite:
 		self.attack_sprite.visible = false
@@ -233,10 +244,12 @@ func state_changed(_old_state: EnemyState, new_state: EnemyState) -> void:
 			self.start_attack()
 			self.attack_sprite.visible = true
 		EnemyState.MOVING:
-			$path_calculation.start()
 			self._calc_path_to_target()
 			$walk_sprite.visible = true
 	self.state = new_state
+
+func attack():
+	pass
 	
 func loot_pool() -> Array:
 	return []

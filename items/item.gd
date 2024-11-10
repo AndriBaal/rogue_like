@@ -14,7 +14,7 @@ class_name Item
 func _ready() -> void:
 	self.body_entered.connect(self._on_collision)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if self.collected and not $collect_audio.playing:
 		self.queue_free()
 

@@ -32,9 +32,9 @@ process_callback = 0
 z_index = 100
 layout_mode = 3
 anchors_preset = 0
-offset_left = 19.0
+offset_left = 18.0
 offset_top = 18.0
-offset_right = 19.0
+offset_right = 18.0
 offset_bottom = 18.0
 scale = Vector2(1.7527, 1.78922)
 

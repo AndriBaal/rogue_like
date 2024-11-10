@@ -27,7 +27,7 @@ func _ready():
 			'action': '_ice_wave',
 			'mana_cost': 10.0,
 			'cool_down': 0.5,
-			'type': AttackType.PRIMARY,
+			'type': AttackType.ABILITY,
 			'icon': preload("res://player/wizard/attacks/ice_wave.png")
 		},
 		'ice_spear': {
@@ -178,7 +178,7 @@ func _ice_teleport(player_position, look_direction):
 		$teleport.restart()
 	
 func _ice_deflect(player_position, look_direction):
-	pass
+	self.parry_timer = 0.0
 	
 func _rock_wall(player_position, look_direction):
 	pass

@@ -16,6 +16,8 @@ z_index = 100
 scale = Vector2(3, 3)
 navigation_enabled = false
 
+[node name="items" type="Node2D" parent="."]
+
 [node name="decorations" type="CanvasGroup" parent="."]
 
 [node name="enemies" type="Node2D" parent="."]

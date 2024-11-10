@@ -43,9 +43,10 @@ func _physics_process(delta: float) -> void:
 func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, local_shape_index: int):
 	var destroy := false
 	var inner_collider := local_shape_index == 0
+	var player_id = self.game.player.get_instance_id()
 	if self.friendly:
 		# Player hits himself
-		if body.get_instance_id() == self.game.player.get_instance_id():
+		if body.get_instance_id() == player_id:
 			return
 			
 		# Enemy is hit
@@ -61,8 +62,15 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 				destroy = true
 	else:
 		# Player is hit
-		if body.get_instance_id() == self.game.player.get_instance_id():
-			if not body.deal_damage(self.damage):
+		if body.get_instance_id() == player_id:
+			if body.has_parry_frames():
+				self.rotation += PI
+				self.direction = -self.direction
+				self.damage *= 1.5
+				self.speed *= 1.5
+				self.friendly = true
+				body.get_node('deflect_audio').play()
+			elif not body.deal_damage(self.damage):
 				return
 		# Other enemy is hit
 		elif 'health' in body:

@@ -78,13 +78,13 @@ enum PlayerState {
 
 @export var xp_for_lvl_up := 50
 @export var speed := 600.0
-@export var immunity_seconds := 1.5
+@export var immunity_duration := 1.5
 
 @export var direction := Direction.SOUTH
 @export var state: PlayerState = PlayerState.IDLE
 @export var movement: Vector2
 @export var animation_timer := 0.0
-@export var immunity_timer := immunity_seconds
+@export var immunity_timer := immunity_duration
 @export var max_health := 20.0:
 	get:
 		return max_health
@@ -142,6 +142,9 @@ enum PlayerState {
 @export var roll_timer := 0.0
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
+@export var parry_timer := 0.0
+@export var parry_duration = 0.07
+
 @export var money := 0
 
 @export var health_stat := 1
@@ -194,7 +197,7 @@ func _process(delta: float) -> void:
 	var mouse_pos: Vector2 = self.game.get_local_mouse_position()
 	var look: Vector2 = (mouse_pos - player_position).normalized()
 	
-
+	self.parry_timer += delta
 	self.roll_timer -= delta
 	var roll_begin = roll and self._has_enough_mana(self.roll_cost) and self.state != PlayerState.ROLL
 	var still_rolling =  roll_timer >= 0.0 and self.state == PlayerState.ROLL
@@ -329,7 +332,7 @@ func _compute_immunity(delta, active_sprite):
 	const BLINK = 0.05
 	self.immunity_timer += delta
 	var color
-	if self.immunity_timer > self.immunity_seconds:
+	if self.immunity_timer > self.immunity_duration:
 		color = Color.WHITE
 	else:
 		var t = self.immunity_timer / BLINK
@@ -346,14 +349,14 @@ func heal(heal: float):
 	
 func make_intangible(intangible):
 	if intangible:
-		self.collision_mask = (1 << 3) | (1 << 4)
-		self.collision_layer = 1 << 9
+		self.collision_mask = 0b111000
+		self.collision_layer = 0b10000000
 	else:
 		self.collision_layer = 0b1
-		self.collision_mask = (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4)
+		self.collision_mask = (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4) | (1 << 5)
 		
 func has_hit_iframes() -> bool:
-	return self.immunity_timer < self.immunity_seconds
+	return self.immunity_timer < self.immunity_duration
 	
 func has_roll_iframes() -> bool:
 	if self.state == PlayerState.ROLL:
@@ -365,6 +368,9 @@ func has_roll_iframes() -> bool:
 
 func has_iframes() -> bool:
 	return self.has_hit_iframes() or self.has_roll_iframes()
+	
+func has_parry_frames() -> bool:	
+	return self.parry_timer < self.parry_duration
 
 # Returns a true, if the projectile should be destroyed
 func deal_damage(damage: float) -> bool:
@@ -390,6 +396,7 @@ func _update_health_ui():
 	
 func _level_up():
 	$level_up.restart()
+	$level_up_audio.play()
 	$level_up_animation.play('level_up')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1

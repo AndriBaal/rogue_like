@@ -143,7 +143,6 @@ skill_tree={
 
 [physics]
 
-2d/run_on_separate_thread=true
 common/physics_jitter_fix=0.0
 2d/default_gravity=900.0
 common/physics_interpolation=true

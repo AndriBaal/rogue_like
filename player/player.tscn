@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=23 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://jelmk651lrvx" path="res://player/wizard/attacks/teleport.png" id="5_pkjc4"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 [ext_resource type="AudioStream" uid="uid://bpwly4eci4tk5" path="res://player/roll.mp3" id="8_1wfet"]
+[ext_resource type="AudioStream" uid="uid://bbwgdtrhyy1sp" path="res://player/deflect.wav" id="9_12vyf"]
+[ext_resource type="AudioStream" uid="uid://ckwymsawhw0hn" path="res://player/level_up.wav" id="10_7kglo"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.823232, 0.858696), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
@@ -172,6 +174,12 @@ stream = ExtResource("3_d513c")
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_1wfet")
 volume_db = 24.0
+
+[node name="deflect_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_12vyf")
+
+[node name="level_up_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_7kglo")
 
 [node name="listener" type="AudioListener2D" parent="."]
 current = true
