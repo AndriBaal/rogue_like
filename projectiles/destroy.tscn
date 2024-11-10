@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dvlialhvvgxif"]
 
 [ext_resource type="Texture2D" uid="uid://dvt4asmcnpxs4" path="res://projectiles/destroy.png" id="1_62lfp"]
-[ext_resource type="Script" path="res://enemies/despawn.gd" id="2_lrx3j"]
+[ext_resource type="Script" path="res://projectiles/destroy.gd" id="2_lrx3j"]
 
 [sub_resource type="Curve" id="Curve_1bg17"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.503741, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
