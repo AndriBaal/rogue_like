@@ -25,6 +25,7 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
+
 - [ ] Name (Power Creep)
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] ?Show description on hover in hud
@@ -107,6 +108,7 @@
 	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
 	- [ ] (Andri) Player heal potion
+	- [ ] Error buy sound
 	- [x] Enemy throw attack sound
   		- [ ] Integrate
 	- [ ] (Andri) Buy confirm

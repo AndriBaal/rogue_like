@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://jelmk651lrvx" path="res://player/wizard/attacks/teleport.png" id="5_pkjc4"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="5_qixdu"]
 [ext_resource type="AudioStream" uid="uid://betcuvb32gefi" path="res://player/wizard/hurt.mp3" id="7_c0rst"]
-[ext_resource type="AudioStream" uid="uid://bpwly4eci4tk5" path="res://player/roll.mp3" id="8_1wfet"]
+[ext_resource type="AudioStream" uid="uid://cx6njfsu5os68" path="res://player/roll.mp3" id="8_1wfet"]
 [ext_resource type="AudioStream" uid="uid://bbwgdtrhyy1sp" path="res://player/deflect.wav" id="9_12vyf"]
 [ext_resource type="AudioStream" uid="uid://ckwymsawhw0hn" path="res://player/level_up.wav" id="10_7kglo"]
 
@@ -175,6 +175,7 @@ volume_db = 6.0
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_1wfet")
 volume_db = 24.0
+pitch_scale = 0.86
 
 [node name="deflect_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_12vyf")

@@ -47,7 +47,7 @@ class DungeonOptions:
 					],
 					"good":
 					[
-						load("res://dungeons/goblin_dungeon/rooms/shop.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/shop/shop.tscn"),
 					],
 					"neutral":
 					#load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
