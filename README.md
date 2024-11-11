@@ -107,14 +107,20 @@
 	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
 	- [ ] (Andri) Player heal potion
-	- [ ] ?Enemy throw attack sound
+	- [x] Enemy throw attack sound
+  		- [ ] Integrate
 	- [ ] (Andri) Buy confirm
-	- [ ] Player step
+	- [x] Player step
+  		- [ ] Integrate
 	- [x] Player Damage hit
+		- [ ] Integrate
+  	- [x] Boss Damage hit
+  		- [ ] Integrate  
 	- [x] Parry
 	- [x] level up
 	- [x] Enemy Damage hit (hitmarker)
 	- [x] Player roll
+ 		- [ ] Integrate 	
 - [ ] Enemies
 	- [x] Damage Number
 	- [x] Healthbar
