@@ -28,7 +28,7 @@ z_as_relative = false
 collision_mask = 1
 
 [node name="darkness" type="CanvasModulate" parent="."]
-color = Color(0.205117, 0.205117, 0.205117, 1)
+color = Color(0.277528, 0.277528, 0.277528, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ed0iv")

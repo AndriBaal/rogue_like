@@ -9,7 +9,8 @@ static var SEED := 0
 var dir := DirAccess.open("user://")
 var files := []
 var name_regex := RegEx.new()
-var valid_seed := ''
+var valid_seed := ""
+
 
 func _ready():
 	$title/new_game.pressed.connect(self._new_game)
@@ -30,6 +31,7 @@ func _ready():
 	self._load_save_files()
 	self._new_game_name_changed($create_game/name.text)
 	self.get_tree().paused = false
+
 
 func _new_game():
 	$title.visible = false
@@ -112,14 +114,15 @@ func _new_game_name_changed(new_text: String):
 	for file in self.files:
 		if file == new_text:
 			error = "A save with this name already exists!"
-	
+
 	var error_label = $create_game/error
 	if error:
 		error_label.text = error
-		
+
 	var valid = false if error == null else true
 	error_label.visible = valid
 	$create_game/start.disabled = valid
+
 
 func _new_game_seed_changed(new_text: String):
 	var seed = $create_game/seed
@@ -128,4 +131,3 @@ func _new_game_seed_changed(new_text: String):
 		seed.caret_column = len(new_text)
 	else:
 		self.valid_seed = new_text
-		

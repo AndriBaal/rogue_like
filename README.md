@@ -6,8 +6,8 @@
 ## BUGS
 - [x] Teleport through walls & objects
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
-- [ ] When you load a game the menu points in the inventory are stacked and not deserialized properly
-
+- [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
+- [ ] Fix greyed out skill tree nodes after deserialization
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
 - [x] Center camera does not center correctly
@@ -27,7 +27,8 @@
 - [x] Show nearby not visited rooms greyed out
 - [x] Remove ui_effects
 - [ ] Tutorial (maybe add tutorial text in starting room)
-- [ ] Create reusable sign or letter for everything, when player near -> text pop up
+- [ ] Show attack / ability tip
+- [x] Create reusable sign or letter for everything, when player near -> text pop up
 - [x] Spawn boss room on edge of dungeon (furthest away edge)
 - [x] Show Mana cost, damage and cooldown of skills in description and when selecting spells
 - [x] Show skill name / description in Inventory

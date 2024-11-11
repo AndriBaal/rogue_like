@@ -1,54 +1,71 @@
-[gd_scene load_steps=7 format=4 uid="uid://diso6aeyxfhhl"]
+[gd_scene load_steps=9 format=4 uid="uid://diso6aeyxfhhl"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8n4ip"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_auvdt"]
 [ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="4_7ordh"]
 [ext_resource type="PackedScene" uid="uid://b08vc48hasdm" path="res://dungeons/goblin_dungeon/decorations/table_h.tscn" id="4_jke4t"]
 [ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="4_jxifh"]
+[ext_resource type="PackedScene" uid="uid://sie6n6nusayk" path="res://dungeons/goblin_dungeon/decorations/table_v.tscn" id="5_2e75w"]
+[ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="7_nwo3t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_plntd"]
-vertices = PackedVector2Array(302, 207, 566, 422, -422, 422, 90, 207, 566, -422, 302, 85, -422, -422, 90, 85)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 1, 0, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(2, 6, 7, 3)])
+vertices = PackedVector2Array(710, -566, 545, -110.344, 349, -110.344, 233, -195.344, 233, -351.344, 710, 566, 545, 112.344, 233, 329.656, -566, 566, -43, 329.656, 349, 112.344, 233, 173.656, -43, -195.344, -43, 173.656, -169, 112.344, -169, -110.344, -566, -566, -43, -351.344, -365, -110.344, -365, 112.344)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 5, 6, 1), PackedInt32Array(7, 5, 8, 9), PackedInt32Array(10, 6, 5, 7, 11), PackedInt32Array(12, 3, 2, 10, 11, 13, 14, 15), PackedInt32Array(16, 0, 4, 17), PackedInt32Array(16, 17, 12, 15, 18), PackedInt32Array(8, 16, 18, 19), PackedInt32Array(9, 8, 19, 14, 13)])
 
 [node name="room" instance=ExtResource("1_8n4ip")]
 navigation_polygon = SubResource("NavigationPolygon_plntd")
 
 [node name="tiles" parent="." index="0"]
-tile_map_data = PackedByteArray("AAD9/wIAAAAKAAEAAAD9/wEAAAANAAEAAAD9/wAAAAAHAAEAAAD9////AAALAAEAAAD9//7/AAAGAAEAAAD9//3/AAAFAAEAAAD+//3/AAADAAEAAAD///3/AAAAAAEAAAAAAP3/AAANAAEAAAABAP3/AAAIAAEAAAACAP3/AAAAAAEAAAADAP3/AAALAAEAAAADAP7/AAAIAAEAAAADAP//AAALAAEAAAADAAAAAAAEAAEAAAADAAEAAAAEAAEAAAADAAIAAAALAAEAAAACAAIAAAAKAAEAAAABAAIAAAANAAEAAAAAAAIAAAAHAAEAAAD//wIAAAANAAEAAAD+/wIAAAABAAEAAAACAP//AAAEAAEAAAABAP//AAAAAAEAAAAAAP//AAAOAAEAAAAAAAAAAAAOAAEAAAAAAAEAAAAJAAEAAAD//wEAAAAOAAEAAAABAP7/AAACAAEAAAACAP7/AAACAAEAAAACAAAAAAAOAAEAAAACAAEAAAADAAEAAAABAAAAAAAIAAEAAAABAAEAAAALAAEAAAD+//7/AAAGAAEAAAD+////AAAAAAEAAAD///7/AAANAAEAAAAAAP7/AAAOAAEAAAD/////AAABAAEAAAD//wAAAAALAAEAAAD+/wAAAAAIAAEAAAD+/wEAAAAFAAEAAAD9//z/AAAAAAAAAAD+//z/AAAAAAAAAAD///z/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAADAAAAAAD8//z/AAADAAAAABAEAP3/AAACAAAAAAAEAP7/AAACAAAAAAAEAP//AAACAAAAAAAEAAAAAAACAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAAAAAADAAMAAAACAAAAAFACAAMAAAACAAAAAFABAAMAAAACAAAAAFAAAAMAAAACAAAAAFD//wMAAAACAAAAAFD+/wMAAAACAAAAAFD9/wMAAAACAAAAAFD8//3/AAACAAAAADD8//7/AAACAAAAADD8////AAACAAAAADD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAACAAAAADAEAAMAAAAEAAAAAAD8/wMAAAAEAAAAABA=")
+tile_map_data = PackedByteArray("AAABAP//AAAAAAEAAAAAAP//AAAOAAEAAAAAAAAAAAAOAAEAAAAAAAEAAAAJAAEAAAD//wEAAAAOAAEAAAABAP7/AAACAAEAAAABAAAAAAAIAAEAAAABAAEAAAALAAEAAAD+//7/AAAGAAEAAAD+////AAAAAAEAAAD///7/AAANAAEAAAAAAP7/AAAOAAEAAAD/////AAABAAEAAAD//wAAAAALAAEAAAD+/wAAAAAIAAEAAAD+/wEAAAAFAAEAAAD+//z/AAADAAEAAAD///z/AAAAAAEAAAAAAPz/AAANAAEAAAABAPz/AAAIAAEAAAACAPz/AAAAAAEAAAD+//v/AAAAAAAAAAD///v/AAAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AAAAAAAAAAACAPv/AAAAAAAAAAADAP7/AAACAAEAAAADAP//AAAEAAEAAAADAAAAAAAHAAEAAAADAAEAAAADAAEAAAAEAP7/AAAIAAEAAAAEAP//AAALAAEAAAAEAAAAAAAEAAEAAAAEAAEAAAAEAAEAAAAFAP7/AAACAAAAAAAFAP//AAACAAAAAAAFAAAAAAACAAAAAAAFAAEAAAACAAAAAAAEAPv/AAAAAAAAAAAEAPz/AAALAAEAAAAFAPv/AAADAAAAAAAFAPz/AAACAAAAAAD+/wMAAAANAAEAAAD//wMAAAAAAAEAAAAAAAMAAAAOAAEAAAABAAMAAAACAAEAAAADAAMAAAAEAAEAAAAEAAMAAAALAAEAAAAFAAMAAAACAAAAAAD+/wQAAAACAAAAAFD//wQAAAACAAAAAFAAAAQAAAACAAAAAFABAAQAAAACAAAAAFADAAQAAAACAAAAAFAEAAQAAAACAAAAAFAFAAQAAAAEAAAAAAD8//v/AAAAAAAAAAD8//z/AAAFAAEAAAD8//7/AAAGAAEAAAD8////AAALAAEAAAD8/wAAAAAHAAEAAAD8/wEAAAANAAEAAAD8/wMAAAAKAAEAAAD8/wQAAAACAAAAAFD7//v/AAADAAAAABD7//z/AAACAAAAADD7//7/AAACAAAAADD7////AAACAAAAADD7/wAAAAACAAAAADD7/wEAAAACAAAAADD7/wMAAAACAAAAADD7/wQAAAAEAAAAABD8/wIAAAAKAAEAAAD9/wIAAAACAAEAAAD+/wIAAAALAAEAAAD//wIAAAALAAEAAAAAAAIAAAAEAAEAAAABAAIAAAANAAEAAAACAAIAAAAMAAEAAAADAAIAAAACAAEAAAAEAAIAAAAHAAEAAAACAAMAAAABAAEAAAD9/wMAAAABAAEAAAD9/wEAAAAEAAEAAAD9/wAAAAAEAAEAAAD9////AAAHAAEAAAD9//7/AAALAAEAAAD9//3/AAAKAAEAAAD9//z/AAAHAAEAAAD8//3/AAANAAEAAAD+//3/AAANAAEAAAD///3/AAACAAEAAAAAAP3/AAAAAAEAAAABAP3/AAALAAEAAAACAP3/AAAKAAEAAAACAP7/AAADAAEAAAACAP//AAAHAAEAAAACAAAAAAAHAAEAAAACAAEAAAACAAEAAAADAP3/AAADAAEAAAADAPz/AAAJAAEAAAAEAP3/AAAOAAEAAAD9//v/AAAAAAAAAAADAPv/AAAAAAAAAAAFAAIAAAACAAAAAAAFAP3/AAACAAAAAAD9/wQAAAACAAAAAFACAAQAAAACAAAAAFD7/wIAAAACAAAAADD7//3/AAACAAAAADA=")
 tile_set = ExtResource("2_auvdt")
 
 [node name="entrances" parent="." index="1"]
-tile_map_data = PackedByteArray("AAD+/wMAAAAFAAAAAHD//wMAAAANAAAAAAAAAAMAAAANAAAAAAABAAMAAAAFAAAAAGAEAP7/AAABAAAAAAAEAP//AAANAAAAAGAEAAAAAAANAAAAAGAEAAEAAAAFAAAAAGD8//7/AAABAAAAABD8////AAANAAAAAFD8/wAAAAANAAAAAFD8/wEAAAAFAAAAAHAAAPz/AAANAAAAADD///z/AAANAAAAADABAPz/AAABAAAAAAD+//z/AAABAAAAABA=")
+tile_map_data = PackedByteArray("AAAFAP7/AAABAAAAAAAFAP//AAANAAAAAGAFAAAAAAANAAAAAGAFAAEAAAAFAAAAAGD7//7/AAABAAAAABD7////AAANAAAAAFD7/wAAAAANAAAAAFD7/wEAAAAFAAAAAHD//wQAAAAFAAAAAHAAAAQAAAANAAAAAAABAAQAAAANAAAAAAACAAQAAAAFAAAAAGAAAPv/AAANAAAAADABAPv/AAANAAAAADACAPv/AAABAAAAAAD///v/AAABAAAAABA=")
 tile_set = ExtResource("2_auvdt")
 
 [node name="Torch" parent="decorations" index="0" instance=ExtResource("4_jxifh")]
-position = Vector2(-409, 299)
+position = Vector2(-556, 307)
 animation = &"side"
 autoplay = "side"
 frame_progress = 0.0
 
 [node name="Torch2" parent="decorations" index="1" instance=ExtResource("4_jxifh")]
-position = Vector2(-409, -362)
+position = Vector2(-552, -361)
 animation = &"side"
 autoplay = "side"
 frame_progress = 0.0
 
 [node name="Torch3" parent="decorations" index="2" instance=ExtResource("4_jxifh")]
-position = Vector2(552, -352)
+position = Vector2(697, -337)
 animation = &"side"
 autoplay = "side"
 frame_progress = 0.0
 flip_h = true
 
 [node name="Torch4" parent="decorations" index="3" instance=ExtResource("4_jxifh")]
-position = Vector2(552, 326)
+position = Vector2(697, 330)
 animation = &"side"
 autoplay = "side"
 frame_progress = 0.0
 flip_h = true
 
 [node name="table_h" parent="decorations" index="4" instance=ExtResource("4_jke4t")]
-position = Vector2(196, 161)
+position = Vector2(95, 265)
+
+[node name="table_h2" parent="decorations" index="5" instance=ExtResource("4_jke4t")]
+position = Vector2(95, -260)
+
+[node name="table_v" parent="decorations" index="6" instance=ExtResource("5_2e75w")]
+position = Vector2(-267, 21)
+
+[node name="table_v2" parent="decorations" index="7" instance=ExtResource("5_2e75w")]
+position = Vector2(447, 21)
 
 [node name="slime" parent="enemies" index="0" instance=ExtResource("4_7ordh")]
-position = Vector2(-177, -229)
+position = Vector2(-267, -273)
+
+[node name="slime2" parent="enemies" index="1" instance=ExtResource("4_7ordh")]
+position = Vector2(458, 300)
+
+[node name="goblin_axe" parent="enemies" index="2" instance=ExtResource("7_nwo3t")]
+position = Vector2(95, 1)

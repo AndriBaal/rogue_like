@@ -18,6 +18,8 @@ tile_set = ExtResource("2_sqcvm")
 [node name="StaticBody2D" type="StaticBody2D" parent="decorations" index="0"]
 position = Vector2(73, -104)
 scale = Vector2(4, 4)
+collision_layer = 16
+collision_mask = 151
 
 [node name="Sprite2D" type="Sprite2D" parent="decorations/StaticBody2D" index="0"]
 texture = ExtResource("4_qcstl")
@@ -27,7 +29,6 @@ polygon = PackedVector2Array(-64, 42, 64, 42, 64, 10, 21, 10, 21, -51, -22, -51,
 
 [node name="light" parent="decorations" index="1" instance=ExtResource("3_xautg")]
 position = Vector2(286, -26)
-scale = Vector2(4.70089, 5.26574)
 
 [node name="light2" parent="decorations" index="2" instance=ExtResource("3_xautg")]
 position = Vector2(-150, -22)

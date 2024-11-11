@@ -4,10 +4,9 @@ class_name SkillTreeNode
 
 @onready var game: Game = $/root/game
 
-@export var unlocked := false
 @export var available := false
-@export var connections := []
-@export var child_skills := []
+@export var connections: Array[NodePath] = []
+@export var child_skills: Array[NodePath] = []
 @export var skill: Dictionary
 
 func _ready() -> void:
@@ -32,9 +31,11 @@ func unlock():
 	self.skill['unlocked'] = true
 	self.modulate = Color.WHITE
 	$button/background.self_modulate = Color.GREEN
-	for connection in connections:
+	for path in connections:
+		var connection = self.get_node(path)
 		connection.default_color = Color.WHITE
-	for child in self.child_skills:
+	for path in self.child_skills:
+		var child = self.get_node(path)
 		child.make_available()
 
 func make_available():

@@ -19,7 +19,9 @@ func _generate_level():
 	else:
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
-			DungeonGeneration.DungeonOptions.new(DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED)
+			DungeonGeneration.DungeonOptions.new(
+				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 0, Menu.SEED
+			)
 		)
 		var player = scene.get_node(^"player")
 		var starting_room = dungeon.rooms[0]
@@ -28,12 +30,12 @@ func _generate_level():
 		var room_node = scene.get_node(^"rooms")
 		for room in dungeon.rooms:
 			self._recurse_add_rooms(room_node, room)
-			
+
 		#var mini_map = player.get_node(^'ui/tabs')
 		#var tilemap = starting_room.get_node(^'tiles')
 		#var tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
 		#mini_map.init_mini_map(cells, tile_size)
-		
+
 	self._on_level_finished.call_deferred(scene)
 
 

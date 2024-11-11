@@ -2,20 +2,22 @@ extends NinePatchRect
 
 class_name Inventory
 
+
 func _ready() -> void:
 	$close.pressed.connect(self._close)
+
 
 func _close():
 	self.visible = false
 
+
 func make_active(name: String):
 	for child in self.get_children():
-		if child.name == 'close':
+		if child.name == "close":
 			continue
-		child.get_node('content').visible = false
-		child.get_node('navigation').self_modulate = Color.WHITE
-	
+		child.get_node("content").visible = false
+		child.get_node("navigation").self_modulate = Color.WHITE
+
 	var active = self.get_node(name)
-	active.get_node('content').visible = true
-	active.get_node('navigation').self_modulate = Color('657392')
-	
+	active.get_node("content").visible = true
+	active.get_node("navigation").self_modulate = Color("657392")

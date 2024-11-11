@@ -71,7 +71,7 @@ animation = &"bottom"
 frame_progress = 0.698155
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -3)
+scale = Vector2(2, 2)
 color = Color(0.97, 0.226333, 0, 1)
 texture = ExtResource("1_38sll")
-texture_scale = 0.28
+texture_scale = 0.3

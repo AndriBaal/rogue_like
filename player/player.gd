@@ -293,7 +293,7 @@ func _process(delta: float) -> void:
 	active_sprite.frame_coords.y = self.direction
 	self._compute_immunity(delta, active_sprite)
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if not inventory.visible:
 		const ZOOM_SPEED: float = 0.1
 		const ZOOM_MIN: float = -INF

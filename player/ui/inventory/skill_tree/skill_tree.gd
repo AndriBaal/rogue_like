@@ -40,7 +40,7 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 	for skill in skill_tree:
 		var attack_name = skill['attack_name']
 		if 'position' not in skill:
-			parent.child_skills.push_back($cam/nodes.get_node(attack_name))
+			parent.child_skills.push_back($cam/nodes.get_node(attack_name).get_path())
 			return
 			
 		var attack = attacks[attack_name]
@@ -50,12 +50,11 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 		node.get_node(^'button/background/texture').texture = icon
 		node.position = skill['position']
 		node.skill = attack
+		$cam/nodes.add_child(node)
 		if parent:
-			parent.child_skills.push_back(node)
+			parent.child_skills.push_back(node.get_path())
 		else:
 			node.make_available()
-		
-		$cam/nodes.add_child(node)
 			
 		var children = skill['children']
 		for child in children:
@@ -63,7 +62,7 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 			connection.points[0] = skill['position']
 			connection.points[1] = child['position'] if 'position' in child else $cam/nodes.get_node(child['attack_name'])['position']
 			$cam/connections.add_child(connection)
-			node.connections.push_back(connection)
+			node.connections.push_back(connection.get_path())
 					
 		self._recurse_skill_tree(node, children, attacks)
 	

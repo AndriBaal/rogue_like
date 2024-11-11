@@ -10,13 +10,14 @@ class_name Coin
 #var scaling_direction: int = -1 # -1 to reduce, 1 to increase
 #
 #func _process(delta: float) -> void:
-	#self.current_scale += self.scaling_direction * SCALE_SPEED * delta
-	#
-	#if self.current_scale <= -SCALE_X or self.current_scale >= SCALE_X:
-		#self.scaling_direction *= -1
-		#
-	#self.scale.x = self.current_scale
+#self.current_scale += self.scaling_direction * SCALE_SPEED * delta
+#
+#if self.current_scale <= -SCALE_X or self.current_scale >= SCALE_X:
+#self.scaling_direction *= -1
+#
+#self.scale.x = self.current_scale
 
-func _on_collect():
+
+func _player_area_entered():
 	player.add_money(self.value)
-	super()
+	self.collect()

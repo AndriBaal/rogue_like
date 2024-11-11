@@ -109,7 +109,7 @@ process_callback = 0
 color = Color(1, 0.677, 0.43, 1)
 shadow_enabled = true
 texture = ExtResource("2_niumg")
-texture_scale = 0.35
+texture_scale = 0.5
 
 [node name="roll_particle" type="GPUParticles2D" parent="."]
 position = Vector2(0, 12)

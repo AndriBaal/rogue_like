@@ -2,6 +2,7 @@ extends Control
 
 class_name InventoryPage
 
+
 func _ready() -> void:
 	$navigation.pressed.connect(self._pressed)
 
