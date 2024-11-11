@@ -16,5 +16,6 @@ tile_map_data = PackedByteArray("AAD8//7/AAABAAAAABD8////AAANAAAAAFD8/wEAAAAFAAA
 tile_set = ExtResource("2_io2jm")
 
 [node name="letter" parent="items" index="0" instance=ExtResource("4_651ca")]
+position = Vector2(-295, 298)
 
 [node name="light" parent="decorations" index="0" instance=ExtResource("3_hmhbp")]

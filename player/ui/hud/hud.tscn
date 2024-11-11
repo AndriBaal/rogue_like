@@ -51,15 +51,19 @@ alignment = 1
 
 [node name="primary_attack" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
+label = "LMB"
 
 [node name="ability1" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
+label = "1"
 
 [node name="ability2" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
+label = "2"
 
 [node name="ability3" parent="attack" instance=ExtResource("5_jwht0")]
 layout_mode = 2
+label = "3"
 
 [node name="xp" type="Control" parent="."]
 anchors_preset = 0

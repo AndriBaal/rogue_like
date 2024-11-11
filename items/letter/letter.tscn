@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4gm2ygs2g6pn"]
+[gd_scene load_steps=9 format=3 uid="uid://b4gm2ygs2g6pn"]
 
 [ext_resource type="PackedScene" uid="uid://bmaleurogevn7" path="res://items/item.tscn" id="1_w8oys"]
 [ext_resource type="Script" path="res://items/letter/letter.gd" id="2_cdnvq"]
@@ -7,6 +7,15 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g470r"]
 radius = 54.0059
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x3foq"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5q3sb"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3r6lk"]
+light_mode = 1
 
 [node name="letter" instance=ExtResource("1_w8oys")]
 scale = Vector2(2.5, 2.5)
@@ -20,7 +29,9 @@ shape = SubResource("CircleShape2D_g470r")
 texture = ExtResource("2_v81pj")
 
 [node name="text" type="NinePatchRect" parent="." index="3"]
+visible = false
 z_index = 100
+material = SubResource("CanvasItemMaterial_x3foq")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -40,6 +51,7 @@ patch_margin_right = 48
 patch_margin_bottom = 48
 
 [node name="label" type="Label" parent="text" index="0"]
+material = SubResource("CanvasItemMaterial_5q3sb")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +67,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Polygon2D" type="Polygon2D" parent="text" index="1"]
+material = SubResource("CanvasItemMaterial_3r6lk")
 position = Vector2(-9.2, -3.2)
 color = Color(0.164706, 0.184314, 0.309804, 1)
 polygon = PackedVector2Array(88, 117.6, 132, 117.6, 108.8, 131.6)

@@ -22,10 +22,10 @@ func _process(delta: float) -> void:
 
 
 func _body_entered(body):
-	if "health" in body and body not in self.bodies:  # In case deserialized
+	if body is Player and body not in self.bodies:  # In case deserialized
 		self.bodies[body] = 0.0
 
 
 func _body_exited(body):
-	if "health" in body:
+	if body is Player:
 		self.bodies.erase(body)

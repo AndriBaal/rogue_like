@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8l2ew"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_sqcvm"]
 [ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="3_xautg"]
-[ext_resource type="Texture2D" uid="uid://baxjsjipr6dvd" path="res://dungeons/goblin_dungeon/rooms/shop.png" id="4_qcstl"]
+[ext_resource type="Texture2D" uid="uid://baxjsjipr6dvd" path="res://dungeons/goblin_dungeon/rooms/shop/shop.png" id="4_qcstl"]
 
 [node name="room" instance=ExtResource("1_8l2ew")]
 

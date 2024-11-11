@@ -42,6 +42,8 @@ class DungeonOptions:
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room3.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room4.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room5.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room6.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room7.tscn"),
 					],
 					"good":
 					[

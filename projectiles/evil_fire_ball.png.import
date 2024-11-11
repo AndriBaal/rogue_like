@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baxjsjipr6dvd"
-path="res://.godot/imported/shop.png-6eb7105a6a30d8ca2b05f46bf8a2daba.ctex"
+uid="uid://dhxpmk87l5cjn"
+path="res://.godot/imported/evil_fire_ball.png-77cf8c471bf28b05e70f07d3cd9b07f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dungeons/goblin_dungeon/rooms/shop.png"
-dest_files=["res://.godot/imported/shop.png-6eb7105a6a30d8ca2b05f46bf8a2daba.ctex"]
+source_file="res://projectiles/evil_fire_ball.png"
+dest_files=["res://.godot/imported/evil_fire_ball.png-77cf8c471bf28b05e70f07d3cd9b07f8.ctex"]
 
 [params]
 

@@ -1,9 +1,11 @@
 # Rogue Like
 
 ## Optimization
-- [ ] Only show & update rooms when visible on screen
+
+- [ ] ?Only show & update rooms when visible on screen
 
 ## BUGS
+
 - [x] Teleport through walls & objects
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
@@ -23,11 +25,12 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
-- [ ] Name
+- [ ] Name (Power Creep)
+- [ ] Tutorial (maybe add tutorial text in starting room)
+- [ ] ?Show description on hover in hud
 - [x] Show nearby not visited rooms greyed out
 - [x] Remove ui_effects
-- [ ] Tutorial (maybe add tutorial text in starting room)
-- [ ] Show attack / ability tip
+- [x] Show attack / ability tip
 - [x] Create reusable sign or letter for everything, when player near -> text pop up
 - [x] Spawn boss room on edge of dungeon (furthest away edge)
 - [x] Show Mana cost, damage and cooldown of skills in description and when selecting spells
@@ -78,21 +81,22 @@
 		- [ ] ?Effects:
 			- [ ] ?Crippled
 - [ ] 3 Soundtracks:
-	- [ ] Boss
-		- [ ] Track
-		- [ ] Integrated
+	- [ ] ?Boss
+		- [ ] ?Track
+		- [ ] ?Integrated
 	- [ ] Regular Fight
 		- [x] Track
 		- [ ] Integrated
 	- [ ] Relaxed
-		- [ ] Track
+		- [x] Track
 		- [ ] Integrated
 - [ ] Decorations
 	- [x] Torch
 	- [x] Table
-	- [ ] Barrels
-	- [ ] Crates
+	- [x] Barrels
 	- [x] Spike (with Damage)
+	- [x] Crate
+	- [ ] ?Boulder
 	- [ ] ?Pots
 	- [ ] ?Make decorations destroyable
 	- [ ] ?Explosing Barrels
@@ -102,35 +106,35 @@
 	- [x] Coin Collect
 	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
+	- [ ] (Andri) Player heal potion
+	- [ ] ?Enemy throw attack sound
+	- [ ] (Andri) Buy confirm
+	- [ ] Player step
 	- [x] Player Damage hit
-	- [ ] Player heal potion
 	- [x] Parry
 	- [x] level up
-	- [ ] Enemy throw attack sound
 	- [x] Enemy Damage hit (hitmarker)
 	- [x] Player roll
-	- [ ] Buy confirm
-	- [ ] Player walk
 - [ ] Enemies
 	- [x] Damage Number
 	- [x] Healthbar
 	- [X] Path Finding
-	- [ ] 4 enemy types (3 / 4)
-		- [x] Thrower
+	- [x] 3 enemy types (3 / 3)
+		- [x] Spear Thrower
 		- [x] Axe Thrower
 		- [x] Slime (Red, Green, Blue)
-		- [ ] ...
-	- [ ] Boss: Goblin King (Ogre)
+		- [ ] ?Rat
+	- [ ] Boss: Goblin King (Ogre, Dragon, Dark Mage)
 		- [ ] 4 Attacks
 - [ ] Rooms
 	- [ ] 8 bad rooms (0 / 8)
 	- [ ] 2 good rooms (0 / 2)
+		- [ ] Free potion room
 		- [ ] Shop (Buy potions, level points and skill points)
 	- [ ] 2 neutral (0 / 2)
-		- [ ] Gambling
+		- [ ] Empty room (with props)
+		- [ ] ?Gambling
 	- [x] 1 boss room
-
-
 
 - [x] Attributes:
 	- [x] Health: increases max health
@@ -142,7 +146,6 @@
 
 - [ ] ?Lighting Overhaul / Design
 - [ ] ?Redo torch animation
-- [ ] ?Redo skill / upgrade token icons
 - [ ] ?Implement perks in Player / Skill Tree
 - [ ] ?Perks:
 	- Moneygraber (get x% more money)
@@ -157,6 +160,7 @@
 - [ ] ?UI Theme
 - [ ] ?Make second cursor for UI
 - [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
+- [x] Redo skill / upgrade token icons
 - [x] Add Level Up Text
 - [x] Apply random offset to damage number
 - [x] Make seed input field
