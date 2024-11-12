@@ -132,8 +132,8 @@ enum PlayerState {
 }
 @export var skill_tree := []
 
-@export var max_potions := 4
-@export var potions := max_potions
+@export var max_potions := 10
+@export var potions := 3
 @export var heal_per_potion = 8
 
 @export var roll_cost = 5.0
@@ -145,14 +145,17 @@ enum PlayerState {
 @export var parry_timer := 0.0
 @export var parry_duration = 0.07
 
-@export var money := 0
+@export var money := 0:
+	get():
+		return money
+	set(value):
+		money = value
+		$ui/hud/money/label.text = str(money)
 
 @export var health_stat := 1
 @export var attack_stat := 1
 @export var speed_stat := 1
 @export var init := false
-
-
 @export var level_up_tokens := 5:
 	get:
 		return level_up_tokens
@@ -407,6 +410,7 @@ func _use_potion():
 
 	self.potions -= 1
 	self.heal(self.heal_per_potion)
+	$potion_audio.play()
 	self._update_potion_ui()
 
 func refill_potion(amount: int):
@@ -462,12 +466,6 @@ func assign_attack(slot: PlayerAttackSlot, attack):
 	
 	self.active_attacks[slot] = attack
 
-func add_money(amount: int):
-	self.money += amount
-	self._update_money_ui()
-
-func _update_money_ui():
-	$ui/hud/money/label.text = str(self.money)
 
 func decrease_stat(property: String):
 	self[property] -= 1

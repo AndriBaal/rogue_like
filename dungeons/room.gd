@@ -33,6 +33,9 @@ func _ready() -> void:
 	var floor_cells: Array[Vector2i] = []
 	for cell in used_cells:
 		var data := self.tiles.get_cell_tile_data(cell)
+		if not data:
+			continue
+			
 		var teleport = data.get_custom_data('teleport')
 		var show_on_minimap = data.get_custom_data('show_on_minimap')
 

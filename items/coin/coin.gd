@@ -19,5 +19,5 @@ class_name Coin
 
 
 func _player_area_entered():
-	player.add_money(self.value)
+	player.money =+ self.value
 	self.collect()

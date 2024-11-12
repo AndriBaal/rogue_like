@@ -1,3 +1,33 @@
-[gd_scene format=3 uid="uid://dlxd2t2yj3vny"]
+[gd_scene load_steps=3 format=3 uid="uid://p07lqipjc20k"]
 
-[node name="ShopItem" type="Sprite2D"]
+[ext_resource type="Script" path="res://dungeons/goblin_dungeon/rooms/shop/shop_item.gd" id="1_ttgct"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6ojg"]
+radius = 69.6
+height = 263.66
+
+[node name="shop_item" type="Area2D"]
+collision_layer = 32
+collision_mask = 129
+script = ExtResource("1_ttgct")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="price" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 31.0
+offset_right = 20.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 36)
+shape = SubResource("CapsuleShape2D_e6ojg")

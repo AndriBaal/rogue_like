@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d1n484wg4ivuj" path="res://player/ui/hud/mana_bar.png" id="4_7r0m3"]
 [ext_resource type="PackedScene" uid="uid://bm7qmh0hqchmk" path="res://player/ui/hud/attack.tscn" id="5_jwht0"]
 [ext_resource type="Texture2D" uid="uid://dwm7h2kkeutni" path="res://player/ui/hud/xp_bar.png" id="6_ex2cg"]
-[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/flask.png" id="7_534uu"]
+[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/potion.png" id="7_534uu"]
 [ext_resource type="Texture2D" uid="uid://ja0ab8jtq81y" path="res://items/coin/coin.png" id="8_vaiq7"]
 
 [node name="hud" type="TextureRect"]

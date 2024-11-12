@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=4 uid="uid://8qwhwls8p04a"]
+[gd_scene load_steps=8 format=4 uid="uid://8qwhwls8p04a"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8l2ew"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_sqcvm"]
 [ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="3_xautg"]
 [ext_resource type="Texture2D" uid="uid://baxjsjipr6dvd" path="res://dungeons/goblin_dungeon/rooms/shop/shop.png" id="4_qcstl"]
+[ext_resource type="PackedScene" uid="uid://p07lqipjc20k" path="res://dungeons/goblin_dungeon/rooms/shop/shop_item.tscn" id="5_ferhn"]
+[ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/potion.png" id="6_vdco6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocnm0"]
+atlas = ExtResource("6_vdco6")
+region = Rect2(0, 0, 17, 26)
 
 [node name="room" instance=ExtResource("1_8l2ew")]
 
@@ -32,3 +38,7 @@ position = Vector2(286, -26)
 
 [node name="light2" parent="decorations" index="2" instance=ExtResource("3_xautg")]
 position = Vector2(-150, -22)
+
+[node name="shop_item" parent="decorations" index="3" instance=ExtResource("5_ferhn")]
+position = Vector2(-69, -11)
+texture = SubResource("AtlasTexture_ocnm0")
