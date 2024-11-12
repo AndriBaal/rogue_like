@@ -15,7 +15,22 @@ tile_set = ExtResource("2_io2jm")
 tile_map_data = PackedByteArray("AAD8//7/AAABAAAAABD8////AAANAAAAAFD8/wEAAAAFAAAAAAD8/wAAAAANAAAAAFD+//z/AAABAAAAABD///z/AAANAAAAADAAAPz/AAANAAAAADABAPz/AAABAAAAAAD+/wMAAAAFAAAAAAD//wMAAAANAAAAAAAAAAMAAAANAAAAAAABAAMAAAAFAAAAABADAP//AAANAAAAAGADAAAAAAANAAAAAGADAAEAAAAFAAAAABADAP7/AAABAAAAAAA=")
 tile_set = ExtResource("2_io2jm")
 
-[node name="letter" parent="items" index="0" instance=ExtResource("4_651ca")]
+[node name="tutorial1" parent="items" index="0" instance=ExtResource("4_651ca")]
 position = Vector2(-295, 298)
+
+[node name="tutorial2" parent="items" index="1" instance=ExtResource("4_651ca")]
+position = Vector2(-295, -304)
+
+[node name="tutorial3" parent="items" index="2" instance=ExtResource("4_651ca")]
+position = Vector2(-3.05176e-05, -304)
+
+[node name="tutorial4" parent="items" index="3" instance=ExtResource("4_651ca")]
+position = Vector2(291, -304)
+
+[node name="tutorial5" parent="items" index="4" instance=ExtResource("4_651ca")]
+position = Vector2(3.99997, 298)
+
+[node name="tutorial6" parent="items" index="5" instance=ExtResource("4_651ca")]
+position = Vector2(288, 298)
 
 [node name="light" parent="decorations" index="0" instance=ExtResource("3_hmhbp")]

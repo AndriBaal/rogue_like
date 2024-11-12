@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://dungeons/goblin_dungeon/rooms/shop/shop_item.gd" id="1_ttgct"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6ojg"]
-radius = 69.6
+radius = 14.0
 height = 263.66
 
 [node name="shop_item" type="Area2D"]
@@ -29,5 +29,18 @@ grow_vertical = 0
 horizontal_alignment = 1
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 36)
+position = Vector2(0, 54)
 shape = SubResource("CapsuleShape2D_e6ojg")
+
+[node name="buy_hint" type="Label" parent="."]
+visible = false
+offset_left = -36.0
+offset_top = -68.0
+offset_right = 36.0
+offset_bottom = -33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+text = "PRESS 'E'
+TO BUY"
+horizontal_alignment = 1

@@ -22,7 +22,10 @@ enum ShopItemType {
 	set(value):
 		price = value
 		$price.text = str(value)
-@export var player_near := false
+@export var player_near := false:
+	set(value):
+		player_near = value
+		$buy_hint.visible = value
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
@@ -36,7 +39,7 @@ func _process(delta: float) -> void:
 			var player = game.player
 			if player.money >= self.price:
 				player.money -= self.price
-				# TODO: Buy sound
+				player.get_node('buy_audio').play()
 				match self.type:
 					ShopItemType.Potion:
 						player.refill_potion(1)
@@ -44,10 +47,7 @@ func _process(delta: float) -> void:
 						player.level_up_tokens += 1
 					ShopItemType.SkillToken:
 						player.skill_tokens += 1
-
 			
-			
-		
 func _player_entered(body):
 	if body is Player:
 		self.player_near = true

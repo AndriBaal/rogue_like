@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://8qwhwls8p04a"]
+[gd_scene load_steps=10 format=4 uid="uid://8qwhwls8p04a"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8l2ew"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_sqcvm"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://baxjsjipr6dvd" path="res://dungeons/goblin_dungeon/rooms/shop/shop.png" id="4_qcstl"]
 [ext_resource type="PackedScene" uid="uid://p07lqipjc20k" path="res://dungeons/goblin_dungeon/rooms/shop/shop_item.tscn" id="5_ferhn"]
 [ext_resource type="Texture2D" uid="uid://cr0nt5qcjuye1" path="res://items/potion.png" id="6_vdco6"]
+[ext_resource type="Texture2D" uid="uid://dgogtje3dbow4" path="res://player/ui/inventory/level_up_token.png" id="7_hdyq8"]
+[ext_resource type="Texture2D" uid="uid://c6cgtqv3mjymi" path="res://player/ui/inventory/skill_token.png" id="8_eaflm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ocnm0"]
 atlas = ExtResource("6_vdco6")
@@ -42,3 +44,13 @@ position = Vector2(-150, -22)
 [node name="shop_item" parent="decorations" index="3" instance=ExtResource("5_ferhn")]
 position = Vector2(-69, -11)
 texture = SubResource("AtlasTexture_ocnm0")
+
+[node name="shop_item3" parent="decorations" index="4" instance=ExtResource("5_ferhn")]
+position = Vector2(75, -11)
+type = 2
+texture = ExtResource("7_hdyq8")
+
+[node name="shop_item2" parent="decorations" index="5" instance=ExtResource("5_ferhn")]
+position = Vector2(219, -11)
+type = 1
+texture = ExtResource("8_eaflm")

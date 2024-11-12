@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=25 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_vfs3i"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_niumg"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bbwgdtrhyy1sp" path="res://player/deflect.wav" id="9_12vyf"]
 [ext_resource type="AudioStream" uid="uid://ckwymsawhw0hn" path="res://player/level_up.wav" id="10_7kglo"]
 [ext_resource type="AudioStream" uid="uid://0eaalyermoi5" path="res://player/potion_drink.wav" id="11_ir6es"]
+[ext_resource type="AudioStream" uid="uid://bityfh5q1r7rj" path="res://player/buy.wav" id="12_a5jk7"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.823232, 0.858696), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
@@ -187,6 +188,9 @@ stream = ExtResource("10_7kglo")
 [node name="potion_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_ir6es")
 volume_db = 22.0
+
+[node name="buy_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_a5jk7")
 
 [node name="listener" type="AudioListener2D" parent="."]
 current = true

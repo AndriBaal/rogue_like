@@ -134,7 +134,6 @@ enum PlayerState {
 
 @export var max_potions := 10
 @export var potions := 3
-@export var heal_per_potion = 8
 
 @export var roll_cost = 5.0
 @export var roll_duration := 0.55
@@ -240,7 +239,7 @@ func _process(delta: float) -> void:
 				if self.attack_cooldowns[attack_slot] <= 0.0 and self._use_mana(attack['mana_cost']):
 					self.attack_cooldowns[attack_slot] = attack['cool_down']
 					self.call(attack['action'], player_position, look)
-					
+
 
 	if new_state != self.state:
 		self.make_intangible(false)
@@ -409,7 +408,7 @@ func _use_potion():
 		return
 
 	self.potions -= 1
-	self.heal(self.heal_per_potion)
+	self.heal(self.max_health / 3.0)
 	$potion_audio.play()
 	self._update_potion_ui()
 

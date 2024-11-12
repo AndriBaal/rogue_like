@@ -19,6 +19,7 @@ navigation_enabled = false
 [node name="items" type="Node2D" parent="."]
 
 [node name="decorations" type="CanvasGroup" parent="."]
+y_sort_enabled = true
 
 [node name="enemies" type="Node2D" parent="."]
 y_sort_enabled = true

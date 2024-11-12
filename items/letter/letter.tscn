@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwyd23ex5wysq" path="res://player/ui/inventory/inventory_background.png" id="4_ne41k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g470r"]
-radius = 54.0059
+radius = 40.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x3foq"]
 light_mode = 1

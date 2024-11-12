@@ -200,6 +200,8 @@ func death():
 	despawn.restart()
 	$collider.disabled = true
 	
+	$defeat_sound.play()
+	
 	for item in self.loot_pool():
 		
 		var chance = randf()

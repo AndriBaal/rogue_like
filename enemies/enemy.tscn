@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvsrhnrd1kp5h"]
+[gd_scene load_steps=10 format=3 uid="uid://bvsrhnrd1kp5h"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nevkm"]
 [ext_resource type="Texture2D" uid="uid://cyif6pshom3p2" path="res://enemies/health_bar_background.png" id="2_bn8hd"]
 [ext_resource type="AudioStream" uid="uid://cn4gve885bv71" path="res://enemies/hit.wav" id="2_yiaub"]
 [ext_resource type="Texture2D" uid="uid://cmqv50be3k5xe" path="res://enemies/health_bar.png" id="3_bb7jy"]
+[ext_resource type="AudioStream" uid="uid://bh8l4nliro7vx" path="res://enemies/defeat.wav" id="3_soesr"]
 [ext_resource type="Texture2D" uid="uid://btbun1m5lc0th" path="res://enemies/despawn.png" id="3_uh4fr"]
 
 [sub_resource type="Curve" id="Curve_mvlvy"]
@@ -42,6 +43,9 @@ visible = false
 
 [node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_yiaub")
+
+[node name="defeat_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_soesr")
 
 [node name="despawn" type="GPUParticles2D" parent="."]
 modulate = Color(0.290453, 0.0773342, 1, 1)

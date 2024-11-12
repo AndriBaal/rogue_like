@@ -6,12 +6,13 @@
 
 ## BUGS
 
-- [x] Teleport through walls & objects
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
-- [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [ ] Fix greyed out skill tree nodes after deserialization
+- [ ] Fix reference in room children -> crash after deserialization
+- [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
+- [x] Teleport through walls & objects
 - [x] Center camera does not center correctly
 - [x] Fix pathfinding with tables
 - [x] Level generation: When Boss room is spawned early, no more rooms are being added:
@@ -27,15 +28,10 @@
 ## TODO
 
 - [x] Name (Arcane Descent)
+	- [ ] Integrated
 - [ ] Tutorial (maybe add tutorial text in starting room)
-- [ ] ?Show description on hover in hud
-- [x] Show nearby not visited rooms greyed out
-- [x] Remove ui_effects
-- [x] Show attack / ability tip
-- [x] Create reusable sign or letter for everything, when player near -> text pop up
-- [x] Spawn boss room on edge of dungeon (furthest away edge)
-- [x] Show Mana cost, damage and cooldown of skills in description and when selecting spells
-- [x] Show skill name / description in Inventory
+- [ ] Limit camera zoom
+- [ ] Remove rooms in generation after used once
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
@@ -91,31 +87,19 @@
 	- [ ] Relaxed
 		- [x] Track
 		- [ ] Integrated
-- [ ] Decorations
-	- [x] Torch
-	- [x] Table
-	- [x] Barrels
-	- [x] Spike (with Damage)
-	- [x] Crate
-	- [ ] ?Boulder
-	- [ ] ?Pots
-	- [ ] ?Make decorations destroyable
-	- [ ] ?Explosing Barrels
-	- [ ] ?Lanterns
-	- [ ] ?Chest
 - [ ] Sounds
 	- [x] Coin Collect
 	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
-	- [ ] (Andri) Player heal potion
-	- [ ] Error buy sound
+	- [x] Player heal potion
+	- [x] Error buy sound
 	- [x] Enemy throw attack sound
   		- [ ] Integrate
 	- [ ] (Andri) Buy confirm
 	- [x] Player step
   		- [ ] Integrate
 	- [x] Player Damage hit
-		- [ ] Integrate
+		- [x] Integrate
   	- [x] Boss Damage hit
   		- [ ] Integrate  
 	- [x] Parry
@@ -138,12 +122,24 @@
 	- [ ] 8 bad rooms (0 / 8)
 	- [ ] 2 good rooms (0 / 2)
 		- [ ] Free potion room
-		- [ ] Shop (Buy potions, level points and skill points)
+		- [x] Shop (Buy potions, level points and skill points)
 	- [ ] 2 neutral (0 / 2)
 		- [ ] Empty room (with props)
 		- [ ] ?Gambling
 	- [x] 1 boss room
 
+- [x] Decorations
+	- [x] Torch
+	- [x] Table
+	- [x] Barrels
+	- [x] Spike (with Damage)
+	- [x] Crate
+	- [ ] ?Boulder
+	- [ ] ?Pots
+	- [ ] ?Make decorations destroyable
+	- [ ] ?Explosing Barrels
+	- [ ] ?Lanterns
+	- [ ] ?Chest
 - [x] Attributes:
 	- [x] Health: increases max health
 	- [x] Power: Increases Attack Power
@@ -155,8 +151,9 @@
 - [ ] ?Lighting Overhaul / Design
 - [ ] ?Redo torch animation
 - [ ] ?Implement perks in Player / Skill Tree
+- [ ] ?Show description on hover in hud
 - [ ] ?Perks:
-	- Moneygraber (get x% more money)
+	- [ ] ?Moneygraber (get x% more money)
 - [ ] ?Optimize room occluding
 - [ ] ?Coin Collect animation
 - [ ] ?Add Zoom to camera in map and skill tree
@@ -169,6 +166,14 @@
 - [ ] ?Make second cursor for UI
 - [ ] ?Rework enemy hitboxes (Make 2 hitboxes)
 - [x] Redo skill / upgrade token icons
+- [x] Add shop hint
+- [x] Show nearby not visited rooms greyed out
+- [x] Remove ui_effects
+- [x] Show attack / ability tip
+- [x] Create reusable sign or letter for everything, when player near -> text pop up
+- [x] Spawn boss room on edge of dungeon (furthest away edge)
+- [x] Show Mana cost, damage and cooldown of skills in description and when selecting spells
+- [x] Show skill name / description in Inventory
 - [x] Add Level Up Text
 - [x] Apply random offset to damage number
 - [x] Make seed input field
