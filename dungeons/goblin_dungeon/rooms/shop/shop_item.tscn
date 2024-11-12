@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e6ojg"]
 radius = 14.0
-height = 263.66
+height = 196.0
 
 [node name="shop_item" type="Area2D"]
 collision_layer = 32
@@ -38,6 +38,8 @@ offset_left = -36.0
 offset_top = -68.0
 offset_right = 36.0
 offset_bottom = -33.0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(36, 0)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5

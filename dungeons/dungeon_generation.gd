@@ -7,8 +7,8 @@ const TILE_ID := 0
 class DungeonOptions:
 	var type: DungeonType
 	var random_seed: int
-	var rooms_left: Dictionary
 	var possible_rooms: Dictionary
+	var rooms_left: Dictionary
 	var decorations: Dictionary
 
 	func _init(
@@ -28,6 +28,7 @@ class DungeonOptions:
 			"boss": 0,
 		}
 
+		
 		match self.type:
 			DungeonType.GOBLIN:
 				self.decorations = {
@@ -35,8 +36,7 @@ class DungeonOptions:
 				}
 				self.possible_rooms = {
 					"start": load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
-					"bad":
-					[
+					"bad": [
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room1.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room2.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room3.tscn"),
@@ -44,21 +44,25 @@ class DungeonOptions:
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room5.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room6.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room7.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room8.tscn"),
 					],
 					"good":
 					[
 						load("res://dungeons/goblin_dungeon/rooms/shop/shop.tscn"),
 					],
 					"neutral":
-					#load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
-					[],
+					[
+						
+					],
 					"boss": load("res://dungeons/goblin_dungeon/rooms/boss_room.tscn")
 				}
+		
 
 
 class Dungeon:
 	var options: DungeonOptions
 	var rooms_left: Dictionary
+	var rooms_available: Dictionary
 	var tile_size: Vector2
 	var rooms: Array = []
 	var random := RandomNumberGenerator.new()
@@ -67,6 +71,12 @@ class Dungeon:
 		self.options = options
 		self.random.seed = options.random_seed
 		self.rooms_left = options.rooms_left.duplicate(true)
+		self.rooms_available = {
+			"good": self.options.possible_rooms['good'].duplicate(),
+			"bad": self.options.possible_rooms['bad'].duplicate(),
+			"neutral": self.options.possible_rooms['neutral'].duplicate(),
+			"boss": self.options.possible_rooms['boss'].duplicate(),
+		}
 
 		var room = options.possible_rooms["start"].instantiate()
 		room.start()
@@ -126,15 +136,13 @@ class Dungeon:
 		return false
 
 	func _get_room(room_type):
-		var possible_rooms = self.options.possible_rooms
-		var rt = possible_rooms[room_type]
-		var room
-		if not rt is Array:
-			room = rt
-		else:
-			var random_key = self.random.randi_range(0, rt.size() - 1)
-			room = rt[random_key]
-			# room_type.remove_at(random_key) # TODO: add remove to avoid duplicate rooms
+		var rooms_available = self.rooms_available
+		if len(rooms_available[room_type]) == 0:
+			rooms_available[room_type] = self.options.possible_rooms[room_type].duplicate()
+		var rt = rooms_available[room_type]
+		var random_key = self.random.randi_range(0, rt.size() - 1)
+		var room = rt[random_key]
+		rt.remove_at(random_key)
 		var r = room.instantiate()
 		r.start()
 		return r

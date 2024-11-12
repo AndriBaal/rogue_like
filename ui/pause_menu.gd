@@ -8,13 +8,12 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("menu") and not $/root/game.has_node(^'game_over'):
 		self._continue()
-		
+
 func _continue():
 	self.visible = !self.visible
 	self.get_tree().paused = self.visible
 
 func _quit():
-	self._save()
 	self.get_tree().change_scene_to_file("res://scenes/menu.tscn")
 	
 func _save():

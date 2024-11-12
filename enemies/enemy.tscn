@@ -27,7 +27,7 @@ scale_curve = SubResource("CurveTexture_y8bs0")
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 31
+collision_mask = 29
 motion_mode = 1
 script = ExtResource("1_nevkm")
 
@@ -58,6 +58,8 @@ explosiveness = 1.0
 
 [node name="navigation" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+simplify_path = true
+simplify_epsilon = 6.0
 
 [node name="hp_bar" type="TextureProgressBar" parent="."]
 top_level = true

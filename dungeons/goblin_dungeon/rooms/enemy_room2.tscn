@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://diso6aeyxfhhl"]
+[gd_scene load_steps=10 format=4 uid="uid://diso6aeyxfhhl"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_8n4ip"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_auvdt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="4_jxifh"]
 [ext_resource type="PackedScene" uid="uid://sie6n6nusayk" path="res://dungeons/goblin_dungeon/decorations/table_v.tscn" id="5_2e75w"]
 [ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="7_nwo3t"]
+[ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="8_6cc8m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_plntd"]
 vertices = PackedVector2Array(710, -566, 545, -110.344, 349, -110.344, 233, -195.344, 233, -351.344, 710, 566, 545, 112.344, 233, 329.656, -566, 566, -43, 329.656, 349, 112.344, 233, 173.656, -43, -195.344, -43, 173.656, -169, 112.344, -169, -110.344, -566, -566, -43, -351.344, -365, -110.344, -365, 112.344)
@@ -64,8 +65,8 @@ position = Vector2(447, 21)
 [node name="slime" parent="enemies" index="0" instance=ExtResource("4_7ordh")]
 position = Vector2(-267, -273)
 
-[node name="slime2" parent="enemies" index="1" instance=ExtResource("4_7ordh")]
-position = Vector2(458, 300)
-
-[node name="goblin_axe" parent="enemies" index="2" instance=ExtResource("7_nwo3t")]
+[node name="goblin_axe" parent="enemies" index="1" instance=ExtResource("7_nwo3t")]
 position = Vector2(95, 1)
+
+[node name="slime_blue" parent="enemies" index="2" instance=ExtResource("8_6cc8m")]
+position = Vector2(448, 320)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://4lod4klr3sdu"]
+[gd_scene load_steps=10 format=4 uid="uid://4lod4klr3sdu"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_80br5"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_6kbgw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="4_q5scy"]
 [ext_resource type="PackedScene" uid="uid://cttw6ahelkyw0" path="res://enemies/slime/slime_green.tscn" id="5_r4cjc"]
 [ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="6_ke4dw"]
+[ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="8_py5cj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_551t5"]
 vertices = PackedVector2Array(1018, 298, 1574, 422, -1574, 422, 854, 298, -854, 298, -1018, 298, 266, 64.6563, -266, 64.6563, 854, -298, 266, -91.3438, -854, -298, -266, -91.3438, 1574, -422, 1018, -298, -1574, -422, -1018, -298)
@@ -59,14 +60,11 @@ position = Vector2(-472, 0)
 [node name="goblin_axe2" parent="enemies" index="1" instance=ExtResource("4_q5scy")]
 position = Vector2(528, 0)
 
-[node name="slime_green" parent="enemies" index="2" instance=ExtResource("5_r4cjc")]
-position = Vector2(-16, 312)
-
-[node name="slime_green2" parent="enemies" index="3" instance=ExtResource("5_r4cjc")]
+[node name="slime_green2" parent="enemies" index="2" instance=ExtResource("5_r4cjc")]
 position = Vector2(-16, -256)
 
-[node name="slime_red" parent="enemies" index="4" instance=ExtResource("6_ke4dw")]
+[node name="slime_red" parent="enemies" index="3" instance=ExtResource("6_ke4dw")]
 position = Vector2(-728, 0)
 
-[node name="slime_red2" parent="enemies" index="5" instance=ExtResource("6_ke4dw")]
-position = Vector2(768, 0)
+[node name="slime_blue" parent="enemies" index="4" instance=ExtResource("8_py5cj")]
+position = Vector2(736, 8)

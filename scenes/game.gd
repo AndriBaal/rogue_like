@@ -9,6 +9,8 @@ class_name Game
 @onready var attack_selection = $player/ui/inventory/character/content/attack_selection
 
 const POP_UP := preload("res://ui/pop_up.tscn")
+#const POP_UP := preload("res://ui/pop_up.tscn")
+#const POP_UP := preload("res://ui/pop_up.tscn")
 
 func is_valid_position(position: Vector2) -> bool:
 	var rooms = $rooms.get_children()

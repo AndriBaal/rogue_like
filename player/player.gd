@@ -174,7 +174,7 @@ const GAME_OVER := preload("res://ui/game_over.tscn")
 func _ready() -> void:
 	if not init:
 		init = true
-		self.game.spawn_pop_up('Welcome', "It's time to play the gameeeeeeeeeeeeeeee!")
+		self.game.spawn_pop_up('Welcome!', "Use 'W', 'A', 'S' and 'D' to move around. If you are new, make sure to read the letters on the ground.")
 		self._update_potion_ui()
 		$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 	

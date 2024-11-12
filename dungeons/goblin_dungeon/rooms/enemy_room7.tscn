@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=4 uid="uid://druio0xycxec4"]
+[gd_scene load_steps=9 format=4 uid="uid://druio0xycxec4"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_pxpmb"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_ramb7"]
 [ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="3_6k2s0"]
+[ext_resource type="PackedScene" uid="uid://bl6hh70t0akfl" path="res://dungeons/goblin_dungeon/decorations/spikes.tscn" id="4_hhb1y"]
+[ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="5_dsyv1"]
+[ext_resource type="PackedScene" uid="uid://cttw6ahelkyw0" path="res://enemies/slime/slime_green.tscn" id="6_bhq1s"]
+[ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="7_5m7a6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_385pl"]
 vertices = PackedVector2Array(278, -710, 710, -710, 710, -278, 1286, -278, 1286, 278, 710, 278, 710, 710, 278, 710, -710, -278, 278, 1286, -278, 1286, -278, 710, -710, 710, -710, 278, -1286, 278, -1286, -278, -710, -710, -278, -710, -278, -1286, 278, -1286)
@@ -16,8 +20,44 @@ tile_map_data = PackedByteArray("AAD//wEAAAAMAAEAAAD//wAAAAABAAAAAAD/////AAAFAAA
 tile_set = ExtResource("2_ramb7")
 
 [node name="entrances" parent="." index="1"]
-tile_map_data = PackedByteArray("AAD3////AAANAAAAAFD3/wAAAAANAAAAAFD///f/AAANAAAAADAAAPf/AAANAAAAADAIAP//AAANAAAAAGAIAAAAAAANAAAAAGD//wgAAAANAAAAAAAAAAgAAAANAAAAAAD+/wgAAAAFAAAAAAABAAgAAAAFAAAAABAIAAEAAAAFAAAAABAIAP7/AAAFAAAAADD3/wEAAAAFAAAAAHD3//7/AAAFAAAAAFABAPf/AAABAAAAAAD+//f/AAABAAAAABA=")
+tile_map_data = PackedByteArray("AAD3////AAANAAAAAFD3/wAAAAANAAAAAFD///f/AAANAAAAADAAAPf/AAANAAAAADAIAP//AAANAAAAAGAIAAAAAAANAAAAAGD//wgAAAANAAAAAAAAAAgAAAANAAAAAAD+/wgAAAAFAAAAAAABAAgAAAAFAAAAABAIAAEAAAAFAAAAABAIAP7/AAAFAAAAADD3/wEAAAAFAAAAAHD3//7/AAABAAAAABABAPf/AAABAAAAAAD+//f/AAABAAAAABA=")
 tile_set = ExtResource("2_ramb7")
 
 [node name="light" parent="decorations" index="0" instance=ExtResource("3_6k2s0")]
 texture_scale = 0.6
+
+[node name="spikes" parent="decorations" index="1" instance=ExtResource("4_hhb1y")]
+position = Vector2(-712, 128)
+
+[node name="spikes2" parent="decorations" index="2" instance=ExtResource("4_hhb1y")]
+position = Vector2(-712, -64)
+
+[node name="spikes3" parent="decorations" index="3" instance=ExtResource("4_hhb1y")]
+position = Vector2(712, -64)
+
+[node name="spikes4" parent="decorations" index="4" instance=ExtResource("4_hhb1y")]
+position = Vector2(712, 128)
+
+[node name="spikes5" parent="decorations" index="5" instance=ExtResource("4_hhb1y")]
+position = Vector2(-112, -704)
+
+[node name="spikes6" parent="decorations" index="6" instance=ExtResource("4_hhb1y")]
+position = Vector2(96, -704)
+
+[node name="spikes7" parent="decorations" index="7" instance=ExtResource("4_hhb1y")]
+position = Vector2(-112, 704)
+
+[node name="spikes8" parent="decorations" index="8" instance=ExtResource("4_hhb1y")]
+position = Vector2(96, 704)
+
+[node name="goblin_axe" parent="enemies" index="0" instance=ExtResource("5_dsyv1")]
+position = Vector2(0, 280)
+
+[node name="goblin_axe2" parent="enemies" index="1" instance=ExtResource("5_dsyv1")]
+position = Vector2(0, -272)
+
+[node name="slime_green" parent="enemies" index="2" instance=ExtResource("6_bhq1s")]
+position = Vector2(-360, 0)
+
+[node name="slime_red" parent="enemies" index="3" instance=ExtResource("7_5m7a6")]
+position = Vector2(352, 0)
