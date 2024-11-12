@@ -31,7 +31,7 @@
 	- [ ] Integrated
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom
-- [ ] Remove rooms in generation after used once
+- [x] Remove rooms in generation after used once
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
@@ -119,9 +119,9 @@
 	- [ ] Boss: Goblin King (Ogre, Dragon, Dark Mage)
 		- [ ] 4 Attacks
 - [ ] Rooms
-	- [ ] 8 bad rooms (0 / 8)
+	- [x] 8 bad rooms (8 / 8)
 	- [ ] 2 good rooms (0 / 2)
-		- [ ] Free potion room
+		- [ ] Free money room
 		- [x] Shop (Buy potions, level points and skill points)
 	- [ ] 2 neutral (0 / 2)
 		- [ ] Empty room (with props)
