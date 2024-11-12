@@ -26,7 +26,7 @@
 
 ## TODO
 
-- [ ] Name (Power Creep)
+- [x] Name (Arcane Descent)
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] ?Show description on hover in hud
 - [x] Show nearby not visited rooms greyed out
