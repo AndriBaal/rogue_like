@@ -9,8 +9,8 @@
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [ ] Fix greyed out skill tree nodes after deserialization
 - [ ] Fix reference in room children -> crash after deserialization
-- [ ] Not all rooms are being used -> 3721335509
-- [ ] Starting spell
+- [ ] Room enter detection
+- [x] Not all rooms are being used -> 3721335509
 - [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
@@ -35,6 +35,8 @@
 - [ ] Enemy avoidance
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom
+- [ ] Starting spell selection
+- [ ] Coin Magnet
 - [x] Remove rooms in generation after used once
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
