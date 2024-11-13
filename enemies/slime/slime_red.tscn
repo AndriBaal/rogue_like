@@ -10,6 +10,6 @@ health = 8.0
 movement_speed = 325.0
 melee_damage = 4.0
 
-[node name="navigation" parent="." index="5"]
+[node name="navigation" parent="." index="8"]
 target_desired_distance = 60.0
 path_max_distance = 20.0

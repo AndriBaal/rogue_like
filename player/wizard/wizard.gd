@@ -16,7 +16,7 @@ func _ready():
 		"fire_ball":
 		{
 			"name": "Fire Ball",
-			"description": "aaa",
+			"description": "Well-balanced, single projectile attack. Deals moderate Damage at a moderate Cooldown. No Mana Cost.",
 			"action": "_fire_ball",
 			"mana_cost": 0.0,
 			"cool_down": 0.5,
@@ -36,10 +36,10 @@ func _ready():
 		"ice_spear":
 		{
 			"name": "Ice Spear",
-			"description": "bbb",
+			"description": "Rapid fire, piercing, single projectile attack. Deals minor Damage at a short Cooldown. No Mana Cost.",
 			"action": "_ice_spear",
 			"mana_cost": 0.0,
-			"cool_down": 0.4,
+			"cool_down": 0.2,
 			"type": AttackType.PRIMARY,
 			"icon": preload("res://player/wizard/attacks/ice_spear.png")
 		},
@@ -86,10 +86,10 @@ func _ready():
 		"rock_throw":
 		{
 			"name": "Rock Throw",
-			"description": "ccc",
+			"description": "Heavy hitting, single projectile attack. Deals major Damage at a slow Cooldown. No Mana Cost.",
 			"action": "_rock_throw",
-			"mana_cost": 20.0,
-			"cool_down": 2.0,
+			"mana_cost": 0.0,
+			"cool_down": 1.25,
 			"type": AttackType.PRIMARY,
 			"icon": preload("res://player/wizard/attacks/rock_throw.png")
 		},

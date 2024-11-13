@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bul1dq5ew7g07" path="res://dungeons/goblin_dungeon/decorations/table_h.png" id="1_1frj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjvh5"]
-size = Vector2(64, 34)
+size = Vector2(60, 30)
 
 [node name="table_h" type="StaticBody2D"]
 y_sort_enabled = true
@@ -15,5 +15,5 @@ collision_mask = 3
 texture = ExtResource("1_1frj7")
 
 [node name="collision" type="CollisionShape2D" parent="."]
-position = Vector2(5.68434e-14, -3.33333)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_gjvh5")

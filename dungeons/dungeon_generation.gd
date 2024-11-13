@@ -25,7 +25,6 @@ class DungeonOptions:
 			"good": good_rooms,
 			"bad": bad_rooms,
 			"neutral": neutral_rooms,
-			"boss": 0,
 		}
 
 		
@@ -45,6 +44,8 @@ class DungeonOptions:
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room6.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room7.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room8.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room9.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/enemy_room10.tscn"),
 					],
 					"good":
 					[
@@ -72,10 +73,9 @@ class Dungeon:
 		self.random.seed = options.random_seed
 		self.rooms_left = options.rooms_left.duplicate(true)
 		self.rooms_available = {
-			"good": self.options.possible_rooms['good'].duplicate(),
-			"bad": self.options.possible_rooms['bad'].duplicate(),
-			"neutral": self.options.possible_rooms['neutral'].duplicate(),
-			"boss": self.options.possible_rooms['boss'].duplicate(),
+			"good":  self._shuffle_array(self.options.possible_rooms['good']),
+			"bad":  self._shuffle_array(self.options.possible_rooms['bad']),
+			"neutral":  self._shuffle_array(self.options.possible_rooms['neutral']),
 		}
 
 		var room = options.possible_rooms["start"].instantiate()
@@ -87,11 +87,8 @@ class Dungeon:
 		self._grow_rooms(self.rooms, true)
 		self._spawn_boss_room(self.rooms, [])
 		self._close_rooms(self.rooms)
-
-	func shuffle_array(arr):
-		for i in range(arr.size()):
-			var random_index = self.random.randi_range(0, arr.size() - 1)
-			arr.swap(i, random_index)  # Swap the current element with a random one
+		if self._rooms_left() > 0:
+			push_error("Error in dungeon generation, not all rooms used")
 
 	func _rooms_left() -> int:
 		var sum = 0
@@ -135,19 +132,8 @@ class Dungeon:
 				return true
 		return false
 
-	func _get_room(room_type):
-		var rooms_available = self.rooms_available
-		if len(rooms_available[room_type]) == 0:
-			rooms_available[room_type] = self.options.possible_rooms[room_type].duplicate()
-		var rt = rooms_available[room_type]
-		var random_key = self.random.randi_range(0, rt.size() - 1)
-		var room = rt[random_key]
-		rt.remove_at(random_key)
-		var r = room.instantiate()
-		r.start()
-		return r
 
-	func _random_order(array: Array) -> Array:
+	func _shuffle_array(array: Array) -> Array:
 		var indices = []
 		while indices.size() < array.size():
 			var random_index = self.random.randi_range(0, array.size() - 1)
@@ -162,31 +148,39 @@ class Dungeon:
 			var room = rooms[i_room]
 			var entrances = room.entrances
 
-			for i_entrance in self._random_order(entrances):
+			for i_entrance in self._shuffle_array(entrances):
 				var entrance = entrances[i_entrance]
 				if not self._rooms_left():
 					break
 
 				if (
 					entrance["has_connection"]
-					or (
-						self.random.randi_range(0, 1) == 0
-						and not (i_room == room_amount - 1 and new_rooms.is_empty())
-					)
 				):
 					continue
 
 				var room_type = self._get_room_type(only_bad)
-				var new_room = self._get_room(room_type)
 
-				var result = self._connect_rooms(room, entrance, new_room)
-				if result:
-					new_rooms.push_back(result)
-					self.rooms_left[room_type] -= 1
+				if len(self.rooms_available[room_type]) == 0:
+					self.rooms_available[room_type] = self._shuffle_array(self.options.possible_rooms[room_type])
+				
+				for i in range(len(self.rooms_available[room_type])):
+					var i_new_room = self.rooms_available[room_type][i]
+					var new_room = self.options.possible_rooms[room_type][i_new_room].instantiate().start()
+					var result = self._connect_rooms(room, entrance, new_room)
+					if result is Object:
+						self.rooms_available[room_type].remove_at(i)
+						self.rooms_left[room_type] -= 1
+						new_rooms.push_back(result)
+						break
 
 		if new_rooms.is_empty() and self._rooms_left() > 0:
-			push_error("Error in dungeon generation, not all rooms used")
-
+			var parents = []
+			for room in rooms:
+				if room.parent != null:
+					parents.push_back(room.parent)
+			if not parents.is_empty():
+				self._grow_rooms(parents)
+				print('Using parent fallback for dungeon generation!')
 		if not new_rooms.is_empty():
 			self._grow_rooms(new_rooms)
 
@@ -248,7 +242,7 @@ class Dungeon:
 
 		# TODO: Maybe rotate Rooms
 		# TODO: Add multilevel dungeons
-		var random_entrances = self._random_order(allowed_entrances)
+		var random_entrances = self._shuffle_array(allowed_entrances)
 		for i_allowed_entrance in random_entrances:
 			var new_entrance = allowed_entrances[i_allowed_entrance]
 
@@ -343,6 +337,7 @@ class Dungeon:
 			new_entrance["has_connection"] = true
 			entrance["has_connection"] = true
 			children.push_back(new_room)
+			new_room.parent = room
 			return new_room
 
 	func _find_furthest_room(rooms: Array, furthest, banned: Array):
@@ -364,7 +359,7 @@ class Dungeon:
 		assert(furthest["room"].entrances_left() > 0)
 		var boss_room = self.options.possible_rooms["boss"].instantiate()
 		boss_room.start()
-		for i_entrance in self._random_order(room.entrances):
+		for i_entrance in self._shuffle_array(room.entrances):
 			var entrance = room.entrances[i_entrance]
 			var result = self._connect_rooms(room, entrance, boss_room)
 			if result:

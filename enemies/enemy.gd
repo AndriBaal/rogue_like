@@ -37,7 +37,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @export var melee_damage: float = 5.0
 @export var attack_sprite: Sprite2D
 @export var hit_animation_timer := HIT_ANIMATION_DURATION
-@export var xp: int = 20
+@export var xp: int = 5
 
 @export var animation_timer := 0.0
 @export var target_vector: Vector2
@@ -121,7 +121,7 @@ func _physics_process(_delta: float) -> void:
 	match self.state:
 		EnemyState.INACTIVE:
 			return
-		EnemyState.MOVING:
+		EnemyState.MOVING, EnemyState.ATTACKING:
 			var current_agent_position: Vector2 = self.global_position
 			var next_path_position: Vector2 = self.navigation.get_next_path_position()
 			self.movement = current_agent_position.direction_to(next_path_position)
@@ -143,7 +143,6 @@ func _target_visible():
 
 	var space_state = self.get_world_2d().direct_space_state
 
-	# TODO: make mask so you don't collide with other enemies
 	var left_ray_cast = PhysicsRayQueryParameters2D.create(
 		self.global_position + left_offset, 
 		self.target.global_position + left_offset

@@ -9,7 +9,7 @@ size = Vector2(12, 7)
 
 [node name="fire_ball" instance=ExtResource("1_vqir2")]
 scale = Vector2(6, 6)
-damage = 5.0
+speed = 800.0
 color = Color(55.645, 0.537, 0, 1)
 damage_type = 1
 

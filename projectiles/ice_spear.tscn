@@ -8,8 +8,7 @@ size = Vector2(18, 8)
 
 [node name="projectile" instance=ExtResource("1_lmskt")]
 scale = Vector2(3, 3)
-speed = 800.0
-damage = 3.0
+damage = 1.0
 pierce = 1
 
 [node name="sprite" parent="." index="0"]

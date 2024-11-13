@@ -13,6 +13,7 @@ script = ExtResource("1_t51rd")
 anchors_preset = 0
 
 [node name="new_game" type="Button" parent="title"]
+layout_mode = 0
 offset_left = -179.5
 offset_top = -40.0
 offset_right = 179.5

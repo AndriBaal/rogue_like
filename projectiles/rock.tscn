@@ -8,7 +8,7 @@ size = Vector2(18, 18)
 
 [node name="projectile" instance=ExtResource("1_1cg42")]
 scale = Vector2(4, 4)
-speed = 400.0
+speed = 1250.0
 damage = 10.0
 color = Color(0.196143, 0.196143, 0.196143, 1)
 rotation_speed = 10.0

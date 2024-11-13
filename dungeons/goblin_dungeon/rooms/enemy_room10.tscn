@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=4 uid="uid://w4wwhmwqgv1o"]
+
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_n8cja"]
+[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_8o88k"]
+[ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="3_d8pqo"]
+[ext_resource type="PackedScene" uid="uid://bl6hh70t0akfl" path="res://dungeons/goblin_dungeon/decorations/spikes.tscn" id="4_3u4nx"]
+[ext_resource type="PackedScene" uid="uid://bnqdjjmtuwmy5" path="res://enemies/goblin_spear/goblin_spear.tscn" id="5_j3n46"]
+[ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="7_7dw7x"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_385pl"]
+vertices = PackedVector2Array(134, 566, -134, 566, -134, -566, 134, -566, -298, 134, -422, 134, -422, -134, -298, -134, 422, 134, 298, 134, 298, -134, 422, -134, 542, 91.4766, 478, 11.4766, 478, -110, 542, -110)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(360, -120, 552, -120, 552, 120)])
+
+[node name="room" instance=ExtResource("1_n8cja")]
+navigation_polygon = SubResource("NavigationPolygon_385pl")
+
+[node name="tiles" parent="." index="0"]
+tile_map_data = PackedByteArray("AAD//wAAAAAFAAEAAAAAAAAAAAAMAAEAAAD/////AAAOAAEAAAAAAP//AAANAAEAAAABAAIAAAACAAAAAAABAAMAAAACAAAAAAABAPz/AAACAAAAAAD+/wIAAAACAAAAABD+/wMAAAACAAAAABD+//z/AAACAAAAABD//wQAAAACAAAAAFAAAAQAAAACAAAAAFABAAQAAAAEAAAAAAD+/wQAAAAEAAAAABD///7/AAAIAAEAAAD///3/AAADAAEAAAD///z/AAACAAEAAAAAAPz/AAADAAEAAAAAAP3/AAAKAAEAAAAAAP7/AAAJAAEAAAD//wMAAAAEAAEAAAAAAAMAAAAFAAEAAAD//wIAAAALAAEAAAAAAAIAAAAMAAEAAAD//wEAAAAIAAEAAAAAAAEAAAAJAAEAAAD+//v/AAADAAAAABD///v/AAAAAAAAAAAAAPv/AAAAAAAAAAABAPv/AAADAAAAAAABAP7/AAABAAAAAAABAP//AAAAAAIAAAABAAAAAAAAAAIAAAABAAEAAAAFAAAAABD+//7/AAABAAAAABD+////AAAAAAIAAAD+/wAAAAAAAAIAAAD+/wEAAAAFAAAAAAABAP3/AAACAAAAAAD+//3/AAACAAAAABADAP7/AAADAAAAAAADAP//AAACAAAAAAADAAAAAAACAAAAAAADAAEAAAAEAAAAAAACAP7/AAAAAAAAAAACAP//AAAJAAEAAAACAAAAAAAOAAEAAAACAAEAAAACAAAAAFD8//7/AAADAAAAABD8////AAACAAAAABD8/wAAAAACAAAAABD8/wEAAAAEAAAAABD9//7/AAAAAAAAAAD9////AAAIAAEAAAD9/wAAAAAMAAEAAAD9/wEAAAACAAAAAFA=")
+tile_set = ExtResource("2_8o88k")
+
+[node name="entrances" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD+/wQAAAACAAAAABD//wQAAAANAAAAAAAAAAQAAAANAAAAAAABAAQAAAACAAAAAAD+//v/AAACAAAAABD///v/AAANAAAAADAAAPv/AAANAAAAADABAPv/AAACAAAAAAA=")
+tile_set = ExtResource("2_8o88k")
+
+[node name="spikes" parent="decorations" index="0" instance=ExtResource("4_3u4nx")]
+position = Vector2(-72, 216)
+
+[node name="spikes3" parent="decorations" index="1" instance=ExtResource("4_3u4nx")]
+position = Vector2(-72, -216)
+
+[node name="spikes4" parent="decorations" index="2" instance=ExtResource("4_3u4nx")]
+position = Vector2(72, -216)
+
+[node name="spikes2" parent="decorations" index="3" instance=ExtResource("4_3u4nx")]
+position = Vector2(72, 216)
+
+[node name="spikes5" parent="decorations" index="4" instance=ExtResource("4_3u4nx")]
+position = Vector2(72, 216)
+
+[node name="torch" parent="decorations" index="5" instance=ExtResource("3_d8pqo")]
+position = Vector2(-408, -24)
+animation = &"side"
+frame_progress = 0.0
+
+[node name="torch2" parent="decorations" index="6" instance=ExtResource("3_d8pqo")]
+position = Vector2(408, -24)
+animation = &"side"
+frame_progress = 0.0
+flip_h = true
+
+[node name="goblin_spear" parent="enemies" index="0" instance=ExtResource("5_j3n46")]
+position = Vector2(-360, -7.62939e-06)
+
+[node name="goblin_axe" parent="enemies" index="1" instance=ExtResource("7_7dw7x")]
+position = Vector2(360, 0)

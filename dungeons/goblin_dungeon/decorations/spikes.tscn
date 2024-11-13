@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3na2wonn2b1y" path="res://dungeons/goblin_dungeon/decorations/spikes.png" id="1_snt62"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6yb4a"]
-radius = 21.006
+radius = 16.0
 
 [node name="spikes" type="Area2D"]
 z_index = -1

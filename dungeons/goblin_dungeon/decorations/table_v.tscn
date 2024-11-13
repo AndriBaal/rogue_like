@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c5xttxw20y2k1" path="res://dungeons/goblin_dungeon/decorations/table_v.png" id="2_00bp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vm3wr"]
-size = Vector2(44, 50.6667)
+size = Vector2(48, 54)
 
 [node name="table_v" instance=ExtResource("1_0lbks")]
 
@@ -12,5 +12,5 @@ size = Vector2(44, 50.6667)
 texture = ExtResource("2_00bp3")
 
 [node name="collision" parent="." index="1"]
-position = Vector2(0, -5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_vm3wr")

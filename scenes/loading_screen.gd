@@ -10,7 +10,6 @@ func _ready() -> void:
 		thread = Thread.new()
 		thread.start(self._generate_level)
 
-
 func _generate_level():
 	var scene: Node
 	if Menu.LOAD_SAVE:
@@ -20,7 +19,7 @@ func _generate_level():
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
 			DungeonGeneration.DungeonOptions.new(
-				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 0, Menu.SEED
+				DungeonGeneration.DungeonType.GOBLIN, 10, 1, 0, Menu.SEED
 			)
 		)
 		var player = scene.get_node(^"player")
@@ -30,11 +29,6 @@ func _generate_level():
 		var room_node = scene.get_node(^"rooms")
 		for room in dungeon.rooms:
 			self._recurse_add_rooms(room_node, room)
-
-		#var mini_map = player.get_node(^'ui/tabs')
-		#var tilemap = starting_room.get_node(^'tiles')
-		#var tile_size = Vector2(tilemap.tile_set.tile_size) * tilemap.scale
-		#mini_map.init_mini_map(cells, tile_size)
 
 	self._on_level_finished.call_deferred(scene)
 

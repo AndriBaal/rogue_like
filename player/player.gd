@@ -306,7 +306,7 @@ func _input(_event: InputEvent) -> void:
 		camera.zoom.y = clamp(camera.zoom.y * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
 
 func _physics_process(_delta: float) -> void:
-	var speed = (self.speed if self.state != PlayerState.ROLL else self.roll_speed) + 30 * self.speed_stat
+	var speed = (self.speed if self.state != PlayerState.ROLL else self.roll_speed) + (5 * self.speed_stat)
 	self.velocity = self.movement.normalized() * speed
 	self.move_and_slide()
 

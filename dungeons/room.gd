@@ -13,12 +13,14 @@ class_name Room
 @export var teleporters := []
 @export var optimized_cells: Array[Rect2]
 @export var children := []
+@export var parent = null
 @export var entrances: Array
 @export var tile_size: Vector2
 @export var init := false
 
-func start() -> void:
+func start() -> Room:
 	self.entrances = self._get_room_entrances()
+	return self
 
 
 func _ready() -> void:

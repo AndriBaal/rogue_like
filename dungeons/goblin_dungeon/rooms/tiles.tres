@@ -146,13 +146,17 @@ texture_region_size = Vector2i(48, 48)
 13:0/0/custom_data_0 = true
 10:0/0 = 0
 1:2/0 = 0
+1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-18, -24, 18, -24, 18, 18, -18, 18)
 0:2/0 = 0
+0:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 24, -12, 24)
 
 [resource]
 tile_size = Vector2i(48, 48)
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 135
+physics_layer_1/collision_layer = 8
+physics_layer_1/collision_mask = 3
 navigation_layer_0/layers = 1
 custom_data_layer_0/name = "entrance"
 custom_data_layer_0/type = 1

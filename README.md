@@ -9,6 +9,8 @@
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [ ] Fix greyed out skill tree nodes after deserialization
 - [ ] Fix reference in room children -> crash after deserialization
+- [ ] Not all rooms are being used -> 3721335509
+- [ ] Starting spell
 - [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [x] Fix multihit with ice wave
 - [x] Fix standing in spikes
@@ -27,8 +29,10 @@
 
 ## TODO
 
-- [x] Name (Arcane Descent)
+- [x] Name (Arcane Scrolls)
 	- [ ] Integrated
+- [ ] Enemy walk and shoot animation
+- [ ] Enemy avoidance
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom
 - [x] Remove rooms in generation after used once
