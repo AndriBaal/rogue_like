@@ -1,120 +1,49 @@
-[gd_scene load_steps=10 format=4 uid="uid://odxnr5148487"]
+[gd_scene load_steps=8 format=4 uid="uid://odxnr5148487"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_of732"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_y2cip"]
-[ext_resource type="PackedScene" uid="uid://yu08hkkjpwth" path="res://dungeons/goblin_dungeon/decorations/torch.tscn" id="3_vqfjf"]
-[ext_resource type="PackedScene" uid="uid://bl6hh70t0akfl" path="res://dungeons/goblin_dungeon/decorations/spikes.tscn" id="4_2f0f5"]
+[ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="3_fgcbs"]
 [ext_resource type="PackedScene" uid="uid://bnqdjjmtuwmy5" path="res://enemies/goblin_spear/goblin_spear.tscn" id="4_l8usc"]
-[ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="6_cuii1"]
-[ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="7_4exhh"]
-[ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="8_11exq"]
+[ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="5_0wdqo"]
+[ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="6_sbw2k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8bxaa"]
-vertices = PackedVector2Array(-298, 278, -422, 278, -422, 10, -298, 10, 422, 278, 298, 278, 298, 10, 422, 10, 422, -998, 422, -586, 278, -586, 154, -710, 154, -874, 278, -998, 298, 1162, 566, 1286, -566, 1286, -298, 1162, 566, 586, 298, 854, 134, 586, -298, 854, -566, 586, -134, 586, 278, -442, 134, -442, -154, -710, -134, -442, -278, -442, -278, -586, -154, -874, -422, -586, -422, -998, -278, -998, -278, -1142, 278, -1142)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11, 12, 13), PackedInt32Array(14, 15, 16, 17), PackedInt32Array(18, 15, 14, 19), PackedInt32Array(20, 18, 19, 21), PackedInt32Array(17, 16, 22, 21), PackedInt32Array(21, 22, 23), PackedInt32Array(20, 21, 23), PackedInt32Array(11, 10, 24, 25, 26), PackedInt32Array(25, 20, 23, 27), PackedInt32Array(26, 25, 27), PackedInt32Array(26, 27, 28, 29), PackedInt32Array(30, 26, 29, 31, 32, 33), PackedInt32Array(12, 30, 33, 34, 35, 13)])
+vertices = PackedVector2Array(422, -1142, 422, 1142, 298, 154, 298, -154, 154, -710, 154, -874, 154, 874, 154, 710, -422, 1142, -154, 874, -422, -1142, -154, -874, 134, -154, -154, -710, 134, 154, -154, 710, -134, 154, -298, 154, -134, -154, -298, -154)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(2, 1, 6, 7), PackedInt32Array(6, 1, 8, 9), PackedInt32Array(10, 0, 5, 11), PackedInt32Array(4, 3, 12, 13), PackedInt32Array(14, 2, 7, 15), PackedInt32Array(14, 15, 16, 12), PackedInt32Array(17, 16, 15, 8), PackedInt32Array(12, 16, 18), PackedInt32Array(13, 12, 18), PackedInt32Array(13, 18, 19, 10), PackedInt32Array(15, 9, 8), PackedInt32Array(17, 8, 10, 19), PackedInt32Array(13, 10, 11)])
 
 [node name="room" instance=ExtResource("1_of732")]
 navigation_polygon = SubResource("NavigationPolygon_8bxaa")
 
 [node name="tiles" parent="." index="0"]
-tile_map_data = PackedByteArray("AAD9//j/AAABAAAAABD+//j/AAAIAAEAAAD///j/AAANAAEAAAAAAPj/AAAJAAEAAAABAPj/AAAIAAEAAAACAPj/AAABAAAAAAACAPn/AAALAAEAAAACAPr/AAAAAAEAAAACAPv/AAAHAAEAAAACAPz/AAAFAAAAABACAP//AAAAAAAAAAACAAAAAAANAAEAAAACAAEAAAAOAAEAAAACAAIAAAACAAAAAFACAAMAAAAAAAAAAAACAAQAAAACAAEAAAACAAUAAAAKAAEAAAACAAYAAAAJAAEAAAACAAcAAAAGAAEAAAABAAcAAAABAAAAABD+/wcAAAABAAAAAAD9/wcAAAAEAAEAAAD9/wYAAAAIAAEAAAD9/wUAAAAJAAEAAAD9/wQAAAAMAAEAAAD9/wMAAAAAAAAAAAD9/wIAAAACAAAAAFD9/wEAAAAFAAEAAAD9/wAAAAANAAEAAAD9////AAAAAAAAAAD9//3/AAAEAAAAABD9//z/AAAFAAAAAAD9//v/AAAFAAEAAAD9//r/AAAFAAEAAAD9//n/AAAOAAEAAAD+//n/AAADAAEAAAD///n/AAANAAEAAAAAAPn/AAACAAEAAAABAPn/AAAEAAEAAAABAPr/AAAHAAEAAAAAAPr/AAAAAAIAAAD///r/AAAAAAIAAAD+//r/AAAJAAEAAAD///v/AAADAAEAAAD///z/AAADAAEAAAAAAPz/AAAHAAEAAAAAAPv/AAAFAAEAAAABAPv/AAAOAAEAAAABAPz/AAAKAAEAAAABAP3/AAAFAAAAABABAP7/AAACAAAAAAABAP//AAABAAAAAAABAAAAAAAAAAIAAAABAAEAAAAAAAIAAAABAAIAAAAFAAAAABABAAMAAAABAAAAAAABAAQAAAAEAAEAAAABAAUAAAAJAAEAAAABAAYAAAAFAAAAAAAAAAYAAAACAAAAAFD//wQAAAAFAAEAAAD//wMAAAAKAAEAAAD//wIAAAANAAEAAAD//wEAAAANAAEAAAD/////AAAOAAEAAAD///7/AAAOAAEAAAD///3/AAAJAAEAAAD//wYAAAACAAAAAFAAAAQAAAAIAAEAAAAAAAMAAAAJAAEAAAAAAAIAAAANAAEAAAAAAAEAAAAOAAEAAAAAAAAAAAAMAAEAAAAAAP//AAAHAAEAAAAAAP7/AAAKAAEAAAAAAP3/AAAEAAEAAAD+//7/AAACAAAAABD+////AAABAAAAABD+/wQAAAANAAEAAAD+/wUAAAAFAAEAAAD+/wYAAAAFAAAAABD+/wMAAAABAAAAABD+/wIAAAAFAAAAAAD+/wEAAAAAAAIAAAD+/wAAAAAAAAIAAAD+//3/AAAFAAAAAAD+//z/AAAEAAEAAAD+//v/AAAIAAEAAAD9//f/AAADAAAAABD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAABAPf/AAAAAAAAAAACAPf/AAADAAAAAAADAPj/AAADAAAAAAADAPn/AAACAAAAAAADAPr/AAACAAAAAAADAPv/AAACAAAAAAADAPz/AAAEAAAAAAADAP//AAADAAAAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAAEAAAAAAADAAMAAAAAAAAAAAADAAQAAAAOAAEAAAADAAUAAAABAAEAAAADAAYAAAAMAAEAAAADAAcAAAADAAEAAAD8//j/AAADAAAAABD8//n/AAACAAAAADD8//r/AAACAAAAADD8//v/AAACAAAAADD8//z/AAAEAAAAABD8////AAADAAAAABD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAAEAAAAABD8/wMAAAAAAAAAAAD8/wQAAAAOAAEAAAD8/wUAAAACAAEAAAD8/wYAAAAHAAEAAAD8/wcAAAANAAEAAAD//wAAAAAFAAEAAAACAP3/AAAEAAAAAAD//wUAAAAIAAEAAAAAAAUAAAAGAAEAAAAEAAMAAAADAAAAAAD7/wMAAAADAAAAABAEAAQAAAACAAAAAAAEAAUAAAACAAAAAAAEAAYAAAACAAAAAAAEAAcAAAACAAAAAAD7/wcAAAACAAAAABD7/wYAAAACAAAAABD7/wUAAAACAAAAABD7/wQAAAACAAAAABAEAAgAAAACAAAAAAD7/wgAAAACAAAAABD//wcAAAAAAAAAAAAAAAcAAAAAAAAAAAAEAAkAAAAEAAAAAAD7/wkAAAAEAAAAABD8/wkAAAACAAAAAFD9/wkAAAACAAAAAFD+/wkAAAACAAAAAFD//wkAAAACAAAAAFAAAAkAAAACAAAAAFABAAkAAAACAAAAAFACAAkAAAACAAAAAFADAAkAAAACAAAAAFD8/wgAAAAHAAEAAAD9/wgAAAAIAAEAAAD+/wgAAAAFAAEAAAD//wgAAAABAAEAAAAAAAgAAAADAAEAAAABAAgAAAACAAEAAAACAAgAAAALAAEAAAADAAgAAAANAAEAAAA=")
+tile_map_data = PackedByteArray("AAD9//j/AAAAAAIAAAD+//j/AAAIAAEAAAD///j/AAANAAEAAAAAAPj/AAAJAAEAAAABAPj/AAAIAAEAAAACAPj/AAADAAEAAAACAPn/AAALAAEAAAACAPr/AAAAAAEAAAACAPv/AAAHAAEAAAACAPz/AAANAAEAAAACAP3/AAAOAAEAAAACAP7/AAAIAAEAAAACAP//AAAMAAEAAAACAAAAAAANAAEAAAACAAEAAAAOAAEAAAACAAIAAAAOAAEAAAACAAMAAAAGAAEAAAACAAQAAAACAAEAAAACAAUAAAAKAAEAAAACAAYAAAAMAAEAAAACAAcAAAAGAAEAAAABAAcAAAAHAAEAAAAAAAcAAAALAAEAAAD//wcAAAALAAEAAAD+/wcAAAAHAAEAAAD9/wcAAAABAAIAAAD9/wYAAAAIAAEAAAD9/wUAAAAJAAEAAAD9/wQAAAAMAAEAAAD9/wMAAAALAAEAAAD9/wIAAAAHAAEAAAD9/wEAAAAFAAEAAAD9/wAAAAANAAEAAAD9////AAAAAAEAAAD9//7/AAAIAAEAAAD9//3/AAAMAAEAAAD9//z/AAAMAAEAAAD9//v/AAAFAAEAAAD9//r/AAAFAAEAAAD9//n/AAAOAAEAAAD+//n/AAADAAEAAAD///n/AAANAAEAAAAAAPn/AAACAAEAAAABAPn/AAAEAAEAAAABAPr/AAAHAAEAAAAAAPr/AAABAAIAAAD///r/AAABAAIAAAD+//r/AAAJAAEAAAD///v/AAADAAEAAAD///z/AAADAAEAAAAAAPz/AAAHAAEAAAAAAPv/AAAFAAEAAAABAPv/AAAOAAEAAAABAPz/AAAKAAEAAAABAP3/AAAMAAEAAAABAP7/AAAGAAEAAAABAP//AAAAAAIAAAABAAAAAAAAAAIAAAABAAEAAAAEAAEAAAABAAIAAAAHAAEAAAABAAMAAAAGAAEAAAABAAQAAAAEAAEAAAABAAUAAAAJAAEAAAABAAYAAAAEAAEAAAAAAAYAAAALAAEAAAD//wUAAAABAAIAAAD//wQAAAAFAAEAAAD//wMAAAAKAAEAAAD//wIAAAANAAEAAAD//wEAAAANAAEAAAD//wAAAAAOAAAAAAD/////AAAOAAEAAAD///7/AAAOAAEAAAD///3/AAAJAAEAAAD//wYAAAAOAAEAAAAAAAUAAAABAAIAAAAAAAQAAAAIAAEAAAAAAAMAAAAJAAEAAAAAAAIAAAANAAEAAAAAAAEAAAAOAAEAAAAAAAAAAAAMAAEAAAAAAP//AAAHAAEAAAAAAP7/AAAKAAEAAAAAAP3/AAAEAAEAAAD+//7/AAAHAAEAAAD+////AAAAAAIAAAD+/wQAAAANAAEAAAD+/wUAAAAFAAEAAAD+/wYAAAAHAAEAAAD+/wMAAAANAAEAAAD+/wIAAAAEAAEAAAD+/wEAAAAEAAEAAAD+/wAAAAAAAAIAAAD+//3/AAAKAAEAAAD+//z/AAAEAAEAAAD+//v/AAAIAAEAAAD9//f/AAAAAAAAAAD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAABAPf/AAAAAAAAAAACAPf/AAAAAAAAAAADAPf/AAADAAAAAAADAPj/AAACAAAAAAADAPn/AAACAAAAAAADAPr/AAACAAAAAAADAPv/AAACAAAAAAADAPz/AAACAAAAAAADAP3/AAACAAAAAAADAP7/AAACAAAAAAADAP//AAACAAAAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAIAAAACAAAAAAADAAMAAAACAAAAAAADAAQAAAACAAAAAAADAAUAAAACAAAAAAADAAYAAAACAAAAAAADAAcAAAACAAAAAAD9/wgAAAACAAAAAFD+/wgAAAACAAAAAFD//wgAAAACAAAAAFAAAAgAAAACAAAAAFABAAgAAAACAAAAAFACAAgAAAACAAAAAFD8//j/AAACAAAAADD8//n/AAACAAAAADD8//r/AAACAAAAADD8//v/AAACAAAAADD8//z/AAACAAAAADD8//3/AAACAAAAADD8//7/AAACAAAAADD8////AAACAAAAADD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAACAAAAADD8/wMAAAACAAAAADD8/wQAAAACAAAAADD8/wUAAAACAAAAADD8/wYAAAACAAAAADD8/wcAAAACAAAAADD8/wgAAAAEAAAAABADAAgAAAAEAAAAAAD8//f/AAADAAAAABA=")
 tile_set = ExtResource("2_y2cip")
 
 [node name="entrances" parent="." index="1"]
-tile_map_data = PackedByteArray("AAD+//f/AAABAAAAABD///f/AAANAAAAADAAAPf/AAANAAAAADABAPf/AAABAAAAAAD7/wUAAAANAAAAAFD7/wQAAAANAAAAAFAEAAUAAAANAAAAAEAEAAQAAAANAAAAAED7/wMAAAAAAAAAAAAEAAMAAAAAAAAAAAD7/wYAAAAFAAAAAAAEAAYAAAAFAAAAAGA=")
+tile_map_data = PackedByteArray("AAD+//f/AAABAAAAABD///f/AAANAAAAADAAAPf/AAANAAAAADABAPf/AAABAAAAAAD+/wgAAAAFAAAAAAD//wgAAAANAAAAAAAAAAgAAAANAAAAAAABAAgAAAAFAAAAABADAAQAAAANAAAAAGADAAUAAAANAAAAAGADAAYAAAAFAAAAAGADAAMAAAABAAAAAAADAP7/AAABAAAAAAADAP//AAANAAAAAGADAAAAAAANAAAAAGADAAEAAAAFAAAAAGADAPn/AAABAAAAAAADAPr/AAANAAAAAGADAPv/AAANAAAAAGADAPz/AAAFAAAAAGD8/wMAAAABAAAAABD8/wQAAAANAAAAAFD8/wUAAAANAAAAAFD8/wYAAAAFAAAAAHD8//7/AAABAAAAABD8////AAANAAAAAFD8/wAAAAANAAAAAFD8/wEAAAAFAAAAAHD8//n/AAABAAAAABD8//r/AAANAAAAAFD8//v/AAANAAAAAFD8//z/AAAFAAAAAHA=")
 tile_set = ExtResource("2_y2cip")
 
-[node name="torch" parent="." index="3" instance=ExtResource("3_vqfjf")]
-position = Vector2(-408, 128)
-animation = &"side"
-frame_progress = 0.0
+[node name="light" parent="decorations" index="0" instance=ExtResource("3_fgcbs")]
+position = Vector2(0, -800)
 
-[node name="torch5" parent="." index="4" instance=ExtResource("3_vqfjf")]
-position = Vector2(-408, -808)
-animation = &"side"
-frame_progress = 0.0
+[node name="light2" parent="decorations" index="1" instance=ExtResource("3_fgcbs")]
+position = Vector2(0, 800)
 
-[node name="torch2" parent="." index="5" instance=ExtResource("3_vqfjf")]
-position = Vector2(408, 128)
-animation = &"side"
-frame_progress = 0.0
-flip_h = true
+[node name="light3" parent="decorations" index="2" instance=ExtResource("3_fgcbs")]
 
-[node name="torch4" parent="." index="6" instance=ExtResource("3_vqfjf")]
-position = Vector2(416, -808)
-animation = &"side"
-frame_progress = 0.0
-flip_h = true
+[node name="goblin_spear" parent="enemies" index="0" instance=ExtResource("4_l8usc")]
+position = Vector2(-224, -224)
 
-[node name="torch3" parent="." index="7" instance=ExtResource("3_vqfjf")]
-position = Vector2(2.27374e-13, 840)
-frame_progress = 0.0
+[node name="goblin_spear4" parent="enemies" index="1" instance=ExtResource("4_l8usc")]
+position = Vector2(232, 224)
 
-[node name="spikes" parent="decorations" index="0" instance=ExtResource("4_2f0f5")]
-position = Vector2(-216, -648)
+[node name="goblin_spear5" parent="enemies" index="2" instance=ExtResource("4_l8usc")]
+position = Vector2(1.52588e-05, -656)
 
-[node name="spikes2" parent="decorations" index="1" instance=ExtResource("4_2f0f5")]
-position = Vector2(216, -648)
+[node name="goblin_spear6" parent="enemies" index="3" instance=ExtResource("4_l8usc")]
+position = Vector2(3.23117e-27, 632)
 
-[node name="spikes3" parent="decorations" index="2" instance=ExtResource("4_2f0f5")]
-position = Vector2(216, -936)
+[node name="slime_blue" parent="enemies" index="4" instance=ExtResource("5_0wdqo")]
+position = Vector2(-226, 257)
 
-[node name="spikes4" parent="decorations" index="3" instance=ExtResource("4_2f0f5")]
-position = Vector2(-216, -936)
-
-[node name="spikes5" parent="decorations" index="4" instance=ExtResource("4_2f0f5")]
-position = Vector2(-72, -72)
-
-[node name="spikes6" parent="decorations" index="5" instance=ExtResource("4_2f0f5")]
-position = Vector2(72, -72)
-
-[node name="spikes13" parent="decorations" index="6" instance=ExtResource("4_2f0f5")]
-position = Vector2(-72, 360)
-
-[node name="spikes14" parent="decorations" index="7" instance=ExtResource("4_2f0f5")]
-position = Vector2(72, 360)
-
-[node name="spikes7" parent="decorations" index="8" instance=ExtResource("4_2f0f5")]
-position = Vector2(-216, 1224)
-
-[node name="spikes9" parent="decorations" index="9" instance=ExtResource("4_2f0f5")]
-position = Vector2(-216, 792)
-
-[node name="spikes10" parent="decorations" index="10" instance=ExtResource("4_2f0f5")]
-position = Vector2(-216, 648)
-
-[node name="spikes11" parent="decorations" index="11" instance=ExtResource("4_2f0f5")]
-position = Vector2(216, 792)
-
-[node name="spikes12" parent="decorations" index="12" instance=ExtResource("4_2f0f5")]
-position = Vector2(216, 648)
-
-[node name="spikes8" parent="decorations" index="13" instance=ExtResource("4_2f0f5")]
-position = Vector2(216, 1224)
-
-[node name="goblin_axe" parent="enemies" index="0" instance=ExtResource("6_cuii1")]
-position = Vector2(0, -512)
-
-[node name="goblin_axe2" parent="enemies" index="1" instance=ExtResource("6_cuii1")]
-position = Vector2(-360, 144)
-
-[node name="goblin_spear" parent="enemies" index="2" instance=ExtResource("4_l8usc")]
-position = Vector2(360, 144)
-
-[node name="slime_red" parent="enemies" index="3" instance=ExtResource("7_4exhh")]
-position = Vector2(-72, 144)
-
-[node name="slime_red4" parent="enemies" index="4" instance=ExtResource("7_4exhh")]
-position = Vector2(-2.71051e-20, 64)
-
-[node name="slime_red2" parent="enemies" index="5" instance=ExtResource("7_4exhh")]
-position = Vector2(72, 144)
-
-[node name="slime_blue2" parent="enemies" index="6" instance=ExtResource("8_11exq")]
-position = Vector2(-216, 1216)
-
-[node name="slime_blue4" parent="enemies" index="7" instance=ExtResource("8_11exq")]
-position = Vector2(-1.52588e-05, 1216)
-
-[node name="slime_blue3" parent="enemies" index="8" instance=ExtResource("8_11exq")]
-position = Vector2(216, 1216)
+[node name="slime_red" parent="enemies" index="5" instance=ExtResource("6_sbw2k")]
+position = Vector2(217, -213)

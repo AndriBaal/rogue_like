@@ -43,15 +43,14 @@ func _physics_process(delta: float) -> void:
 func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, local_shape_index: int):
 	var destroy := false
 	var inner_collider := local_shape_index == 0
-	var player_id = self.game.player.get_instance_id()
 	if self.friendly:
 		# Player hits himself
-		if body.get_instance_id() == player_id:
+		if body is Player:
 			return
 			
-		# Enemy is hit
 		if body not in hit:
-			if not inner_collider and 'health' in body:
+			# Enemy is hit
+			if not inner_collider and body is Enemy:
 				self.hit[body] = true
 				body.deal_damage(self.damage * self.game.player.attack_factor(self.damage_type))
 				if self.pierce > 0:
@@ -62,7 +61,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 				destroy = true
 	else:
 		# Player is hit
-		if body.get_instance_id() == player_id:
+		if body is Player:
 			if body.has_parry_frames():
 				self.rotation += PI
 				self.direction = -self.direction
@@ -73,7 +72,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			elif not body.deal_damage(self.damage):
 				return
 		# Other enemy is hit
-		elif 'health' in body:
+		elif body is Enemy:
 			return
 		elif inner_collider:
 			destroy = true

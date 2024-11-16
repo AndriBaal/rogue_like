@@ -10,7 +10,7 @@ size = Vector2(18, 18)
 scale = Vector2(4, 4)
 speed = 1250.0
 damage = 10.0
-color = Color(0.196143, 0.196143, 0.196143, 1)
+color = Color(0.77084, 0.770839, 0.770839, 1)
 rotation_speed = 10.0
 
 [node name="sprite" parent="." index="0"]

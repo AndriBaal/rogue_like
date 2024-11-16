@@ -167,11 +167,13 @@ enum PlayerState {
 	set(val):
 		skill_tokens = val
 		$ui/inventory/skill_tree/content.update_skill_token_ui(val)
+@export var effects := {}
 
 
 const GAME_OVER := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
+	$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 	if not init:
 		init = true
 		self.game.spawn_pop_up('Welcome!', "Use 'W', 'A', 'S' and 'D' to move around. If you are new, make sure to read the letters on the ground.")
@@ -195,12 +197,13 @@ func _process(delta: float) -> void:
 	var movement_direction = Direction.from_vector(new_movement)
 	var player_position := self.position
 	var is_moving := new_movement != Vector2.ZERO
-	var roll := Input.is_action_just_pressed("roll")
 	var mouse_pos: Vector2 = self.game.get_local_mouse_position()
 	var look: Vector2 = (mouse_pos - player_position).normalized()
 	
 	self.parry_timer += delta
 	self.roll_timer -= delta
+	
+	var roll := Input.is_action_just_pressed("roll")
 	var roll_begin = roll and self._has_enough_mana(self.roll_cost) and self.state != PlayerState.ROLL
 	var still_rolling =  roll_timer >= 0.0 and self.state == PlayerState.ROLL
 	if roll_begin or still_rolling:
@@ -223,6 +226,14 @@ func _process(delta: float) -> void:
 			var occluder = attack_ui.get_node(^'occluder')
 			var ratio = max(0.0, self.attack_cooldowns[attack_slot] / attack['cool_down'])
 			occluder.scale.y = ratio
+			
+	for effect_name in self.effects.keys():
+		var effect = self.effects[effect_name]
+		effect['duration'] -= delta
+		if effect['duration'] <= 0.0:
+			self.effects.erase(effect_name)
+		
+			
 	if not inventory.visible and new_state != PlayerState.ROLL:
 		for attack_slot in self.active_attacks:
 			if Input.is_action_pressed(slot_to_string(attack_slot)):
@@ -238,8 +249,10 @@ func _process(delta: float) -> void:
 						
 				if self.attack_cooldowns[attack_slot] <= 0.0 and self._use_mana(attack['mana_cost']):
 					self.attack_cooldowns[attack_slot] = attack['cool_down']
-					self.call(attack['action'], player_position, look)
-
+					var attack_result = self.call(attack['action'], player_position, look)
+					
+					if attack_result is PlayerState:
+						new_state = attack_result
 
 	if new_state != self.state:
 		self.make_intangible(false)
@@ -306,7 +319,10 @@ func _input(_event: InputEvent) -> void:
 		camera.zoom.y = clamp(camera.zoom.y * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
 
 func _physics_process(_delta: float) -> void:
-	var speed = (self.speed if self.state != PlayerState.ROLL else self.roll_speed) + (5 * self.speed_stat)
+	var base_speed = (self.speed if self.state != PlayerState.ROLL else self.roll_speed) + (5 * self.speed_stat)
+	for effect in self.effects.values():
+		if 'speed' in effect:
+			base_speed *= effect['speed']
 	self.velocity = self.movement.normalized() * speed
 	self.move_and_slide()
 
@@ -441,7 +457,11 @@ func int_to_roman(num: int) -> String:
 	return result
 
 func attack_factor(_type: Projectile.DamageType) -> float:
-	return 1.0 + self.attack_stat * 0.1
+	var base_attack = 1.0 + self.attack_stat * 0.1
+	for effect in self.effects.values():
+		if 'attack' in effect:
+			base_attack *= effect['attack']
+	return base_attack
 	
 func assign_attack(slot: PlayerAttackSlot, attack):
 	var slot_string = slot_to_string(slot)

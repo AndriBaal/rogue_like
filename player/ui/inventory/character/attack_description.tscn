@@ -6,7 +6,6 @@
 font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_hakao"]
-font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_rnofd"]
 
@@ -26,7 +25,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 11.0
-offset_bottom = 110.0
+offset_bottom = 89.0
 grow_horizontal = 2
 text = "xxx
 xxx"
@@ -34,15 +33,16 @@ label_settings = SubResource("LabelSettings_xxyob")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="type" type="Label" parent="."]
+[node name="type" type="Label" parent="title"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_top = 101.0
-offset_bottom = 133.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_bottom = 26.0
 grow_horizontal = 2
-scale = Vector2(0.8, 0.8)
-pivot_offset = Vector2(172, 0)
+grow_vertical = 0
 text = "Type: xxx"
 label_settings = SubResource("LabelSettings_hakao")
 horizontal_alignment = 1
@@ -53,10 +53,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -33.5
-offset_right = -11.0
-offset_bottom = 115.5
+offset_top = -76.5
+offset_bottom = 123.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx"

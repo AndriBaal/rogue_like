@@ -4,11 +4,15 @@ const FIRE_BAll = preload("res://projectiles/fire_ball.tscn")
 const ICE_SPEAR = preload("res://projectiles/ice_spear.tscn")
 const ICE_WAVE = preload("res://projectiles/ice_wave.tscn")
 const ROCK = preload("res://projectiles/rock.tscn")
+const BUFF_CIRCLE = preload("res://player/wizard/attacks/buff_circle/buff_circle.tscn")
+const SPIKES = preload("res://dungeons/goblin_dungeon/decorations/spikes.tscn")
 
 const PROJECTILE_OFFSET := 35.0
 
+@export var roll_damage = null
 
 func _ready():
+	$sensor.body_entered.connect(self._body_entered)
 	if self.init:
 		return
 
@@ -26,7 +30,7 @@ func _ready():
 		"ice_wave":
 		{
 			"name": "Ice Wave",
-			"description": "bbb",
+			"description": "...",
 			"action": "_ice_wave",
 			"mana_cost": 10.0,
 			"cool_down": 0.5,
@@ -46,7 +50,7 @@ func _ready():
 		"ice_teleport":
 		{
 			"name": "Ice Teleport",
-			"description": "bbb",
+			"description": "...",
 			"action": "_ice_teleport",
 			"mana_cost": 10.0,
 			"cool_down": 1.0,
@@ -56,7 +60,7 @@ func _ready():
 		"ice_deflect":
 		{
 			"name": "Ice Deflect",
-			"description": "bbb",
+			"description": "...",
 			"action": "_ice_deflect",
 			"mana_cost": 10.0,
 			"cool_down": 1.0,
@@ -66,7 +70,7 @@ func _ready():
 		"fire_storm":
 		{
 			"name": "Fire Storm",
-			"description": "aaa1",
+			"description": "...",
 			"action": "_fire_storm",
 			"mana_cost": 15.0,
 			"cool_down": 2.0,
@@ -76,12 +80,22 @@ func _ready():
 		"fire_wall":
 		{
 			"name": "Fire Wall",
-			"description": "aaa2",
+			"description": "...",
 			"action": "_fire_wall",
 			"mana_cost": 20.0,
 			"cool_down": 2.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_wall.png")
+		},
+		"fire_buff":
+		{
+			"name": "Fire Buff",
+			"description": "...",
+			"action": "_fire_buff",
+			"mana_cost": 20.0,
+			"cool_down": 2.0,
+			"type": AttackType.ABILITY,
+			"icon": preload("res://player/wizard/attacks/fire_buff.png")
 		},
 		"rock_throw":
 		{
@@ -96,7 +110,7 @@ func _ready():
 		"rock_roll":
 		{
 			"name": "Rock Roll",
-			"description": "ccc",
+			"description": "...",
 			"action": "_rock_roll",
 			"mana_cost": 20.0,
 			"cool_down": 2.0,
@@ -106,12 +120,22 @@ func _ready():
 		"rock_spike":
 		{
 			"name": "Rock Spike",
-			"description": "ccc",
+			"description": "...",
 			"action": "_rock_spike",
 			"mana_cost": 20.0,
 			"cool_down": 2.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/rock_spike.png")
+		},
+		"rock_buff":
+		{
+			"name": "Rock Buff",
+			"description": "...",
+			"action": "_rock_buff",
+			"mana_cost": 20.0,
+			"cool_down": 2.0,
+			"type": AttackType.ABILITY,
+			"icon": preload("res://player/wizard/attacks/rock_buff.png")
 		},
 	}
 
@@ -121,11 +145,27 @@ func _ready():
 			"position": Vector2(-250.0, 150.0),
 			"children":
 			[
-				{"attack_name": "fire_storm", "position": Vector2(-300.0, 0.0), "children": []},
+				{
+					"attack_name": "fire_storm", 
+					"position": Vector2(-300.0, 0.0), 
+					"children": [
+						{
+							"attack_name": "fire_buff",
+							"position": Vector2(-250.0, -150.0),
+							"children": []
+						},
+					]
+				},
 				{
 					"attack_name": "fire_wall",
 					"position": Vector2(-200.0, 0.0),
-					"children": [],
+					"children": [
+						{
+							"attack_name": "fire_buff",
+							"position": Vector2(-250.0, -150.0),
+							"children": []
+						},
+					],
 				}
 			],
 		},
@@ -151,7 +191,11 @@ func _ready():
 					"position": Vector2(50.0, 0.0),
 					"children":
 					[
-						{"attack_name": "ice_wave", "children": []},
+						{
+							"attack_name": "ice_wave", 
+							"position": Vector2(0.0, -150.0),
+							"children": []
+						},
 					],
 				}
 			]
@@ -161,17 +205,41 @@ func _ready():
 			"position": Vector2(250.0, 150.0),
 			"children":
 			[
-				{"attack_name": "rock_roll", "position": Vector2(300.0, 0.0), "children": []},
+				{
+					"attack_name": "rock_roll", 
+					"position": Vector2(300.0, 0.0), 
+					"children": [
+						{
+							"attack_name": "rock_buff",
+							"position": Vector2(250.0, -150.0),
+							"children": []
+						},
+					]
+				},
 				{
 					"attack_name": "rock_spike",
 					"position": Vector2(200.0, 0.0),
-					"children": [],
+					"children": [
+						{
+							"attack_name": "rock_buff", 
+							"position": Vector2(250.0, -150.0),
+							"children": []
+						},
+					],
 				}
 			]
 		},
 	]
 
 	super()
+	
+func _process(delta: float) -> void:
+	super(delta)
+	if self.state != PlayerState.ROLL:
+		self.roll_damage = null
+		
+	if self.modulate == Color.RED and 'fire_buff' not in self.effects:
+		self.modulate = Color.WHITE
 
 
 func _ice_spear(player_position, look_direction):
@@ -183,7 +251,7 @@ func _ice_spear(player_position, look_direction):
 	)
 
 
-func _ice_teleport(player_position, look_direction):
+func _ice_teleport(_player_position, _look_direction):
 	var mouse_pos = self.game.get_local_mouse_position()
 	if game.is_valid_position(mouse_pos):
 		self.position = mouse_pos
@@ -191,20 +259,26 @@ func _ice_teleport(player_position, look_direction):
 		$teleport.restart()
 
 
-func _ice_deflect(player_position, look_direction):
+func _ice_deflect(_player_position, _look_direction):
 	self.parry_timer = 0.0
 
 
-func _rock_wall(player_position, look_direction):
-	pass
+func _rock_buff(_player_position, _look_direction):
+	var mouse_pos = self.game.get_local_mouse_position()
+	if game.is_valid_position(mouse_pos, true):
+		var circle = BUFF_CIRCLE.instantiate().start(mouse_pos)
+		game.get_node('projectiles').add_child(circle)
 
 
-func _rock_spike(player_position, look_direction):
-	pass
+func _rock_spike(_player_position, _look_direction):
+	var mouse_pos = self.game.get_local_mouse_position()
+	if game.is_valid_position(mouse_pos, true):
+		var spikes = SPIKES.instantiate().make_friendly(mouse_pos)
+		game.get_node('projectiles').add_child(spikes)
 
-
-func _rock_roll(player_position, look_direction):
-	pass
+func _rock_roll(_player_position, _look_direction):
+	self.roll_damage = 10.0
+	return PlayerState.ROLL
 
 
 func _fire_ball(player_position, look_direction):
@@ -264,3 +338,15 @@ func _fire_wall(player_position, look_direction):
 		self.game.spawn_projectile(
 			f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true
 		)
+		
+func _fire_buff(_player_position, _look_direction):
+	self.modulate = Color.RED
+	self.effects['fire_buff'] = {
+		'duration': 8.0,
+		'attack': 1.2,
+		'speed': 1.2
+	}
+
+func _body_entered(body):
+	if self.state == PlayerState.ROLL and body is Enemy and self.roll_damage:
+		body.deal_damage(self.roll_damage)

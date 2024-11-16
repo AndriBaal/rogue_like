@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=4 uid="uid://er2hvmp33e7e"]
+
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_uuttv"]
+[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_ycoul"]
+[ext_resource type="PackedScene" uid="uid://bj7votnrikjyv" path="res://items/coin/gold_coin.tscn" id="3_kc75s"]
+[ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="4_0722d"]
+
+[node name="room" instance=ExtResource("1_uuttv")]
+
+[node name="tiles" parent="." index="0"]
+tile_map_data = PackedByteArray("AAD9/wMAAAACAAAAAFD+/wMAAAACAAAAAFD//wMAAAACAAAAAFAAAAMAAAACAAAAAFABAAMAAAACAAAAAFACAAMAAAACAAAAAFD8/wAAAAACAAAAADD8/wEAAAACAAAAADD8/wIAAAACAAAAABD8/wMAAAAEAAAAABD9/wAAAAACAAEAAAD9/wEAAAALAAEAAAD9/wIAAAADAAEAAAD+/wAAAAAGAAEAAAD+/wEAAAACAAEAAAD+/wIAAAALAAEAAAD//wAAAAAMAAEAAAD//wEAAAABAAEAAAD//wIAAAANAAEAAAAAAAEAAAANAAEAAAAAAAIAAAAOAAEAAAABAAIAAAAMAAEAAAACAAAAAAAIAAEAAAADAAAAAAACAAAAAAADAAEAAAACAAAAAAADAAMAAAAEAAAAAAADAAIAAAACAAAAAAACAAIAAAAJAAEAAAACAAEAAAAMAAEAAAABAAEAAAAIAAEAAAABAAAAAAACAAEAAAAAAAAAAAAOAAAAAAD8//3/AAACAAAAADD8//7/AAACAAAAADD9//3/AAABAAEAAAD9//7/AAAIAAEAAAD+//3/AAACAAEAAAD+//7/AAAKAAEAAAD///3/AAAMAAEAAAD///7/AAANAAEAAAAAAP3/AAAIAAEAAAAAAP7/AAANAAEAAAABAP3/AAADAAEAAAABAP7/AAAGAAEAAAACAP3/AAALAAEAAAACAP7/AAACAAEAAAADAP3/AAACAAAAAAADAP7/AAACAAAAAAD8//z/AAADAAAAABD9//z/AAAAAAAAAAD+//z/AAAAAAAAAAD///z/AAAAAAAAAAAAAPz/AAAAAAAAAAABAPz/AAAAAAAAAAACAPz/AAAAAAAAAAADAPz/AAADAAAAAAD8////AAACAAAAADD9////AAACAAEAAAD+////AAAHAAEAAAD/////AAAEAAEAAAAAAP//AAAEAAEAAAABAP//AAAEAAEAAAACAP//AAANAAEAAAADAP//AAACAAAAAAA=")
+tile_set = ExtResource("2_ycoul")
+
+[node name="entrances" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD8//7/AAABAAAAABD8////AAANAAAAAFD8/wEAAAAFAAAAAAD8/wAAAAANAAAAAFD+//z/AAABAAAAABD///z/AAANAAAAADAAAPz/AAANAAAAADABAPz/AAABAAAAAAD+/wMAAAAFAAAAAAD//wMAAAANAAAAAAAAAAMAAAANAAAAAAABAAMAAAAFAAAAABADAP//AAANAAAAAGADAAAAAAANAAAAAGADAAEAAAAFAAAAABADAP7/AAABAAAAAAA=")
+tile_set = ExtResource("2_ycoul")
+
+[node name="coin" parent="items" index="0" instance=ExtResource("3_kc75s")]
+position = Vector2(-240, -280)
+
+[node name="coin2" parent="items" index="1" instance=ExtResource("3_kc75s")]
+position = Vector2(240, -280)
+
+[node name="coin3" parent="items" index="2" instance=ExtResource("3_kc75s")]
+position = Vector2(-240, 280)
+
+[node name="coin4" parent="items" index="3" instance=ExtResource("3_kc75s")]
+position = Vector2(240, 280)
+
+[node name="light" parent="decorations" index="0" instance=ExtResource("4_0722d")]

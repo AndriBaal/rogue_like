@@ -44,12 +44,13 @@ class DungeonOptions:
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room6.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room7.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room8.tscn"),
-						load("res://dungeons/goblin_dungeon/rooms/enemy_room9.tscn"),
-						load("res://dungeons/goblin_dungeon/rooms/enemy_room10.tscn"),
+						#load("res://dungeons/goblin_dungeon/rooms/enemy_room9.tscn"),
+						#load("res://dungeons/goblin_dungeon/rooms/enemy_room10.tscn"),
 					],
 					"good":
 					[
 						load("res://dungeons/goblin_dungeon/rooms/shop/shop.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/coin_room.tscn"),
 					],
 					"neutral":
 					[
@@ -155,6 +156,10 @@ class Dungeon:
 
 				if (
 					entrance["has_connection"]
+					or (
+						self.random.randi_range(0, 2) == 0
+						and not (i_room == room_amount - 1 and new_rooms.is_empty())
+					)
 				):
 					continue
 

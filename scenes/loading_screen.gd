@@ -19,7 +19,7 @@ func _generate_level():
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
 			DungeonGeneration.DungeonOptions.new(
-				DungeonGeneration.DungeonType.GOBLIN, 10, 1, 0, Menu.SEED
+				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 0, Menu.SEED
 			)
 		)
 		var player = scene.get_node(^"player")

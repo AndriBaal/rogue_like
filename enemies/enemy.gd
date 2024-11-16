@@ -121,7 +121,7 @@ func _physics_process(_delta: float) -> void:
 	match self.state:
 		EnemyState.INACTIVE:
 			return
-		EnemyState.MOVING, EnemyState.ATTACKING:
+		EnemyState.MOVING:
 			var current_agent_position: Vector2 = self.global_position
 			var next_path_position: Vector2 = self.navigation.get_next_path_position()
 			self.movement = current_agent_position.direction_to(next_path_position)
@@ -143,6 +143,7 @@ func _target_visible():
 
 	var space_state = self.get_world_2d().direct_space_state
 
+	# TODO: make mask so you don't collide with other enemies
 	var left_ray_cast = PhysicsRayQueryParameters2D.create(
 		self.global_position + left_offset, 
 		self.target.global_position + left_offset
@@ -226,7 +227,7 @@ func _velocity_computed(safe: Vector2):
 	var res = self.move_and_slide()
 	if res:
 		for i in range(self.get_slide_collision_count()):
-			var collision = self.get_slide_collision(i)
+			var collision := self.get_slide_collision(i)
 			#var collider = collision.get_collider()
 			if collision.get_collider_id() == self.target.get_instance_id():
 				self.target.deal_damage(self.melee_damage)

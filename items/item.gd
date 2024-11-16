@@ -21,12 +21,12 @@ func _process(_delta: float) -> void:
 		self.queue_free()
 
 func _body_entered(body):
-	if not self.player_near and not self.collected and body.get_instance_id() == self.player.get_instance_id():
+	if not self.player_near and not self.collected and body is Player:
 		self.player_near = true
 		self._player_area_entered()
 		
 func _body_exited(body):
-	if self.player_near and not self.collected and body.get_instance_id() == self.player.get_instance_id():
+	if self.player_near and not self.collected and body is Player:
 		self.player_near = false
 		self._player_area_exited()
 

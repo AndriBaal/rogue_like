@@ -9,7 +9,7 @@
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [ ] Fix greyed out skill tree nodes after deserialization
 - [ ] Fix reference in room children -> crash after deserialization
-- [ ] Room enter detection
+- [x] Room enter detection
 - [x] Not all rooms are being used -> 3721335509
 - [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
 - [x] Fix multihit with ice wave
@@ -31,32 +31,35 @@
 
 - [x] Name (Arcane Scrolls)
 	- [ ] Integrated
-- [ ] Enemy walk and shoot animation
-- [ ] Enemy avoidance
+- [ ] ?Enemy walk and shoot animation
+- [ ] ?Enemy avoidance
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom
-- [ ] Starting spell selection
-- [ ] Coin Magnet
+- [ ] Story
+- [ ] Pop up on first level up (tutorial)
+- [ ] ?Check before using mana for ability
+- [ ] ?Coin Magnet
+- [x] Starting spell selection (only open start room after spell is bought)
 - [x] Remove rooms in generation after used once
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
 	- [ ] Primary attack should not use mana
-- [ ] Abilities (buyable with XP)
-	- [ ] Fire:
+- [x] Abilities (buyable with XP)
+	- [x] Fire:
 		- [x] Primary: Fireball
-		- [ ] Abilities:
+		- [x] Abilities:
 			- [ ] ?Fire beam many small little fire projectiles
 			- [x] Fire wave around player
 			- [x] Fire circle around player
-			- [ ] Heat buff (speed and damage)
+			- [x] Heat buff (speed and damage)
 			- [ ] ?Burning floor wave (aoe)
 		- [ ] ?Perks:
 			- [ ] ?Fire does more damage
 			- [ ] ?Fire roll, burn floor on ground
 		- [ ] ?Effects:
 			- [ ] ?Burn
-	- [ ] Ice:
+	- [x] Ice:
 		- [x] 1st Primary: Ice spear
 		- [ ] Abilities:
 			- [x] Teleport
@@ -71,15 +74,15 @@
 			- [ ] ?Freeze
 			- [ ] ?Bleed
 			- [ ] ?Time slow
-	- [ ] Earth:
+	- [x] Earth:
 		- [x] Primary: Rock throw
 		- [ ] Abilities:
-			- [ ] Buff circle or rock wall
-			- [ ] Earth spike
-			- [ ] Rock Roll
+			- [x] Buff circle or rock wall
+			- [x] Earth spike
+			- [x] Rock Roll
 		- [ ] ?Perks:
 			- [ ] ?More physical damage
-			- [ ] Crippled enemies take more damage
+			- [ ] ?Crippled enemies take more damage
 			- [ ] ?Rolling deals damage
 		- [ ] ?Effects:
 			- [ ] ?Crippled
@@ -112,7 +115,7 @@
 	- [x] level up
 	- [x] Enemy Damage hit (hitmarker)
 	- [x] Player roll
- 		- [ ] Integrate 	
+ 		- [x] Integrate 	
 - [ ] Enemies
 	- [x] Damage Number
 	- [x] Healthbar
@@ -126,8 +129,8 @@
 		- [ ] 4 Attacks
 - [ ] Rooms
 	- [x] 8 bad rooms (8 / 8)
-	- [ ] 2 good rooms (0 / 2)
-		- [ ] Free money room
+	- [x] 2 good rooms (0 / 2)
+		- [x] Free money room
 		- [x] Shop (Buy potions, level points and skill points)
 	- [ ] 2 neutral (0 / 2)
 		- [ ] Empty room (with props)

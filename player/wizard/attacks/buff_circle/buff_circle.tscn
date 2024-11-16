@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5l6sgug6ext5"]
+
+[ext_resource type="Script" path="res://player/wizard/attacks/buff_circle/buff_circle.gd" id="1_cbjii"]
+[ext_resource type="Texture2D" uid="uid://bfnjedx5445md" path="res://player/wizard/attacks/buff_circle/buff_circle.png" id="1_v6s5o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_504e2"]
+radius = 50.01
+
+[node name="buff_circle" type="Area2D"]
+z_index = -1
+scale = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 129
+script = ExtResource("1_cbjii")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_504e2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v6s5o")

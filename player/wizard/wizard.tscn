@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvth46mu6adxs"]
+[gd_scene load_steps=8 format=3 uid="uid://bvth46mu6adxs"]
 
 [ext_resource type="PackedScene" uid="uid://dp7jdk5hksqyw" path="res://player/player.tscn" id="1_e5mfj"]
 [ext_resource type="Script" path="res://player/wizard/wizard.gd" id="2_qjxi4"]
@@ -7,9 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://bp4qtf0cxhytr" path="res://player/wizard/idle_attack.png" id="5_yh1x0"]
 [ext_resource type="Texture2D" uid="uid://cd8tn82cme0s2" path="res://player/wizard/walk_attack.png" id="6_1yv4r"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_u0cbm"]
+radius = 17.5071
+
 [node name="player" instance=ExtResource("1_e5mfj")]
 scale = Vector2(2.75, 2.75)
 script = ExtResource("2_qjxi4")
+roll_damage = null
 
 [node name="walk_sprite" parent="." index="4"]
 texture = ExtResource("3_vlwt7")
@@ -24,4 +28,13 @@ texture = ExtResource("5_yh1x0")
 texture = ExtResource("6_1yv4r")
 
 [node name="collider" parent="." index="10"]
-position = Vector2(0, 3)
+position = Vector2(0, 2.90909)
+
+[node name="sensor" type="Area2D" parent="." index="11"]
+scale = Vector2(1, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="collider" type="CollisionShape2D" parent="sensor" index="0"]
+position = Vector2(0, 2.90909)
+shape = SubResource("CircleShape2D_u0cbm")

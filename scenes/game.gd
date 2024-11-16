@@ -12,7 +12,7 @@ const POP_UP := preload("res://ui/pop_up.tscn")
 #const POP_UP := preload("res://ui/pop_up.tscn")
 #const POP_UP := preload("res://ui/pop_up.tscn")
 
-func is_valid_position(position: Vector2) -> bool:
+func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
 	var rooms = $rooms.get_children()
 	var valid = false
 	for room: Room in rooms:
@@ -32,15 +32,15 @@ func is_valid_position(position: Vector2) -> bool:
 		if room.active:
 			break
 			
-	if valid:
+	if valid and not ignore_entities:
 		var space_state = get_world_2d().direct_space_state
 		var params = PhysicsPointQueryParameters2D.new()
 		params.position = position
 		var result = space_state.intersect_point(params)
 		if len(result):
+			#if not(ignore_enemies and result is Enemy):
 			valid = false
 	
-
 	return valid
 
 func play_track(path):

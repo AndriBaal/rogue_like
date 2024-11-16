@@ -134,28 +134,40 @@ func _process(_delta: float) -> void:
 		
 	var player_pos = self.target.position - self.position
 	var player_tile_pos = self.tiles.local_to_map(player_pos / self.tiles.scale)
-	if not self.active and not self.tiles.get_used_rect().has_point(player_tile_pos):
+	
+	if not self.active and self.tiles.get_used_rect().has_point(player_tile_pos):
+		var tile_data = self.tiles.get_cell_tile_data(player_tile_pos)
+		if not tile_data:
+			return
+		var entrance_data = tile_data.get_custom_data("entrance")
+		if not entrance_data:
+			self.active = true
+			self._close_room()
+			for enemy in self.enemies.get_children():
+				enemy.aggro()
+		
+	if not self.active:
 		return
 		
 	if self.cleared():
 		self._open_room()
 		self.active = false
 		self.finished = true
-		return
 		
-	if not active:
-		var player_size = self.target.get_node(^'collider').shape.get_rect().size * self.target.scale / 2.0
-		for entrance in self.entrances:
-			var direction = entrance['direction']
-			for v in [entrance['start'], entrance['end']]:
-				var tile = v - direction
-				var player_tile = self.tiles.local_to_map((player_pos - Vector2(-direction) * player_size) / self.tiles.scale)
-				if tile == player_tile:
-					self.active = true
-					self._close_room()
-					for enemy in self.enemies.get_children():
-						enemy.aggro()
-					return
+					
+	#if not active:
+		#var player_size = self.target.get_node(^'collider').shape.get_rect().size * self.target.scale / 2.0
+		#for entrance in self.entrances:
+			#var direction = entrance['direction']
+			#for v in [entrance['start'], entrance['end']]:
+				#var tile = v - direction
+				#var player_tile = self.tiles.local_to_map((player_pos - Vector2(-direction) * player_size) / self.tiles.scale)
+				#if tile == player_tile:
+					#self.active = true
+					#self._close_room()
+					#for enemy in self.enemies.get_children():
+						#enemy.aggro()
+					#return
 					
 func _close_room():
 	map.close_teleporters()
@@ -209,4 +221,11 @@ func entrances_left() -> int:
 
 func cleared() -> bool:
 	var enemies_left = self.enemies.get_child_count()
-	return enemies_left == 0
+	if enemies_left == 0:
+		for attack in self.game.player.active_attacks.values():
+			if attack != null:
+				if self.name == 'boss_room':
+					self.game.spawn_pop_up('Congratulations!', 'Thank you for playing our Game!')
+				return true
+	
+	return false

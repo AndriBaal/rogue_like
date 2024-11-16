@@ -39,9 +39,9 @@ func init_tree(skill_tree, attacks):
 func _recurse_skill_tree(parent, skill_tree, attacks):
 	for skill in skill_tree:
 		var attack_name = skill['attack_name']
-		if 'position' not in skill:
+		if parent and $cam/nodes.has_node(attack_name):
 			parent.child_skills.push_back($cam/nodes.get_node(attack_name).get_path())
-			return
+			continue
 			
 		var attack = attacks[attack_name]
 		var node: SkillTreeNode = SKILL_TREE_NODE.instantiate()
