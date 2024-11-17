@@ -58,7 +58,7 @@ func _ready() -> void:
 		var hp_bar = $hp_bar
 		self.hp_bar_offset = hp_bar.position
 		hp_bar.position = self.global_position + self.hp_bar_offset
-		hp_bar.max_value = self.health
+		hp_bar.max_value = self.max_health
 	
 func aggro() -> void:
 	self.state = EnemyState.AGGRO

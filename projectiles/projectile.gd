@@ -50,7 +50,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			
 		if body not in hit:
 			# Enemy is hit
-			if not inner_collider and body is Enemy:
+			if not inner_collider and (body is Enemy or body is Boss):
 				self.hit[body] = true
 				body.deal_damage(self.damage * self.game.player.attack_factor(self.damage_type))
 				if self.pierce > 0:
@@ -72,7 +72,7 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			elif not body.deal_damage(self.damage):
 				return
 		# Other enemy is hit
-		elif body is Enemy:
+		elif (body is Enemy or body is Boss):
 			return
 		elif inner_collider:
 			destroy = true
@@ -93,5 +93,5 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 		particle.self_modulate = self.color
 		
 		particle.rotation = self.rotation + PI / 2.0
-		$/root/game/effects.add_child(particle)
+		game.effects.add_child(particle)
 		self.queue_free()

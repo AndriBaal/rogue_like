@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 						player.level_up_tokens += 1
 					ShopItemType.SkillToken:
 						player.skill_tokens += 1
+			else:
+				player.get_node('buy_fail_audio').play()
 			
 func _player_entered(body):
 	if body is Player:

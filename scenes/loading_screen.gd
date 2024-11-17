@@ -15,11 +15,12 @@ func _generate_level():
 	if Menu.LOAD_SAVE:
 		scene = load("user://%s.scn" % Menu.GAME_NAME).instantiate()
 		scene.get_node(^"pause_menu").visible = false
+		scene.get_node(^"player").effects  = {} # Neededd for deserialization
 	else:
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
 			DungeonGeneration.DungeonOptions.new(
-				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 0, Menu.SEED
+				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED
 			)
 		)
 		var player = scene.get_node(^"player")

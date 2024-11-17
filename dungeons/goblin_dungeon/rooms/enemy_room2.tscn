@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="8_6cc8m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_plntd"]
-vertices = PackedVector2Array(710, -566, 545, -110.344, 349, -110.344, 233, -195.344, 233, -351.344, 710, 566, 545, 112.344, 233, 329.656, -566, 566, -43, 329.656, 349, 112.344, 233, 173.656, -43, -195.344, -43, 173.656, -169, 112.344, -169, -110.344, -566, -566, -43, -351.344, -365, -110.344, -365, 112.344)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 5, 6, 1), PackedInt32Array(7, 5, 8, 9), PackedInt32Array(10, 6, 5, 7, 11), PackedInt32Array(12, 3, 2, 10, 11, 13, 14, 15), PackedInt32Array(16, 0, 4, 17), PackedInt32Array(16, 17, 12, 15, 18), PackedInt32Array(8, 16, 18, 19), PackedInt32Array(9, 8, 19, 14, 13)])
+vertices = PackedVector2Array(553, -109, 341, -109, 225, -202, 225, -342, 566, -422, 710, -422, 710, 566, 553, 127, -35, 323, 225, 323, -422, 566, -422, 422, 341, 127, 225, 183, -35, -202, -35, 183, -161, 127, -161, -109, -373, 127, -566, 422, -566, -566, -373, -109, 566, -566, -35, -342)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 6, 7, 0), PackedInt32Array(8, 9, 6, 10, 11), PackedInt32Array(12, 7, 6, 9, 13), PackedInt32Array(14, 2, 1, 12, 13, 15, 16, 17), PackedInt32Array(18, 11, 19, 20, 21), PackedInt32Array(20, 22, 4, 3, 23), PackedInt32Array(16, 15, 8, 11, 18), PackedInt32Array(17, 21, 20, 23, 14)])
 
 [node name="room" instance=ExtResource("1_8n4ip")]
 navigation_polygon = SubResource("NavigationPolygon_plntd")
@@ -66,7 +66,10 @@ position = Vector2(447, 21)
 position = Vector2(-267, -273)
 
 [node name="goblin_axe" parent="enemies" index="1" instance=ExtResource("7_nwo3t")]
-position = Vector2(95, 1)
+position = Vector2(-288, 384)
 
-[node name="slime_blue" parent="enemies" index="2" instance=ExtResource("8_6cc8m")]
+[node name="goblin_axe2" parent="enemies" index="2" instance=ExtResource("7_nwo3t")]
+position = Vector2(456, -304)
+
+[node name="slime_blue" parent="enemies" index="3" instance=ExtResource("8_6cc8m")]
 position = Vector2(448, 320)

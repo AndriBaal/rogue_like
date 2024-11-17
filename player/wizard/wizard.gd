@@ -348,5 +348,5 @@ func _fire_buff(_player_position, _look_direction):
 	}
 
 func _body_entered(body):
-	if self.state == PlayerState.ROLL and body is Enemy and self.roll_damage:
+	if self.state == PlayerState.ROLL and (body is Enemy or body is Boss) and self.roll_damage:
 		body.deal_damage(self.roll_damage)

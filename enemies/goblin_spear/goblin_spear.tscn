@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnqdjjmtuwmy5"]
+[gd_scene load_steps=8 format=3 uid="uid://bnqdjjmtuwmy5"]
 
 [ext_resource type="PackedScene" uid="uid://bvsrhnrd1kp5h" path="res://enemies/enemy.tscn" id="1_4243h"]
 [ext_resource type="Script" path="res://enemies/goblin_spear/goblin_spear.gd" id="2_3p0th"]
 [ext_resource type="Texture2D" uid="uid://bqfhn2yf7sdvw" path="res://enemies/goblin_spear/idle.png" id="2_rfiit"]
 [ext_resource type="Texture2D" uid="uid://12tvq7xs3fq4" path="res://enemies/goblin_spear/idle_attack.png" id="4_5sqfl"]
 [ext_resource type="Texture2D" uid="uid://bk6x1nj2gjstq" path="res://enemies/goblin_spear/walk.png" id="5_18tvq"]
+[ext_resource type="AudioStream" uid="uid://b2v6mpbjdosh3" path="res://enemies/goblin_spear/throw.mp3" id="6_ectfr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s84cm"]
 radius = 22.4
@@ -31,6 +32,9 @@ vframes = 8
 [node name="collider" parent="." index="3"]
 position = Vector2(0, 3.2)
 shape = SubResource("CircleShape2D_s84cm")
+
+[node name="throw_sound" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("6_ectfr")
 
 [node name="name" parent="hp_bar" index="0"]
 text = "Goblin"

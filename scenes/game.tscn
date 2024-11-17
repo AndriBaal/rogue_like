@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqs0n48ll4s83"]
+[gd_scene load_steps=5 format=3 uid="uid://bqs0n48ll4s83"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_n35nx"]
 [ext_resource type="PackedScene" uid="uid://bvth46mu6adxs" path="res://player/wizard/wizard.tscn" id="2_6ghqu"]
 [ext_resource type="PackedScene" uid="uid://brnalduy51441" path="res://ui/pause_menu.tscn" id="3_1unu5"]
-[ext_resource type="AudioStream" uid="uid://xkf63rch8svq" path="res://dungeons/goblin_dungeon/sound/menu.mp3" id="4_x7mlx"]
 
 [sub_resource type="Environment" id="Environment_ed0iv"]
 background_mode = 3
@@ -40,6 +39,5 @@ environment = SubResource("Environment_ed0iv")
 follow_viewport_enabled = true
 
 [node name="soundtrack" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_x7mlx")
-volume_db = -38.148
+volume_db = -36.0
 autoplay = true

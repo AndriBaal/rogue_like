@@ -2,15 +2,51 @@ extends Node2D
 
 class_name Game
 
+
+const POP_UP := preload("res://ui/pop_up.tscn")
+const SOUND_TRACKS := {
+	'relaxed': preload('res://dungeons/goblin_dungeon/sound/menu.mp3'),
+	'battle': preload('res://dungeons/goblin_dungeon/sound/battleTrack.mp3'),
+}
+
+enum ActiveTrack {
+	NONE,
+	BATTLE,
+	RELAXED
+}
+
+@export var active_track = null
+@export var last_track_progress :=  {}
+
 @onready var projectiles = $projectiles
 @onready var effects = $effects
 @onready var ui_effects = $ui_effects
 @onready var player: Player = $player
 @onready var attack_selection = $player/ui/inventory/character/content/attack_selection
 
-const POP_UP := preload("res://ui/pop_up.tscn")
-#const POP_UP := preload("res://ui/pop_up.tscn")
-#const POP_UP := preload("res://ui/pop_up.tscn")
+
+func _ready() -> void:
+	$soundtrack.finished.connect(self._track_finished)
+	self.play_track('relaxed')
+	
+func _track_finished():
+	$soundtrack.play()
+
+func play_track(track: String):
+	var soundtrack = $soundtrack
+	if track == self.active_track:
+		return
+	
+	var progress = 0.0
+	if self.active_track != null:
+		self.last_track_progress[self.active_track] = soundtrack.get_playback_position()
+		
+	if track in self.last_track_progress:
+		progress = self.last_track_progress[track]
+		
+	soundtrack.stream = SOUND_TRACKS[track]
+	soundtrack.play(progress)
+	self.active_track = track
 
 func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
 	var rooms = $rooms.get_children()
@@ -42,9 +78,6 @@ func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
 			valid = false
 	
 	return valid
-
-func play_track(path):
-	pass
 
 func spawn_pop_up(title, description):
 	var pop_up = POP_UP.instantiate()

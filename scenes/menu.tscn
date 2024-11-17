@@ -65,7 +65,7 @@ offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 80
-text = "Rogue Like"
+text = "Scrolls & Dungeons"
 horizontal_alignment = 1
 
 [node name="load_save" type="Control" parent="."]

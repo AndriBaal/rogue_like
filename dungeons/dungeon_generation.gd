@@ -54,7 +54,8 @@ class DungeonOptions:
 					],
 					"neutral":
 					[
-						
+						load("res://dungeons/goblin_dungeon/rooms/neutral_room1.tscn"),
+						load("res://dungeons/goblin_dungeon/rooms/neutral_room2.tscn"),
 					],
 					"boss": load("res://dungeons/goblin_dungeon/rooms/boss_room.tscn")
 				}

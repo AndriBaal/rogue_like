@@ -21,6 +21,7 @@ func attack():
 	super()
 	if not self.attacked and self.attack_sprite.frame_coords.x == 8:
 		self.attacked = true
+		$throw_sound.play()
 		self.game.spawn_projectile(
 			WOOD_SPEAR.instantiate(),
 			self.global_position + 80.0 * self.target_vector,

@@ -47,6 +47,13 @@ func _ready() -> void:
 		if show_on_minimap:
 			floor_cells.push_back(cell + tile_position)
 	self.optimized_cells = self._optimize_cells(floor_cells)
+	
+	# Make sure children are accessible after deserialization by not storing the refrence but the path
+	self.parent = self.parent.get_path() if self.parent != null else null
+	var children = []
+	for child in self.children:
+		children.push_back(child.get_path())
+	self.children = children
 
 
 func _get_room_entrances() -> Array:
@@ -170,6 +177,9 @@ func _process(_delta: float) -> void:
 					#return
 					
 func _close_room():
+	if self.enemies.get_child_count() > 0:
+		self.game.play_track('battle')
+	
 	map.close_teleporters()
 	
 	# Clear all projectiles on room enter
@@ -188,11 +198,14 @@ func _close_room():
 			
 
 func _open_room():
+	self.game.play_track('relaxed')
+
 	map.open_teleporters()
 	for cell in self.optimized_cells:
 		map.add_rect(cell, self.tile_size, Color.LIGHT_GRAY)
 		
-	for child in self.children:
+	for path in self.children:
+		var child = self.get_node(path)
 		for cell in child.optimized_cells:
 			map.add_rect(cell, self.tile_size, Color.DIM_GRAY)
 		

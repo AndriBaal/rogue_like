@@ -89,13 +89,15 @@ enum PlayerState {
 	get:
 		return max_health
 	set(value):
-		if value > max_health:
-			var diff = max_health
-			max_health = value
-			heal(diff)
-		else:
-			max_health = value
-			heal(0.0)
+		max_health = value
+		heal(0.0)
+		#if value > max_health:
+			#var diff = max_health
+			#max_health = value
+			#heal(diff)
+		#else:
+			#max_health = value
+			#heal(0.0)
 		
 @export var health := max_health
 @export var xp := 0:
@@ -136,8 +138,8 @@ enum PlayerState {
 @export var potions := 3
 
 @export var roll_cost = 5.0
-@export var roll_duration := 0.55
-@export var roll_speed := 750.0
+@export var roll_duration := 0.5
+@export var roll_speed := 700.0
 @export var roll_timer := 0.0
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
@@ -168,15 +170,19 @@ enum PlayerState {
 		skill_tokens = val
 		$ui/inventory/skill_tree/content.update_skill_token_ui(val)
 @export var effects := {}
+@export var step_timer = 0.0
 
-
+const STEP_INTERVAL := 0.3
 const GAME_OVER := preload("res://ui/game_over.tscn")
 
 func _ready() -> void:
 	$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 	if not init:
 		init = true
-		self.game.spawn_pop_up('Welcome!', "Use 'W', 'A', 'S' and 'D' to move around. If you are new, make sure to read the letters on the ground.")
+		self.game.spawn_pop_up(
+			'Welcome!', 
+			"Use 'W', 'A', 'S' and 'D' to move around. If you are new, make sure to read the letters on the ground. Read the center note to find out how to leave the first room."
+		)
 		self._update_potion_ui()
 		$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
 	
@@ -201,6 +207,7 @@ func _process(delta: float) -> void:
 	var look: Vector2 = (mouse_pos - player_position).normalized()
 	
 	self.parry_timer += delta
+	self.step_timer -= delta
 	self.roll_timer -= delta
 	
 	var roll := Input.is_action_just_pressed("roll")
@@ -304,6 +311,13 @@ func _process(delta: float) -> void:
 			active_sprite = $walk_attack_sprite
 			active_sprite.frame_coords.x = int(self.animation_timer * 32.0) % active_sprite.hframes
 			self.animation_timer += delta
+			
+	var step_audio = $step_audio
+	if (self.state == PlayerState.WALK or self.state == PlayerState.WALK_ATTACK) \
+		and self.step_timer <= 0.0 and not step_audio.playing:
+		step_audio.pitch_scale = randf_range(0.8, 1.2)
+		step_audio.play()
+		self.step_timer = STEP_INTERVAL
 
 	active_sprite.frame_coords.y = self.direction
 	self._compute_immunity(delta, active_sprite)
@@ -319,11 +333,11 @@ func _input(_event: InputEvent) -> void:
 		camera.zoom.y = clamp(camera.zoom.y * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
 
 func _physics_process(_delta: float) -> void:
-	var base_speed = (self.speed if self.state != PlayerState.ROLL else self.roll_speed) + (5 * self.speed_stat)
+	var base_speed = (self.speed if self.state != PlayerState.ROLL else self.roll_speed) + (5.0 * self.speed_stat)
 	for effect in self.effects.values():
 		if 'speed' in effect:
 			base_speed *= effect['speed']
-	self.velocity = self.movement.normalized() * speed
+	self.velocity = self.movement.normalized() * base_speed
 	self.move_and_slide()
 
 func _update_mana(delta):

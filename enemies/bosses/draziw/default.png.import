@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhxpmk87l5cjn"
-path="res://.godot/imported/evil_fire_ball.png-77cf8c471bf28b05e70f07d3cd9b07f8.ctex"
+uid="uid://cn2wtxdsvh0fq"
+path="res://.godot/imported/default.png-8a1fd3d257103e76a0c964ef69de468a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://projectiles/evil_fire_ball.png"
-dest_files=["res://.godot/imported/evil_fire_ball.png-77cf8c471bf28b05e70f07d3cd9b07f8.ctex"]
+source_file="res://enemies/bosses/draziw/default.png"
+dest_files=["res://.godot/imported/default.png-8a1fd3d257103e76a0c964ef69de468a.ctex"]
 
 [params]
 

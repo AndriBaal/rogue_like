@@ -28,23 +28,38 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
-
-- [x] Name (Arcane Scrolls)
-	- [ ] Integrated
-- [ ] ?Enemy walk and shoot animation
-- [ ] ?Enemy avoidance
 - [ ] Tutorial (maybe add tutorial text in starting room)
-- [ ] Limit camera zoom
-- [ ] Story
-- [ ] Pop up on first level up (tutorial)
-- [ ] ?Check before using mana for ability
-- [ ] ?Coin Magnet
-- [x] Starting spell selection (only open start room after spell is bought)
-- [x] Remove rooms in generation after used once
+- [ ] Limit camera zoom & Make game fullscreeen by default
+- [ ] ?Story
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
 	- [ ] Primary attack should not use mana
+- [ ] Enemies
+	- [x] Damage Number
+	- [x] Healthbar
+	- [X] Path Finding
+	- [x] 3 enemy types (3 / 3)
+		- [x] Spear Thrower
+		- [x] Axe Thrower
+		- [x] Slime (Red, Green, Blue)
+		- [ ] ?Rat
+	- [ ] Boss: Goblin King (Ogre, Dragon, Dark Mage)
+		- [ ] 4 Attacks
+- [ ] Rooms
+	- [x] 8 bad rooms (8 / 8)
+	- [x] 2 good rooms (0 / 2)
+		- [x] Free money room
+		- [x] Shop (Buy potions, level points and skill points)
+	- [ ] 2 neutral (0 / 2)
+		- [ ] Empty room (with props)
+		- [ ] ?Gambling
+	- [x] 1 boss room
+- [ ] ?Transition songs
+- [ ] ?Check before using mana for ability
+- [ ] ?Coin Magnet
+- [x] Starting spell selection (only open start room after spell is bought)
+- [x] Remove rooms in generation after used once
 - [x] Abilities (buyable with XP)
 	- [x] Fire:
 		- [x] Primary: Fireball
@@ -86,56 +101,36 @@
 			- [ ] ?Rolling deals damage
 		- [ ] ?Effects:
 			- [ ] ?Crippled
-- [ ] 3 Soundtracks:
+- [x] 3 Soundtracks:
 	- [ ] ?Boss
 		- [ ] ?Track
 		- [ ] ?Integrated
-	- [ ] Regular Fight
+	- [x] Regular Fight
 		- [x] Track
-		- [ ] Integrated
-	- [ ] Relaxed
+		- [x] Integrated
+	- [x] Relaxed
 		- [x] Track
-		- [ ] Integrated
-- [ ] Sounds
+		- [x] Integrated
+- [x] Sounds
 	- [x] Coin Collect
 	- [x] Ui Button Click
 	- [ ] Attack sounds(fireball, water wave, rock)
 	- [x] Player heal potion
 	- [x] Error buy sound
 	- [x] Enemy throw attack sound
-  		- [ ] Integrate
-	- [ ] (Andri) Buy confirm
+  		- [x] Integrate
+	- [x] Buy confirm
 	- [x] Player step
-  		- [ ] Integrate
+  		- [x] Integrate
 	- [x] Player Damage hit
 		- [x] Integrate
   	- [x] Boss Damage hit
-  		- [ ] Integrate  
+  		- [x] Integrate  
 	- [x] Parry
 	- [x] level up
 	- [x] Enemy Damage hit (hitmarker)
 	- [x] Player roll
- 		- [x] Integrate 	
-- [ ] Enemies
-	- [x] Damage Number
-	- [x] Healthbar
-	- [X] Path Finding
-	- [x] 3 enemy types (3 / 3)
-		- [x] Spear Thrower
-		- [x] Axe Thrower
-		- [x] Slime (Red, Green, Blue)
-		- [ ] ?Rat
-	- [ ] Boss: Goblin King (Ogre, Dragon, Dark Mage)
-		- [ ] 4 Attacks
-- [ ] Rooms
-	- [x] 8 bad rooms (8 / 8)
-	- [x] 2 good rooms (0 / 2)
-		- [x] Free money room
-		- [x] Shop (Buy potions, level points and skill points)
-	- [ ] 2 neutral (0 / 2)
-		- [ ] Empty room (with props)
-		- [ ] ?Gambling
-	- [x] 1 boss room
+ 		- [x] Integrate
 
 - [x] Decorations
 	- [x] Torch
@@ -161,6 +156,8 @@
 - [ ] ?Redo torch animation
 - [ ] ?Implement perks in Player / Skill Tree
 - [ ] ?Show description on hover in hud
+- [ ] ?Enemy walk and shoot animation
+- [ ] ?Enemy avoidance
 - [ ] ?Perks:
 	- [ ] ?Moneygraber (get x% more money)
 - [ ] ?Optimize room occluding
@@ -195,6 +192,9 @@
 - [x] Spacial Audio
 - [x] Redo tiles
 - [x] Logo (temporary)
+- [x] Pop up on first level up (tutorial)
+- [x] Name (Arcane Scrolls)
+	- [x] Integrated
 - [x] Custom cursor
 - [x] Reset camera when opening skill tree or map
 - [x] Enemy helathbar and damage numbers

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=4 uid="uid://celn6v78sqijk"]
+
+[ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_aj4uc"]
+[ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_ygqfx"]
+[ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="4_5v022"]
+
+[node name="room" instance=ExtResource("1_aj4uc")]
+
+[node name="tiles" parent="." index="0"]
+tile_map_data = PackedByteArray("AAD//wAAAAAMAAEAAAD//wEAAAABAAEAAAAAAAEAAAANAAEAAAABAAEAAAAIAAEAAAABAAAAAAACAAEAAAAAAAAAAAAOAAAAAAD/////AAABAAEAAAAAAP//AAAAAAEAAAABAP//AAAMAAEAAAD+/wEAAAAFAAEAAAD+/wAAAAAOAAEAAAD+////AAAOAAEAAAABAAIAAAAOAAEAAAAAAAIAAAAAAAEAAAD//wIAAAABAAEAAAD+/wIAAAADAAEAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP//AAACAAAAAAACAAAAAAACAAAAAAACAAEAAAACAAAAAAACAAIAAAACAAAAAAACAP7/AAADAAAAAAD9//7/AAADAAAAABD9////AAACAAAAABD9/wAAAAACAAAAABD9/wEAAAACAAAAABD9/wIAAAACAAAAABACAAMAAAAEAAAAAAD9/wMAAAAEAAAAABD+/wMAAAACAAAAAFD//wMAAAACAAAAAFAAAAMAAAACAAAAAFABAAMAAAACAAAAAFA=")
+tile_set = ExtResource("2_ygqfx")
+
+[node name="entrances" parent="." index="1"]
+tile_map_data = PackedByteArray("AAD+/wMAAAAFAAAAAAD//wMAAAANAAAAAAAAAAMAAAANAAAAAAABAAMAAAAFAAAAABD9////AAABAAAAABD9/wAAAAANAAAAAFD9/wEAAAANAAAAAFD9/wIAAAAFAAAAAAACAP//AAABAAAAAAACAAAAAAANAAAAAGACAAEAAAANAAAAAGACAAIAAAAFAAAAABD+//7/AAABAAAAABD///7/AAANAAAAADAAAP7/AAANAAAAADABAP7/AAABAAAAAAA=")
+tile_set = ExtResource("2_ygqfx")
+
+[node name="light" parent="decorations" index="0" instance=ExtResource("4_5v022")]

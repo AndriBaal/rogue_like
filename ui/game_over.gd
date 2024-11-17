@@ -13,5 +13,6 @@ func _return():
 
 func _retry():
 	Menu.LOAD_SAVE = false
+	Menu.SEED = randi()
 	self.get_tree().paused = false
 	self.get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")

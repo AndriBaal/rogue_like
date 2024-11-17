@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bdjdpo0r71frc"]
+[gd_scene load_steps=6 format=4 uid="uid://bdjdpo0r71frc"]
 
 [ext_resource type="PackedScene" uid="uid://dxms48yolfk2i" path="res://dungeons/room.tscn" id="1_d011b"]
 [ext_resource type="TileSet" uid="uid://c5uuoljrgef53" path="res://dungeons/goblin_dungeon/rooms/tiles.tres" id="2_du24d"]
 [ext_resource type="PackedScene" uid="uid://bbjooovsq2eyg" path="res://dungeons/goblin_dungeon/decorations/light.tscn" id="3_l7c0b"]
+[ext_resource type="PackedScene" uid="uid://btwwypkm7wbgi" path="res://enemies/bosses/draziw/draziw.tscn" id="4_ye16k"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bx5qv"]
 vertices = PackedVector2Array(998, 998, -998, 998, -998, -998, 998, -998)
@@ -22,3 +23,5 @@ tile_set = ExtResource("2_du24d")
 [node name="light3" parent="decorations" index="0" instance=ExtResource("3_l7c0b")]
 position = Vector2(6.10352e-05, -24.0001)
 texture_scale = 0.7
+
+[node name="enemy" parent="enemies" index="0" instance=ExtResource("4_ye16k")]

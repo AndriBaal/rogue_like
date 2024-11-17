@@ -16,6 +16,7 @@ func loot_pool() -> Array:
 
 func start_attack() -> void:
 	super()
+	$throw_sound.play()
 	self.attacked = false
 
 
