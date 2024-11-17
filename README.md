@@ -8,7 +8,7 @@
 
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [ ] Fix greyed out skill tree nodes after deserialization
-- [ ] Fix reference in room children -> crash after deserialization
+- [x] Fix reference in room children -> crash after deserialization
 - [x] Room enter detection
 - [x] Not all rooms are being used -> 3721335509
 - [x] When you load a game the menu points in the inventory are stacked and not deserialized properly
@@ -30,12 +30,12 @@
 ## TODO
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom & Make game fullscreeen by default
-- [ ] ?Story
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
 	- [ ] Primary attack should not use mana
-- [ ] Enemies
+- [ ] ?Story
+- [x] Enemies
 	- [x] Damage Number
 	- [x] Healthbar
 	- [X] Path Finding
@@ -44,15 +44,15 @@
 		- [x] Axe Thrower
 		- [x] Slime (Red, Green, Blue)
 		- [ ] ?Rat
-	- [ ] Boss: Goblin King (Ogre, Dragon, Dark Mage)
-		- [ ] 4 Attacks
-- [ ] Rooms
+	- [x] Boss: Goblin King (Ogre, Dragon, Dark Mage)
+		- [x] 4 Attacks
+- [x] Rooms
 	- [x] 8 bad rooms (8 / 8)
 	- [x] 2 good rooms (0 / 2)
 		- [x] Free money room
 		- [x] Shop (Buy potions, level points and skill points)
-	- [ ] 2 neutral (0 / 2)
-		- [ ] Empty room (with props)
+	- [x] 2 neutral (0 / 2)
+		- [x] Empty room (with props)
 		- [ ] ?Gambling
 	- [x] 1 boss room
 - [ ] ?Transition songs
