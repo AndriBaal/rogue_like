@@ -17,6 +17,7 @@ offset_bottom = 78.0
 texture = ExtResource("2_20ox0")
 
 [node name="content" parent="." index="1"]
+visible = false
 script = ExtResource("1_rhld5")
 
 [node name="cam" type="Camera2D" parent="content" index="0"]
@@ -25,7 +26,6 @@ process_callback = 0
 [node name="tiles" type="Node2D" parent="content/cam" index="0"]
 
 [node name="player" type="ColorRect" parent="content/cam" index="1"]
-z_index = 4096
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

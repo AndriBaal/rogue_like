@@ -14,7 +14,7 @@
 vertices = PackedVector2Array(874, 298, 1286, 422, 1142, 422, -104, 363, 278, 298, 1286, -134, 874, 134, 1142, -134, -104, 223, 278, -154, -134, -134, -134, -298, -364, 223, -298, -134, 730, -154, 998, -422, 1142, -422, 730, 134, 1142, 566, 566, 566, 566, 854, 154, 854, 154, 566, -566, 566, -364, 363, -566, -278, -422, -278, -298, -298, -422, -422, 586, -422, 998, -566, 586, -566)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 1, 0, 6, 7), PackedInt32Array(4, 3, 8, 9), PackedInt32Array(9, 8, 10, 11), PackedInt32Array(10, 8, 12, 13), PackedInt32Array(14, 15, 16, 7, 6, 17), PackedInt32Array(2, 18, 19, 3), PackedInt32Array(19, 20, 21, 22), PackedInt32Array(3, 19, 22), PackedInt32Array(3, 22, 23, 24), PackedInt32Array(24, 23, 25, 12), PackedInt32Array(13, 12, 25, 26), PackedInt32Array(27, 13, 26, 28), PackedInt32Array(27, 28, 29, 11), PackedInt32Array(14, 9, 11, 29, 15), PackedInt32Array(30, 15, 29, 31)])
 
-[node name="room" instance=ExtResource("1_gv10x")]
+[node name="enemy_room1" instance=ExtResource("1_gv10x")]
 navigation_polygon = SubResource("NavigationPolygon_e5cvl")
 
 [node name="tiles" parent="." index="0"]

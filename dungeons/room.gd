@@ -15,7 +15,6 @@ class_name Room
 @export var children := []
 @export var parent = null
 @export var entrances: Array
-@export var tile_size: Vector2
 @export var init := false
 
 func start() -> Room:
@@ -28,9 +27,8 @@ func _ready() -> void:
 		return
 	self.init = true
 	
-	# TODO: Maybe move this to other function than _ready
+	var tile_size = Vector2(self.tiles.tile_set.tile_size) * self.tiles.scale
 	var used_cells = self.tiles.get_used_cells()
-	self.tile_size = Vector2(self.tiles.tile_set.tile_size) * self.tiles.scale
 	var tile_position = Vector2i(self.position / tile_size)
 	var floor_cells: Array[Vector2i] = []
 	for cell in used_cells:
@@ -202,12 +200,12 @@ func _open_room():
 
 	map.open_teleporters()
 	for cell in self.optimized_cells:
-		map.add_rect(cell, self.tile_size, Color.LIGHT_GRAY)
+		map.add_rect(cell, Color.LIGHT_GRAY)
 		
 	for path in self.children:
 		var child = self.get_node(path)
 		for cell in child.optimized_cells:
-			map.add_rect(cell, self.tile_size, Color.DIM_GRAY)
+			map.add_rect(cell, Color.DIM_GRAY)
 		
 	for teleport in self.teleporters:
 		map.add_teleport(teleport)

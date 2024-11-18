@@ -13,7 +13,7 @@
 vertices = PackedVector2Array(998, 854, 854, 854, 730, 730, 730, 278, 730, -422, 854, -854, 998, -854, 730, -874, 854, -998, -854, -998, 278, -874, -278, -278, 278, -278, -278, 134, -442, 134, -278, -874, -730, -874, -854, -854, -730, -422, -442, -422, -442, -278, -730, 278, 442, -278, 442, -422, 442, 278, 442, 134, 278, 134, 278, 730, -278, 730, -442, 278, 854, 998, -854, 998, -730, 730, -854, 854, -998, 854, -998, -854)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 0, 3), PackedInt32Array(5, 4, 7, 8), PackedInt32Array(9, 8, 7, 10), PackedInt32Array(11, 10, 12, 13, 14), PackedInt32Array(10, 11, 15), PackedInt32Array(9, 10, 15), PackedInt32Array(9, 15, 16), PackedInt32Array(17, 9, 16, 18), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 23, 4, 3), PackedInt32Array(3, 24, 25), PackedInt32Array(26, 27, 28, 13), PackedInt32Array(14, 29, 21), PackedInt32Array(2, 1, 30, 31, 27), PackedInt32Array(28, 27, 31), PackedInt32Array(32, 28, 31, 33), PackedInt32Array(21, 32, 33, 34, 35, 17), PackedInt32Array(21, 17, 18), PackedInt32Array(14, 21, 20, 11), PackedInt32Array(26, 13, 12, 22), PackedInt32Array(25, 26, 22), PackedInt32Array(25, 22, 3)])
 
-[node name="room" instance=ExtResource("1_d011b")]
+[node name="enemy_room8" instance=ExtResource("1_d011b")]
 navigation_polygon = SubResource("NavigationPolygon_1x63p")
 
 [node name="tiles" parent="." index="0"]

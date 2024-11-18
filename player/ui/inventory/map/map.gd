@@ -34,8 +34,7 @@ func open_teleporters():
 	for teleporter in self.teleporters.get_children():
 		teleporter.disabled = false
 	
-func add_rect(cell, tile_size, rect_color := Color.GRAY):
-	self.tile_size = tile_size
+func add_rect(cell, rect_color := Color.GRAY):
 	var color_rect := ColorRect.new()
 	color_rect.color = rect_color
 	color_rect.size = cell.size * SCALE
@@ -55,4 +54,5 @@ func _process(_delta: float) -> void:
 			if Input.is_action_pressed("primary_attack"):
 				$cam.position += mouse_pos - self.last_mouse_pos
 			self.last_mouse_pos = mouse_pos
-		self.map_player.position = self.player.position / self.tile_size * SCALE - self.map_player.size / 2.0
+		var player_map_pos: Vector2 = self.player.global_position / self.tile_size * SCALE - self.map_player.size / 2.0
+		self.map_player.position = player_map_pos

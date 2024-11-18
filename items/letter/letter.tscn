@@ -58,13 +58,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 9.0
 offset_top = 8.0
-offset_right = -11.0
-offset_bottom = -10.0
+offset_right = 175.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "test"
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Polygon2D" type="Polygon2D" parent="text" index="1"]
 material = SubResource("CanvasItemMaterial_3r6lk")

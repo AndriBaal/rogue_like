@@ -19,6 +19,7 @@ offset_bottom = 78.0
 texture = ExtResource("2_c854q")
 
 [node name="content" parent="." index="1"]
+visible = false
 script = ExtResource("1_pv1b7")
 
 [node name="cam" type="Camera2D" parent="content" index="0"]

@@ -20,6 +20,7 @@ position = Vector2(-295, 298)
 
 [node name="tutorial1" parent="items" index="1" instance=ExtResource("4_651ca")]
 position = Vector2(4.76837e-07, 0)
+text = "In order to leave the first room, you must purchase a Spell from the Skill Tree. You can do this by pressing 'I' and selecting a Skill and click 'UNLOCK'."
 
 [node name="tutorial2" parent="items" index="2" instance=ExtResource("4_651ca")]
 position = Vector2(-295, -304)

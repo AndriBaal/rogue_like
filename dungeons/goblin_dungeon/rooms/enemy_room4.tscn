@@ -11,7 +11,7 @@
 vertices = PackedVector2Array(422, -1142, 422, 1142, 298, 154, 298, -154, 154, -710, 154, -874, 154, 874, 154, 710, -154, 874, -278, 1142, -278, 998, -278, -1142, -154, -874, -278, -998, 134, -154, -154, -710, 134, 154, -154, 710, -134, 154, -298, 154, -134, -154, -298, -154, -422, -998, -422, 998)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(2, 1, 6, 7), PackedInt32Array(8, 6, 1, 9, 10), PackedInt32Array(11, 0, 5, 12, 13), PackedInt32Array(4, 3, 14, 15), PackedInt32Array(16, 2, 7, 17), PackedInt32Array(16, 17, 18, 14), PackedInt32Array(19, 18, 17, 10), PackedInt32Array(14, 18, 20), PackedInt32Array(15, 14, 20), PackedInt32Array(15, 20, 21, 22), PackedInt32Array(10, 23, 22, 19), PackedInt32Array(17, 8, 10), PackedInt32Array(22, 13, 12, 15), PackedInt32Array(22, 21, 19)])
 
-[node name="room" instance=ExtResource("1_of732")]
+[node name="enemy_room4" instance=ExtResource("1_of732")]
 navigation_polygon = SubResource("NavigationPolygon_8bxaa")
 
 [node name="tiles" parent="." index="0"]

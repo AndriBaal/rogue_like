@@ -23,9 +23,10 @@ func _generate_level():
 				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED
 			)
 		)
-		var player = scene.get_node(^"player")
-		var starting_room = dungeon.rooms[0]
-		player.position = starting_room.global_position
+		scene.get_node('player/ui/inventory/map/content').tile_size = dungeon.tile_size
+		#var player = scene.get_node(^"player")
+		#var starting_room = dungeon.rooms[0]
+		#player.position = starting_room.global_position
 
 		var room_node = scene.get_node(^"rooms")
 		for room in dungeon.rooms:

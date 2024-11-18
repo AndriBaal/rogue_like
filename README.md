@@ -30,6 +30,7 @@
 ## TODO
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom & Make game fullscreeen by default
+- [ ] Color map preview in different Colors
 - [ ] Balance:
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
