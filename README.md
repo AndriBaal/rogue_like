@@ -8,6 +8,9 @@
 
 - [ ] ?Camera does not center correctly when starting a game becuase of the popup
 - [ ] Fix greyed out skill tree nodes after deserialization
+- [ ] Fix shifted names of enemies before entering rooms
+- [ ] Focus camera on player in minimap
+- [ ] ?Color map preview in different Colors
 - [x] Fix reference in room children -> crash after deserialization
 - [x] Room enter detection
 - [x] Not all rooms are being used -> 3721335509
@@ -28,23 +31,25 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
-- [ ] Story
-- [ ] Tutorial (maybe add tutorial text in starting room)
-- [ ] Limit camera zoom & Make game fullscreeen by default
-- [ ] Balance:
-	- [ ] Remove start tokens
-	- [ ] Enemy:
+- [ ] Story (Endboss drops coins)
+- [ ] Warning before endboss
+
+- [ ] ?Make game fullscreeen by default
+- [x] Tutorial (maybe add tutorial text in starting room)
+- [x] Limit camera zoom 
+- [x] Balance:
+	- [X] Remove start tokens
+	- [X] Enemy:
 		- [x] xp 
-		- [ ] coins (slimeso nly drop copper)
+		- [X] coins (slimes only drop copper)
 		- [x] speed
 		- [x] attack damage
 		- [x] range
-	- [ ] Abilities:
-		- [ ] cost
-		- [ ] cooldowns
-		- [ ] description
-		- [ ] Primary attack should not use mana
-- [ ] ?Story
+	- [X] Abilities:
+		- [X] cost
+		- [X] cooldowns
+		- [X] description
+		- [X] Primary attack should not use mana
 - [x] Enemies
 	- [x] Damage Number
 	- [x] Healthbar
@@ -177,7 +182,6 @@
 - [ ] ?Knockback projectiles
 - [ ] ?Splash screen
 - [ ] ?Enemy Spawn animation
-- [ ] ?Color map preview in different Colors
 - [ ] ?Room complete indicator (Make a rewarding effect when clearing a room)
 - [ ] ?UI Theme
 - [ ] ?Make second cursor for UI

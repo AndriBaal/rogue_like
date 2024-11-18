@@ -25,22 +25,22 @@ text = "Use 'W', 'A', 'S', and 'D' to move around. Press 'SPACE' to perform a do
 
 [node name="tutorial3" parent="items" index="2" instance=ExtResource("4_651ca")]
 position = Vector2(-3.05176e-05, -304)
-text = "You can unlock abilities in the Skill Tree by pressing 'I'. There are two types of abilities: primary and secondary. Be sure to check the mana consumption and cooldown of each ability before unlocking them."
+text = "You can unlock abilities using Skill Tokens in the Skill Tree by pressing 'I'. There are two types of abilities: primary and secondary. Be sure to check the mana consumption and cooldown of each ability before unlocking them."
 
 [node name="tutorial4" parent="items" index="3" instance=ExtResource("4_651ca")]
 position = Vector2(291, -304)
-text = "You can shoot your primary weapon with the Left Mouse Button. Abilities are assigned to '1', '2', and '3'. To assign abilities, open the inventory by pressing 'TAB'."
+text = "You can shoot your primary weapon with the Left Mouse Button. Abilities are assigned to '1', '2', and '3'. To assign abilities, open the inventory by pressing 'TAB'. You can also zoom in and out using the arrow keys or the mouse wheel."
 
 [node name="tutorial0" parent="items" index="4" instance=ExtResource("4_651ca")]
 position = Vector2(-295, 298)
-text = "HEAL"
+text = "If you're low on health, press 'H' to use a healing potion. Each potion restores 1/3 of your maximum health."
 
 [node name="tutorial5" parent="items" index="5" instance=ExtResource("4_651ca")]
 position = Vector2(3.99997, 298)
-text = "LVL UP / SKILLS"
+text = "As you defeat enemies, you'll level up. Each level-up grants you a Skill Token and a Character Token. You can use these to enhance your stats in the inventory, which can be accessed by pressing 'TAB'."
 
 [node name="tutorial6" parent="items" index="6" instance=ExtResource("4_651ca")]
 position = Vector2(288, 298)
-text = "Press 'M' to open the map. The more you explore, the more rooms will be revealed. TODO: Teleport"
+text = "Press 'M' to open the map. As you explore, more rooms will be revealed. You can teleport to previously visited rooms by clicking on the purple teleport icon in a room."
 
 [node name="light" parent="decorations" index="0" instance=ExtResource("3_hmhbp")]

@@ -2,6 +2,7 @@ extends Area2D
 
 class_name BuffCircle
 
+
 @onready var game: Game = $/root/game
 @export var player_inside := false
 

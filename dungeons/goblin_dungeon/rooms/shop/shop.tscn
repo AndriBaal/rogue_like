@@ -50,10 +50,10 @@ price = 25
 position = Vector2(75, -11)
 type = 2
 texture = ExtResource("7_hdyq8")
-price = 25
+price = 40
 
 [node name="shop_item2" parent="decorations" index="5" instance=ExtResource("5_ferhn")]
 position = Vector2(219, -11)
 type = 1
 texture = ExtResource("8_eaflm")
-price = 25
+price = 75

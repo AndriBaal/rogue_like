@@ -236,7 +236,7 @@ func cleared() -> bool:
 		for attack in self.game.player.active_attacks.values():
 			if attack != null:
 				if self.name == 'boss_room':
-					self.game.spawn_pop_up('Congratulations!', 'Thank you for playing our Game!')
+					self.game.spawn_pop_up('Congratulations!', 'Thank you for playing our Game!\n\nBy Gregor & Andri')
 				return true
 	
 	return false

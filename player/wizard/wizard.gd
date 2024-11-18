@@ -20,7 +20,7 @@ func _ready():
 		"fire_ball":
 		{
 			"name": "Fire Ball",
-			"description": "Well-balanced, single projectile attack. Deals moderate Damage at a moderate Cooldown. No Mana Cost.",
+			"description": "A single well-balanced ball of fire. Deals moderate Damage at a moderate Cooldown. No Mana Cost.",
 			"action": "_fire_ball",
 			"mana_cost": 0.0,
 			"cool_down": 0.5,
@@ -29,18 +29,18 @@ func _ready():
 		},
 		"ice_wave":
 		{
-			"name": "Ice Wave",
-			"description": "Spawn a big icy wave that penetrates all enemies.",
+			"name": "Sonic Wave",
+			"description": "A piercing wave of ice that moves at great speeds. Deals moderate Damage at a long Cooldown.",
 			"action": "_ice_wave",
-			"mana_cost": 10.0,
+			"mana_cost": 20.0,
 			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_wave.png")
 		},
 		"ice_spear":
 		{
-			"name": "Ice Spear",
-			"description": "Rapid fire, piercing, single projectile attack. Deals minor Damage at a short Cooldown. No Mana Cost.",
+			"name": "Icicle",
+			"description": "Rapid fire piercing icicles. Deals minor Damage at a short Cooldown. No Mana Cost.",
 			"action": "_ice_spear",
 			"mana_cost": 0.0,
 			"cool_down": 0.2,
@@ -49,58 +49,58 @@ func _ready():
 		},
 		"ice_teleport":
 		{
-			"name": "Ice Teleport",
-			"description": "...",
+			"name": "Freeze Flash",
+			"description": "Re-locate to your cursor's position in an instant.",
 			"action": "_ice_teleport",
-			"mana_cost": 10.0,
-			"cool_down": 1.0,
+			"mana_cost": 15.0,
+			"cool_down": 2.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_teleport.png")
 		},
 		"ice_deflect":
 		{
-			"name": "Ice Deflect",
-			"description": "...",
+			"name": "Slippery Reversal",
+			"description": "Re-direct a projectile attack back to the sender.",
 			"action": "_ice_deflect",
-			"mana_cost": 10.0,
-			"cool_down": 1.0,
+			"mana_cost": 15.0,
+			"cool_down": 2.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_deflect.png")
 		},
 		"fire_storm":
 		{
-			"name": "Fire Storm",
-			"description": "...",
+			"name": "Inferno Ring",
+			"description": "Release a wild circle of fire around you. Most effective when surrounded.",
 			"action": "_fire_storm",
-			"mana_cost": 15.0,
-			"cool_down": 2.0,
+			"mana_cost": 25.0,
+			"cool_down": 4.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_storm.png")
 		},
 		"fire_wall":
 		{
-			"name": "Fire Wall",
-			"description": "...",
+			"name": "Heat Burst",
+			"description": "Launch a concentrated burst of flames. Get close and personal for best effect.",
 			"action": "_fire_wall",
-			"mana_cost": 20.0,
-			"cool_down": 2.0,
+			"mana_cost": 15.0,
+			"cool_down": 2.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_wall.png")
 		},
 		"fire_buff":
 		{
-			"name": "Fire Rage",
-			"description": "Fire Rage engulfs the player in blazing flames, boosting attack power and speed.",
+			"name": "Overclock",
+			"description": "Summon a firey rage within you, boosting your metabolism to enhance speed and strength.",
 			"action": "_fire_buff",
-			"mana_cost": 20.0,
-			"cool_down": 2.0,
+			"mana_cost": 25.0,
+			"cool_down": 12.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_buff.png")
 		},
 		"rock_throw":
 		{
-			"name": "Rock Throw",
-			"description": "Heavy hitting, single projectile attack. Deals major Damage at a slow Cooldown. No Mana Cost.",
+			"name": "Boulder Sling",
+			"description": "Launch a heavy-hitting boulder. Deals major Damage at a slow Cooldown. No Mana Cost.",
 			"action": "_rock_throw",
 			"mana_cost": 0.0,
 			"cool_down": 1.25,
@@ -109,31 +109,31 @@ func _ready():
 		},
 		"rock_roll":
 		{
-			"name": "Rock Roll",
-			"description": "Perform a heavy dodge roll that hit enemies in it's way",
+			"name": "Rock & Roll",
+			"description": "Morph into a rolling boulder and turn your foes into pancake.",
 			"action": "_rock_roll",
 			"mana_cost": 20.0,
-			"cool_down": 2.0,
+			"cool_down": 1.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/rock_roll.png")
 		},
 		"rock_spike":
 		{
-			"name": "Rock Spike",
-			"description": "...",
+			"name": "Stalagmite Spikes",
+			"description": "Let sharp spikes of rock rise from the ground and impale those unfortunate enough to step on them.",
 			"action": "_rock_spike",
 			"mana_cost": 20.0,
-			"cool_down": 2.0,
+			"cool_down": 1.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/rock_spike.png")
 		},
 		"rock_buff":
 		{
-			"name": "Rock Buff",
-			"description": "...",
+			"name": "Grounding",
+			"description": "Create a spot at your cursor to anchor to the ground and draw energy from the earth, greatly enhancing your strength.",
 			"action": "_rock_buff",
-			"mana_cost": 20.0,
-			"cool_down": 2.0,
+			"mana_cost": 25.0,
+			"cool_down": 12.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/rock_buff.png")
 		},
@@ -279,7 +279,7 @@ func _rock_spike(_player_position, _look_direction):
 		game.get_node('projectiles').add_child(spikes)
 
 func _rock_roll(_player_position, _look_direction):
-	self.roll_damage = 10.0
+	self.roll_damage = 7.5
 	self.roll_duration = 1.0
 	self.modulate = Color(0.2, 0.2, 0.2)
 	return PlayerState.ROLL
@@ -313,14 +313,14 @@ func _rock_throw(player_position, look_direction):
 
 
 func _fire_storm(player_position, _look_direction):
-	const AMOUNT = 15
+	const AMOUNT = 12
 	var angle_step = TAU / AMOUNT  # TAU is 2 * PI (360 degrees in radians)
 	for i in range(AMOUNT):
 		var angle = i * angle_step
 		var spawn_position = player_position + Vector2(cos(angle), sin(angle)) * PROJECTILE_OFFSET
 		var direction_vector = Vector2(cos(angle), sin(angle)).normalized()
 		var f = self.FIRE_BAll.instantiate()
-		f.scale *= 1.5
+		f.scale *= 2.0
 		f.max_age = 1.0
 		self.game.spawn_projectile(
 			f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true
@@ -328,7 +328,7 @@ func _fire_storm(player_position, _look_direction):
 
 
 func _fire_wall(player_position, look_direction):
-	const ARC_ANGLE := 1.0
+	const ARC_ANGLE := 0.5
 	const AMOUNT = 5
 	var center_angle = look_direction.angle()
 	var angle_step = ARC_ANGLE / (AMOUNT - 1)

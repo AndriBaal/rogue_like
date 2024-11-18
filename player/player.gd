@@ -145,7 +145,7 @@ const DEFAULT_ROLL_SPEED := 0.45
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
 @export var parry_timer := 0.0
-@export var parry_duration = 0.07
+@export var parry_duration = 0.11
 
 @export var money := 0:
 	get():
@@ -157,13 +157,13 @@ const DEFAULT_ROLL_SPEED := 0.45
 @export var attack_stat := 1
 @export var speed_stat := 1
 @export var init := false
-@export var level_up_tokens := 5:
+@export var level_up_tokens := 0:
 	get:
 		return level_up_tokens
 	set(val):
 		level_up_tokens = val
 		$ui/inventory/character/content.update_level_up_token_ui(val)
-@export var skill_tokens := 5:
+@export var skill_tokens := 1:
 	get:
 		return skill_tokens
 	set(val):
@@ -325,8 +325,8 @@ func _process(delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if not inventory.visible:
 		const ZOOM_SPEED: float = 0.1
-		const ZOOM_MIN: float = -INF
-		const ZOOM_MAX: float = INF
+		const ZOOM_MIN: float = 0.5
+		const ZOOM_MAX: float = 2.0
 		var camera = $camera
 		var step = ZOOM_SPEED * Input.get_axis("zoom_out", "zoom_in")
 		camera.zoom.x = clamp(camera.zoom.x * (1.0 + step), ZOOM_MIN, ZOOM_MAX)
