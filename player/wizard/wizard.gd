@@ -30,7 +30,7 @@ func _ready():
 		"ice_wave":
 		{
 			"name": "Ice Wave",
-			"description": "...",
+			"description": "Spawn a big icy wave that penetrates all enemies.",
 			"action": "_ice_wave",
 			"mana_cost": 10.0,
 			"cool_down": 0.5,
@@ -89,8 +89,8 @@ func _ready():
 		},
 		"fire_buff":
 		{
-			"name": "Fire Buff",
-			"description": "...",
+			"name": "Fire Rage",
+			"description": "Fire Rage engulfs the player in blazing flames, boosting attack power and speed.",
 			"action": "_fire_buff",
 			"mana_cost": 20.0,
 			"cool_down": 2.0,
@@ -110,7 +110,7 @@ func _ready():
 		"rock_roll":
 		{
 			"name": "Rock Roll",
-			"description": "...",
+			"description": "Perform a heavy dodge roll that hit enemies in it's way",
 			"action": "_rock_roll",
 			"mana_cost": 20.0,
 			"cool_down": 2.0,
@@ -236,7 +236,9 @@ func _ready():
 func _process(delta: float) -> void:
 	super(delta)
 	if self.state != PlayerState.ROLL:
+		self.modulate = Color.WHITE
 		self.roll_damage = null
+		self.roll_duration = DEFAULT_ROLL_SPEED
 		
 	if self.modulate == Color.RED and 'fire_buff' not in self.effects:
 		self.modulate = Color.WHITE
@@ -278,6 +280,8 @@ func _rock_spike(_player_position, _look_direction):
 
 func _rock_roll(_player_position, _look_direction):
 	self.roll_damage = 10.0
+	self.roll_duration = 1.0
+	self.modulate = Color(0.2, 0.2, 0.2)
 	return PlayerState.ROLL
 
 

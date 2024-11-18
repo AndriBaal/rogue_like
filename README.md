@@ -32,6 +32,7 @@
 - [ ] Limit camera zoom & Make game fullscreeen by default
 - [ ] Color map preview in different Colors
 - [ ] Balance:
+	- [ ] Remove start tokens
 	- [ ] Enemy xp reward, coins, speed, attack, and range
 	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
 	- [ ] Primary attack should not use mana

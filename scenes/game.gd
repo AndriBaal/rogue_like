@@ -72,9 +72,10 @@ func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
 		var space_state = get_world_2d().direct_space_state
 		var params = PhysicsPointQueryParameters2D.new()
 		params.position = position
+		params.collision_mask = 0b0001_1010
 		var result = space_state.intersect_point(params)
+		
 		if len(result):
-			#if not(ignore_enemies and result is Enemy):
 			valid = false
 	
 	return valid

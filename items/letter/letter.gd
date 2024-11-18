@@ -2,7 +2,7 @@ extends Item
 
 class_name Letter
 
-@export var text: String = '':
+@export_multiline var text: String = '':
 	get:
 		return $text/label.text
 	set(value):

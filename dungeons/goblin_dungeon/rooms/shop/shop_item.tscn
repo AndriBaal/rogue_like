@@ -12,7 +12,8 @@ collision_mask = 129
 script = ExtResource("1_ttgct")
 
 [node name="sprite" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+position = Vector2(0, -7)
+scale = Vector2(3, 3)
 
 [node name="price" type="Label" parent="."]
 anchors_preset = 7
@@ -21,15 +22,16 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 31.0
+offset_top = 37.0
 offset_right = 20.0
-offset_bottom = 47.0
+offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(0, 54)
+position = Vector2(0, 58)
 shape = SubResource("CapsuleShape2D_e6ojg")
 
 [node name="buy_hint" type="Label" parent="."]

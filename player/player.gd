@@ -137,8 +137,9 @@ enum PlayerState {
 @export var max_potions := 10
 @export var potions := 3
 
+const DEFAULT_ROLL_SPEED := 0.45
 @export var roll_cost = 5.0
-@export var roll_duration := 0.5
+@export var roll_duration := DEFAULT_ROLL_SPEED
 @export var roll_speed := 700.0
 @export var roll_timer := 0.0
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
@@ -152,7 +153,6 @@ enum PlayerState {
 	set(value):
 		money = value
 		$ui/hud/money/label.text = str(money)
-
 @export var health_stat := 1
 @export var attack_stat := 1
 @export var speed_stat := 1
@@ -430,6 +430,8 @@ func _level_up():
 	$level_up.restart()
 	$level_up_audio.play()
 	$level_up_animation.play('level_up')
+	if self.level == 1:
+		self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP, make sure to you your new Skill Tree  and Character Token!')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
 	

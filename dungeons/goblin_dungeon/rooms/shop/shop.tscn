@@ -44,13 +44,16 @@ position = Vector2(-150, -22)
 [node name="shop_item" parent="decorations" index="3" instance=ExtResource("5_ferhn")]
 position = Vector2(-69, -11)
 texture = SubResource("AtlasTexture_ocnm0")
+price = 25
 
 [node name="shop_item3" parent="decorations" index="4" instance=ExtResource("5_ferhn")]
 position = Vector2(75, -11)
 type = 2
 texture = ExtResource("7_hdyq8")
+price = 25
 
 [node name="shop_item2" parent="decorations" index="5" instance=ExtResource("5_ferhn")]
 position = Vector2(219, -11)
 type = 1
 texture = ExtResource("8_eaflm")
+price = 25

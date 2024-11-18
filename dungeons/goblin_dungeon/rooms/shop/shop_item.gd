@@ -8,7 +8,6 @@ enum ShopItemType {
 	LevelUpToken
 }
 
-@onready var game: Game = $/root/game
 @export var type: ShopItemType
 @export var texture: Texture2D:
 	get():
@@ -36,6 +35,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not Engine.is_editor_hint():
 		if self.player_near and Input.is_action_just_pressed('interact'):
+			var game = $/root/game
 			var player = game.player
 			if player.money >= self.price:
 				player.money -= self.price
