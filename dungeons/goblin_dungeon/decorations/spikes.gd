@@ -17,8 +17,8 @@ func _ready() -> void:
 	self.body_entered.connect(self._body_entered)
 	self.body_exited.connect(self._body_exited)
 
-func make_friendly(position: Vector2):
-	self.position = position
+func make_friendly(p: Vector2):
+	self.position = p
 	self.friendly = true
 	self.timer = 10.0
 	self.modulate = Color.DARK_GREEN

@@ -32,7 +32,7 @@ func _ready() -> void:
 	self.body_entered.connect(self._player_entered)
 	self.body_exited.connect(self._player_exited)
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
 		if self.player_near and Input.is_action_just_pressed('interact'):
 			var game = $/root/game

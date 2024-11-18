@@ -10,11 +10,11 @@ func _ready() -> void:
 	self.body_entered.connect(self._body_entered)
 	self.body_exited.connect(self._body_exited)
 
-func start(position: Vector2) -> BuffCircle:
-	self.position = position
+func start(p: Vector2) -> BuffCircle:
+	self.position = p
 	return self
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player_inside:
 		game.player.effects['buff_circle'] = {
 			'duration': 1.0,

@@ -145,7 +145,7 @@ const DEFAULT_ROLL_SPEED := 0.45
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
 @export var parry_timer := 0.0
-@export var parry_duration = 0.11
+@export var parry_duration = 0.15
 
 @export var money := 0:
 	get():

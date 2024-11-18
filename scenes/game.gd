@@ -48,7 +48,7 @@ func play_track(track: String):
 	soundtrack.play(progress)
 	self.active_track = track
 
-func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
+func is_valid_position(p: Vector2, ignore_entities = false) -> bool:
 	var rooms = $rooms.get_children()
 	var valid = false
 	for room: Room in rooms:
@@ -59,7 +59,7 @@ func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
 				continue
 		
 		var tilemap: TileMapLayer = room.get_node('tiles')
-		var local = tilemap.local_to_map(tilemap.to_local(position))
+		var local = tilemap.local_to_map(tilemap.to_local(p))
 		var tile_data = tilemap.get_cell_tile_data(local)
 		if tile_data != null:
 			if tile_data.get_collision_polygons_count(0) == 0:
@@ -71,7 +71,7 @@ func is_valid_position(position: Vector2, ignore_entities = false) -> bool:
 	if valid and not ignore_entities:
 		var space_state = get_world_2d().direct_space_state
 		var params = PhysicsPointQueryParameters2D.new()
-		params.position = position
+		params.position = p
 		params.collision_mask = 0b0001_1010
 		var result = space_state.intersect_point(params)
 		

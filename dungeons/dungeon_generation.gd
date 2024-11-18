@@ -192,7 +192,6 @@ class Dungeon:
 
 	func _close_rooms(rooms):
 		for room in rooms:
-			var children = room.children
 			var entrances = room.entrances
 			var tilemap: TileMapLayer = room.get_node(^"tiles")
 			var tilemap_entrances: TileMapLayer = room.get_node(^"entrances")
@@ -226,7 +225,6 @@ class Dungeon:
 
 		var children = room.children
 		var tilemap: TileMapLayer = room.get_node(^"tiles")
-		var tilemap_entrances: TileMapLayer = room.get_node(^"entrances")
 		var tile_source = tilemap.tile_set.get_source(TILE_ID)
 		var tile_amount = tile_source.get_tiles_count() / 2
 

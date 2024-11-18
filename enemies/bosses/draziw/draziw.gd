@@ -65,20 +65,6 @@ func make_sprite_active(node):
 	$attack3.visible = false
 	$attack4.visible = false
 	node.visible = true
-	
-func get_active_sprite(node):
-	if $default.visible:
-		return $default
-	if $move.visible:
-		return $move
-	if $attack1.visible:
-		return $attack1
-	if $attack2.visible:
-		return $attack2
-	if $attack3.visible:
-		return $attack3
-	if $attack4.visible:
-		return $attack4
 
 func _start_move():
 	const TARGET_POINTS := [
@@ -209,7 +195,6 @@ func _process(delta: float) -> void:
 	var target = self.game.player
 	var target_position = target.global_position
 	var position_delta: Vector2 = target_position - self.global_position
-	var distance = position_delta.length()
 	self.target_vector = position_delta.normalized()
 	if self.wait_timer > 0.0:
 		if self.wait_timer == self.WAIT_TIME:
