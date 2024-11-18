@@ -181,7 +181,7 @@ func _ready() -> void:
 		init = true
 		self.game.spawn_pop_up(
 			'Welcome!', 
-			"Use 'W', 'A', 'S' and 'D' to move around. If you are new, make sure to read the letters on the ground. Read the center note to find out how to leave the first room."
+			"Use 'W', 'A', 'S', and 'D' to move around. If you're new, be sure to read the letters on the ground. Check the center note to learn how to leave the first room."
 		)
 		self._update_potion_ui()
 		$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)
@@ -431,7 +431,7 @@ func _level_up():
 	$level_up_audio.play()
 	$level_up_animation.play('level_up')
 	if self.level == 1:
-		self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP, make sure to you your new Skill Tree  and Character Token!')
+		self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP! Make sure to use your new Skill Tree and Character Token!')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
 	

@@ -28,14 +28,22 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
+- [ ] Story
 - [ ] Tutorial (maybe add tutorial text in starting room)
 - [ ] Limit camera zoom & Make game fullscreeen by default
-- [ ] Color map preview in different Colors
 - [ ] Balance:
 	- [ ] Remove start tokens
-	- [ ] Enemy xp reward, coins, speed, attack, and range
-	- [ ] Ability cost, cooldowns and description -> Primary should be free and abailitites should use mana
-	- [ ] Primary attack should not use mana
+	- [ ] Enemy:
+		- [x] xp 
+		- [ ] coins (slimeso nly drop copper)
+		- [x] speed
+		- [x] attack damage
+		- [x] range
+	- [ ] Abilities:
+		- [ ] cost
+		- [ ] cooldowns
+		- [ ] description
+		- [ ] Primary attack should not use mana
 - [ ] ?Story
 - [x] Enemies
 	- [x] Damage Number
@@ -169,6 +177,7 @@
 - [ ] ?Knockback projectiles
 - [ ] ?Splash screen
 - [ ] ?Enemy Spawn animation
+- [ ] ?Color map preview in different Colors
 - [ ] ?Room complete indicator (Make a rewarding effect when clearing a room)
 - [ ] ?UI Theme
 - [ ] ?Make second cursor for UI

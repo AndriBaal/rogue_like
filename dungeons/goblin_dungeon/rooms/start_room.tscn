@@ -15,26 +15,32 @@ tile_set = ExtResource("2_io2jm")
 tile_map_data = PackedByteArray("AAD8//7/AAABAAAAABD8////AAANAAAAAFD8/wEAAAAFAAAAAAD8/wAAAAANAAAAAFD+//z/AAABAAAAABD///z/AAANAAAAADAAAPz/AAANAAAAADABAPz/AAABAAAAAAD+/wMAAAAFAAAAAAD//wMAAAANAAAAAAAAAAMAAAANAAAAAAABAAMAAAAFAAAAABADAP//AAANAAAAAGADAAAAAAANAAAAAGADAAEAAAAFAAAAABADAP7/AAABAAAAAAA=")
 tile_set = ExtResource("2_io2jm")
 
-[node name="tutorial0" parent="items" index="0" instance=ExtResource("4_651ca")]
-position = Vector2(-295, 298)
-
-[node name="tutorial1" parent="items" index="1" instance=ExtResource("4_651ca")]
+[node name="tutorial1" parent="items" index="0" instance=ExtResource("4_651ca")]
 position = Vector2(4.76837e-07, 0)
-text = "In order to leave the first room, you must purchase a Spell from the Skill Tree. You can do this by pressing 'I' to access the Skill Tree, selecting a Skill and click 'UNLOCK'."
+text = "To leave the first room, you must purchase a spell from the Skill Tree. Press 'I' to open the Skill Tree, select a skill, and click 'UNLOCK'."
 
-[node name="tutorial2" parent="items" index="2" instance=ExtResource("4_651ca")]
+[node name="tutorial2" parent="items" index="1" instance=ExtResource("4_651ca")]
 position = Vector2(-295, -304)
+text = "Use 'W', 'A', 'S', and 'D' to move around. Press 'SPACE' to perform a dodge roll. During the dodge roll, you are immune to all damage and can pass through enemies and projectiles."
 
-[node name="tutorial3" parent="items" index="3" instance=ExtResource("4_651ca")]
+[node name="tutorial3" parent="items" index="2" instance=ExtResource("4_651ca")]
 position = Vector2(-3.05176e-05, -304)
+text = "You can unlock abilities in the Skill Tree by pressing 'I'. There are two types of abilities: primary and secondary. Be sure to check the mana consumption and cooldown of each ability before unlocking them."
 
-[node name="tutorial4" parent="items" index="4" instance=ExtResource("4_651ca")]
+[node name="tutorial4" parent="items" index="3" instance=ExtResource("4_651ca")]
 position = Vector2(291, -304)
+text = "You can shoot your primary weapon with the Left Mouse Button. Abilities are assigned to '1', '2', and '3'. To assign abilities, open the inventory by pressing 'TAB'."
+
+[node name="tutorial0" parent="items" index="4" instance=ExtResource("4_651ca")]
+position = Vector2(-295, 298)
+text = "HEAL"
 
 [node name="tutorial5" parent="items" index="5" instance=ExtResource("4_651ca")]
 position = Vector2(3.99997, 298)
+text = "LVL UP / SKILLS"
 
 [node name="tutorial6" parent="items" index="6" instance=ExtResource("4_651ca")]
 position = Vector2(288, 298)
+text = "Press 'M' to open the map. The more you explore, the more rooms will be revealed. TODO: Teleport"
 
 [node name="light" parent="decorations" index="0" instance=ExtResource("3_hmhbp")]
