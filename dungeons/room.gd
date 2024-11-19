@@ -17,6 +17,8 @@ class_name Room
 @export var entrances: Array
 @export var init := false
 
+# TODO: Room type enum instead of stiring names
+
 func start() -> Room:
 	self.entrances = self._get_room_entrances()
 	return self
@@ -179,6 +181,11 @@ func _close_room():
 		self.game.play_track('battle')
 	
 	map.close_teleporters()
+	
+	if self.name == 'start_room':
+		for cell in self.optimized_cells:
+			map.add_rect(cell, Color.DIM_GRAY)	
+			
 	
 	# Clear all projectiles on room enter
 	for child in self.game.projectiles.get_children():

@@ -6,10 +6,9 @@
 
 ## BUGS
 
-- [ ] ?Camera does not center correctly when starting a game becuase of the popup
+- [x] ?Camera does not center correctly when starting a game becuase of the popup
 - [ ] Fix greyed out skill tree nodes after deserialization
-- [ ] Fix shifted names of enemies before entering rooms
-- [ ] Focus camera on player in minimap
+- [x] Fix shifted names of enemies before entering rooms (711408093)
 - [ ] ?Color map preview in different Colors
 - [x] Fix reference in room children -> crash after deserialization
 - [x] Room enter detection
@@ -31,9 +30,10 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
-- [ ] Story (Endboss drops coins)
+- [ ] Story (Endboss drops scroll)
 - [ ] Warning before endboss
-
+- [x] Focus camera on player in minimap
+- [x] Show first room on minimap
 - [ ] ?Make game fullscreeen by default
 - [x] Tutorial (maybe add tutorial text in starting room)
 - [x] Limit camera zoom 

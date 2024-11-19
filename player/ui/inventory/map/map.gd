@@ -24,7 +24,11 @@ func _visibility_changed():
 func _center_camera():
 	var cam: Camera2D = $cam
 	var a = self.get_global_rect().size / 2.0
-	cam.position = Vector2(a.x, a.y)
+	var player_map_pos: Vector2 = self.get_player_map_pos()
+	cam.position = a - player_map_pos
+
+func get_player_map_pos() -> Vector2:
+	return self.player.global_position / self.tile_size * SCALE - self.map_player.size / 2.0
 
 func close_teleporters():
 	for teleporter in self.teleporters.get_children():
@@ -54,5 +58,5 @@ func _process(_delta: float) -> void:
 			if Input.is_action_pressed("primary_attack"):
 				$cam.position += mouse_pos - self.last_mouse_pos
 			self.last_mouse_pos = mouse_pos
-		var player_map_pos: Vector2 = self.player.global_position / self.tile_size * SCALE - self.map_player.size / 2.0
+		var player_map_pos: Vector2 = self.get_player_map_pos()
 		self.map_player.position = player_map_pos

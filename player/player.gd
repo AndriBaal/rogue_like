@@ -112,8 +112,12 @@ enum PlayerState {
 			_level_up()
 		bar.max_value = float(xp_for_lvl_up)
 		bar.value = float(xp)
+@export var level := 0:
+	get():
+		return level
+	set(value):
+		level = value
 		$ui/hud/xp/level.text = str(level)
-@export var level := 1
 
 @export var mana_per_second = 5.0
 @export var max_mana := 50.0
@@ -180,8 +184,12 @@ func _ready() -> void:
 	if not init:
 		init = true
 		self.game.spawn_pop_up(
-			'Welcome!', 
+			'How to play', 
 			"Use 'W', 'A', 'S', and 'D' to move around. If you're new, be sure to read the letters on the ground. Check the center note to learn how to leave the first room."
+		)
+		self.game.spawn_pop_up(
+			'We need your help!', 
+			"The evil sorcerer Draziw has seized your sacred scroll, plunging the land into chaos. Brave the depths of his dark dungeon, where traps and minions await. Confront Draziw and reclaim the scroll to restore balance."
 		)
 		self._update_potion_ui()
 		$ui/inventory/skill_tree/content.init_tree(self.skill_tree, self.attacks)

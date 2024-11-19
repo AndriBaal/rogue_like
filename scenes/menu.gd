@@ -96,9 +96,9 @@ func _delete_game():
 func _start_new_game():
 	LOAD_SAVE = false
 	GAME_NAME = $create_game/name.text
-	var seed = $create_game/seed
-	if not seed.text.is_empty() and seed.text.is_valid_int():
-		SEED = int(seed.text)
+	var dungeon_seed = $create_game/seed
+	if not dungeon_seed.text.is_empty() and dungeon_seed.text.is_valid_int():
+		SEED = int(dungeon_seed.text)
 	else:
 		SEED = randi()
 	self.get_tree().change_scene_to_file("res://scenes/loading_screen.tscn")
@@ -125,9 +125,9 @@ func _new_game_name_changed(new_text: String):
 
 
 func _new_game_seed_changed(new_text: String):
-	var seed = $create_game/seed
-	if not seed.text.is_valid_int() and not new_text.is_empty():
-		seed.text = self.valid_seed
-		seed.caret_column = len(new_text)
+	var dungeon_seed = $create_game/seed
+	if not dungeon_seed.text.is_valid_int() and not new_text.is_empty():
+		dungeon_seed.text = self.valid_seed
+		dungeon_seed.caret_column = len(new_text)
 	else:
 		self.valid_seed = new_text
