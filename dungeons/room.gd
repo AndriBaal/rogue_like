@@ -242,6 +242,9 @@ func cleared() -> bool:
 	if enemies_left == 0:
 		for attack in self.game.player.active_attacks.values():
 			if attack != null:
+				if self.game.player.level == 1 and not self.game.level_up_hint_shown:
+					self.game.level_up_hint_shown = true
+					self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP! Make sure to use your new Skill and Character Token!')
 				if self.name == 'boss_room':
 					self.game.spawn_pop_up('Congratulations!', 'Thank you for playing our Game!\n\nBy Gregor & Andri')
 				return true

@@ -27,7 +27,6 @@ class DungeonOptions:
 			"neutral": neutral_rooms,
 		}
 
-		
 		match self.type:
 			DungeonType.GOBLIN:
 				self.decorations = {
@@ -35,7 +34,8 @@ class DungeonOptions:
 				}
 				self.possible_rooms = {
 					"start": load("res://dungeons/goblin_dungeon/rooms/start_room.tscn"),
-					"bad": [
+					"bad":
+					[
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room1.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room2.tscn"),
 						load("res://dungeons/goblin_dungeon/rooms/enemy_room3.tscn"),
@@ -59,7 +59,6 @@ class DungeonOptions:
 					],
 					"boss": load("res://dungeons/goblin_dungeon/rooms/boss_room.tscn")
 				}
-		
 
 
 class Dungeon:
@@ -75,9 +74,9 @@ class Dungeon:
 		self.random.seed = options.random_seed
 		self.rooms_left = options.rooms_left.duplicate(true)
 		self.rooms_available = {
-			"good":  self._shuffle_array(self.options.possible_rooms['good']),
-			"bad":  self._shuffle_array(self.options.possible_rooms['bad']),
-			"neutral":  self._shuffle_array(self.options.possible_rooms['neutral']),
+			"good": self._shuffle_array(self.options.possible_rooms["good"]),
+			"bad": self._shuffle_array(self.options.possible_rooms["bad"]),
+			"neutral": self._shuffle_array(self.options.possible_rooms["neutral"]),
 		}
 
 		var room = options.possible_rooms["start"].instantiate()
@@ -134,7 +133,6 @@ class Dungeon:
 				return true
 		return false
 
-
 	func _shuffle_array(array: Array) -> Array:
 		var indices = []
 		while indices.size() < array.size():
@@ -167,11 +165,15 @@ class Dungeon:
 				var room_type = self._get_room_type(only_bad)
 
 				if len(self.rooms_available[room_type]) == 0:
-					self.rooms_available[room_type] = self._shuffle_array(self.options.possible_rooms[room_type])
-				
+					self.rooms_available[room_type] = self._shuffle_array(
+						self.options.possible_rooms[room_type]
+					)
+
 				for i in range(len(self.rooms_available[room_type])):
 					var i_new_room = self.rooms_available[room_type][i]
-					var new_room = self.options.possible_rooms[room_type][i_new_room].instantiate().start()
+					var new_room = (
+						self.options.possible_rooms[room_type][i_new_room].instantiate().start()
+					)
 					var result = self._connect_rooms(room, entrance, new_room)
 					if result is Object:
 						self.rooms_available[room_type].remove_at(i)
@@ -186,7 +188,7 @@ class Dungeon:
 					parents.push_back(room.parent)
 			if not parents.is_empty():
 				self._grow_rooms(parents)
-				print('Using parent fallback for dungeon generation!')
+				print("Using parent fallback for dungeon generation!")
 		if not new_rooms.is_empty():
 			self._grow_rooms(new_rooms)
 
@@ -367,6 +369,17 @@ class Dungeon:
 			var entrance = room.entrances[i_entrance]
 			var result = self._connect_rooms(room, entrance, boss_room)
 			if result:
+				var note = load("res://items/letter/letter.tscn").instantiate()
+				var tiles = boss_room.get_node('tiles')
+				var boss_entrance = boss_room.entrances.filter(func (e): return e['has_connection'])[0]
+				var start = tiles.map_to_local(boss_entrance["start"])
+				var end = tiles.map_to_local(boss_entrance["end"])
+				var direction = Vector2(boss_entrance["direction"])
+				var center = (start + end) / 2.0
+				var offset = tiles.to_global(center)
+				note.text = 'Beware – in front of you lies the room of Draziw. Once you enter, there is no turning back.'
+				note.position = offset + self.tile_size * direction
+				boss_room.get_node('items').add_child(note)
 				return
 		banned.push_back(room.get_instance_id())
 		push_error("Could not spawn boss room!")

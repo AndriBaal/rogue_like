@@ -207,12 +207,12 @@ func _process(delta: float) -> void:
 			if randi() % 2 == 0:
 				self.game.spawn_projectile(
 					DARK_FIRE.instantiate(),
-					self.global_position + 80.0 * self.target_vector,
+					self.global_position + PROJECTILE_OFFSET * self.target_vector,
 					self.target_vector.rotated(deg_to_rad(15.0))
 				)
 				self.game.spawn_projectile(
 					DARK_FIRE.instantiate(),
-					self.global_position + 80.0 * self.target_vector,
+					self.global_position + PROJECTILE_OFFSET * self.target_vector,
 					self.target_vector.rotated(deg_to_rad(-15.0))
 				)
 		$default.frame_coords.y = Direction.from_vector(self.target_vector)

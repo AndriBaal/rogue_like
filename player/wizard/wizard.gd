@@ -11,6 +11,7 @@ const PROJECTILE_OFFSET := 35.0
 
 @export var roll_damage = null
 
+
 func _ready():
 	$sensor.body_entered.connect(self._body_entered)
 	if self.init:
@@ -20,7 +21,8 @@ func _ready():
 		"fire_ball":
 		{
 			"name": "Fire Ball",
-			"description": "A single well-balanced ball of fire. Deals moderate Damage at a moderate Cooldown. No Mana Cost.",
+			"description":
+			"A single well-balanced ball of fire. Deals moderate Damage at a moderate Cooldown. No Mana Cost.",
 			"action": "_fire_ball",
 			"mana_cost": 0.0,
 			"cool_down": 0.5,
@@ -30,7 +32,8 @@ func _ready():
 		"ice_wave":
 		{
 			"name": "Sonic Wave",
-			"description": "A piercing wave of ice that moves at great speeds. Deals moderate Damage at a long Cooldown.",
+			"description":
+			"A piercing wave of ice that moves at great speeds. Deals moderate Damage at a long Cooldown.",
 			"action": "_ice_wave",
 			"mana_cost": 20.0,
 			"cool_down": 0.5,
@@ -40,7 +43,8 @@ func _ready():
 		"ice_spear":
 		{
 			"name": "Icicle",
-			"description": "Rapid fire piercing icicles. Deals minor Damage at a short Cooldown. No Mana Cost.",
+			"description":
+			"Rapid fire piercing icicles. Deals minor Damage at a short Cooldown. No Mana Cost.",
 			"action": "_ice_spear",
 			"mana_cost": 0.0,
 			"cool_down": 0.2,
@@ -70,7 +74,8 @@ func _ready():
 		"fire_storm":
 		{
 			"name": "Inferno Ring",
-			"description": "Release a wild circle of fire around you. Most effective when surrounded.",
+			"description":
+			"Release a wild circle of fire around you. Most effective when surrounded.",
 			"action": "_fire_storm",
 			"mana_cost": 25.0,
 			"cool_down": 4.0,
@@ -80,7 +85,8 @@ func _ready():
 		"fire_wall":
 		{
 			"name": "Heat Burst",
-			"description": "Launch a concentrated burst of flames. Get close and personal for best effect.",
+			"description":
+			"Launch a concentrated burst of flames. Get close and personal for best effect.",
 			"action": "_fire_wall",
 			"mana_cost": 15.0,
 			"cool_down": 2.5,
@@ -90,7 +96,8 @@ func _ready():
 		"fire_buff":
 		{
 			"name": "Overclock",
-			"description": "Summon a firey rage within you, boosting your metabolism to enhance speed and strength.",
+			"description":
+			"Summon a firey rage within you, boosting your metabolism to enhance speed and strength.",
 			"action": "_fire_buff",
 			"mana_cost": 25.0,
 			"cool_down": 12.0,
@@ -100,7 +107,8 @@ func _ready():
 		"rock_throw":
 		{
 			"name": "Boulder Sling",
-			"description": "Launch a heavy-hitting boulder. Deals major Damage at a slow Cooldown. No Mana Cost.",
+			"description":
+			"Launch a heavy-hitting boulder. Deals major Damage at a slow Cooldown. No Mana Cost.",
 			"action": "_rock_throw",
 			"mana_cost": 0.0,
 			"cool_down": 1.25,
@@ -120,7 +128,8 @@ func _ready():
 		"rock_spike":
 		{
 			"name": "Stalagmite Spikes",
-			"description": "Let sharp spikes of rock rise from the ground and impale those unfortunate enough to step on them.",
+			"description":
+			"Let sharp spikes of rock rise from the ground and impale those unfortunate enough to step on them.",
 			"action": "_rock_spike",
 			"mana_cost": 20.0,
 			"cool_down": 1.5,
@@ -130,7 +139,8 @@ func _ready():
 		"rock_buff":
 		{
 			"name": "Grounding",
-			"description": "Create a spot at your cursor to anchor to the ground and draw energy from the earth, greatly enhancing your strength.",
+			"description":
+			"Create a spot at your cursor to anchor to the ground and draw energy from the earth, greatly enhancing your strength.",
 			"action": "_rock_buff",
 			"mana_cost": 25.0,
 			"cool_down": 12.0,
@@ -146,9 +156,10 @@ func _ready():
 			"children":
 			[
 				{
-					"attack_name": "fire_storm", 
-					"position": Vector2(-300.0, 0.0), 
-					"children": [
+					"attack_name": "fire_storm",
+					"position": Vector2(-300.0, 0.0),
+					"children":
+					[
 						{
 							"attack_name": "fire_buff",
 							"position": Vector2(-250.0, -150.0),
@@ -159,7 +170,8 @@ func _ready():
 				{
 					"attack_name": "fire_wall",
 					"position": Vector2(-200.0, 0.0),
-					"children": [
+					"children":
+					[
 						{
 							"attack_name": "fire_buff",
 							"position": Vector2(-250.0, -150.0),
@@ -192,7 +204,7 @@ func _ready():
 					"children":
 					[
 						{
-							"attack_name": "ice_wave", 
+							"attack_name": "ice_wave",
 							"position": Vector2(0.0, -150.0),
 							"children": []
 						},
@@ -206,9 +218,10 @@ func _ready():
 			"children":
 			[
 				{
-					"attack_name": "rock_roll", 
-					"position": Vector2(300.0, 0.0), 
-					"children": [
+					"attack_name": "rock_roll",
+					"position": Vector2(300.0, 0.0),
+					"children":
+					[
 						{
 							"attack_name": "rock_buff",
 							"position": Vector2(250.0, -150.0),
@@ -219,9 +232,10 @@ func _ready():
 				{
 					"attack_name": "rock_spike",
 					"position": Vector2(200.0, 0.0),
-					"children": [
+					"children":
+					[
 						{
-							"attack_name": "rock_buff", 
+							"attack_name": "rock_buff",
 							"position": Vector2(250.0, -150.0),
 							"children": []
 						},
@@ -232,15 +246,16 @@ func _ready():
 	]
 
 	super()
-	
+
+
 func _process(delta: float) -> void:
 	super(delta)
 	if self.state != PlayerState.ROLL:
 		self.modulate = Color.WHITE
 		self.roll_damage = null
 		self.roll_duration = DEFAULT_ROLL_SPEED
-		
-	if self.modulate == Color.RED and 'fire_buff' not in self.effects:
+
+	if self.modulate == Color.RED and "fire_buff" not in self.effects:
 		self.modulate = Color.WHITE
 
 
@@ -269,14 +284,15 @@ func _rock_buff(_player_position, _look_direction):
 	var mouse_pos = self.game.get_local_mouse_position()
 	if game.is_valid_position(mouse_pos, true):
 		var circle = BUFF_CIRCLE.instantiate().start(mouse_pos)
-		game.get_node('projectiles').add_child(circle)
+		game.get_node("projectiles").add_child(circle)
 
 
 func _rock_spike(_player_position, _look_direction):
 	var mouse_pos = self.game.get_local_mouse_position()
 	if game.is_valid_position(mouse_pos, true):
 		var spikes = SPIKES.instantiate().make_friendly(mouse_pos)
-		game.get_node('projectiles').add_child(spikes)
+		game.get_node("projectiles").add_child(spikes)
+
 
 func _rock_roll(_player_position, _look_direction):
 	self.roll_damage = 7.5
@@ -342,14 +358,12 @@ func _fire_wall(player_position, look_direction):
 		self.game.spawn_projectile(
 			f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true
 		)
-		
+
+
 func _fire_buff(_player_position, _look_direction):
 	self.modulate = Color.RED
-	self.effects['fire_buff'] = {
-		'duration': 8.0,
-		'attack': 1.2,
-		'speed': 1.2
-	}
+	self.effects["fire_buff"] = {"duration": 8.0, "attack": 1.2, "speed": 1.2}
+
 
 func _body_entered(body):
 	if self.state == PlayerState.ROLL and (body is Enemy or body is Boss) and self.roll_damage:

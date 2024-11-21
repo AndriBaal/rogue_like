@@ -438,8 +438,6 @@ func _level_up():
 	$level_up.restart()
 	$level_up_audio.play()
 	$level_up_animation.play('level_up')
-	if self.level == 1:
-		self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP! Make sure to use your new Skill Tree and Character Token!')
 	self.skill_tokens += 1
 	self.level_up_tokens += 1
 	

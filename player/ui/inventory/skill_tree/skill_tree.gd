@@ -68,6 +68,7 @@ func _recurse_skill_tree(parent, skill_tree, attacks):
 	
 func _unlock():
 	var player = self.game.player
+	player.get_node('buy_audio').play()
 	$select.visible = false
 	self.game.attack_selection.visible = false
 	player.skill_tokens -= 1

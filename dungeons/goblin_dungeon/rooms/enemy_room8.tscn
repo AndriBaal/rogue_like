@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c53bxpt1madvl" path="res://enemies/goblin_axe/goblin_axe.tscn" id="4_sg47a"]
 [ext_resource type="PackedScene" uid="uid://bohupvq0ta1pg" path="res://enemies/slime/slime_red.tscn" id="5_r6nxh"]
 [ext_resource type="PackedScene" uid="uid://cttw6ahelkyw0" path="res://enemies/slime/slime_green.tscn" id="6_utgo3"]
-[ext_resource type="PackedScene" uid="uid://bnqdjjmtuwmy5" path="res://enemies/goblin_spear/goblin_spear.tscn" id="8_286wj"]
+[ext_resource type="PackedScene" uid="uid://c3od84w2jsvyn" path="res://enemies/skeleton/skelton.tscn" id="8_vdusp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1x63p"]
 vertices = PackedVector2Array(998, 854, 854, 854, 730, 730, 730, 278, 730, -422, 854, -854, 998, -854, 730, -874, 854, -998, -854, -998, 278, -874, -278, -278, 278, -278, -278, 134, -442, 134, -278, -874, -730, -874, -854, -854, -730, -422, -442, -422, -442, -278, -730, 278, 442, -278, 442, -422, 442, 278, 442, 134, 278, 134, 278, 730, -278, 730, -442, 278, 854, 998, -854, 998, -730, 730, -854, 854, -998, 854, -998, -854)
@@ -63,7 +63,6 @@ position = Vector2(128, 536)
 position = Vector2(-96, -648)
 
 [node name="slime_green" parent="enemies" index="4" instance=ExtResource("6_utgo3")]
-position = Vector2(0, -32)
+position = Vector2(-120, 552)
 
-[node name="goblin_spear" parent="enemies" index="5" instance=ExtResource("8_286wj")]
-position = Vector2(0, -592)
+[node name="skeleton" parent="enemies" index="5" instance=ExtResource("8_vdusp")]

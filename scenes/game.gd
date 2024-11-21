@@ -17,6 +17,7 @@ enum ActiveTrack {
 
 @export var active_track = null
 @export var last_track_progress :=  {}
+@export var level_up_hint_shown := false
 
 @onready var projectiles = $projectiles
 @onready var effects = $effects

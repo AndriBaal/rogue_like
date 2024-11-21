@@ -10,20 +10,22 @@ func _ready() -> void:
 		thread = Thread.new()
 		thread.start(self._generate_level)
 
+
 func _generate_level():
 	var scene: Node
 	if Menu.LOAD_SAVE:
 		scene = load("user://%s.scn" % Menu.GAME_NAME).instantiate()
 		scene.get_node(^"pause_menu").visible = false
-		scene.get_node(^"player").effects  = {} # Neededd for deserialization
+		scene.get_node(^"player").effects = {}  # Neededd for deserialization
 	else:
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
 			DungeonGeneration.DungeonOptions.new(
-				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED
+				#DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED
+				DungeonGeneration.DungeonType.GOBLIN, 0, 0, 0, Menu.SEED
 			)
 		)
-		scene.get_node('player/ui/inventory/map/content').tile_size = dungeon.tile_size
+		scene.get_node("player/ui/inventory/map/content").tile_size = dungeon.tile_size
 		#var player = scene.get_node(^"player")
 		#var starting_room = dungeon.rooms[0]
 		#player.position = starting_room.global_position

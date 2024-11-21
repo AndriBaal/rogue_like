@@ -57,5 +57,9 @@ region_rect = Rect2(0, 0, 48, 48)
 position = Vector2(0, 0.4)
 shape = SubResource("CircleShape2D_rc0bd")
 
+[node name="hp_bar" parent="." index="9"]
+offset_left = -602.0
+offset_right = -550.0
+
 [node name="name" parent="hp_bar" index="0"]
 text = "Slime"

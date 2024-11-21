@@ -39,8 +39,11 @@ position = Vector2(0, 2.66667)
 shape = SubResource("CircleShape2D_0pnlb")
 
 [node name="throw_sound" type="AudioStreamPlayer2D" parent="." index="6"]
-scale = Vector2(1, 1)
 stream = ExtResource("6_wyd15")
+
+[node name="hp_bar" parent="." index="9"]
+offset_left = -602.0
+offset_right = -550.0
 
 [node name="name" parent="hp_bar" index="0"]
 text = "Goblin Chief"

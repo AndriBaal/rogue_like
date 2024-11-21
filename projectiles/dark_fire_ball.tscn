@@ -8,7 +8,8 @@ radius = 8.0
 
 [node name="dark_fire" instance=ExtResource("1_3jsir")]
 scale = Vector2(5, 5)
-speed = 600.0
+speed = 750.0
+damage = 6.0
 color = Color(0.900359, 0.223604, 0.75841, 1)
 
 [node name="sprite" parent="." index="0"]

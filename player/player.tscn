@@ -1,20 +1,20 @@
 [gd_scene load_steps=27 format=3 uid="uid://dp7jdk5hksqyw"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_by477"]
-[ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_srrwe"]
-[ext_resource type="Texture2D" uid="uid://dl3ev3baxoaw6" path="res://player/roll_particle.png" id="3_m0mj8"]
-[ext_resource type="Texture2D" uid="uid://c5sroy6qqj43e" path="res://player/level_up.png" id="4_aki1t"]
-[ext_resource type="Texture2D" uid="uid://brn2daw8eshl5" path="res://player/wizard/roll.png" id="5_buae6"]
-[ext_resource type="Texture2D" uid="uid://jelmk651lrvx" path="res://player/wizard/attacks/teleport.png" id="6_q6ycw"]
-[ext_resource type="AudioStream" uid="uid://betcuvb32gefi" path="res://player/wizard/hurt.mp3" id="7_wvs4d"]
-[ext_resource type="AudioStream" uid="uid://cx6njfsu5os68" path="res://player/roll.mp3" id="8_1vl61"]
-[ext_resource type="AudioStream" uid="uid://bbwgdtrhyy1sp" path="res://player/deflect.wav" id="9_vthtw"]
-[ext_resource type="AudioStream" uid="uid://ckwymsawhw0hn" path="res://player/level_up.wav" id="10_ndwmb"]
-[ext_resource type="AudioStream" uid="uid://0eaalyermoi5" path="res://player/potion_drink.wav" id="11_2fbb4"]
-[ext_resource type="AudioStream" uid="uid://bityfh5q1r7rj" path="res://player/buy.wav" id="12_pesqm"]
-[ext_resource type="AudioStream" uid="uid://dg85qjlq7cudi" path="res://player/buy_fail.wav" id="13_bi3rj"]
-[ext_resource type="AudioStream" uid="uid://c4mtnxb3432g5" path="res://player/wizard/walk1.mp3" id="14_kygp4"]
-[ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="15_o1tuj"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_tft3e"]
+[ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_b56bh"]
+[ext_resource type="Texture2D" uid="uid://dl3ev3baxoaw6" path="res://player/roll_particle.png" id="3_8m61s"]
+[ext_resource type="Texture2D" uid="uid://c5sroy6qqj43e" path="res://player/level_up.png" id="4_3rqxh"]
+[ext_resource type="Texture2D" uid="uid://brn2daw8eshl5" path="res://player/wizard/roll.png" id="5_2eiyq"]
+[ext_resource type="Texture2D" uid="uid://jelmk651lrvx" path="res://player/wizard/attacks/teleport.png" id="6_bq7r5"]
+[ext_resource type="AudioStream" uid="uid://betcuvb32gefi" path="res://player/wizard/hurt.mp3" id="7_whchf"]
+[ext_resource type="AudioStream" uid="uid://cx6njfsu5os68" path="res://player/roll.mp3" id="8_b44c1"]
+[ext_resource type="AudioStream" uid="uid://bbwgdtrhyy1sp" path="res://player/deflect.wav" id="9_pdk8p"]
+[ext_resource type="AudioStream" uid="uid://ckwymsawhw0hn" path="res://player/level_up.wav" id="10_j2h4l"]
+[ext_resource type="AudioStream" uid="uid://0eaalyermoi5" path="res://player/potion_drink.wav" id="11_igm5t"]
+[ext_resource type="AudioStream" uid="uid://bityfh5q1r7rj" path="res://player/buy.wav" id="12_mic2i"]
+[ext_resource type="AudioStream" uid="uid://dg85qjlq7cudi" path="res://player/buy_fail.wav" id="13_awu1e"]
+[ext_resource type="AudioStream" uid="uid://c4mtnxb3432g5" path="res://player/wizard/walk1.mp3" id="14_b218c"]
+[ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="15_hd6nt"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.823232, 0.858696), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
@@ -104,7 +104,7 @@ scale = Vector2(2, 2)
 collision_mask = 126
 motion_mode = 1
 floor_block_on_wall = false
-script = ExtResource("1_by477")
+script = ExtResource("1_tft3e")
 
 [node name="camera" type="Camera2D" parent="."]
 process_callback = 0
@@ -112,7 +112,7 @@ process_callback = 0
 [node name="light" type="PointLight2D" parent="."]
 color = Color(1, 0.677, 0.43, 1)
 shadow_enabled = true
-texture = ExtResource("2_srrwe")
+texture = ExtResource("2_b56bh")
 texture_scale = 0.5
 
 [node name="roll_particle" type="GPUParticles2D" parent="."]
@@ -120,7 +120,7 @@ position = Vector2(0, 12)
 emitting = false
 amount = 12
 process_material = SubResource("ParticleProcessMaterial_akn77")
-texture = ExtResource("3_m0mj8")
+texture = ExtResource("3_8m61s")
 lifetime = 0.7
 one_shot = true
 explosiveness = 0.6
@@ -130,7 +130,7 @@ material = SubResource("CanvasItemMaterial_6okp0")
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_akn77")
-texture = ExtResource("4_aki1t")
+texture = ExtResource("4_3rqxh")
 lifetime = 1.5
 one_shot = true
 explosiveness = 0.6
@@ -155,7 +155,7 @@ vframes = 8
 
 [node name="roll_sprite" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("5_buae6")
+texture = ExtResource("5_2eiyq")
 hframes = 17
 vframes = 8
 
@@ -163,7 +163,7 @@ vframes = 8
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_tmdcj")
-texture = ExtResource("6_q6ycw")
+texture = ExtResource("6_bq7r5")
 lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
@@ -173,32 +173,33 @@ shape = SubResource("CircleShape2D_0d6cu")
 
 [node name="hurt_audio" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
-stream = ExtResource("7_wvs4d")
+stream = ExtResource("7_whchf")
 volume_db = 6.0
 
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_1vl61")
+stream = ExtResource("8_b44c1")
 volume_db = 24.0
 pitch_scale = 0.86
 
 [node name="deflect_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_vthtw")
+stream = ExtResource("9_pdk8p")
 
 [node name="level_up_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_ndwmb")
+stream = ExtResource("10_j2h4l")
 
 [node name="potion_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_2fbb4")
-volume_db = 22.0
+stream = ExtResource("11_igm5t")
+volume_db = 12.0
 
 [node name="buy_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_pesqm")
+stream = ExtResource("12_mic2i")
+volume_db = -15.0
 
 [node name="buy_fail_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_bi3rj")
+stream = ExtResource("13_awu1e")
 
 [node name="step_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_kygp4")
+stream = ExtResource("14_b218c")
 volume_db = -10.0
 pitch_scale = 1.2
 autoplay = true
@@ -237,4 +238,4 @@ theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 32
 text = "LVL+"
 
-[node name="ui" parent="." instance=ExtResource("15_o1tuj")]
+[node name="ui" parent="." instance=ExtResource("15_hd6nt")]

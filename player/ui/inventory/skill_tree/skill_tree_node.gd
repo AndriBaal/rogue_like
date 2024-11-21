@@ -11,21 +11,26 @@ class_name SkillTreeNode
 
 func _ready() -> void:
 	$button.pressed.connect(self._on_click)
+	if self.available:
+		self.modulate = Color.WHITE
 
 func _on_click():
 	var skill_tree = $/root/game/player/ui/inventory/skill_tree/content
-	for child in self.get_parent().get_children():
-		if child.modulate == Color.YELLOW:
-			child.modulate = Color.WHITE
 	skill_tree.get_node(^'select').visible = true
 	skill_tree.get_node(^'select/attack_description').render(self.skill)
 	var unlock = skill_tree.get_node(^'select/unlock')
 	if not self.available or game.player.skill_tokens == 0 or 'unlocked' in self.skill:
 		unlock.disabled = true
 	else:
-		self.modulate = Color.YELLOW
 		unlock.disabled = false
 	skill_tree.selected_skill = self
+	
+	
+	for child in self.get_parent().get_children():
+		if child.modulate == Color.YELLOW:
+			child.modulate = Color.WHITE
+	if self.available:
+		self.modulate = Color.YELLOW
 
 func unlock():
 	self.skill['unlocked'] = true
