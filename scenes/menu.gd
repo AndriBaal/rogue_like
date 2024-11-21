@@ -13,6 +13,7 @@ var valid_seed := ""
 
 
 func _ready():
+	$version.text = 'v.' + ProjectSettings.get('application/config/version')
 	$title/new_game.pressed.connect(self._new_game)
 	$title/load_game.pressed.connect(self._load_game)
 	$title/quit.pressed.connect(self._quit)

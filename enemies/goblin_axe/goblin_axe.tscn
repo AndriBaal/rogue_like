@@ -15,7 +15,7 @@ scale = Vector2(3, 3)
 script = ExtResource("2_du1hb")
 max_health = 24.0
 health = 24.0
-attack_radius = 600.0
+attack_radius = 650.0
 attack_speed = 2.1
 movement_speed = 150.0
 melee_damage = 10.0
@@ -41,9 +41,9 @@ shape = SubResource("CircleShape2D_0pnlb")
 [node name="throw_sound" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = ExtResource("6_wyd15")
 
-[node name="hp_bar" parent="." index="9"]
-offset_left = -602.0
-offset_right = -550.0
+[node name="hp_bar" parent="hp_bar_control" index="0"]
+offset_top = -81.0
+offset_bottom = -73.0
 
-[node name="name" parent="hp_bar" index="0"]
-text = "Goblin Chief"
+[node name="name" parent="hp_bar_control/hp_bar" index="0"]
+text = "GOBLIN CHIEF"

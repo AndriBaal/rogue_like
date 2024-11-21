@@ -246,7 +246,7 @@ func cleared() -> bool:
 					self.game.level_up_hint_shown = true
 					self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP! Make sure to use your new Skill and Character Token!')
 				if self.name == 'boss_room':
-					self.game.spawn_pop_up('Congratulations!', 'Thank you for playing our Game!\n\nBy Gregor & Andri')
+					self.game.spawn_pop_up('Congratulations!', 'Thank you for saving the world and playing our Game!')
 				return true
 	
 	return false

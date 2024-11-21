@@ -36,9 +36,9 @@ shape = SubResource("CircleShape2D_s84cm")
 [node name="throw_sound" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = ExtResource("6_ectfr")
 
-[node name="hp_bar" parent="." index="9"]
-offset_left = -602.0
-offset_right = -550.0
+[node name="hp_bar" parent="hp_bar_control" index="0"]
+offset_top = -73.0
+offset_bottom = -65.0
 
-[node name="name" parent="hp_bar" index="0"]
-text = "Goblin"
+[node name="name" parent="hp_bar_control/hp_bar" index="0"]
+text = "GOBLIN"

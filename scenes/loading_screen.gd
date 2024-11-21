@@ -21,8 +21,7 @@ func _generate_level():
 		scene = load("res://scenes/game.tscn").instantiate()
 		var dungeon = DungeonGeneration.Dungeon.new(
 			DungeonGeneration.DungeonOptions.new(
-				#DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED
-				DungeonGeneration.DungeonType.GOBLIN, 0, 0, 0, Menu.SEED
+				DungeonGeneration.DungeonType.GOBLIN, 8, 2, 2, Menu.SEED
 			)
 		)
 		scene.get_node("player/ui/inventory/map/content").tile_size = dungeon.tile_size

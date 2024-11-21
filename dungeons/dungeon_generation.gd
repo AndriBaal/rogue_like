@@ -159,6 +159,7 @@ class Dungeon:
 						self.random.randi_range(0, 2) == 0
 						and not (i_room == room_amount - 1 and new_rooms.is_empty())
 					)
+					or room.name.begins_with('neutral')
 				):
 					continue
 
@@ -370,16 +371,18 @@ class Dungeon:
 			var result = self._connect_rooms(room, entrance, boss_room)
 			if result:
 				var note = load("res://items/letter/letter.tscn").instantiate()
-				var tiles = boss_room.get_node('tiles')
-				var boss_entrance = boss_room.entrances.filter(func (e): return e['has_connection'])[0]
+				var tiles = boss_room.get_node("tiles")
+				var boss_entrance = (
+					boss_room.entrances.filter(func(e): return e["has_connection"])[0]
+				)
 				var start = tiles.map_to_local(boss_entrance["start"])
 				var end = tiles.map_to_local(boss_entrance["end"])
 				var direction = Vector2(boss_entrance["direction"])
 				var center = (start + end) / 2.0
 				var offset = tiles.to_global(center)
-				note.text = 'Beware – in front of you lies the room of Draziw. Once you enter, there is no turning back.'
+				note.text = "Beware – in front of you lies the room of Draziw. Once you enter, there is no turning back. It would be wise to explore the entire dungeon to get as strong as possible before the fight."
 				note.position = offset + self.tile_size * direction
-				boss_room.get_node('items').add_child(note)
+				boss_room.get_node("items").add_child(note)
 				return
 		banned.push_back(room.get_instance_id())
 		push_error("Could not spawn boss room!")

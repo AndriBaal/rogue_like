@@ -39,5 +39,5 @@ environment = SubResource("Environment_ed0iv")
 follow_viewport_enabled = true
 
 [node name="soundtrack" type="AudioStreamPlayer" parent="."]
-volume_db = -28.0
+volume_db = -34.0
 autoplay = true

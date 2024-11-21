@@ -61,18 +61,24 @@ path_postprocessing = 1
 simplify_path = true
 simplify_epsilon = 6.0
 
-[node name="hp_bar" type="TextureProgressBar" parent="."]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../hp_bar_control")
+update_rotation = false
+update_scale = false
+
+[node name="hp_bar_control" type="Node2D" parent="."]
 top_level = true
+
+[node name="hp_bar" type="TextureProgressBar" parent="hp_bar_control"]
 z_index = 100
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -600.0
-offset_top = -404.0
-offset_right = -548.0
-offset_bottom = -396.0
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 value = 100.0
@@ -80,7 +86,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_bn8hd")
 texture_progress = ExtResource("3_bb7jy")
 
-[node name="name" type="Label" parent="hp_bar"]
+[node name="name" type="Label" parent="hp_bar_control/hp_bar"]
 layout_mode = 0
 offset_left = -32.0
 offset_top = -24.0

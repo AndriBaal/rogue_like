@@ -16,8 +16,8 @@ const PROJECTILE_OFFSET := 35.0
 @onready var game: Game = $/root/game
 @onready var target = $/root/game/player
 
-@export var max_health: float = 400.0
-@export var health: float = 400.0:
+@export var max_health: float = 500.0
+@export var health: float = 500.0:
 	get:
 		return health
 	set(value):

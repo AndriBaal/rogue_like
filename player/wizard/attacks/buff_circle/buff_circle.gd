@@ -18,7 +18,8 @@ func _process(_delta: float) -> void:
 	if player_inside:
 		game.player.effects['buff_circle'] = {
 			'duration': 1.0,
-			'attack': 1.4
+			'attack': 1.4,
+			'color': Color.DARK_GREEN
 		}
 
 func _body_entered(body):

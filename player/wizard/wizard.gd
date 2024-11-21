@@ -57,7 +57,7 @@ func _ready():
 			"description": "Re-locate to your cursor's position in an instant.",
 			"action": "_ice_teleport",
 			"mana_cost": 15.0,
-			"cool_down": 2.0,
+			"cool_down": 3.0,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_teleport.png")
 		},
@@ -67,7 +67,7 @@ func _ready():
 			"description": "Re-direct a projectile attack back to the sender.",
 			"action": "_ice_deflect",
 			"mana_cost": 15.0,
-			"cool_down": 2.0,
+			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_deflect.png")
 		},
@@ -77,8 +77,8 @@ func _ready():
 			"description":
 			"Release a wild circle of fire around you. Most effective when surrounded.",
 			"action": "_fire_storm",
-			"mana_cost": 25.0,
-			"cool_down": 4.0,
+			"mana_cost": 35.0,
+			"cool_down": 0.75,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_storm.png")
 		},
@@ -88,8 +88,8 @@ func _ready():
 			"description":
 			"Launch a concentrated burst of flames. Get close and personal for best effect.",
 			"action": "_fire_wall",
-			"mana_cost": 15.0,
-			"cool_down": 2.5,
+			"mana_cost": 20.0,
+			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_wall.png")
 		},
@@ -121,7 +121,7 @@ func _ready():
 			"description": "Morph into a rolling boulder and turn your foes into pancake.",
 			"action": "_rock_roll",
 			"mana_cost": 20.0,
-			"cool_down": 1.5,
+			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/rock_roll.png")
 		},
@@ -131,8 +131,8 @@ func _ready():
 			"description":
 			"Let sharp spikes of rock rise from the ground and impale those unfortunate enough to step on them.",
 			"action": "_rock_spike",
-			"mana_cost": 20.0,
-			"cool_down": 1.5,
+			"mana_cost":  25.0,
+			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/rock_spike.png")
 		},
@@ -251,13 +251,8 @@ func _ready():
 func _process(delta: float) -> void:
 	super(delta)
 	if self.state != PlayerState.ROLL:
-		self.modulate = Color.WHITE
 		self.roll_damage = null
 		self.roll_duration = DEFAULT_ROLL_SPEED
-
-	if self.modulate == Color.RED and "fire_buff" not in self.effects:
-		self.modulate = Color.WHITE
-
 
 func _ice_spear(player_position, look_direction):
 	self.game.spawn_projectile(
@@ -296,8 +291,8 @@ func _rock_spike(_player_position, _look_direction):
 
 func _rock_roll(_player_position, _look_direction):
 	self.roll_damage = 7.5
-	self.roll_duration = 1.0
-	self.modulate = Color(0.2, 0.2, 0.2)
+	self.roll_duration = 0.75
+	self.effects["rock_roll"] = {"duration": 0.75, "color": Color(0.2, 0.2, 0.2)}
 	return PlayerState.ROLL
 
 
@@ -361,8 +356,7 @@ func _fire_wall(player_position, look_direction):
 
 
 func _fire_buff(_player_position, _look_direction):
-	self.modulate = Color.RED
-	self.effects["fire_buff"] = {"duration": 8.0, "attack": 1.2, "speed": 1.2}
+	self.effects["fire_buff"] = {"duration": 8.0, "attack": 1.25, "speed": 1.2, "color": Color.RED}
 
 
 func _body_entered(body):

@@ -128,12 +128,11 @@ explosiveness = 0.6
 [node name="level_up" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_6okp0")
 emitting = false
-amount = 20
+amount = 12
 process_material = SubResource("ParticleProcessMaterial_akn77")
 texture = ExtResource("4_3rqxh")
-lifetime = 1.5
 one_shot = true
-explosiveness = 0.6
+explosiveness = 0.5
 
 [node name="walk_sprite" type="Sprite2D" parent="."]
 visible = false
@@ -174,7 +173,7 @@ shape = SubResource("CircleShape2D_0d6cu")
 [node name="hurt_audio" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("7_whchf")
-volume_db = 6.0
+volume_db = -12.0
 
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_b44c1")
@@ -183,13 +182,15 @@ pitch_scale = 0.86
 
 [node name="deflect_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_pdk8p")
+volume_db = -16.0
 
 [node name="level_up_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_j2h4l")
+volume_db = -18.0
 
 [node name="potion_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_igm5t")
-volume_db = 12.0
+volume_db = -6.0
 
 [node name="buy_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_mic2i")
@@ -197,6 +198,7 @@ volume_db = -15.0
 
 [node name="buy_fail_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_awu1e")
+volume_db = -16.0
 
 [node name="step_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_b218c")

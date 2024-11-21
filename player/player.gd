@@ -119,7 +119,7 @@ enum PlayerState {
 		level = value
 		$ui/hud/xp/level.text = str(level)
 
-@export var mana_per_second = 5.0
+@export var mana_per_second = 5.5
 @export var max_mana := 50.0
 @export var mana := max_mana
 @export var attack_cooldowns := {
@@ -241,11 +241,17 @@ func _process(delta: float) -> void:
 			var occluder = attack_ui.get_node(^'occluder')
 			var ratio = max(0.0, self.attack_cooldowns[attack_slot] / attack['cool_down'])
 			occluder.scale.y = ratio
-			
+	
+	var longest_effect = INF
+	self.modulate = Color.WHITE
 	for effect_name in self.effects.keys():
 		var effect = self.effects[effect_name]
 		effect['duration'] -= delta
-		if effect['duration'] <= 0.0:
+		var duration = effect['duration']
+		if 'color' in effect and duration < longest_effect:
+			longest_effect = duration
+			self.modulate = effect['color']
+		if duration <= 0.0:
 			self.effects.erase(effect_name)
 		
 			

@@ -26,7 +26,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 		return health
 	set(value):
 		health = value
-		$hp_bar.value = health
+		$hp_bar_control/hp_bar.value = health
 		if health <= 0.0:
 			target.xp += xp
 			call_deferred("death")
@@ -44,7 +44,6 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @export var state := EnemyState.INACTIVE
 @export var movement: Vector2
 @export var direction := Direction.SOUTH
-@export var hp_bar_offset := Vector2.ZERO
 @export var init := false
 @export var alive := true
 
@@ -55,9 +54,7 @@ func _ready() -> void:
 		init = true
 		self.navigation.velocity_computed.connect(self._velocity_computed)
 		
-		var hp_bar = $hp_bar
-		self.hp_bar_offset = hp_bar.position
-		hp_bar.position = self.global_position + self.hp_bar_offset
+		var hp_bar = $hp_bar_control/hp_bar
 		hp_bar.max_value = self.max_health
 	
 func aggro() -> void:
@@ -88,8 +85,6 @@ func _process(delta: float) -> void:
 		active_sprite.frame_coords.y = self.direction
 		self._compute_hit_animation(delta, active_sprite)
 	
-	$hp_bar.position = self.global_position + self.hp_bar_offset
-
 func _physics_process(_delta: float) -> void:
 	if not alive:
 		return

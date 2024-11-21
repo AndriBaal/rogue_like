@@ -23,9 +23,7 @@ func attack():
 	if not self.attacked and self.attack_sprite.frame_coords.x == 8:
 		self.attacked = true
 		self.game.spawn_projectile(
-			BONE.instantiate(),
-			self.global_position + 80.0 * self.target_vector,
-			self.target_vector
+			BONE.instantiate(), self.global_position + 80.0 * self.target_vector, self.target_vector
 		)
 
 		self.game.spawn_projectile(

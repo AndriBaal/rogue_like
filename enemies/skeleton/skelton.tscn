@@ -42,11 +42,9 @@ shape = SubResource("CapsuleShape2D_uah4m")
 [node name="throw_sound" type="AudioStreamPlayer2D" parent="." index="6"]
 stream = ExtResource("6_iu1st")
 
-[node name="hp_bar" parent="." index="9"]
-offset_left = -602.0
-offset_top = -408.0
-offset_right = -550.0
-offset_bottom = -400.0
+[node name="hp_bar" parent="hp_bar_control" index="0"]
+offset_top = -86.0
+offset_bottom = -78.0
 
-[node name="name" parent="hp_bar" index="0"]
-text = "Skeleton"
+[node name="name" parent="hp_bar_control/hp_bar" index="0"]
+text = "SKELETON"
