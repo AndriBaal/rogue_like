@@ -20,21 +20,21 @@ attack_speed = 2.1
 movement_speed = 150.0
 melee_damage = 10.0
 
-[node name="idle_sprite" parent="." index="0"]
+[node name="idle_sprite" parent="." index="1"]
 texture = ExtResource("3_0bag1")
 vframes = 8
 
-[node name="idle_attack_sprite" parent="." index="1"]
+[node name="idle_attack_sprite" parent="." index="2"]
 texture = ExtResource("4_g0vn3")
 hframes = 11
 vframes = 8
 
-[node name="walk_sprite" parent="." index="2"]
+[node name="walk_sprite" parent="." index="3"]
 texture = ExtResource("5_gf2y4")
 hframes = 9
 vframes = 8
 
-[node name="collider" parent="." index="3"]
+[node name="collider" parent="." index="4"]
 position = Vector2(0, 2.66667)
 shape = SubResource("CircleShape2D_0pnlb")
 

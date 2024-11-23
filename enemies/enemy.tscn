@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvsrhnrd1kp5h"]
+[gd_scene load_steps=12 format=3 uid="uid://bvsrhnrd1kp5h"]
 
 [ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nevkm"]
 [ext_resource type="Texture2D" uid="uid://cyif6pshom3p2" path="res://enemies/health_bar_background.png" id="2_bn8hd"]
@@ -6,6 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://cmqv50be3k5xe" path="res://enemies/health_bar.png" id="3_bb7jy"]
 [ext_resource type="AudioStream" uid="uid://bh8l4nliro7vx" path="res://enemies/defeat.wav" id="3_soesr"]
 [ext_resource type="Texture2D" uid="uid://btbun1m5lc0th" path="res://enemies/despawn.png" id="3_uh4fr"]
+[ext_resource type="Texture2D" uid="uid://ckp77hsnnhvig" path="res://enemies/spawn.png" id="5_uiwb2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_veh5f"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 40.0
+emission_ring_radius = 40.0
+emission_ring_inner_radius = 40.0
+radial_velocity_min = -90.0
+radial_velocity_max = -80.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.5
+scale_max = 3.0
 
 [sub_resource type="Curve" id="Curve_mvlvy"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -31,7 +46,21 @@ collision_mask = 29
 motion_mode = 1
 script = ExtResource("1_nevkm")
 
+[node name="spawn" type="GPUParticles2D" parent="."]
+visible = false
+top_level = true
+z_index = -1
+scale = Vector2(3, 3)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_veh5f")
+texture = ExtResource("5_uiwb2")
+lifetime = 2.0
+one_shot = true
+visibility_rect = Rect2(-200000, -200000, 200000, 200000)
+
 [node name="idle_sprite" type="Sprite2D" parent="."]
+visible = false
 
 [node name="idle_attack_sprite" type="Sprite2D" parent="."]
 visible = false
@@ -66,7 +95,13 @@ remote_path = NodePath("../hp_bar_control")
 update_rotation = false
 update_scale = false
 
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../spawn")
+update_rotation = false
+update_scale = false
+
 [node name="hp_bar_control" type="Node2D" parent="."]
+visible = false
 top_level = true
 
 [node name="hp_bar" type="TextureProgressBar" parent="hp_bar_control"]

@@ -151,7 +151,7 @@ func _process(_delta: float) -> void:
 			self.active = true
 			self._close_room()
 			for enemy in self.enemies.get_children():
-				enemy.aggro()
+				enemy.spawn()
 		
 	if not self.active:
 		return

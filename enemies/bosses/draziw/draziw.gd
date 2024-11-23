@@ -183,7 +183,7 @@ func _ready() -> void:
 		$hp_bar_layer/hp_bar.max_value = self.max_health
 		$hp_bar_layer/hp_bar.value = self.health
 	
-func aggro() -> void:
+func spawn() -> void:
 	$hp_bar_layer.visible = true
 	self.state = BossState.ATTACKING
 

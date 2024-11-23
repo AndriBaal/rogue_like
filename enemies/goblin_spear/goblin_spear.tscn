@@ -15,21 +15,21 @@ scale = Vector2(2.5, 2.5)
 script = ExtResource("2_3p0th")
 attack_radius = 800.0
 
-[node name="idle_sprite" parent="." index="0"]
+[node name="idle_sprite" parent="." index="1"]
 texture = ExtResource("2_rfiit")
 vframes = 8
 
-[node name="idle_attack_sprite" parent="." index="1"]
+[node name="idle_attack_sprite" parent="." index="2"]
 texture = ExtResource("4_5sqfl")
 hframes = 11
 vframes = 8
 
-[node name="walk_sprite" parent="." index="2"]
+[node name="walk_sprite" parent="." index="3"]
 texture = ExtResource("5_18tvq")
 hframes = 9
 vframes = 8
 
-[node name="collider" parent="." index="3"]
+[node name="collider" parent="." index="4"]
 position = Vector2(0, 3.2)
 shape = SubResource("CircleShape2D_s84cm")
 

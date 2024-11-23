@@ -4,7 +4,8 @@ class_name Enemy
 
 enum EnemyState {
 	INACTIVE,
-	AGGRO,
+	SPAWNING,
+	READY,
 	ATTACKING,
 	MOVING
 }
@@ -50,6 +51,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 
 func _ready() -> void:
 	$despawn.finished.connect(self.queue_free)
+	$spawn.finished.connect(self.finish_spawn)
 	if not init:
 		init = true
 		self.navigation.velocity_computed.connect(self._velocity_computed)
@@ -57,8 +59,18 @@ func _ready() -> void:
 		var hp_bar = $hp_bar_control/hp_bar
 		hp_bar.max_value = self.max_health
 	
-func aggro() -> void:
-	self.state = EnemyState.AGGRO
+func spawn() -> void:
+	self.state = EnemyState.SPAWNING
+	$idle_sprite.self_modulate = Color.BLACK
+	$idle_sprite.visible = true
+	$spawn.restart()
+	$spawn.visible = true
+	
+func finish_spawn():
+	self.state = EnemyState.READY
+	$idle_sprite.self_modulate = Color.WHITE
+	$hp_bar_control.visible = true
+	$spawn.visible = false
 
 func _process(delta: float) -> void:
 	if not alive:
@@ -66,9 +78,6 @@ func _process(delta: float) -> void:
 		
 	var active_sprite
 	match self.state:
-		EnemyState.INACTIVE:
-			active_sprite = $idle_sprite
-			return
 		EnemyState.ATTACKING:
 			active_sprite = self.attack_sprite
 			active_sprite.frame_coords.x = int(active_sprite.hframes / self.attack_speed  * self.animation_timer) % active_sprite.hframes
@@ -86,10 +95,7 @@ func _process(delta: float) -> void:
 		self._compute_hit_animation(delta, active_sprite)
 	
 func _physics_process(_delta: float) -> void:
-	if not alive:
-		return
-		
-	if self.state == EnemyState.INACTIVE:
+	if not alive or self.state == EnemyState.INACTIVE or self.state == EnemyState.SPAWNING:
 		return
 	
 		
@@ -170,7 +176,7 @@ func _compute_hit_animation(delta, active_sprite):
 	active_sprite.modulate = color
 	
 func deal_damage(damage: float):
-	if self.state == EnemyState.INACTIVE: # Prevent player from cheesing inactive enemy
+	if self.state == EnemyState.INACTIVE or self.state == EnemyState.SPAWNING  or not alive: # Prevent player from cheesing inactive enemy
 		return
 		
 	if health <= 0.0: # Enemy is already dead
