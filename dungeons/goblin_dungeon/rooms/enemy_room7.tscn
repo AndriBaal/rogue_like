@@ -40,16 +40,16 @@ position = Vector2(712, -64)
 position = Vector2(712, 72)
 
 [node name="spikes5" parent="decorations" index="5" instance=ExtResource("4_hhb1y")]
-position = Vector2(-112, -704)
+position = Vector2(-69, -704)
 
 [node name="spikes6" parent="decorations" index="6" instance=ExtResource("4_hhb1y")]
-position = Vector2(96, -704)
+position = Vector2(69, -704)
 
 [node name="spikes7" parent="decorations" index="7" instance=ExtResource("4_hhb1y")]
-position = Vector2(-112, 704)
+position = Vector2(-70, 704)
 
 [node name="spikes8" parent="decorations" index="8" instance=ExtResource("4_hhb1y")]
-position = Vector2(96, 704)
+position = Vector2(64, 704)
 
 [node name="goblin_axe" parent="enemies" index="0" instance=ExtResource("5_dsyv1")]
 position = Vector2(0, 280)

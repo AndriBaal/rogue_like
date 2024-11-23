@@ -6,6 +6,7 @@
 
 ## BUGS
 
+- [ ] White lines in skill tree are bugged
 - [x] ?Camera does not center correctly when starting a game becuase of the popup
 - [x] Fix greyed out skill tree nodes after deserialization
 - [x] Fix shifted names of enemies before entering rooms (711408093)
@@ -29,8 +30,8 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
-- [ ] Spawn animation
 - [ ] Hide easter eggs
+- [x] Spawn animation
 - [x] Story (Endboss drops scroll)
 - [x] Warning before endboss
 - [x] Focus camera on player in minimap
