@@ -10,8 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://7l3kq72pba3o" path="res://enemies/slime/slime_blue.tscn" id="8_6cc8m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_plntd"]
-vertices = PackedVector2Array(553, -109, 341, -109, 225, -202, 225, -342, 566, -422, 710, -422, 710, 566, 553, 127, -35, 323, 225, 323, -422, 566, -422, 422, 341, 127, 225, 183, -35, -202, -35, 183, -161, 127, -161, -109, -373, 127, -566, 422, -566, -566, -373, -109, 566, -566, -35, -342)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 6, 7, 0), PackedInt32Array(8, 9, 6, 10, 11), PackedInt32Array(12, 7, 6, 9, 13), PackedInt32Array(14, 2, 1, 12, 13, 15, 16, 17), PackedInt32Array(18, 11, 19, 20, 21), PackedInt32Array(20, 22, 4, 3, 23), PackedInt32Array(16, 15, 8, 11, 18), PackedInt32Array(17, 21, 20, 23, 14)])
+vertices = PackedVector2Array(591, -147, 303, -147, 263, -164, 263, -380, 528, -384, 672, -384, 672, 528, 591, 165, -73, 361, 263, 361, -384, 528, -384, 384, 303, 165, 263, 145, -123, 165, -123, -147, -73, 145, -411, 165, -528, 384, -528, -528, -411, -147, 528, -528, -73, -380, -73, -164)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 6, 7, 0), PackedInt32Array(8, 9, 6, 10, 11), PackedInt32Array(7, 6, 9, 12), PackedInt32Array(12, 9, 13, 1), PackedInt32Array(14, 15, 16, 8), PackedInt32Array(17, 14, 8, 11, 18), PackedInt32Array(17, 18, 19, 20), PackedInt32Array(19, 21, 4, 3, 22), PackedInt32Array(15, 20, 19, 22, 23), PackedInt32Array(23, 2, 1, 13, 16, 15)])
+agent_radius = 48.0
 
 [node name="enemy_room2" instance=ExtResource("1_8n4ip")]
 navigation_polygon = SubResource("NavigationPolygon_plntd")

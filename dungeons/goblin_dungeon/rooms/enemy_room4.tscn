@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c3od84w2jsvyn" path="res://enemies/skeleton/skelton.tscn" id="7_f7dpf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8bxaa"]
-vertices = PackedVector2Array(422, -1142, 422, 1142, 298, 154, 298, -154, 154, -710, 154, -874, 154, 874, 154, 710, -154, 874, -278, 1142, -278, 998, -278, -1142, -154, -874, -278, -998, 134, -154, -154, -710, 134, 154, -154, 710, -134, 154, -298, 154, -134, -154, -298, -154, -422, -998, -422, 998)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(2, 1, 6, 7), PackedInt32Array(8, 6, 1, 9, 10), PackedInt32Array(11, 0, 5, 12, 13), PackedInt32Array(4, 3, 14, 15), PackedInt32Array(16, 2, 7, 17), PackedInt32Array(16, 17, 18, 14), PackedInt32Array(19, 18, 17, 10), PackedInt32Array(14, 18, 20), PackedInt32Array(15, 14, 20), PackedInt32Array(15, 20, 21, 22), PackedInt32Array(10, 23, 22, 19), PackedInt32Array(17, 8, 10), PackedInt32Array(22, 13, 12, 15), PackedInt32Array(22, 21, 19)])
+vertices = PackedVector2Array(384, -1104, 384, 1104, 336, 192, 336, -192, 192, -672, 192, -912, 192, 912, 192, 672, -192, 912, -240, 1104, -240, 960, -240, -1104, -192, -912, -240, -960, 96, -192, -192, -672, 96, 192, -192, 672, -96, 192, -336, 192, -384, 960, -96, -192, -336, -192, -384, -960)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(2, 1, 6, 7), PackedInt32Array(8, 6, 1, 9, 10), PackedInt32Array(11, 0, 5, 12, 13), PackedInt32Array(4, 3, 14, 15), PackedInt32Array(16, 2, 7, 17), PackedInt32Array(16, 17, 18, 14), PackedInt32Array(19, 18, 17, 20), PackedInt32Array(14, 18, 21), PackedInt32Array(15, 14, 21), PackedInt32Array(15, 21, 22, 23), PackedInt32Array(17, 8, 10, 20), PackedInt32Array(19, 20, 23, 22), PackedInt32Array(12, 15, 23, 13)])
+agent_radius = 48.0
 
 [node name="enemy_room4" instance=ExtResource("1_of732")]
 navigation_polygon = SubResource("NavigationPolygon_8bxaa")

@@ -88,6 +88,7 @@ explosiveness = 1.0
 [node name="navigation" type="NavigationAgent2D" parent="."]
 simplify_path = true
 simplify_epsilon = 6.0
+debug_enabled = true
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("../hp_bar_control")
