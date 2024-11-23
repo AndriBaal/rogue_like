@@ -28,16 +28,16 @@ tile_set = ExtResource("2_ramb7")
 texture_scale = 0.6
 
 [node name="spikes" parent="decorations" index="1" instance=ExtResource("4_hhb1y")]
-position = Vector2(-712, 128)
+position = Vector2(-712, 74)
 
 [node name="spikes2" parent="decorations" index="2" instance=ExtResource("4_hhb1y")]
-position = Vector2(-712, -64)
+position = Vector2(-712, -68)
 
 [node name="spikes3" parent="decorations" index="3" instance=ExtResource("4_hhb1y")]
 position = Vector2(712, -64)
 
 [node name="spikes4" parent="decorations" index="4" instance=ExtResource("4_hhb1y")]
-position = Vector2(712, 128)
+position = Vector2(712, 72)
 
 [node name="spikes5" parent="decorations" index="5" instance=ExtResource("4_hhb1y")]
 position = Vector2(-112, -704)

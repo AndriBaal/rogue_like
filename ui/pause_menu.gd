@@ -4,6 +4,22 @@ func _ready() -> void:
 	$continue.pressed.connect(self._continue)
 	$save.pressed.connect(self._save)
 	$quit.pressed.connect(self._quit)
+	#self.visibility_changed.connect(self._visibility_changed)
+	#
+#func _visibility_changed():
+	#var environment: Environment = $/root/game/environment.environment
+	#if self.visible:
+		#environment.glow_normalized = true
+		#environment.glow_bloom = 1.0
+		#environment.glow_intensity = 1.0
+		#environment.glow_blend_mode = Environment.GLOW_BLEND_MODE_REPLACE
+		#environment.glow_hdr_luminance_cap = 1
+	#else:
+		#environment.glow_normalized = false
+		#environment.glow_bloom = 0.0
+		#environment.glow_intensity = 0.8
+		#environment.glow_blend_mode = Environment.GLOW_BLEND_MODE_SCREEN
+		#environment.glow_hdr_luminance_cap = 8
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("menu") and not $/root/game.has_node(^'game_over'):

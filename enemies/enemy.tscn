@@ -16,8 +16,8 @@ emission_ring_axis = Vector3(0, 0, 0)
 emission_ring_height = 40.0
 emission_ring_radius = 40.0
 emission_ring_inner_radius = 40.0
-radial_velocity_min = -90.0
-radial_velocity_max = -80.0
+radial_velocity_min = -110.0
+radial_velocity_max = -90.0
 gravity = Vector3(0, 0, 0)
 scale_min = 2.5
 scale_max = 3.0
@@ -42,7 +42,7 @@ scale_curve = SubResource("CurveTexture_y8bs0")
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 31
+collision_mask = 29
 motion_mode = 1
 script = ExtResource("1_nevkm")
 

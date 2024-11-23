@@ -36,6 +36,7 @@ import/blender/enabled=false
 
 [gui]
 
+timers/tooltip_delay_sec=0.1
 fonts/dynamic_fonts/use_oversampling=false
 theme/custom="res://ui/theme.theme"
 theme/custom_font="res://ui/font.ttf"
