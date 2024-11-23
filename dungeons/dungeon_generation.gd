@@ -153,14 +153,11 @@ class Dungeon:
 				if not self._rooms_left():
 					break
 
-				if (
-					entrance["has_connection"]
-					or (
-						self.random.randi_range(0, 2) == 0
-						and not (i_room == room_amount - 1 and new_rooms.is_empty())
-						and not room.name.begins_with('neutral')
-					)
-				):
+
+				if not entrance["has_connection"] and ((i_room == room_amount - 1 and new_rooms.is_empty()) \
+					or room.name.begins_with('neutral') or self.random.randi_range(0, 2) == 0):
+					pass
+				else:
 					continue
 
 				var room_type = self._get_room_type(only_bad)
