@@ -55,7 +55,7 @@ emitting = false
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_veh5f")
 texture = ExtResource("5_uiwb2")
-lifetime = 2.0
+lifetime = 1.4
 one_shot = true
 visibility_rect = Rect2(-200000, -200000, 200000, 200000)
 
@@ -86,7 +86,6 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="navigation" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
 simplify_path = true
 simplify_epsilon = 6.0
 

@@ -42,18 +42,18 @@ process_material = SubResource("ParticleProcessMaterial_yiv6a")
 texture = ExtResource("2_xfqy7")
 lifetime = 2.0
 
-[node name="idle_sprite" parent="." index="1"]
+[node name="idle_sprite" parent="." index="2"]
 texture = ExtResource("2_0e4id")
 vframes = 8
 region_rect = Rect2(0, 0, 48, 48)
 
-[node name="walk_sprite" parent="." index="3"]
+[node name="walk_sprite" parent="." index="4"]
 texture = ExtResource("3_dwcur")
 hframes = 9
 vframes = 8
 region_rect = Rect2(0, 0, 48, 48)
 
-[node name="collider" parent="." index="4"]
+[node name="collider" parent="." index="5"]
 position = Vector2(0, 0.4)
 shape = SubResource("CircleShape2D_rc0bd")
 

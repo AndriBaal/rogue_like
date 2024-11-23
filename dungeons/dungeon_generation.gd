@@ -158,8 +158,8 @@ class Dungeon:
 					or (
 						self.random.randi_range(0, 2) == 0
 						and not (i_room == room_amount - 1 and new_rooms.is_empty())
+						and not room.name.begins_with('neutral')
 					)
-					or room.name.begins_with('neutral')
 				):
 					continue
 
