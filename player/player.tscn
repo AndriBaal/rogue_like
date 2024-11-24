@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dp7jdk5hksqyw"]
+[gd_scene load_steps=42 format=3 uid="uid://dp7jdk5hksqyw"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_tft3e"]
 [ext_resource type="Texture2D" uid="uid://cirydnnuawr80" path="res://light.png" id="2_b56bh"]
@@ -15,6 +15,13 @@
 [ext_resource type="AudioStream" uid="uid://dg85qjlq7cudi" path="res://player/buy_fail.wav" id="13_awu1e"]
 [ext_resource type="AudioStream" uid="uid://c4mtnxb3432g5" path="res://player/wizard/walk1.mp3" id="14_b218c"]
 [ext_resource type="PackedScene" uid="uid://ckh3bn2sp2o6b" path="res://player/ui/ui.tscn" id="15_hd6nt"]
+[ext_resource type="AudioStream" uid="uid://bv83tqsyvwpsq" path="res://player/wizard/walk2.mp3" id="15_tj25x"]
+[ext_resource type="AudioStream" uid="uid://bc5pwtggbk4on" path="res://player/shoot_fire.wav" id="16_2aub6"]
+[ext_resource type="AudioStream" uid="uid://brl8an7rfwgtm" path="res://player/fire_buff.wav" id="16_owdto"]
+[ext_resource type="AudioStream" uid="uid://bty6oe7h3wbvw" path="res://player/shoot_ice.wav" id="16_yjyso"]
+[ext_resource type="AudioStream" uid="uid://dy5myac3641ns" path="res://player/shoot_rock.wav" id="17_374uf"]
+[ext_resource type="AudioStream" uid="uid://cebtj56e3ud0w" path="res://player/parry.wav" id="18_rakq2"]
+[ext_resource type="AudioStream" uid="uid://birdbfomyqgew" path="res://player/rock_roll.wav" id="20_tbnbw"]
 
 [sub_resource type="Curve" id="Curve_mhb5k"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.823232, 0.858696), 0.0, 0.0, 0, 0, Vector2(0.991361, 0), 0.0, 0.0, 0, 0]
@@ -62,6 +69,47 @@ scale_curve = SubResource("CurveTexture_fns1n")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d6cu"]
 radius = 17.4545
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2gurf"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("8_b44c1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lbrnw"]
+random_pitch = 1.2
+streams_count = 2
+stream_0/stream = ExtResource("14_b218c")
+stream_1/stream = ExtResource("15_tj25x")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xlujn"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("16_2aub6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_t1ido"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("17_374uf")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hptma"]
+random_pitch = 1.25
+streams_count = 1
+stream_0/stream = ExtResource("16_yjyso")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xey8u"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("16_owdto")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_15ldu"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("20_tbnbw")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v47in"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("18_rakq2")
 
 [sub_resource type="Animation" id="Animation_x7qcv"]
 resource_name = "level_up"
@@ -176,7 +224,7 @@ stream = ExtResource("7_whchf")
 volume_db = -12.0
 
 [node name="roll_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_b44c1")
+stream = SubResource("AudioStreamRandomizer_2gurf")
 volume_db = 24.0
 pitch_scale = 0.86
 
@@ -201,10 +249,32 @@ stream = ExtResource("13_awu1e")
 volume_db = -16.0
 
 [node name="step_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_b218c")
+stream = SubResource("AudioStreamRandomizer_lbrnw")
 volume_db = -10.0
 pitch_scale = 1.2
-autoplay = true
+
+[node name="shoot_fire" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_xlujn")
+volume_db = -8.0
+
+[node name="shoot_rock" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_t1ido")
+volume_db = -8.0
+playback_type = 2
+
+[node name="shoot_ice" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_hptma")
+volume_db = -16.0
+playback_type = 2
+
+[node name="fire_buff" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_xey8u")
+
+[node name="rock_roll" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_15ldu")
+
+[node name="parry" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_v47in")
 
 [node name="listener" type="AudioListener2D" parent="."]
 current = true

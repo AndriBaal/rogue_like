@@ -10,9 +10,9 @@ size = Vector2(6.16667, 24)
 [node name="Projectile" instance=ExtResource("1_l3w0f")]
 scale = Vector2(8, 8)
 speed = 1850.0
-damage = 6.0
+damage = 8.0
 color = Color(0, 0.597, 63.172, 1)
-pierce = 1
+pierce = 1000
 damage_type = 0
 
 [node name="sprite" parent="." index="0"]

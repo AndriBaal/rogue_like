@@ -2,6 +2,15 @@ extends Node2D
 
 class_name Room
 
+const ROOM_XP := 25
+enum RoomType {
+	ENEMY,
+	BOSS,
+	NEUTRAL,
+	GOOD,
+	START
+}
+
 @onready var map = $/root/game/player/ui/inventory/map/content
 @onready var target = $/root/game/player
 @onready var game: Game = $/root/game
@@ -16,8 +25,8 @@ class_name Room
 @export var parent = null
 @export var entrances: Array
 @export var init := false
+@export var type := RoomType.ENEMY
 
-# TODO: Room type enum instead of stiring names
 
 func start() -> Room:
 	self.entrances = self._get_room_entrances()
@@ -182,7 +191,7 @@ func _close_room():
 	
 	map.close_teleporters()
 	
-	if self.name == 'start_room':
+	if self.type == RoomType.START:
 		for cell in self.optimized_cells:
 			map.add_rect(cell, Color.DIM_GRAY)	
 			
@@ -204,6 +213,16 @@ func _close_room():
 
 func _open_room():
 	self.game.play_track('relaxed')
+	
+	if self.type == RoomType.ENEMY:
+		self.game.player.xp += ROOM_XP
+	
+	if self.game.player.level == 1 and not self.game.level_up_hint_shown:
+		self.game.level_up_hint_shown = true
+		self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP! Make sure to use your new Skill and Character Token!')
+	
+	if self.type == RoomType.BOSS:
+		self.game.spawn_pop_up('Congratulations!', 'Thank you for saving the world and playing our Game!')
 
 	map.open_teleporters()
 	for cell in self.optimized_cells:
@@ -242,11 +261,6 @@ func cleared() -> bool:
 	if enemies_left == 0:
 		for attack in self.game.player.active_attacks.values():
 			if attack != null:
-				if self.game.player.level == 1 and not self.game.level_up_hint_shown:
-					self.game.level_up_hint_shown = true
-					self.game.spawn_pop_up('First Level UP!', 'You just got your first Level UP! Make sure to use your new Skill and Character Token!')
-				if self.name == 'boss_room':
-					self.game.spawn_pop_up('Congratulations!', 'Thank you for saving the world and playing our Game!')
 				return true
 	
 	return false

@@ -66,15 +66,11 @@ position = Vector2(447, 21)
 [node name="slime" parent="enemies" index="0" instance=ExtResource("4_7ordh")]
 position = Vector2(-267, -273)
 
-
 [node name="goblin_axe" parent="enemies" index="1" instance=ExtResource("7_nwo3t")]
 position = Vector2(-288, 384)
-
 
 [node name="goblin_axe2" parent="enemies" index="2" instance=ExtResource("7_nwo3t")]
 position = Vector2(456, -304)
 
-
 [node name="slime_blue" parent="enemies" index="3" instance=ExtResource("8_6cc8m")]
 position = Vector2(448, 320)
-

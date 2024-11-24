@@ -35,7 +35,7 @@ func _ready():
 			"description":
 			"A piercing wave of ice that moves at great speeds. Deals moderate Damage at a long Cooldown.",
 			"action": "_ice_wave",
-			"mana_cost": 20.0,
+			"mana_cost": 15.0,
 			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_wave.png")
@@ -66,8 +66,8 @@ func _ready():
 			"name": "Slippery Reversal",
 			"description": "Re-direct a projectile attack back to the sender.",
 			"action": "_ice_deflect",
-			"mana_cost": 15.0,
-			"cool_down": 0.5,
+			"mana_cost": 5.0,
+			"cool_down": 0.4,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/ice_deflect.png")
 		},
@@ -77,7 +77,7 @@ func _ready():
 			"description":
 			"Release a wild circle of fire around you. Most effective when surrounded.",
 			"action": "_fire_storm",
-			"mana_cost": 35.0,
+			"mana_cost": 25.0,
 			"cool_down": 0.75,
 			"type": AttackType.ABILITY,
 			"icon": preload("res://player/wizard/attacks/fire_storm.png")
@@ -261,6 +261,8 @@ func _ice_spear(player_position, look_direction):
 		look_direction,
 		true
 	)
+	
+	$shoot_ice.play()
 
 
 func _ice_teleport(_player_position, _look_direction):
@@ -269,10 +271,12 @@ func _ice_teleport(_player_position, _look_direction):
 		self.position = mouse_pos
 		self.reset_physics_interpolation()
 		$teleport.restart()
+		$parry.play()
 
 
 func _ice_deflect(_player_position, _look_direction):
 	self.parry_timer = 0.0
+	$shoot_ice.play()
 
 
 func _rock_buff(_player_position, _look_direction):
@@ -280,6 +284,8 @@ func _rock_buff(_player_position, _look_direction):
 	if game.is_valid_position(mouse_pos, true):
 		var circle = BUFF_CIRCLE.instantiate().start(mouse_pos)
 		game.get_node("projectiles").add_child(circle)
+		
+		$shoot_rock.play()
 
 
 func _rock_spike(_player_position, _look_direction):
@@ -287,12 +293,17 @@ func _rock_spike(_player_position, _look_direction):
 	if game.is_valid_position(mouse_pos, true):
 		var spikes = SPIKES.instantiate().make_friendly(mouse_pos)
 		game.get_node("projectiles").add_child(spikes)
+		
+		$shoot_rock.play()
 
 
 func _rock_roll(_player_position, _look_direction):
 	self.roll_damage = 7.5
 	self.roll_duration = 0.75
 	self.effects["rock_roll"] = {"duration": 0.75, "color": Color(0.2, 0.2, 0.2)}
+	
+	$rock_roll.play()
+	
 	return PlayerState.ROLL
 
 
@@ -303,6 +314,8 @@ func _fire_ball(player_position, look_direction):
 		look_direction,
 		true
 	)
+	
+	$shoot_fire.play()
 
 
 func _ice_wave(player_position, look_direction):
@@ -312,6 +325,10 @@ func _ice_wave(player_position, look_direction):
 		look_direction,
 		true
 	)
+	
+	$shoot_ice.play()
+	$shoot_ice.play()
+	$shoot_ice.play()
 
 
 func _rock_throw(player_position, look_direction):
@@ -321,6 +338,10 @@ func _rock_throw(player_position, look_direction):
 		look_direction,
 		true
 	)
+	
+	$shoot_rock.play()
+	$shoot_rock.play()
+	$shoot_rock.play()
 
 
 func _fire_storm(player_position, _look_direction):
@@ -336,6 +357,12 @@ func _fire_storm(player_position, _look_direction):
 		self.game.spawn_projectile(
 			f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true
 		)
+	
+	$shoot_fire.play()
+	$shoot_fire.play()
+	$shoot_fire.play()
+	$shoot_fire.play()
+	$shoot_fire.play()
 
 
 func _fire_wall(player_position, look_direction):
@@ -353,10 +380,16 @@ func _fire_wall(player_position, look_direction):
 		self.game.spawn_projectile(
 			f, spawn_position + PROJECTILE_OFFSET * direction_vector, direction_vector, true
 		)
+	
+	$shoot_fire.play()
+	$shoot_fire.play()
+	$shoot_fire.play()
 
 
 func _fire_buff(_player_position, _look_direction):
 	self.effects["fire_buff"] = {"duration": 8.0, "attack": 1.25, "speed": 1.2, "color": Color.RED}
+	
+	$fire_buff.play()
 
 
 func _body_entered(body):

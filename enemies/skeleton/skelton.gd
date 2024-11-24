@@ -14,7 +14,6 @@ func loot_pool() -> Array:
 
 func start_attack() -> void:
 	super()
-	$throw_sound.play()
 	self.attacked = false
 
 
@@ -22,6 +21,7 @@ func attack():
 	super()
 	if not self.attacked and self.attack_sprite.frame_coords.x == 8:
 		self.attacked = true
+		$throw_sound.play()
 		self.game.spawn_projectile(
 			BONE.instantiate(), self.global_position + 80.0 * self.target_vector, self.target_vector
 		)

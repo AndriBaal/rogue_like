@@ -76,7 +76,12 @@ enum PlayerState {
 @onready var mana_bar := $ui/hud/mana_bar
 @onready var inventory: Inventory = $ui/inventory
 
-@export var xp_for_lvl_up := 50
+@export var xp_for_lvl_up := 50:
+	get():
+		return xp_for_lvl_up
+	set(value):
+		xp_for_lvl_up = value
+		$ui/hud/xp/bar.max_value = value
 @export var speed := 600.0
 @export var immunity_duration := 1.5
 
@@ -106,7 +111,7 @@ enum PlayerState {
 	set(value):
 		xp = max(value, 0)
 		var bar = $ui/hud/xp/bar
-		while xp > xp_for_lvl_up:
+		while xp >= xp_for_lvl_up:
 			xp -= xp_for_lvl_up
 			level += 1
 			_level_up()
@@ -141,15 +146,15 @@ enum PlayerState {
 @export var max_potions := 10
 @export var potions := 3
 
-const DEFAULT_ROLL_SPEED := 0.45
+const DEFAULT_ROLL_SPEED := 0.5
 @export var roll_cost = 5.0
 @export var roll_duration := DEFAULT_ROLL_SPEED
-@export var roll_speed := 700.0
+@export var roll_speed := 750.0
 @export var roll_timer := 0.0
 @export var roll_immunity_range: Vector2 = Vector2(0.05, 0.95)
 
 @export var parry_timer := 0.0
-@export var parry_duration = 0.15
+@export var parry_duration = 0.2
 
 @export var money := 0:
 	get():
@@ -326,11 +331,9 @@ func _process(delta: float) -> void:
 			active_sprite.frame_coords.x = int(self.animation_timer * 32.0) % active_sprite.hframes
 			self.animation_timer += delta
 			
-	var step_audio = $step_audio
 	if (self.state == PlayerState.WALK or self.state == PlayerState.WALK_ATTACK) \
-		and self.step_timer <= 0.0 and not step_audio.playing:
-		step_audio.pitch_scale = randf_range(0.8, 1.2)
-		step_audio.play()
+		and self.step_timer <= 0.0 and not $step_audio.playing:
+		$step_audio.play()
 		self.step_timer = STEP_INTERVAL
 
 	active_sprite.frame_coords.y = self.direction
@@ -432,6 +435,7 @@ func deal_damage(damage: float) -> bool:
 	return true
 	
 func _death():
+	inventory.visible = false
 	var game_over = self.GAME_OVER.instantiate()
 	self.game.add_child(game_over)
 	
@@ -448,7 +452,10 @@ func _level_up():
 	self.level_up_tokens += 1
 	
 func _use_potion():
-	if self.potions == 0:
+	if 1 > self.potions:
+		return
+		
+	if self.health >= self.max_health:
 		return
 
 	self.potions -= 1

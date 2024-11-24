@@ -74,6 +74,7 @@ offset_left = 7.0
 offset_top = 5.0
 offset_right = 49.0
 offset_bottom = 89.0
+max_value = 50.0
 step = 0.0
 fill_mode = 3
 nine_patch_stretch = true

@@ -29,7 +29,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 		health = value
 		$hp_bar_control/hp_bar.value = health
 		if health <= 0.0:
-			target.xp += xp
+			#target.xp += xp
 			call_deferred("death")
 			
 @export var attack_radius: float = 400.0
@@ -38,7 +38,7 @@ const DAMAGE_NUMBER := preload("res://enemies/damage_number.tscn")
 @export var melee_damage: float = 5.0
 @export var attack_sprite: Sprite2D
 @export var hit_animation_timer := HIT_ANIMATION_DURATION
-@export var xp: int = 5
+#@export var xp: int = 5
 
 @export var animation_timer := 0.0
 @export var target_vector: Vector2
@@ -62,6 +62,7 @@ func _ready() -> void:
 func spawn() -> void:
 	self.state = EnemyState.SPAWNING
 	$idle_sprite.self_modulate = Color.BLACK
+	$idle_sprite.self_modulate.a = 0.0
 	$idle_sprite.visible = true
 	$spawn.restart()
 	$spawn.visible = true
@@ -95,6 +96,9 @@ func _process(delta: float) -> void:
 		self._compute_hit_animation(delta, active_sprite)
 	
 func _physics_process(_delta: float) -> void:
+	if self.state == EnemyState.SPAWNING:
+		$idle_sprite.self_modulate.a += 0.01
+	
 	if not alive or self.state == EnemyState.INACTIVE or self.state == EnemyState.SPAWNING:
 		return
 	

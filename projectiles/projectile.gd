@@ -65,10 +65,10 @@ func _on_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int
 			if body.has_parry_frames():
 				self.rotation += PI
 				self.direction = -self.direction
-				self.damage *= 1.5
-				self.speed *= 1.5
+				self.damage *= 3.0
+				self.speed *= 3.0
 				self.friendly = true
-				body.get_node('deflect_audio').play()
+				body.get_node('parry').play()
 			elif not body.deal_damage(self.damage):
 				return
 		# Other enemy is hit
