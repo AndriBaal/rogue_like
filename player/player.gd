@@ -59,7 +59,7 @@ static func type_to_string(type: AttackType) -> String:
 		AttackType.PRIMARY:
 			return 'Primary'
 		AttackType.ABILITY:
-			return 'Ability'
+			return 'Secondary'
 		_:
 			push_error('Unknown type')
 			return 'ERROR'
@@ -265,6 +265,10 @@ func _process(delta: float) -> void:
 			if Input.is_action_pressed(slot_to_string(attack_slot)):
 				var attack = self.active_attacks[attack_slot]
 				if not attack:
+					continue
+				
+				if 'condition' in attack and not self.call(attack['condition']):
+					$buy_fail_audio.play()
 					continue
 				
 				new_direction = Direction.from_vector(look)

@@ -56,6 +56,7 @@ func _ready():
 			"name": "Freeze Flash",
 			"description": "Re-locate to your cursor's position in an instant.",
 			"action": "_ice_teleport",
+			"condition": "_check_teleport_position",
 			"mana_cost": 15.0,
 			"cool_down": 3.0,
 			"type": AttackType.ABILITY,
@@ -131,6 +132,7 @@ func _ready():
 			"description":
 			"Let sharp spikes of rock rise from the ground and impale those unfortunate enough to step on them.",
 			"action": "_rock_spike",
+			"condition": "_check_valid_place_position",
 			"mana_cost":  25.0,
 			"cool_down": 0.5,
 			"type": AttackType.ABILITY,
@@ -142,6 +144,7 @@ func _ready():
 			"description":
 			"Create a spot at your cursor to anchor to the ground and draw energy from the earth, greatly enhancing your strength.",
 			"action": "_rock_buff",
+			"condition": "_check_valid_place_position",
 			"mana_cost": 25.0,
 			"cool_down": 12.0,
 			"type": AttackType.ABILITY,
@@ -264,37 +267,40 @@ func _ice_spear(player_position, look_direction):
 	
 	$shoot_ice.play()
 
+func _check_teleport_position() -> bool:
+	var mouse_pos = self.game.get_local_mouse_position()
+	return game.is_valid_position(mouse_pos)
 
 func _ice_teleport(_player_position, _look_direction):
 	var mouse_pos = self.game.get_local_mouse_position()
-	if game.is_valid_position(mouse_pos):
-		self.position = mouse_pos
-		self.reset_physics_interpolation()
-		$teleport.restart()
-		$parry.play()
+	self.position = mouse_pos
+	self.reset_physics_interpolation()
+	$teleport.restart()
+	$parry.play()
 
 
 func _ice_deflect(_player_position, _look_direction):
 	self.parry_timer = 0.0
 	$shoot_ice.play()
 
+func _check_valid_place_position() -> bool:
+	var mouse_pos = self.game.get_local_mouse_position()
+	return game.is_valid_position(mouse_pos, true)
 
 func _rock_buff(_player_position, _look_direction):
 	var mouse_pos = self.game.get_local_mouse_position()
-	if game.is_valid_position(mouse_pos, true):
-		var circle = BUFF_CIRCLE.instantiate().start(mouse_pos)
-		game.get_node("projectiles").add_child(circle)
-		
-		$shoot_rock.play()
+	var circle = BUFF_CIRCLE.instantiate().start(mouse_pos)
+	game.get_node("projectiles").add_child(circle)
+	
+	$shoot_rock.play()
 
 
 func _rock_spike(_player_position, _look_direction):
 	var mouse_pos = self.game.get_local_mouse_position()
-	if game.is_valid_position(mouse_pos, true):
-		var spikes = SPIKES.instantiate().make_friendly(mouse_pos)
-		game.get_node("projectiles").add_child(spikes)
-		
-		$shoot_rock.play()
+	var spikes = SPIKES.instantiate().make_friendly(mouse_pos)
+	game.get_node("projectiles").add_child(spikes)
+	
+	$shoot_rock.play()
 
 
 func _rock_roll(_player_position, _look_direction):
