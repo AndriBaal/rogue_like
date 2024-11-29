@@ -90,7 +90,7 @@ enum PlayerState {
 @export var movement: Vector2
 @export var animation_timer := 0.0
 @export var immunity_timer := immunity_duration
-@export var max_health := 30.0:
+@export var max_health := 28.0:
 	get:
 		return max_health
 	set(value):
@@ -496,7 +496,7 @@ func int_to_roman(num: int) -> String:
 	return result
 
 func attack_factor(_type: Projectile.DamageType) -> float:
-	var base_attack = 1.0 + self.attack_stat * 0.1
+	var base_attack = 1.0 + self.attack_stat * 0.16
 	for effect in self.effects.values():
 		if 'attack' in effect:
 			base_attack *= effect['attack']
