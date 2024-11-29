@@ -30,6 +30,7 @@
 - [x] Animation index out of bounds when roll on exact same frame again -> new state is not processed because old state is also roll
 
 ## TODO
+- [ ] Change to earn xp by room
 - [ ] Hide easter eggs
 - [x] Spawn animation
 - [x] Story (Endboss drops scroll)

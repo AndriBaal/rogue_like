@@ -15,6 +15,9 @@ scale = Vector2(2.75, 2.75)
 script = ExtResource("2_qjxi4")
 roll_damage = null
 
+[node name="camera" parent="." index="0"]
+zoom = Vector2(0.5, 0.5)
+
 [node name="walk_sprite" parent="." index="4"]
 texture = ExtResource("3_vlwt7")
 

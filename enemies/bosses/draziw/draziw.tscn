@@ -579,6 +579,7 @@ shape = SubResource("CapsuleShape2D_ho0em")
 [node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
 stream = ExtResource("8_7cb5i")
+volume_db = -6.0
 
 [node name="defeat_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_7d2ki")

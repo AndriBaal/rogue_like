@@ -22,7 +22,7 @@ text = "To leave the first room, you must purchase a spell from the Skill Tree. 
 
 [node name="tutorial2" parent="items" index="1" instance=ExtResource("4_651ca")]
 position = Vector2(-295, -304)
-text = "Use 'W', 'A', 'S', and 'D' to move around. Press 'SPACE' to perform a dodge roll. During the dodge roll, you are immune to all damage and can pass through enemies and projectiles."
+text = "Use 'W', 'A', 'S', and 'D' to move around. Press 'SPACE', 'SHIFT' or 'RIGHT CLICK' to perform a dodge roll. During the dodge roll, you are immune to all damage and can pass through enemies and projectiles."
 
 [node name="tutorial3" parent="items" index="2" instance=ExtResource("4_651ca")]
 position = Vector2(-3.05176e-05, -304)

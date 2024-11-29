@@ -90,7 +90,7 @@ enum PlayerState {
 @export var movement: Vector2
 @export var animation_timer := 0.0
 @export var immunity_timer := immunity_duration
-@export var max_health := 20.0:
+@export var max_health := 30.0:
 	get:
 		return max_health
 	set(value):
@@ -530,10 +530,10 @@ func decrease_stat(property: String):
 	
 	match property:
 		'health_stat':
-			self.max_health -= 5.0
+			self.max_health -= 10.0
 
 func increase_stat(property: String):
 	self[property] += 1
 	match property:
 		'health_stat':
-			self.max_health += 5.0
+			self.max_health += 10.0

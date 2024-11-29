@@ -72,9 +72,11 @@ visible = false
 
 [node name="hit_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_yiaub")
+volume_db = -6.0
 
 [node name="defeat_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_soesr")
+volume_db = -8.0
 
 [node name="despawn" type="GPUParticles2D" parent="."]
 modulate = Color(0.290453, 0.0773342, 1, 1)
